@@ -27,17 +27,28 @@ class Owner::MenusController < Owner::Base
   end
 
   def create
-    menu_new = Menu.new(menu_params)
-    menu_new.restaurant_id = current_owner_restaurant.id
-    if menu_new.save
+    new_menu = Menu.new(menu_params)
+    new_menu.restaurant_id = current_owner_restaurant.id
+    if new_menu.save
       # 推奨タグの新規追加
       params[:tag_id].each do |tag, box|
         if box == "1"
           menu_tag = MenuTag.new
-          menu_tag.menu_id = menu_new.id
+          menu_tag.menu_id = new_menu.id
           menu_tag.tag_id = tag.to_i
           menu_tag.save
         end
+      end
+
+      tags = Vision.get_image_data(new_menu.menu_image)
+      tags.each do |tag|
+        new_tag = Tag.new
+        new_tag.name = tag
+        new_tag.save
+        new_menu_tag = MenuTag.new
+        new_menu_tag.menu_id = new_menu.id
+        new_menu_tag.tag_id = new_tag.id
+        new_menu_tag.save
       end
 
       # フォームに値があるかどうか？
@@ -54,13 +65,13 @@ class Owner::MenusController < Owner::Base
         #MenuTagの新規追加
         params[:tag].each do |tag|
           new_menu_tag = MenuTag.new
-          new_menu_tag.menu_id = menu_new.id
+          new_menu_tag.menu_id = new_menu.id
           new_menu_tag.tag_id = Tag.find_by(name: "#{tag}").id
           new_menu_tag.save
         end
       end
 
-      redirect_to owner_restaurant_menu_path(current_owner_restaurant, menu_new)
+      redirect_to owner_restaurant_menu_path(current_owner_restaurant, new_menu)
     else
       render :edit
     end
@@ -87,6 +98,21 @@ class Owner::MenusController < Owner::Base
           unless remove_menu_tag.nil?
             remove_menu_tag.destroy
           end
+        end
+      end
+
+      tags = Vision.get_image_data(menu.menu_image)
+      tags.each do |tag|
+        unless Tag.find_by(name: tag)
+          new_tag = Tag.new
+          new_tag.name = tag
+          new_tag.save
+        end
+        unless MenuTag.find_by(menu_id: menu.id, tag_id: Tag.find_by(name: tag).id)
+          new_menu_tag = MenuTag.new
+          new_menu_tag.menu_id = menu.id
+          new_menu_tag.tag_id = Tag.find_by(name: tag).id
+          new_menu_tag.save
         end
       end
 

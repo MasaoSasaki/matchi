@@ -173,9 +173,9 @@ $(function() {
 
 //メニュー写真、店舗写真にプレビューを表示
 $(function() {
-  const googlePlatformAPIKey = gon.google_platform_api_key;
-  const googlePlatformAPITagUrl = 'https://vision.googleapis.com/v1/images:annotate?key=';
-  const apiTagUrl = googlePlatformAPITagUrl + googlePlatformAPIKey;
+  // const googlePlatformAPIKey = gon.google_platform_api_key;
+  // const googlePlatformAPITagUrl = 'https://vision.googleapis.com/v1/images:annotate?key=';
+  // const apiTagUrl = googlePlatformAPITagUrl + googlePlatformAPIKey;
   $("#menu_menu_image").on("change", function() {
     var file = $(this).prop('files')[0];
     if(!file.type.match('image.*')){
@@ -185,41 +185,39 @@ $(function() {
     fileReader.onloadend = function() {
       var dataUrl = fileReader.result;
       $(".image-preview").append(`<img src="${dataUrl}">`);
-      makeRequest(dataUrl, getAPIInfo);
+      // makeRequest(dataUrl, getAPIInfo);
     }
     fileReader.readAsDataURL(file);
   });
-  function makeRequest(dataUrl, callback) {
-    var end = dataUrl.indexOf(",");
-    var request = "{'requests': [{'image': {'content': '" + dataUrl.slice(end + 1) + "'}, 'features': [{'type': 'LABEL_DETECTION'}]}]}"
-    callback(request)
-  }
-  function getAPIInfo(request) {
-    $.ajax({
-      url: apiTagUrl,
-      type: 'POST',
-      async: true,
-      cache: false,
-      data: request,
-      dataType: 'json',
-      contentType: 'application/json',
-    }).done(function(result) {
-      console.log('取得しました。')
-      showResult(result);
-    }).fail(function(result) {
-      console.log(result.responses[0])
-      console.log('取得に失敗しました。');
-    });
-  }
-  function showResult(result) {
-    var responses = result.responses[0]
-    console.log(responses.labelAnnotations[0])
-    for (let i = 0; i < responses.labelAnnotations.length; i++) {
-      $("#api-tag-list").append(`<p class="inline-block" id=api-tag${i}><span class="menu-tag api-menu-tag">${responses.labelAnnotations[i].description} <a>x</a></span></p>`);
-      $("#api-tag"+i).append(`<input type="hidden" value="${responses.labelAnnotations[i].description}" name="tag[]" class="input-menu-tag${i}"></input>`);
-    }
-  }
 });
+//   function makeRequest(dataUrl, callback) {
+//     var end = dataUrl.indexOf(",");
+//     var request = "{'requests': [{'image': {'content': '" + dataUrl.slice(end + 1) + "'}, 'features': [{'type': 'LABEL_DETECTION'}]}]}"
+//     callback(request)
+//   }
+//   function getAPIInfo(request) {
+//     $.ajax({
+//       url: apiTagUrl,
+//       type: 'POST',
+//       async: true,
+//       cache: false,
+//       data: request,
+//       dataType: 'json',
+//       contentType: 'application/json',
+//     }).done(function(result) {
+//       showResult(result);
+//     }).fail(function(result) {
+//       console.log('取得に失敗しました。');
+//     });
+//   }
+//   function showResult(result) {
+//     var responses = result.responses[0]
+//     for (let i = 0; i < responses.labelAnnotations.length; i++) {
+//       $("#api-tag-list").append(`<p class="inline-block" id=api-tag${i}><span class="menu-tag api-menu-tag">${responses.labelAnnotations[i].description} <a>x</a></span></p>`);
+//       $("#api-tag"+i).append(`<input type="hidden" value="${responses.labelAnnotations[i].description}" name="tag[]" class="input-menu-tag${i}"></input>`);
+//     }
+//   }
+// });
 
 // xを押すとタグの削除
 $(function() {
