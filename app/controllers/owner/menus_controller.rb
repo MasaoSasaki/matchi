@@ -1,7 +1,7 @@
 class Owner::MenusController < Owner::Base
 
   before_action :current_restaurant?
-  before_action :current_menu?, except: %i[index new]
+  before_action :current_menu?, except: %i[index new create]
   before_action :api, only: %i[edit new create update]
 
   def index
@@ -60,10 +60,9 @@ class Owner::MenusController < Owner::Base
           new_menu_tag.save
         end
       end
-
       redirect_to owner_restaurant_menu_path(current_owner_restaurant, menu_new)
     else
-      render :edit
+      render :new
     end
   end
 

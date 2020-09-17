@@ -3,9 +3,10 @@
   <%= render partial: 'form', locals: {
     restaurant: @restaurant,
     menu: @menu,
+    url: owner_restaurant_menu_path,
+    method: :patch,
     tags: @tags,
     menu_tags: @menu_tags,
-    path: owner_restaurant_menu_path,
     truth: true, submit: '更新'
-    } %>
+  } %>
 </div>
