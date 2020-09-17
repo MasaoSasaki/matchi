@@ -4,6 +4,9 @@
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "owner/restaurants/shared/error_messages", resource: resource %>
+      <%= f.hidden_field :postal_code, value: "0000000" %>
+      <%= f.hidden_field :phone_number, value: "0000000000" %>
+      <%= f.hidden_field :name, value: "店舗名" %>
 
       <div class="field">
         <%= f.label :email %><br />
