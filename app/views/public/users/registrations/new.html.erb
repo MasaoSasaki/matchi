@@ -1,4 +1,64 @@
-<div class="contents devise-form">
+<div class="contents public-users-new sp">
+  <h2>新規会員登録</h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "public/users/shared/error_messages", resource: resource %>
+  <table>
+    <tbody>
+      <tr>
+        <td colspan="2"><h3>お名前</h3><p>予約時の情報として使用されます。</p></td>
+      </tr>
+      <tr>
+        <td><%= f.label :name_family, value: '姓：' %><br><%= f.text_field :name_family, placeholder: '必須' %></td>
+        <td><%= f.label :name_first, value: '名：' %><br><%= f.text_field :name_first, placeholder: '必須' %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :name_family_kana, value: 'セイ：' %><br><%= f.text_field :name_family_kana, placeholder: '必須' %></td>
+        <td><%= f.label :name_first_kana, value: 'メイ：' %><br><%= f.text_field :name_first_kana, placeholder: '必須' %></td>
+      </tr>
+      <tr>
+        <td colspan="2"><h3><%= f.label :phone_number, value: '電話番号' %></h3><p>予約後に店舗よりご連絡する場合がございます。</p></td>
+      </tr>
+      <tr>
+        <td><%= f.number_field :phone_number, placeholder: '必須' %></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2"><h3><%= f.label :email, value: 'メールアドレス' %></h3><p>ログイン時のID、予約の確認、メールマガジンの配信先に使用します。</p></td>
+      </tr>
+      <tr>
+        <td><%= f.email_field :email, autocomplete: "email", placeholder: '必須' %></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <h3><%= f.label :password, value: 'パスワード' %></h3>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <% if @minimum_password_length %>
+            <p>(<%= @minimum_password_length %>文字以上)</p>
+          <% end %>
+        </td>
+        <td><%= f.password_field :password, autocomplete: "new-password", placeholder: '必須' %></td>
+      </tr>
+      <tr>
+        <td><p>（再入力）</p></td>
+        <td><%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '必須' %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="actions">
+    <%= f.submit "登録する", class: 'btn registration-btn' %>
+  </div>
+  <% end %>
+
+  <%= render "public/users/shared/links" %>
+
+</div>
+<div class="contents public-users-new pc">
   <h2>新規会員登録</h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -9,7 +69,7 @@
         <td colspan="3"></td>
       </tr>
       <tr>
-        <td><h3>お名前</h3><small>予約時の情報として使用されます。</small></td>
+        <td><h3>お名前</h3><p>予約時の情報として使用されます。</p></td>
         <td><%= f.label :name_family, value: '姓：' %><%= f.text_field :name_family, placeholder: '必須' %></td>
         <td><%= f.label :name_first, value: '名：' %><%= f.text_field :name_first, placeholder: '必須' %></td>
       </tr>
@@ -24,7 +84,7 @@
         <td></td>
       </tr>
       <tr>
-        <td><h3><%= f.label :email, value: 'メールアドレス' %></h3><small>ログイン時のIDとして使用されます。また、予約の確認や、メールマガジンの配信も行われます。</small></td>
+        <td><h3><%= f.label :email, value: 'メールアドレス' %></h3><p>ログイン時のIDとして使用されます。また、予約の確認や、メールマガジンの配信も行われます。</p></td>
         <td><%= f.email_field :email, autocomplete: "email", placeholder: '必須' %></td>
         <td></td>
       </tr>

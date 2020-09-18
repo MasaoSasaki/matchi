@@ -1,3 +1,116 @@
 // Place all the styles related to the public/users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "variables";
+
+// スマホ
+@media (max-width: $media-sp-max) {
+  .public-users-new {
+
+    h2 {
+      margin: 10px 0;
+    }
+
+    h3 {
+      margin-top: 20px;
+    }
+
+  }
+}
+
+// PC・タブレット共通
+@media (min-width: $media-tb-min) {
+//
+  .user-links {
+    padding: 20px;
+    margin: 20px;
+    border: 3px solid black;
+    border-radius: 10px;
+    background: $thema-color2
+  }
+
+  .sns-btn {
+    width: 50px;
+    margin: 5px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+
+  .user-info div, .user-profile div, .user-sns, .profile-contents, .user-status, .user-performance {
+    margin: 20px auto 10px;
+  }
+
+  .box {
+    width: 300px;
+    height: 300px;
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+
+  .new-user-performance {
+    flex-wrap: wrap;
+  }
+
+  .user-performance h3 {
+    text-align: center;
+    grid-area: title;
+  }
+  .new-menu-reviewees {
+    margin: 0 auto;
+    grid-area: box1;
+  }
+  .new-restaurant-reviewees {
+    margin: 0 auto;
+    grid-area: box2;
+  }
+  .new-reviewers {
+    margin: 0 auto;
+    grid-area: box3;
+  }
+  .new-reservations {
+    margin: 0 auto;
+    grid-area: box4;
+  }
+
+  // /public/users/profile
+  .profile-image {
+    text-align: center;
+    margin-right: 20px;
+    flex: 1;
+  }
+
+  .profile_image {
+    object-fit: cover;
+  }
+
+  .handle-name-sns {
+    padding-left: 10px;
+    flex: 1;
+  }
+
+  // /public/users/edit
+  .users-edit h2 {
+    margin: 20px 0;
+  }
+
+  .users-edit > h2 {
+    text-align: center;
+  }
+
+
+  .users-edit-btn {
+    justify-content: space-between;
+  }
+  .users-edit-btn .submit {
+    flex: 1;
+    text-align: right;
+  }
+  .users-edit-btn .destroy {
+    flex: 1;
+    text-align: right;
+    font-size: 0.8em;
+  }
+
+}
