@@ -32,10 +32,6 @@ ul {
   padding: 0;
 }
 
-td, th {
-  padding: 10px;
-}
-
 .btn {
   font-weight: bold;
   font-size: 1em;
@@ -104,7 +100,6 @@ header {
   width: $logo-image-width;
   height: $logo-image-height;
 }
-
 
 .body-container {
   min-height: 500px;
@@ -300,98 +295,6 @@ h1 {
   background-color: rgb(255, 240, 240);
 }
 
-// /public/users
-.user-links {
-  padding: 20px;
-  margin: 20px;
-  border: 3px solid black;
-  border-radius: 10px;
-  background: $thema-color2
-}
-
-.sns-btn {
-  width: 50px;
-  margin: 5px;
-  text-align: center;
-  border: 1px solid black;
-  border-radius: 5px;
-}
-
-.user-info div, .user-profile div, .user-sns, .profile-contents, .user-status, .user-performance {
-  margin: 20px auto 10px;
-}
-
-.box {
-  width: 300px;
-  height: 300px;
-  border: 1px solid black;
-  border-radius: 5px;
-}
-
-.new-user-performance {
-  flex-wrap: wrap;
-}
-
-.user-performance h3 {
-  text-align: center;
-  grid-area: title;
-}
-.new-menu-reviewees {
-  margin: 0 auto;
-  grid-area: box1;
-}
-.new-restaurant-reviewees {
-  margin: 0 auto;
-  grid-area: box2;
-}
-.new-reviewers {
-  margin: 0 auto;
-  grid-area: box3;
-}
-.new-reservations {
-  margin: 0 auto;
-  grid-area: box4;
-}
-
-// /public/users/profile
-.profile-image {
-  text-align: center;
-  margin-right: 20px;
-  flex: 1;
-}
-
-.profile_image {
-  object-fit: cover;
-}
-
-.handle-name-sns {
-  padding-left: 10px;
-  flex: 1;
-}
-
-// /public/users/edit
-  .users-edit h2 {
-    margin: 20px 0;
-  }
-
-  .users-edit > h2 {
-    text-align: center;
-  }
-
-
-  .users-edit-btn {
-    justify-content: space-between;
-  }
-  .users-edit-btn .submit {
-    flex: 1;
-    text-align: right;
-  }
-  .users-edit-btn .destroy {
-    flex: 1;
-    text-align: right;
-    font-size: 0.8em;
-  }
-
 // /public/restaurants
 .public-restaurants-index > h2 {
   text-align: center;
@@ -524,10 +427,8 @@ footer {
 // PC端末用
 @media (min-width: $media-pc-min) {
 
-  .contents {
-    margin: 0 auto;
-    padding: 0 70px;
-    max-width: 900px;
+  td, th {
+    padding: 30px;
   }
 
   .top-main {
@@ -565,6 +466,16 @@ footer {
 
 // PC・タブレット共通
 @media (min-width: $media-tb-min) {
+
+  .contents {
+    margin: 0 auto;
+    padding: 0 70px;
+    max-width: 900px;
+  }
+
+  .sp {
+    display: none;
+  }
 
   .sp-header {
     display: none;
@@ -662,6 +573,11 @@ footer {
 // タブレット端末用
 @media (min-width: $media-tb-min) and (max-width: $media-tb-max) {
 
+  .contents {
+    margin: 0 auto;
+    padding: 0 70px;
+  }
+
   .top-main {
     padding: 0 30px;
   }
@@ -683,9 +599,24 @@ footer {
 
 // スマホ用
 @media (max-width: $media-sp-max) {
+
+  td, th {
+    padding: 0px;
+  }
+
+  .pc {
+    display: none;
+  }
+
   .contents {
-    padding: 0 30px;
+    padding: 0 10px;
     max-width: 900px;
+  }
+
+  .registration-btn {
+    padding: 0.5em;
+    font-size: 1.1em;
+    background-color: #ffdd00;
   }
 
   .top-restaurant .restaurant_image {
