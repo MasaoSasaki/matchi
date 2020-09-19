@@ -1,6 +1,6 @@
 class Public::ReservationsController < Public::Base
 
-  before_action :current_user?
+  before_action :authenticate_public_user!
 
   def index
     @reservations = Reservation.where(user_id: current_public_user.id)

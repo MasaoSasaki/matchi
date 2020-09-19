@@ -4,9 +4,14 @@
 
 @import "variables";
 
+.public-users-_user_links {
+  margin-top: 20px;
+}
+
 // スマホ
 @media (max-width: $media-sp-max) {
-  .public-users-new {
+
+  .public-users-new, .public-users-registrations-new {
 
     h2 {
       margin: 10px 0;

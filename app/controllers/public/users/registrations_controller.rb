@@ -40,12 +40,13 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
 
   # アカウント登録後
   def after_sign_up_path_for(resource)
-    root_path
+    public_user_completion_path(resource, )
+    redirect_to redirect_path()
   end
 
   #アカウント編集後
   def after_update_path_for(resource)
-    myinfo(resource)
+    myinfo_path
   end
 
   # protected
