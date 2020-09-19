@@ -40,8 +40,7 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
 
   # アカウント登録後
   def after_sign_up_path_for(resource)
-    public_user_completion_path(resource, )
-    redirect_to redirect_path()
+    public_user_completion_path(resource)
   end
 
   #アカウント編集後
