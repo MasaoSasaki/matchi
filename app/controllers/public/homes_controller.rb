@@ -1,7 +1,5 @@
 class Public::HomesController < Public::Base
 
-  # before_action :current_user?, except: [:top, :about, :contact, :privacy, :terms, :redirect]
-
   def top
     @menus = Menu.all
     @restaurants = Restaurant.all

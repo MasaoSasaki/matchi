@@ -1,5 +1,5 @@
-<div class="contents public-users-new sp">
-  <h2>新規会員登録</h2>
+<div class="contents public-users-registrations-new sp">
+  <h2>入力情報の確認</h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "public/users/shared/error_messages", resource: resource %>
@@ -9,103 +9,61 @@
         <td colspan="2"><h3>お名前</h3><p>予約時の情報として使用されます。</p></td>
       </tr>
       <tr>
-        <td><%= f.label :name_family, value: '姓：' %><br><%= f.text_field :name_family, placeholder: '必須' %></td>
-        <td><%= f.label :name_first, value: '名：' %><br><%= f.text_field :name_first, placeholder: '必須' %></td>
+        <td><%= f.label :name_family, '姓：' %><%= params[:name_family] %></td>
+        <td><%= f.label :name_first, '名：' %><%= params[:name_first] %></td>
       </tr>
       <tr>
-        <td><%= f.label :name_family_kana, value: 'セイ：' %><br><%= f.text_field :name_family_kana, placeholder: '必須' %></td>
-        <td><%= f.label :name_first_kana, value: 'メイ：' %><br><%= f.text_field :name_first_kana, placeholder: '必須' %></td>
+        <td><%= f.label :name_family_kana, 'セイ：' %><%= params[:name_family_kana] %></td>
+        <td><%= f.label :name_first_kana, 'メイ：' %><%= params[:name_first_kana] %></td>
       </tr>
       <tr>
-        <td colspan="2"><h3><%= f.label :phone_number, value: '電話番号' %></h3><p>予約後に店舗よりご連絡する場合がございます。</p></td>
+        <td colspan="2"><h3><%= f.label :phone_number, '電話番号' %></h3></td>
       </tr>
       <tr>
-        <td><%= f.number_field :phone_number, placeholder: '必須' %></td>
+        <td><%= params[:phone_number] %></td>
         <td></td>
       </tr>
       <tr>
-        <td colspan="2"><h3><%= f.label :email, value: 'メールアドレス' %></h3><p>ログイン時のID、予約の確認、メールマガジンの配信先に使用します。</p></td>
+        <td colspan="2"><h3><%= f.label :email, 'メールアドレス' %></h3><p>ログイン時のIDとして使用されます。また、予約の確認や、メールマガジンの配信も行われます。</p></td>
       </tr>
       <tr>
-        <td><%= f.email_field :email, autocomplete: "email", placeholder: '必須' %></td>
+        <td><%= params[:email] %></td>
         <td></td>
       </tr>
       <tr>
         <td colspan="2">
-          <h3><%= f.label :password, value: 'パスワード' %></h3>
+          <h3><%= f.label :password, 'パスワード' %></h3>
         </td>
       </tr>
       <tr>
         <td>
-          <% if @minimum_password_length %>
-            <p>(<%= @minimum_password_length %>文字以上)</p>
-          <% end %>
-        </td>
-        <td><%= f.password_field :password, autocomplete: "new-password", placeholder: '必須' %></td>
-      </tr>
-      <tr>
-        <td><p>（再入力）</p></td>
-        <td><%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '必須' %></td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="actions">
-    <%= f.submit "登録する", class: 'btn registration-btn' %>
-  </div>
-  <% end %>
-
-  <%= render "public/users/shared/links" %>
-
-</div>
-<div class="contents public-users-new pc">
-  <h2>新規会員登録</h2>
-
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "public/users/shared/error_messages", resource: resource %>
-  <table>
-    <tbody>
-      <tr>
-        <td colspan="3"></td>
-      </tr>
-      <tr>
-        <td><h3>お名前</h3><p>予約時の情報として使用されます。</p></td>
-        <td><%= f.label :name_family, value: '姓：' %><%= f.text_field :name_family, placeholder: '必須' %></td>
-        <td><%= f.label :name_first, value: '名：' %><%= f.text_field :name_first, placeholder: '必須' %></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><%= f.label :name_family_kana, value: 'セイ：' %><%= f.text_field :name_family_kana, placeholder: '必須' %></td>
-        <td><%= f.label :name_first_kana, value: 'メイ：' %><%= f.text_field :name_first_kana, placeholder: '必須' %></td>
-      </tr>
-      <tr>
-        <td><h3><%= f.label :phone_number, value: '電話番号' %></h3></td>
-        <td><%= f.number_field :phone_number, placeholder: '必須' %></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><h3><%= f.label :email, value: 'メールアドレス' %></h3><p>ログイン時のIDとして使用されます。また、予約の確認や、メールマガジンの配信も行われます。</p></td>
-        <td><%= f.email_field :email, autocomplete: "email", placeholder: '必須' %></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>
-          <h3><%= f.label :password, value: 'パスワード' %></h3>
           <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %>文字以上)</em>
           <% end %>
         </td>
-        <td><%= f.password_field :password, autocomplete: "new-password", placeholder: '必須' %></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><h3><%= f.label :password_confirmation, 'パスワード（再入力）' %></h3></td>
-        <td><%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '必須' %></td>
-        <td></td>
+        <% unless params[:password].nil? %>
+          <%
+            i = 0
+            password = ""
+            while i < params[:password].length
+              password << "*"
+              i += 1
+            end
+          %>
+        <% end %>
+        <td><%= password %></td>
       </tr>
     </tbody>
   </table>
 
+  <%= f.hidden_field :name_family, value: params[:name_family] %>
+  <%= f.hidden_field :name_first, value: params[:name_first] %>
+  <%= f.hidden_field :name_family_kana, value: params[:name_family_kana] %>
+  <%= f.hidden_field :name_first_kana, value: params[:name_first_kana] %>
+  <%= f.hidden_field :phone_number, value: params[:phone_number] %>
+  <%= f.hidden_field :email, value: params[:email] %>
+  <%= f.hidden_field :password, value: params[:password] %>
+  
   <div class="actions">
     <%= f.submit "登録する", class: 'btn registration-btn' %>
   </div>
