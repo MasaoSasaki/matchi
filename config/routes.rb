@@ -21,9 +21,9 @@ Rails.application.routes.draw do
       registrations: 'master/admins/registrations'
     }
     get '/', to: 'admins#top'
-    resources :users, only: [:index, :show, :update]
-    resources :restaurants, only: [:index, :show]
-    resources :tags, only: [:index, :create, :destroy]
+    resources :users, only: %i[index show update]
+    resources :restaurants, only: %i[index show]
+    resources :tags, only: %i[index create destroy]
   end
 
   namespace :owner do
@@ -31,11 +31,11 @@ Rails.application.routes.draw do
       sessions: 'owner/restaurants/sessions',
       registrations: 'owner/restaurants/registrations'
     }
-    resources :restaurants, only: [:show, :edit, :update] do
+    resources :restaurants, only: %i[show edit update] do
       resources :menus
     end
-    resources :reservations, only: [:index, :show, :update]
-    resources :menu_tags, only: [:create, :destroy]
+    resources :reservations, only: %i[index show update]
+    resources :menu_tags, only: %i[create destroy]
   end
 
   namespace :public do
@@ -45,19 +45,19 @@ Rails.application.routes.draw do
       passwords: 'public/users/passwords'
     }
     # get '/', to: 'homes#top'
-    resources :users, only: [:update, :new] do
+    resources :users, only: %i[update new] do
       get 'completion', to: 'users#completion'
-      resources :reservations, only: [:index, :show, :new, :create]
+      resources :reservations, only: %i[index show new create]
       get 'reservations/confirm', to: 'reservations#confirm'
       get 'reservations/completion', to: 'reservations#completion'
-      resources :bookmarks, only: [:index, :show]
+      resources :bookmarks, only: %i[:index show]
     end
 
     patch 'users/:id/withdrawal', to: 'users#withdrawal', as: 'users/withdrawal'
     get 'users/:id/withdrew', to: 'users#withdrew', as: 'users/withdrew'
 
-    resources :restaurants, only: [:index, :show]
-    resources :menus, only: [:index, :show]
+    resources :restaurants, only: %i[index show]
+    resources :menus, only: %i[index show]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

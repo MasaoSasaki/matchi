@@ -3,32 +3,31 @@
   <h2>新規会員登録</h2>
 
   <%= form_with url: new_public_user_registration_path, method: :get, local: true do |f| %>
-  <%# render "public/users/shared/error_messages", resource: resource %>
   <table>
     <tbody>
       <tr>
         <td colspan="2"><h3>お名前</h3><p>予約時の情報として使用されます。</p></td>
       </tr>
       <tr>
-        <td><%= f.label :name_family, '姓：' %><br><%= f.text_field :name_family, placeholder: '必須', value: '鈴木' %></td>
-        <td><%= f.label :name_first, '名：' %><br><%= f.text_field :name_first, placeholder: '必須', value: '一郎' %></td>
+        <td><%= f.label :name_family, '姓：' %><br><%= f.text_field :name_family, placeholder: '必須' %></td>
+        <td><%= f.label :name_first, '名：' %><br><%= f.text_field :name_first, placeholder: '必須' %></td>
       </tr>
       <tr>
-        <td><%= f.label :name_family_kana, 'セイ：' %><br><%= f.text_field :name_family_kana, placeholder: '必須', value: 'スズキ' %></td>
-        <td><%= f.label :name_first_kana, 'メイ：' %><br><%= f.text_field :name_first_kana, placeholder: '必須', value: 'イチロウ' %></td>
+        <td><%= f.label :name_family_kana, 'セイ：' %><br><%= f.text_field :name_family_kana, placeholder: '必須' %></td>
+        <td><%= f.label :name_first_kana, 'メイ：' %><br><%= f.text_field :name_first_kana, placeholder: '必須' %></td>
       </tr>
       <tr>
         <td colspan="2"><h3><%= f.label :phone_number, '電話番号' %></h3><p>予約後に店舗よりご連絡する場合がございます。</p></td>
       </tr>
       <tr>
-        <td><%= f.number_field :phone_number, placeholder: '必須', value: "000" %></td>
+        <td><%= f.number_field :phone_number, placeholder: '必須' %></td>
         <td></td>
       </tr>
       <tr>
         <td colspan="2"><h3><%= f.label :email, 'メールアドレス' %></h3><p>ログイン時のID、予約の確認、メールマガジンの配信先に使用します。</p></td>
       </tr>
       <tr>
-        <td><%= f.email_field :email, autocomplete: "email", placeholder: '必須', value: 'ichiro@ichiro' %></td>
+        <td><%= f.email_field :email, autocomplete: "email", placeholder: '必須' %></td>
         <td></td>
       </tr>
       <tr>
@@ -42,11 +41,11 @@
             <p>(<%= @minimum_password_length %>文字以上)</p>
           <% end %>
         </td>
-        <td><%= f.password_field :password, autocomplete: "new-password", placeholder: '必須', value: '000000' %></td>
+        <td><%= f.password_field :password, autocomplete: "new-password", placeholder: '必須' %></td>
       </tr>
       <tr>
         <td><p>（再入力）</p></td>
-        <td><%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '必須', value: '000000' %></td>
+        <td><%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '必須' %></td>
       </tr>
     </tbody>
   </table>
