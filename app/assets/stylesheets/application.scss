@@ -45,6 +45,10 @@ ul {
   display: none;
 }
 
+#hide {
+  display: inherit;
+}
+
 .under-line {
   text-decoration: underline;
 }
@@ -261,13 +265,13 @@ footer {
   font-size: 0.8em;
 }
 
-#move-head {
+.move-head {
   position: fixed;
   bottom: 100px;
   right: 15px;
 }
 
-.move-head {
+#move-head--icon {
   width: 50px;
   height: 50px;
   background-color: rgba($color: #ffdd00, $alpha: 0.5);
@@ -276,12 +280,12 @@ footer {
   position: relative;
 }
 
-.move-head > .fa-arrow-up {
+#move-head--icon > .fa-arrow-up {
   line-height: 50px;
   color: rgba(255, 255, 255, 0.7);
 }
 
-.move-head:hover {
+#move-head--icon:hover {
   cursor: pointer;
 }
 

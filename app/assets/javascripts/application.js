@@ -131,11 +131,26 @@ addEventListener('DOMContentLoaded', function() {
 });
 
 // ヘッダーにスクロール
-$(function() {
-  $(".move-head").on("click", function(){
-    $('body,html').animate({scrollTop:0}, 200, 'swing');
+window.addEventListener('DOMContentLoaded', function() {
+  const scrollIcon = document.getElementById("move-head--icon");
+  addEventListener('scroll', function() {
+    if (pageYOffset == 0 ) {
+      scrollIcon.classList.add("hidden");
+    } else {
+      scrollIcon.classList.remove("hidden");
+    }
+  })
+  scrollIcon.addEventListener('click', function() {
+    scrollTo(0, 0);
   });
 });
+
+// ヘッダーにスクロール(jQuery版)
+// $(function() {
+//   $("#move-head--icon").on("click", function(){
+//     $('body,html').animate({scrollTop:0}, 200, 'swing');
+//   });
+// });
 
 // ハンバーガーメニュー
 $(function() {
@@ -188,8 +203,7 @@ $(function() {
   });
 });
 
-// ここから上記コードのjQuery版
-// メニュータグの追加
+// メニュータグの追加(jQuery版)
 // $(function() {
   //   function addTags() {
     //     var tagName = $("#tag_name").val();
