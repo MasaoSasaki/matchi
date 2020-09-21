@@ -6,7 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :reservation
+  has_many :reservations
 
   enum user_status: [:"有効会員", :"退会済み", :"強制退会"]
 
