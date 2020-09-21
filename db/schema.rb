@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_01_015446) do
+ActiveRecord::Schema.define(version: 2020_09_21_065042) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,10 +25,12 @@ ActiveRecord::Schema.define(version: 2020_09_01_015446) do
   end
 
   create_table "bookmarks", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.integer "restaurant_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_bookmarks_on_restaurant_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "contacts", force: :cascade do |t|
