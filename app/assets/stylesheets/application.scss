@@ -68,6 +68,24 @@ header {
   // margin-bottom: 30px;
 }
 
+.layouts-app-header {
+  &__notice {
+    line-height: 30px;
+
+    p {
+      color: black;
+      text-align: center;
+      animation: blinkAnime 2.0s infinite alternate;
+    }
+
+    @keyframes blinkAnime{
+      0% { color: #ffffff }
+      100% { color: #ff0000 }
+   }
+
+  }
+}
+
 .pc-header li {
   margin: 0 10px;
 }
@@ -330,7 +348,7 @@ footer {
     display: none;
   }
 
-  .header-container {
+  .layouts-app-header {
     padding: 0 70px;
     line-height: 70px;
     margin: 0 auto;
@@ -475,7 +493,7 @@ footer {
     height: 70px;
   }
 
-  .header-container {
+  .layouts-app-header {
     width: auto;
     padding: 0 20px;
     min-height: 70px;
