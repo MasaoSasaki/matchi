@@ -95,7 +95,7 @@
                   <%# end %>
                 <li><%= link_to 'ログアウト', destroy_public_user_session_path, method: :delete %></li>
               <% else %>
-                <li><%= link_to '新規登録', new_public_userchan_path %></li>
+                <li><%= link_to '新規登録', new_public_user_path %></li>
                 <li><%= link_to 'ログイン', new_public_user_session_path %></li>
               <% end %>
             <% end %>
@@ -124,11 +124,11 @@
           <% if public_user_signed_in? %>
             <li><%= link_to 'MyPage', mypage_path(current_public_user) %></li>
           <% else %>
-            <li><%= link_to '新規登録', new_public_userchan_path %></li>
+            <li><%= link_to '新規登録', new_public_user_path %></li>
             <li><%= link_to 'ログイン', new_public_user_session_path %></li>
           <% end %>
           <li><%= link_to 'サービス紹介', about_path %></li>
-          <li><%= link_to 'レストラン一覧', pqublic_restaurants_path %></li>
+          <li><%= link_to 'レストラン一覧', public_restaurants_path %></li>
           <li><%= link_to 'メニュー一覧', public_menus_path %></li>
           <% if public_user_signed_in? %>
             <li><%= link_to 'ログアウト', destroy_public_user_session_path, method: :delete %></li>

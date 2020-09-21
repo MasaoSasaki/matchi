@@ -35,22 +35,8 @@
           </td>
         </tr>
         <tr>
-          <td>
-            <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %>文字以上)</em>
-            <% end %>
-          </td>
-          <% unless params[:password].nil? %>
-            <%
-              i = 0
-              password = ""
-              while i < params[:password].length
-                password << "*"
-                i += 1
-              end
-            %>
-          <% end %>
-          <td><%= password %></td>
+          <td><%= @password %></td>
+          <td></td>
         </tr>
       </tbody>
     </table>
