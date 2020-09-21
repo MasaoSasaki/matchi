@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_21_080340) do
+ActiveRecord::Schema.define(version: 2020_09_21_083201) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(version: 2020_09_21_080340) do
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.string "email"
-    t.text "message"
+    t.string "email", null: false
+    t.text "message", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 2020_09_21_080340) do
   end
 
   create_table "menus", force: :cascade do |t|
-    t.integer "restaurant_id"
-    t.string "title"
+    t.integer "restaurant_id", null: false
+    t.string "title", null: false
     t.string "menu_image_id"
     t.text "content"
     t.text "cancel"
@@ -64,8 +64,8 @@ ActiveRecord::Schema.define(version: 2020_09_21_080340) do
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "menu_id"
+    t.integer "user_id", null: false
+    t.integer "menu_id", null: false
     t.integer "reservation_year"
     t.string "reservation_month"
     t.string "reservation_day"
