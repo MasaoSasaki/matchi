@@ -4,8 +4,17 @@
 
 @import "variables";
 
+
 .public-users-_user_links {
   margin-top: 20px;
+}
+
+// new.html.erb
+.password-confirmation {
+
+  &--confirm {
+    display: inline;
+  }
 }
 
 // スマホ
@@ -21,6 +30,9 @@
       margin-top: 20px;
     }
 
+    td {
+      padding-top: 20px;
+    }
   }
 }
 

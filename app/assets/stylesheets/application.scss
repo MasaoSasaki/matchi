@@ -66,6 +66,27 @@ ul {
   list-style: disc;
 }
 
+.error-form {
+  box-shadow: 0px 0px 5px red;
+  border: 1px solid red;
+}
+.success-form {
+  box-shadow: 0px 0px 5px green;
+  border: 1px solid green;
+}
+.error-message {
+  margin: 10px 0;
+  color: red;
+}
+.success-message {
+  color: green;
+}
+
+.inactive {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
 // application.html.erb
 header {
   border-bottom: solid 1px #ccc;
@@ -92,11 +113,6 @@ header {
 
 .pc-header li {
   margin: 0 10px;
-}
-
-.error-message {
-  margin: 10px 0;
-  color: red;
 }
 
 .pc-header {
