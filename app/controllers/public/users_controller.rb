@@ -1,12 +1,16 @@
 class Public::UsersController < Public::Base
 
   before_action :set_current_user
+  before_action :authenticate_public_user!, except: %i[new]
 
   def show
     @reservation_count = Reservation.where(user_id: @current_user.id).count
   end
 
   def edit
+  end
+
+  def new
   end
 
   def update
@@ -35,6 +39,9 @@ class Public::UsersController < Public::Base
   def withdrew
   end
 
+  def completion
+  end
+
   def set_current_user
     @current_user = current_public_user
   end
@@ -44,7 +51,8 @@ class Public::UsersController < Public::Base
     params.require(:user).permit(
       :handle_name, :profile, :profile_image,
       :twitter, :facebook, :instagram, :phone_number, :email_sub,
-      :email, :birth_year, :birth_month, :birth_day)
+      :email, :birth_year, :birth_month, :birth_day
+    )
   end
 
 end

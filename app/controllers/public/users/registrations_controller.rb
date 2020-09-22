@@ -5,9 +5,18 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+
+    # パスワードの視覚的暗号化"*"
+    i = 0
+    @password = ""
+    while i < params[:password].length
+      @password += "*"
+      i += 1
+    end
+    
+    super
+  end
 
   # POST /resource
   # def create
@@ -40,12 +49,12 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
 
   # アカウント登録後
   def after_sign_up_path_for(resource)
-    root_path
+    public_user_completion_path(resource)
   end
 
   #アカウント編集後
   def after_update_path_for(resource)
-    myinfo(resource)
+    myinfo_path
   end
 
   # protected

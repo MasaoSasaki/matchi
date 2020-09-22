@@ -1,114 +1,116 @@
 <%= hidden_field_tag :restaurants_json, value: "#{@restaurants_json}" %>
 
-<section calss="top-header">
-  <div class="header-image"></div>
-</section>
+<div class="public-homes-top">
+  <section>
+    <div class="public-homes-top--image"></div>
+  </section>
 
-<%# メインコンテンツ %>
-<section class="top-container top-main">
-  <div class="top-contents">
-    <ul class="flex top-nav" >
-      <%= link_to about_path do %>
-        <li>サービス紹介</li>
-      <% end %>
-      <%= link_to do %>
-        <li>特集</li>
-      <% end %>
-      <%= link_to do %>
-        <li>ランキング</li>
-      <% end %>
-      <%= link_to do %>
-        <li>お知らせ</li>
-      <% end %>
-    </ul>
-    <div class="restaurants-all">
-      <h2>レストラン一覧</h2>
-      <% restaurant_count = 0 %>
-      <% @restaurants.each do |restaurant| %>
-        <%# 最新の店舗3件まで表示 %>
-        <% if restaurant_count < 3 %>
-          <div class="flex top-restaurant">
-            <div class="restaurant-image">
-              <%= link_to public_restaurant_path(restaurant) do %>
-                <%= attachment_image_tag restaurant, :restaurant_image, fallback: "no_image.png" %>
-              <% end %>
-            </div>
-            <div class="restaurant-info">
-              <h3><%= link_to "#{restaurant.name}", public_restaurant_path(restaurant) %></h3>
-              <p><%= "#{restaurant.prefecture}" + "#{restaurant.city}" %></p>
-            </div>
-          </div>
-        <% restaurant_count += 1 %>
-        <% else %>
-          <% break %>
+  <%# メインコンテンツ %>
+  <section class="top-container top-main">
+    <div class="top-contents">
+      <ul class="top-nav">
+        <%= link_to about_path do %>
+          <li>サービス紹介</li>
         <% end %>
-      <% end %>
-      <h2>メニュー一覧</h2>
-      <% menu_count = 0 %>
-      <% @menus.each do |menu| %>
-        <%# 最新のメニュー3個まで表示 %>
-        <% if menu_count < 3 %>
-          <div class="flex top-menus">
-            <div class="menu-image">
-              <%= link_to public_menu_path(menu) do %>
-                <%= attachment_image_tag menu, :menu_image, fallback: "no_image.png" %>
-              <% end %>
-            </div>
-            <div class="menu-info">
-              <h3><%= link_to "#{menu.title}", public_menu_path(menu) %></h3>
-              <small>店名：<%= @restaurants.find(menu.restaurant_id).name %></small>
-              <p>正規価格：<%= menu.regular_price.to_s(:delimited) %> 円</p>
-              <p>提供価格：<%= menu.discount_price.to_s(:delimited) %> 円</p>
-            </div>
-          </div>
-        <% menu_count += 1 %>
-        <% else %>
-          <% break %>
+        <%= link_to do %>
+          <li>特集</li>
         <% end %>
-      <% end %>
-    </div>
-  </div>
-
-  <%# サイドバー %>
-  <div class="top-side">
-    <% if public_user_signed_in? %>
-      <div class="simple-mypage">マイページ</div>
-    <% else %>
-      <div class="new-registration">
-        <%= link_to '新規登録', new_public_user_registration_path, class: "btn registration" %>
-        <p>登録済みの方は<%= link_to 'こちら', new_public_user_session_path%></p>
-      </div>
-    <% end %>
-    <div class="new-menus">
-      <h4>最近更新されたメニュー</h4>
-      <div>
-        <ul class="new-menus-list">
-          <% menu_count = 0 %>
-          <% @menus.each do |menu| %>
-            <%# 最新のメニュー3個まで表示 %>
-            <% if menu_count < 3 %>
-              <li class="top-menu">
-                <p><%= link_to "#{menu.title}", public_menu_path(menu), id: 'menu-show-link' %></p>
-                <%= link_to public_menu_path(menu) do %>
-                  <%= attachment_image_tag menu, :menu_image, width: 200, height: 100, fallback: "no_image.png", class: "side-bar-menu-image" %>
+        <%= link_to do %>
+          <li>ランキング</li>
+        <% end %>
+        <%= link_to do %>
+          <li>お知らせ</li>
+        <% end %>
+      </ul>
+      <div class="restaurants-all">
+        <h2>レストラン一覧</h2>
+        <% restaurant_count = 0 %>
+        <% @restaurants.each do |restaurant| %>
+          <%# 最新の店舗3件まで表示 %>
+          <% if restaurant_count < 3 %>
+            <div class="flex top-restaurant">
+              <div class="restaurant-image">
+                <%= link_to public_restaurant_path(restaurant) do %>
+                  <%= attachment_image_tag restaurant, :restaurant_image, fallback: "no_image.png" %>
                 <% end %>
-              </li>
-              <% menu_count += 1 %>
-            <% else %>
-              <% break %>
-            <% end %>
+              </div>
+              <div class="restaurant-info">
+                <h3><%= link_to "#{restaurant.name}", public_restaurant_path(restaurant) %></h3>
+                <p><%= "#{restaurant.prefecture}" + "#{restaurant.city}" %></p>
+              </div>
+            </div>
+          <% restaurant_count += 1 %>
+          <% else %>
+            <% break %>
           <% end %>
-        </ul>
+        <% end %>
+        <h2>メニュー一覧</h2>
+        <% menu_count = 0 %>
+        <% @menus.each do |menu| %>
+          <%# 最新のメニュー3個まで表示 %>
+          <% if menu_count < 3 %>
+            <div class="flex top-menus">
+              <div class="menu-image">
+                <%= link_to public_menu_path(menu) do %>
+                  <%= attachment_image_tag menu, :menu_image, fallback: "no_image.png" %>
+                <% end %>
+              </div>
+              <div class="menu-info">
+                <h3><%= link_to "#{menu.title}", public_menu_path(menu) %></h3>
+                <small>店名：<%= @restaurants.find(menu.restaurant_id).name %></small>
+                <p>正規価格：<%= menu.regular_price.to_s(:delimited) %> 円</p>
+                <p>提供価格：<%= menu.discount_price.to_s(:delimited) %> 円</p>
+              </div>
+            </div>
+          <% menu_count += 1 %>
+          <% else %>
+            <% break %>
+          <% end %>
+        <% end %>
       </div>
     </div>
-    <div class="search">
-      <p id="get-position"><u>周辺から探す</u></p>
-      <small><span id="loading"></span></small>
-      <p class="location-result true hidden"></p>
-      <p class="location-result false hidden">現在地情報が利用できませんでした。</p>
-      <p class="location-result error hidden">レストラン情報が取得できませんでした。</p>
-      <div id="map" class="location-result true hidden"></div>
-    </div>
-  </div>
 
-</section>
+    <%# サイドバー %>
+    <div class="top-side">
+      <% if public_user_signed_in? %>
+        <div class="simple-mypage">マイページ</div>
+      <% else %>
+        <div class="new-registration">
+          <%= link_to '新規登録', new_public_user_registration_path, class: "btn registration" %>
+          <p>登録済みの方は<%= link_to 'こちら', new_public_user_session_path%></p>
+        </div>
+      <% end %>
+      <div class="new-menus">
+        <h4>最近更新されたメニュー</h4>
+        <div>
+          <ul class="new-menus-list">
+            <% menu_count = 0 %>
+            <% @menus.each do |menu| %>
+              <%# 最新のメニュー3個まで表示 %>
+              <% if menu_count < 3 %>
+                <li class="top-menu">
+                  <p><%= link_to "#{menu.title}", public_menu_path(menu), id: 'menu-show-link' %></p>
+                  <%= link_to public_menu_path(menu) do %>
+                    <%= attachment_image_tag menu, :menu_image, width: 200, height: 100, fallback: "no_image.png", class: "side-bar-menu-image" %>
+                  <% end %>
+                </li>
+                <% menu_count += 1 %>
+              <% else %>
+                <% break %>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="search">
+        <p id="get-position"><u>周辺から探す</u></p>
+        <small><span id="loading"></span></small>
+        <p class="location-result true hidden"></p>
+        <p class="location-result false hidden">現在地情報が利用できませんでした。</p>
+        <p class="location-result error hidden">レストラン情報が取得できませんでした。</p>
+        <div id="map" class="location-result true hidden"></div>
+      </div>
+    </div>
+
+  </section>
+</div>

@@ -26,7 +26,8 @@
 
 <body>
 <header>
-  <div class="header-container">
+  <div class="layouts-app-header__notice"><p>現在登録されているデータは架空です。</p></div>
+  <div class="layouts-app-header">
     <%# PC画面ヘッダー %>
     <div class="flex pc-header">
       <%= link_to root_path do %>
@@ -95,7 +96,7 @@
                   <%# end %>
                 <li><%= link_to 'ログアウト', destroy_public_user_session_path, method: :delete %></li>
               <% else %>
-                <li><%= link_to '新規登録', new_public_user_registration_path %></li>
+                <li><%= link_to '新規登録', new_public_user_path %></li>
                 <li><%= link_to 'ログイン', new_public_user_session_path %></li>
               <% end %>
             <% end %>
@@ -124,7 +125,7 @@
           <% if public_user_signed_in? %>
             <li><%= link_to 'MyPage', mypage_path(current_public_user) %></li>
           <% else %>
-            <li><%= link_to '新規登録', new_public_user_registration_path %></li>
+            <li><%= link_to '新規登録', new_public_user_path %></li>
             <li><%= link_to 'ログイン', new_public_user_session_path %></li>
           <% end %>
           <li><%= link_to 'サービス紹介', about_path %></li>
@@ -162,8 +163,8 @@
   <div class="copyright">
     <small>©︎ 2020 MasaoSasaki</small>
   </div>
-  <div id="move-head">
-    <div class="circle move-head"><i class="fa-2x fas fa-arrow-up"></i></div>
+  <div class="move-head">
+    <div id="move-head--icon" class="circle"><i class="fa-2x fas fa-arrow-up"></i></div>
   </div>
 </body>
 </footer>
