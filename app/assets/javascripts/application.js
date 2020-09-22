@@ -131,11 +131,26 @@ addEventListener('DOMContentLoaded', function() {
 });
 
 // ヘッダーにスクロール
-$(function() {
-  $(".move-head").on("click", function(){
-    $('body,html').animate({scrollTop:0}, 200, 'swing');
+addEventListener('DOMContentLoaded', function() {
+  const scrollIcon = document.getElementById("move-head--icon");
+  addEventListener('scroll', function() {
+    if (pageYOffset == 0 ) {
+      scrollIcon.classList.add("hidden");
+    } else {
+      scrollIcon.classList.remove("hidden");
+    }
+  })
+  scrollIcon.addEventListener('click', function() {
+    scrollTo(0, 0);
   });
 });
+
+// ヘッダーにスクロール(jQuery版)
+// $(function() {
+//   $("#move-head--icon").on("click", function(){
+//     $('body,html').animate({scrollTop:0}, 200, 'swing');
+//   });
+// });
 
 // ハンバーガーメニュー
 $(function() {
@@ -188,8 +203,7 @@ $(function() {
   });
 });
 
-// ここから上記コードのjQuery版
-// メニュータグの追加
+// メニュータグの追加(jQuery版)
 // $(function() {
   //   function addTags() {
     //     var tagName = $("#tag_name").val();
@@ -210,7 +224,7 @@ $(function() {
 // });
 
 //メニュー写真、店舗写真にプレビューを表示
-window.addEventListener('DOMContentLoaded', function() {
+addEventListener('DOMContentLoaded', function() {
   if (document.getElementById("menu_menu_image") != null) {
     const googlePlatformAPIKey = gon.google_platform_api_key;
     const googlePlatformAPITagUrl = 'https://vision.googleapis.com/v1/images:annotate?key=';
@@ -262,5 +276,161 @@ window.addEventListener('DOMContentLoaded', function() {
         $("#api-tag"+i).append(`<input type="hidden" value="${responses.labelAnnotations[i].description}" name="tag[]"></input>`);
       }
     }
+  }
+});
+
+// 新規会員登録フォームのバリデーション
+addEventListener('DOMContentLoaded', function() {
+
+  const newUserNameFamilyForm = document.getElementById("new-user-name_family");
+  const newUserNameFirstForm = document.getElementById("new-user-name_first");
+  const newUserNameFamilyKanaForm = document.getElementById("new-user-name_family_kana");
+  const newUserNameFirstKanaForm = document.getElementById("new-user-name_first_kana");
+  const newUserPhoneNumberForm = document.getElementById("new-user-phone_number");
+  const newUserEmailForm = document.getElementById("new-user-email");
+  const newUserPasswordForm = document.getElementById("new-user-password");
+  const newUserPasswordConfirmationForm = document.getElementById("new-user-password_confirmation");
+
+  const newUserSubmit = document.getElementById("new-user-submit");
+
+  let formArray = [
+    newUserNameFamilyForm,
+    newUserNameFirstForm,
+    newUserNameFamilyKanaForm,
+    newUserNameFirstKanaForm,
+    newUserPhoneNumberForm,
+    newUserEmailForm,
+    newUserPasswordForm,
+    newUserPasswordConfirmationForm
+  ];
+
+  function nameForm(form, span) {
+    form.className = "success-form";
+    span.textContent = "OK";
+    span.className = "success-message";
+  }
+
+  function nameKanaForm(form, span) {
+    if (form.value.match(/^[ァ-ンヴー]*$/)) {
+      form.className = "success-form";
+      span.textContent = "OK";
+      span.className = "success-message";
+    } else {
+      form.className = "error-form";
+      span.textContent = "カナ文字をご入力ください。";
+      span.className = "error-message";
+    }
+  }
+
+  function passwordForm(form, span) {
+    if (form.value.match(/^[0-9a-zA-Z]*$/)) {
+      if (6 <= form.value.length) {
+        form.className = "success-form";
+        span.textContent = "OK";
+        span.className = "success-message";
+      } else {
+        form.className = "error-form";
+        span.textContent = "6桁以上をご入力ください。";
+        span.className = "error-message";
+      }
+    } else {
+      form.className = "error-form";
+      span.textContent = "半角英数字(6桁以上)のみご入力ください。";
+      span.className = "error-message";
+    }
+  }
+
+  function passwordConfirmationForm(form, span) {
+    // passwordForm(form, span);
+    if (form.value !== newUserPasswordForm.value) {
+      form.className = "error-form";
+      span.textContent = "パスワードが一致しません。";
+      span.className = "error-message";
+    } else {
+      form.className = "success-form";
+      span.textContent = "OK";
+      span.className = "success-message";
+    }
+  }
+
+  function validation(form, span) {
+    if (form.value == "") {
+      form.className = "error-form";
+      span.textContent = "入力必須項目です。";
+      span.className = "error-message";
+    } else {
+      switch (form) {
+        // 名前（漢字）フォーム
+        case newUserNameFamilyForm:
+          nameForm(form, span);
+          break
+        case newUserNameFirstForm:
+          nameForm(form, span);
+          break
+        // 名前（カナ）フォーム
+        case newUserNameFamilyKanaForm:
+          nameKanaForm(form, span);
+          console.log(form, span);
+          break
+        case newUserNameFirstKanaForm:
+          nameKanaForm(form, span);
+          break
+
+        // 電話番号フォーム
+        case newUserPhoneNumberForm:
+          if (form.value.match(/^[0-9]*$/)) {
+            if (9 <= form.value.length && form.value.length <= 11) {
+              form.className = "success-form";
+              span.textContent = "OK";
+              span.className = "success-message";
+            } else {
+              form.className = "error-form";
+              span.textContent = "9桁~11桁をご入力ください。";
+              span.className = "error-message";
+            }
+          } else {
+            form.className = "error-form";
+            span.textContent = "半角数字(9桁~11桁)のみご入力ください。";
+            span.className = "error-message";
+          }
+          break
+
+        // メールアドレスフォーム
+        case newUserEmailForm:
+          if (form.value.match(/@/)) {
+            form.className = "success-form";
+            span.textContent = "OK";
+            span.className = "success-message";
+          } else {
+            form.className = "error-form";
+            span.textContent = "入力された値は無効です。";
+            span.className = "error-message";
+          }
+          break
+
+        // パスワードフォーム
+        case newUserPasswordForm:
+          passwordForm(form, span);
+          break
+        case newUserPasswordConfirmationForm:
+          passwordConfirmationForm(form, span);
+          break
+      }
+    }
+    console.log("完了しました。")
+  }
+
+  for (let i = 0; i < formArray.length; i++) {
+    formArray[i].addEventListener('focusout', function() {
+      // フォームに値が入力されているかどうか？
+      console.log(document.getElementById(`${formArray[i].id}--notice`));
+      validation(formArray[i], document.getElementById(`${formArray[i].id}--notice`));
+      console.log(document.getElementsByClassName("success-message").length);
+      if (document.getElementsByClassName("success-message").length === 8) {
+        newUserSubmit.classList.remove("inactive");
+      } else if (newUserSubmit.classList.contains("inactive") == false) {
+        newUserSubmit.classList.add("inactive");
+      }
+    });
   }
 });

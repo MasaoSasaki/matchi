@@ -10,12 +10,13 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require _variables
  *= require_tree .
  *= require_self
  */
 
 @import "variables";
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
 * {
   margin: 0;
@@ -32,19 +33,6 @@ ul {
   padding: 0;
 }
 
-.btn {
-  font-weight: bold;
-  font-size: 1em;
-  text-decoration: none;
-  display: inline-block;
-  padding: 0.5em 0.7em;
-  border: solid 1px #ccc;
-  border-radius: 5px;
-}
-.btn:hover {
-  cursor: pointer;
-}
-
 .flex {
   display: flex;
 }
@@ -55,6 +43,10 @@ ul {
 
 .hidden {
   display: none;
+}
+
+#hide {
+  display: inherit;
 }
 
 .under-line {
@@ -74,19 +66,53 @@ ul {
   list-style: disc;
 }
 
+.error-form {
+  box-shadow: 0px 0px 5px red;
+  border: 1px solid red;
+}
+.success-form {
+  box-shadow: 0px 0px 5px green;
+  border: 1px solid green;
+}
+.error-message {
+  margin: 10px 0;
+  color: red;
+}
+.success-message {
+  color: green;
+}
+
+.inactive {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
 // application.html.erb
 header {
   border-bottom: solid 1px #ccc;
   // margin-bottom: 30px;
 }
 
-.pc-header li {
-  margin: 0 10px;
+.layouts-app-header {
+  &__notice {
+    line-height: 30px;
+
+    p {
+      color: black;
+      text-align: center;
+      animation: blinkAnime 2.0s infinite alternate;
+    }
+
+    @keyframes blinkAnime{
+      0% { color: #ffffff }
+      100% { color: #ff0000 }
+   }
+
+  }
 }
 
-.error-message {
-  margin: 10px 0;
-  color: red;
+.pc-header li {
+  margin: 0 10px;
 }
 
 .pc-header {
@@ -154,145 +180,6 @@ main {
   a:hover {
     cursor: pointer;
   }
-}
-
-
-// /public/homes/top
-h1 {
-  margin-bottom: 10px;
-}
-
-.restaurants-all h2 {
-  margin: 30px 0 10px;
-  text-align: center;
-}
-
-.top-menus, .top-restaurant {
-  margin: 10px 0;
-  padding: 10px;
-  border: solid $thema-color-font 1px;
-  border-radius: 20px;
-}
-
-.restaurant-info, .menu-info {
-  padding-left: 10px;
-}
-
-.header-image {
-  margin-bottom: 10px;
-  background-image: image-url("header-1.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 300px;
-}
-
-.top-contents {
-  flex: 1;
-}
-
-.top-nav a {
-  display: inline-block;
-  flex: 1;
-  text-align: center;
-  padding: 0.6em;
-  border-bottom: 3px solid white;
-}
-
-.top-nav a:hover {
-  border-bottom: 3px solid orange;
-  transition: 500ms;
-  background: linear-gradient(#fff, #eee);
-}
-
-.top-side {
-  padding: 10px;
-  flex-shrink: 0;
-  width: 300px;
-}
-
-.top-side > div {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: $thema-color2;
-}
-
-.registration {
-  background-color: lightgoldenrodyellow;
-  text-align: center;
-  text-decoration: none;
-  font-size: 2em;
-}
-
-.new-registration {
-  text-align: center;
-}
-
-.new-registration p {
-  margin-top: 10px;
-}
-
-.new-menus {
-  h4 {
-  width: 180px;
-  margin: 0 auto;
-  border-bottom: 1px solid #dddddd;
-  }
-
-  li {
-    text-align: center;
-  }
-}
-
-.side-bar-menu-image {
-  text-align: center;
-}
-
-#menu-show-link {
-  text-align: left;
-}
-
-#get-position {
-  width: 100px;
-  text-align: center;
-  margin: 0 auto;
-}
-
-#get-position:hover {
-  cursor: pointer;
-}
-
-#map {
-  height: 400px;
-  margin-top: 10px;
-}
-
-//public/privacy
-.privacy h2, .terms h2, .contact h2, .administrator h2 {
-  margin: 1.5em 0 0.4em;
-}
-
-//public/About
-.about-contents h1 {
-  margin-top: 20px;
-  margin-bottom: 10px;
-  font-style: italic;
-  text-decoration: underline;
-  text-align: center;
-}
-
-.about-contents p {
-  text-align: center;
-}
-
-.about-message {
-  max-width: 700px;
-  margin: 10px auto;
-  padding: 30px;
-  font-size: 0.8em;
-  text-align: center;
-  border: 1px solid black;
-  border-radius: 20px;
-  background-color: rgb(255, 240, 240);
 }
 
 // /public/restaurants
@@ -394,13 +281,13 @@ footer {
   font-size: 0.8em;
 }
 
-#move-head {
+.move-head {
   position: fixed;
   bottom: 100px;
   right: 15px;
 }
 
-.move-head {
+#move-head--icon {
   width: 50px;
   height: 50px;
   background-color: rgba($color: #ffdd00, $alpha: 0.5);
@@ -409,12 +296,12 @@ footer {
   position: relative;
 }
 
-.move-head > .fa-arrow-up {
+#move-head--icon > .fa-arrow-up {
   line-height: 50px;
   color: rgba(255, 255, 255, 0.7);
 }
 
-.move-head:hover {
+#move-head--icon:hover {
   cursor: pointer;
 }
 
@@ -481,7 +368,7 @@ footer {
     display: none;
   }
 
-  .header-container {
+  .layouts-app-header {
     padding: 0 70px;
     line-height: 70px;
     margin: 0 auto;
@@ -493,11 +380,6 @@ footer {
     height: 150px;
   }
 
-  // public/homes/top
-  .top-container {
-    margin: 0 auto;
-    padding: 0 70px;
-  }
 
   // public/user/profile
   .profile-head {
@@ -609,7 +491,7 @@ footer {
   }
 
   .contents {
-    padding: 0 10px;
+    padding: 0 20px;
     max-width: 900px;
   }
 
@@ -631,7 +513,7 @@ footer {
     height: 70px;
   }
 
-  .header-container {
+  .layouts-app-header {
     width: auto;
     padding: 0 20px;
     min-height: 70px;
@@ -715,17 +597,20 @@ footer {
     left: -100%;
     z-index: 1;
     transition: $hamburger-transition cubic-bezier(1, 0, 0, 0);
+
+    ul {
+      margin-top: 120px;
+
+      li {
+        margin: 20px 0 20px 30px;
+      }
+    }
+
+    a {
+      color: white;
+    }
   }
 
-  .hamburger-menu ul {
-    margin-top: 90px;
-  }
-  .hamburger-menu ul li {
-    margin: 20px 0 20px 30px;
-  }
-  .hamburger-menu a {
-    color: white;
-  }
 
   .menu-hide {
     width: 60%;
@@ -760,36 +645,62 @@ footer {
     left: 0;
   }
 
-  .header-image {
-    height: 200px;
-  }
-
   .body-container {
     min-height: 500px;
   }
 
-  .top-contents {
-    margin: 0 auto;
-    padding: 0 20px;
-    max-width: 100%;
-    height: 100%;
+  // public/users/profile
+
+  .profile_image {
+    padding-right: 0;
   }
 
-  .top-side {
+  // owner/restaurants/menus/edit,new
+  .image-preview img {
     width: 100%;
-    margin-top: 20px;
-    padding: 0;
+    height: 250px;
+    object-fit: cover;
   }
 
-  .top-nav, .simple-mypage, .new-registration, .new-menus {
-    display: none;
+  .content-form, .cancel-form {
+    text-align: center;
   }
 
-  .box {
+  #menu_content, #menu_cancel {
+    width: 90%;
+    height: 200px;
+    margin-bottom: 10px;
+  }
+
+  // owner/restaurants/menus/edit
+  .menu-form1 table {
+    margin: 0 auto;
+  }
+
+  .menu-form2 {
+    h3, div {
+    text-align: center;
+    }
+  }
+
+  .menu-form-content, .menu-form-cancel {
+    text-align: center;
+  }
+
+  .menus-edit-h2 {
+    text-align: center;
+  }
+
+  // /public/menus/show
+  .menu-show .menu_image {
+    object-fit: cover;
     width: 100%;
     height: 300px;
-    border: 1px solid black;
-    border-radius: 5px;
   }
+
+  .reservation {
+    text-align: center;
+  }
+
 
 }
