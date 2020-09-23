@@ -63,7 +63,7 @@
         <% @menus.each do |menu| %>
           <%# 最新のメニュー3個まで表示 %>
           <% if menu_count < 3 %>
-            <div class="flex top-menus">
+            <div class="flex top-menu">
               <div class="menu-image">
                 <%= link_to public_menu_path(menu) do %>
                   <%= attachment_image_tag menu, :menu_image, fallback: "no_image.png" %>
@@ -71,9 +71,9 @@
               </div>
               <div class="menu-info">
                 <h3><%= link_to "#{menu.title}", public_menu_path(menu) %></h3>
-                <small>店名：<%= @restaurants.find(menu.restaurant_id).name %></small>
-                <p>正規価格：<%= menu.regular_price.to_s(:delimited) %> 円</p>
-                <p>提供価格：<%= menu.discount_price.to_s(:delimited) %> 円</p>
+                <p>店名：<%= menu.restaurant.name %></p>
+                <h4>正規価格：<%= menu.regular_price.to_s(:delimited) %> 円</h4>
+                <h4>提供価格：<%= menu.discount_price.to_s(:delimited) %> 円</h4>
               </div>
             </div>
           <% menu_count += 1 %>

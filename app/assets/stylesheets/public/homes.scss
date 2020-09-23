@@ -47,7 +47,19 @@
         width: 60%;
       }
     }
+
   }
+
+  .top-contents {
+
+    .top-menu, .top-restaurant {
+      margin: 10px 0;
+      padding: 10px;
+      border: solid $thema-color-font 1px;
+      border-radius: 20px;
+    }
+  }
+
 
   h3 {
     margin-top: 0;
@@ -70,7 +82,6 @@
 
 // スマホ画面
 @media (max-width: $media-sp-max) {
-
   .public-homes-top {
 
     &__header-image {
@@ -83,6 +94,11 @@
       .btn-warning {
         display: none;
       }
+    }
+
+    .restaurant_image, .menu_image {
+      width: 100px;
+      height: 70px;
     }
   }
 
@@ -165,7 +181,7 @@
 @media (min-width: $media-tb-min) {
   .public-homes-top {
 
-    .top-menus .menu_image, .top-restaurant .restaurant_image {
+    .menu_image, .restaurant_image {
       object-fit: cover;
       width: 200px;
       height: 150px;
@@ -243,13 +259,6 @@
 // これより下、未refactoring
 
 // /public/homes/top
-.top-menus, .top-restaurant {
-  margin: 10px 0;
-  padding: 10px;
-  border: solid $thema-color-font 1px;
-  border-radius: 20px;
-}
-
 .restaurant-info, .menu-info {
   padding-left: 10px;
 }

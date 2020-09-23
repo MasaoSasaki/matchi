@@ -88,33 +88,35 @@
 
 // PC
 @media (min-width: $media-pc-min) {
+  .public-menus-index {
 
-  // /public/menus/index
-  .menu-list {
-    display: flex;
-    flex-wrap: wrap;
-  }
+    // /public/menus/index
+    .menu-list {
+      display: flex;
+      flex-wrap: wrap;
+    }
 
-  // /public/menu/show
-  .menu-head {
-    display: flex;
-    justify-content: space-around;
-  }
+    // /public/menu/show
+    .menu-head {
+      display: flex;
+      justify-content: space-around;
+    }
 
-  .menu-head-contents {
-    display: flex;
-    justify-content: space-around;
-  }
+    .menu-head-contents {
+      display: flex;
+      justify-content: space-around;
+    }
 
-  .menu-body {
-    flex: 1;
-  }
+    .menu-body {
+      flex: 1;
+    }
 
-  .menu-image {
-    flex: 1;
-  }
+    .menu-image {
+      flex: 1;
+    }
 
-  .reservation {
-    text-align: center;
+    .reservation {
+      text-align: center;
+    }
   }
 }
