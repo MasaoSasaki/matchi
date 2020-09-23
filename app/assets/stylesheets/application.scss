@@ -88,11 +88,6 @@ ul {
 }
 
 // application.html.erb
-header {
-  border-bottom: solid 1px #ccc;
-  // margin-bottom: 30px;
-}
-
 .layouts-app-header {
   &__notice {
     line-height: 30px;
@@ -100,11 +95,11 @@ header {
     p {
       color: black;
       text-align: center;
-      animation: blinkAnime 2.0s infinite alternate;
+      animation: blinkAnime 1s infinite alternate;
     }
 
     @keyframes blinkAnime{
-      0% { color: #ffffff }
+      0% { color: $thema-color1 }
       100% { color: #ff0000 }
    }
 
@@ -129,11 +124,9 @@ header {
 
 .body-container {
   min-height: 500px;
-}
-
-// main
-main {
-  margin: 30px 0;
+  border-top: solid 1.3px #ccc;
+  border-bottom: solid 1.3px #ccc;
+  padding-bottom: 20px;
 }
 
 // owner/restaurants/show
@@ -263,9 +256,7 @@ main {
 
 // footer
 footer {
-  padding-top: 20px;
-  margin-bottom: 20px;
-  border-top: 1px solid #ccc;
+  padding: 20px 0 40px;
 }
 
 .copyright {
@@ -316,11 +307,6 @@ footer {
 
   td, th {
     padding: 30px;
-  }
-
-  .top-main {
-    padding: 0 70px;
-    display: flex;
   }
 
   // owner/restaurants/menus/edit,new
@@ -458,16 +444,6 @@ footer {
   .contents {
     margin: 0 auto;
     padding: 0 70px;
-  }
-
-  .top-main {
-    padding: 0 30px;
-  }
-
-  .top-side {
-    width: 100%;
-    margin-top: 20px;
-    padding: 0;
   }
 
   // /owner/restaurants/menus/edit,new
