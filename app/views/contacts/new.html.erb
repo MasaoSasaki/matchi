@@ -10,7 +10,7 @@
       <%= f.hidden_field :email, value: current_public_user.email %>
     <% else %>
       <div class="form-group">
-        <h3><%= f.label :email, '返信先メールアドレス' %></h3>
+        <h3><%= f.label :email, 'ご連絡先メールアドレス' %></h3>
         <%= f.text_field :email, class: 'form-control' %>
       </div>
     <% end %>

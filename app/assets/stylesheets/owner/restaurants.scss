@@ -1,3 +1,55 @@
 // Place all the styles related to the owner/restaurants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "variables";
+
+// 共通
+// sessions/new
+.owner-restaurants-sessions-new {
+  text-align: center;
+
+  h2 {
+    margin: 20px 0;
+  }
+}
+
+// スマホ
+@media (max-width: $media-sp-max) {
+}
+
+// タブレット
+@media (min-width: $media-tb-min) and (max-width: $media-tb-max) {
+}
+
+// PC・タブレット共通
+@media (min-width: $media-tb-min) {
+}
+
+// PC
+@media (min-width: $media-pc-min) {
+}
+
+// owner/restaurants/show
+.restaurant-introduction {
+  margin: 20px 0;
+}
+
+.restaurant_image {
+  text-align: center;
+  object-fit: cover;
+}
+
+.restaurant-status {
+  margin: 20px 0;
+}
+
+// /owner/restaurants
+.restaurant-edit .submit {
+  text-align: center;
+}
+
+.restaurant-status {
+  display: flex;
+  justify-content: space-around;
+}

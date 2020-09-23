@@ -6,23 +6,23 @@
         <table>
           <tbody>
             <tr>
-              <td><%= f.label :title, value: 'メニュー名' %></td>
-              <td><%= f.text_field :title %></td>
+              <td><%= f.label :title, 'メニュー名' %></td>
+              <td><%= f.text_field :title, required: true %></td>
             </tr>
             <tr>
-              <td><%= f.label :regular_price, value: '正規価格（税抜き）：' %></td>
-              <td><%= f.number_field :regular_price %> 円</td>
+              <td><%= f.label :regular_price, '正規価格（税抜き）：' %></td>
+              <td><%= f.number_field :regular_price, required: true %> 円</td>
             </tr>
             <tr>
-              <td><%= f.label :discount_price, value: '提供価格（税抜き）：' %></td>
-              <td><%= f.number_field :discount_price %> 円</td>
+              <td><%= f.label :discount_price, '提供価格（税抜き）：' %></td>
+              <td><%= f.number_field :discount_price, required: true %> 円</td>
             </tr>
             <tr>
-              <td><%= f.label :reservation_method, value: '予約方法' %></td>
+              <td><%= f.label :reservation_method, '予約方法' %></td>
               <td><%= f.select :reservation_method, Menu.reservation_methods.keys.map {|method| [method]} %></td>
             </tr>
             <tr>
-              <td><%= f.label :is_sale_frag, value: '販売ステータス' %></td>
+              <td><%= f.label :is_sale_frag, '販売ステータス' %></td>
               <td><%= f.select :is_sale_frag, [['販売中', true], ['販売停止中', false]] %></td>
             </tr>
           </tbody>
@@ -88,11 +88,11 @@
 
     <section class="menu-form-area">
       <div class="content-form">
-        <p><%= f.label :content, value: '内容' %></p>
+        <p><%= f.label :content, '内容' %></p>
         <%= f.text_area :content %>
       </div>
       <div class="cancel-form">
-        <p><%= f.label :cancel, value: 'キャンセル規定' %></p>
+        <p><%= f.label :cancel, 'キャンセル規定' %></p>
         <%= f.text_area :cancel %>
       </div>
     </section>

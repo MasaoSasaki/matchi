@@ -1,16 +1,13 @@
 <div class="contents public-menus-index">
   <h2><i><u>メニュー一覧</u></i></h2>
-  <div class="menu-list">
+  <div class="public-menus-index__menu-list">
   <% @menus.each do |menu| %>
-    <div class="menus">
-      <div class="flex menu-title">
-        <h3 style="display: inline;">メニュー名：</h3>
-        <p><%= link_to "#{menu.title}", public_menu_path(menu), style: "display: inline;" %></p>
-      </div>
+    <div class="public-menus-index__menu-list__menu-item">
+      <h3>メニュー名：<%= link_to "#{menu.title}", public_menu_path(menu) %></h3>
       <div class="flex menu-body">
         <div class="menu-image">
           <%= link_to public_menu_path(menu) do %>
-            <%= attachment_image_tag menu, :menu_image, width: 150, height: 100, fallback: "no_image.png" %>
+            <%= attachment_image_tag menu, :menu_image, fallback: "no_image.png" %>
           <% end %>
         </div>
         <div class="menu-info">
@@ -21,8 +18,8 @@
                 <td><h4>提供価格</h4><p><%= menu.discount_price.to_s(:delimited) %> 円</p></td>
               </tr>
               <tr>
-                <td><h3>店舗名</h3><%= link_to "#{@restaurants.find(menu.restaurant_id).name}", public_restaurant_path(menu.restaurant_id) %></td>
-                <td><h3>住所</h3><%= "#{@restaurants.find(menu.restaurant_id).prefecture}" + "#{@restaurants.find(menu.restaurant_id).city}" + "#{@restaurants.find(menu.restaurant_id).street}" + "#{@restaurants.find(menu.restaurant_id).building}" %></td>
+                <td><h4>店舗名</h4><%= link_to "#{@restaurants.find(menu.restaurant_id).name}", public_restaurant_path(menu.restaurant_id) %></td>
+                <td><h4>住所</h4><%= "#{@restaurants.find(menu.restaurant_id).prefecture}" + "#{@restaurants.find(menu.restaurant_id).city}" + "#{@restaurants.find(menu.restaurant_id).street}" + "#{@restaurants.find(menu.restaurant_id).building}" %></td>
               </tr>
             </tbody>
           </table>

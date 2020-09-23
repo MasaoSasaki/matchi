@@ -9,39 +9,39 @@
         <td colspan="2"><h3>お名前</h3><p>予約時の情報として使用されます。</p></td>
       </tr>
       <tr>
-        <td><%= f.label :name_family, '姓：' %><br><%= f.text_field :name_family, placeholder: '必須', id: "new-user-name_family" %><br><span id="new-user-name_family--notice"></span></td>
-        <td><%= f.label :name_first, '名：' %><br><%= f.text_field :name_first, placeholder: '必須', id: "new-user-name_first" %><br><span id="new-user-name_first--notice"></span></td>
+        <td><%= f.label :name_family, '姓：' %><br><%= f.text_field :name_family, placeholder: '必須', required: true, id: "new-user-name_family" %><br><span id="new-user-name_family--notice"></span></td>
+        <td><%= f.label :name_first, '名：' %><br><%= f.text_field :name_first, placeholder: '必須', required: true, id: "new-user-name_first" %><br><span id="new-user-name_first--notice"></span></td>
       </tr>
       <tr>
-        <td><%= f.label :name_family_kana, 'セイ：' %><br><%= f.text_field :name_family_kana, placeholder: '必須', id: "new-user-name_family_kana" %><br><span id="new-user-name_family_kana--notice"></span></td>
-        <td><%= f.label :name_first_kana, 'メイ：' %><br><%= f.text_field :name_first_kana, placeholder: '必須', id: "new-user-name_first_kana" %><br><span id="new-user-name_first_kana--notice"></span></td>
+        <td><%= f.label :name_family_kana, 'セイ：' %><br><%= f.text_field :name_family_kana, placeholder: '必須', required: true, id: "new-user-name_family_kana" %><br><span id="new-user-name_family_kana--notice"></span></td>
+        <td><%= f.label :name_first_kana, 'メイ：' %><br><%= f.text_field :name_first_kana, placeholder: '必須', required: true, id: "new-user-name_first_kana" %><br><span id="new-user-name_first_kana--notice"></span></td>
       </tr>
       <tr>
         <td colspan="2"><h3><%= f.label :phone_number, '電話番号' %></h3><p>予約後に店舗よりご連絡する場合がございます。</p></td>
       </tr>
       <tr>
-        <td><%= f.text_field :phone_number, placeholder: '必須', id: "new-user-phone_number" %><br><span id="new-user-phone_number--notice"></span></td>
+        <td><%= f.text_field :phone_number, placeholder: '必須', required: true, id: "new-user-phone_number" %><br><span id="new-user-phone_number--notice"></span></td>
         <td></td>
       </tr>
       <tr>
         <td colspan="2"><h3><%= f.label :email, 'メールアドレス' %></h3><p>ログイン時のID、予約の確認、メールマガジンの配信先に使用します。</p></td>
       </tr>
       <tr>
-        <td><%= f.email_field :email, autocomplete: "email", placeholder: '必須', id: "new-user-email" %><br><span id="new-user-email--notice"></span></td>
+        <td><%= f.email_field :email, autocomplete: "email", placeholder: '必須', required: true, id: "new-user-email" %><br><span id="new-user-email--notice"></span></td>
         <td></td>
       </tr>
       <tr>
         <td colspan="2"><h3><%= f.label :password, 'パスワード' %></h3><p>ログイン時に使用します。</p></td>
       </tr>
       <tr>
-        <td colspan="2"><%= f.password_field :password, autocomplete: "new-password", placeholder: '必須', id: "new-user-password" %><br><span id="new-user-password--notice"></span></td>
+        <td colspan="2"><%= f.password_field :password, autocomplete: "new-password", placeholder: '必須', required: true, id: "new-user-password" %><br><span id="new-user-password--notice"></span></td>
           <% if @minimum_password_length %>
             <p>(<%= @minimum_password_length %>文字以上)</p>
           <% end %>
         </td>
       </tr>
       <tr class="password-confirmation">
-        <td colspan="2"><%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '必須', id: "new-user-password_confirmation" %><p class="password-confirmation--confirm">（再入力）</p><br><span id="new-user-password_confirmation--notice"></span></td>
+        <td colspan="2"><%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '必須', required: true, id: "new-user-password_confirmation" %><p class="password-confirmation--confirm">（再入力）</p><br><span id="new-user-password_confirmation--notice"></span></td>
       </tr>
     </tbody>
   </table>
@@ -69,37 +69,37 @@
       </tr>
       <tr>
         <td><h3>お名前</h3><p>予約時の情報として使用されます。</p></td>
-        <td><%= f.label :name_family, value: '姓：' %><%= f.text_field :name_family, placeholder: '必須' %></td>
-        <td><%= f.label :name_first, value: '名：' %><%= f.text_field :name_first, placeholder: '必須' %></td>
+        <td><%= f.label :name_family, '姓：' %><%= f.text_field :name_family, placeholder: '必須', required: true %></td>
+        <td><%= f.label :name_first, '名：' %><%= f.text_field :name_first, placeholder: '必須', required: true %></td>
       </tr>
       <tr>
         <td></td>
-        <td><%= f.label :name_family_kana, value: 'セイ：' %><%= f.text_field :name_family_kana, placeholder: '必須' %></td>
-        <td><%= f.label :name_first_kana, value: 'メイ：' %><%= f.text_field :name_first_kana, placeholder: '必須' %></td>
+        <td><%= f.label :name_family_kana, 'セイ：' %><%= f.text_field :name_family_kana, placeholder: '必須', required: true %></td>
+        <td><%= f.label :name_first_kana, 'メイ：' %><%= f.text_field :name_first_kana, placeholder: '必須', required: true %></td>
       </tr>
       <tr>
-        <td><h3><%= f.label :phone_number, value: '電話番号' %></h3></td>
-        <td><%= f.text_field :phone_number, placeholder: '必須' %></td>
+        <td><h3><%= f.label :phone_number, '電話番号' %></h3></td>
+        <td><%= f.text_field :phone_number, placeholder: '必須', required: true %></td>
         <td></td>
       </tr>
       <tr>
-        <td><h3><%= f.label :email, value: 'メールアドレス' %></h3><p>ログイン時のIDとして使用されます。また、予約の確認や、メールマガジンの配信も行われます。</p></td>
-        <td><%= f.email_field :email, autocomplete: "email", placeholder: '必須' %></td>
+        <td><h3><%= f.label :email, 'メールアドレス' %></h3><p>ログイン時のIDとして使用されます。また、予約の確認や、メールマガジンの配信も行われます。</p></td>
+        <td><%= f.email_field :email, autocomplete: "email", placeholder: '必須', required: true %></td>
         <td></td>
       </tr>
       <tr>
         <td>
-          <h3><%= f.label :password, value: 'パスワード' %></h3>
+          <h3><%= f.label :password, 'パスワード' %></h3>
           <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %>文字以上)</em>
           <% end %>
         </td>
-        <td><%= f.password_field :password, autocomplete: "new-password", placeholder: '必須' %></td>
+        <td><%= f.password_field :password, autocomplete: "new-password", placeholder: '必須', required: true %></td>
         <td></td>
       </tr>
       <tr>
         <td><h3><%= f.label :password_confirmation, 'パスワード（再入力）' %></h3></td>
-        <td><%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '必須' %></td>
+        <td><%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '必須', required: true %></td>
         <td></td>
       </tr>
     </tbody>
