@@ -55,10 +55,12 @@
 
 // スマホ
 @media (max-width: $media-sp-max) {
+  .public-menus-index {
 
-  .menu_image {
-    width: 150px;
-    height: 100px;
+    .menu_image {
+      width: 150px;
+      height: 100px;
+    }
   }
 }
 
@@ -68,10 +70,12 @@
 
 // PC・タブレット共通
 @media (min-width: $media-tb-min) {
+  .public-menus-index {
 
-  .menu_image {
-    width: 300px;
-    height: 200px;
+    .menu_image {
+      width: 300px;
+      height: 200px;
+    }
   }
 }
 
@@ -103,14 +107,7 @@
     flex: 1;
   }
 
-  .menu-image .menu_image {
-    object-fit: cover;
-  }
-
   .reservation {
     text-align: center;
   }
-
-
 }
-

@@ -163,7 +163,14 @@
 
 // タブレット・PC共通
 @media (min-width: $media-tb-min) {
+  .public-homes-top {
 
+    .top-menus .menu_image, .top-restaurant .restaurant_image {
+      object-fit: cover;
+      width: 200px;
+      height: 150px;
+    }
+  }
 }
 
 // PC画面
@@ -181,6 +188,24 @@
     &__main {
       padding: 0 70px;
       display: flex;
+
+      .top-side {
+        width: 100%;
+        margin-top: 20px;
+        padding: 0;
+      }
+
+      .top-side {
+        padding: 10px;
+        flex-shrink: 0;
+        width: 300px;
+      }
+
+      .top-side > div {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: $thema-color2;
+      }
     }
   }
 
@@ -196,24 +221,6 @@
     border-bottom: 3px solid orange;
     transition: 500ms;
     background: linear-gradient(#fff, #eee);
-  }
-
-  .top-side {
-    width: 100%;
-    margin-top: 20px;
-    padding: 0;
-  }
-
-  .top-side {
-    padding: 10px;
-    flex-shrink: 0;
-    width: 300px;
-  }
-
-  .top-side > div {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: $thema-color2;
   }
 
   .top-nav {
