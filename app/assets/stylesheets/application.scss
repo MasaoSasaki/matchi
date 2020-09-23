@@ -165,33 +165,6 @@ ul {
   flex: 1;
 }
 
-// /public/menus/index
-.public-menus-index h2 {
-  margin: 20px 0;
-  text-align: center;
-}
-
-.menus {
-  margin: 20px 0;
-  padding-top: 10px;
-  border: solid 1px $thema-color-font;
-  border-radius: 20px;
-}
-
-.menu-title {
-  justify-content: center;
-}
-
-
-// /public/menus/show
-.public-menus-show h2 {
-  text-align: center;
-  margin: 20px 0;
-}
-
-.public-menus-show div {
-  margin: 15px 0;
-}
 
 // /public/users/reservation/index
 .public-users-reservations-index {
@@ -355,42 +328,6 @@ footer {
   .menu-form2 {
     flex: 1;
   }
-
-  .menu
-
-  // /public/menus/index
-  .menu-list {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  // /public/menu/show
-  .menu-head {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .menu-head-contents {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .menu-body {
-    flex: 1;
-  }
-
-  .menu-image {
-    flex: 1;
-  }
-
-  .menu-image .menu_image {
-    object-fit: cover;
-  }
-
-  .reservation {
-    text-align: center;
-  }
-
 }
 
 // タブレット端末用

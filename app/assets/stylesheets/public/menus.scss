@@ -4,6 +4,38 @@
 
 @import "variables";
 
+// 共通
+
+// /index
+.public-menus-index h2 {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.menus {
+  margin: 20px 0;
+  padding-top: 10px;
+  border: solid 1px $thema-color-font;
+  border-radius: 20px;
+}
+
+.menu-title {
+  justify-content: center;
+}
+
+
+// /show
+.public-menus-show h2 {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.public-menus-show div {
+  margin: 15px 0;
+}
+
+
+// スマホ
 @media (max-width: $media-sp-max) {
 
   .menu_image {
@@ -13,3 +45,51 @@
   }
 
 }
+
+// タブレット
+@media (min-width: $media-tb-min) and (max-width: $media-tb-max) {
+}
+
+// PC・タブレット共通
+@media (min-width: $media-tb-min) {
+}
+
+// PC
+@media (min-width: $media-pc-min) {
+
+  // /public/menus/index
+  .menu-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  // /public/menu/show
+  .menu-head {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .menu-head-contents {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .menu-body {
+    flex: 1;
+  }
+
+  .menu-image {
+    flex: 1;
+  }
+
+  .menu-image .menu_image {
+    object-fit: cover;
+  }
+
+  .reservation {
+    text-align: center;
+  }
+
+
+}
+

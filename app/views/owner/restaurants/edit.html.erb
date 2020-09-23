@@ -8,48 +8,48 @@
       <table class="restaurant-edit-form">
         <tbody>
           <tr>
-            <td><h3><%= f.label :name, value: '店舗名', class: 'restaurant-show-h1' %></h3></td>
+            <td><h3><%= f.label :name, '店舗名', class: 'restaurant-show-h1' %></h3></td>
             <td></td>
-            <td><%= f.text_field :name %></td>
+            <td><%= f.text_field :name, required: true %></td>
           </tr>
           <tr>
             <td><h3>住所</h3></td>
-            <td><p><%= f.label :postal_code, value: '郵便番号(半角7桁、ハイフンなし)' %></p></td>
-            <td><%= f.number_field :postal_code, placeholder: '1234567' %></td>
+            <td><p><%= f.label :postal_code, '郵便番号(半角7桁、ハイフンなし)' %></p></td>
+            <td><%= f.number_field :postal_code, placeholder: '1234567', required: true %></td>
           </tr>
           <tr>
             <td></td>
-            <td><p><%= f.label :prefecture, value: '都道府県' %></p></td>
+            <td><p><%= f.label :prefecture, '都道府県' %></p></td>
             <td><%= f.collection_select :prefecture, JpPrefecture::Prefecture.all, :name, :name, include_blank: '都道府県', id: "address_prefecture" %></td>
           </tr>
           <tr>
             <td></td>
-            <td><p><%= f.label :city, value: '市区町村' %></p></td>
-            <td><%= f.text_field :city %></td>
+            <td><p><%= f.label :city, '市区町村' %></p></td>
+            <td><%= f.text_field :city, required: true %></td>
           </tr>
           <tr>
             <td></td>
-            <td><p><%= f.label :street, value: '番地' %></p></td>
-            <td><%= f.text_field :street %></td>
+            <td><p><%= f.label :street, '番地' %></p></td>
+            <td><%= f.text_field :street, required: true %></td>
           </tr>
           <tr>
             <td></td>
-            <td><p><%= f.label :building, value: '建物名' %></p></td>
+            <td><p><%= f.label :building, '建物名' %></p></td>
             <td><%= f.text_field :building %></td>
           </tr>
           <tr>
             <td><h3><span>連絡先</span></h3></td>
-            <td><p><%= f.label :phone_number, value: '電話番号(半角数字、ハイフンなし)' %></p></td>
-            <td><%= f.number_field :phone_number, placeholder: '123456789012' %></td>
+            <td><p><%= f.label :phone_number, '電話番号(半角数字、ハイフンなし)' %></p></td>
+            <td><%= f.number_field :phone_number, placeholder: '123456789012', required: true %></td>
           </tr>
           <tr>
             <td></td>
-            <td><p><%= f.label :email, value: 'メールアドレス' %></p></td>
-            <td><%= f.text_field :email, placeholder: 'example.com' %></td>
+            <td><p><%= f.label :email, 'メールアドレス' %></p></td>
+            <td><%= f.text_field :email, placeholder: 'example.com', required: true %></td>
           </tr>
           <tr>
             <td><h3>ホームページURL</h3></td>
-            <td><p><%= f.label :corporate, value: 'ホームページURL' %></p></td>
+            <td><p><%= f.label :corporate, 'ホームページURL' %></p></td>
             <td><%= f.text_field :corporate %></td>
           </tr>
           <tr>
@@ -84,7 +84,7 @@
 
         </tbody>
       </table>
-      <div class="submit"><%= f.submit '情報を更新する', id: 'restaurant-update', class: 'btn' %></div>
+      <div class="submit"><%= f.submit '情報を更新する', id: 'restaurant-update', class: 'btn btn-default' %></div>
       <div><%= link_to '店舗情報に戻る', owner_restaurant_path(@restaurant) %></div>
     <% end %>
   </section>
