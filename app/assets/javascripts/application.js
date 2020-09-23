@@ -100,7 +100,7 @@ addEventListener('DOMContentLoaded', function() {
                     map: map
                   });
                   i = i + 1;
-                  var link = "https://matchi-gourmet/public/restaurants/"+i;
+                  var link = "https://matchi-gourmet.com/public/restaurants/"+i;
                   i = i - 1;
                   infoWindow[i] = new google.maps.InfoWindow(
                     {
