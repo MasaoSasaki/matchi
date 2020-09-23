@@ -5,7 +5,6 @@
 @import "variables";
 
 // 共通
-
 // /index
 .public-menus-index {
 
@@ -24,20 +23,19 @@
 
       h3 {
         margin-top: 0;
+        text-align: center;
       }
 
       td {
         padding: 0 10px;
       }
+
+      a {
+        color: $thema-color-font;
+      }
     }
   }
 }
-
-
-.menu-title {
-  justify-content: center;
-}
-
 
 .menu_image {
   object-fit: cover;
@@ -62,7 +60,6 @@
     width: 150px;
     height: 100px;
   }
-
 }
 
 // タブレット
@@ -76,8 +73,6 @@
     width: 300px;
     height: 200px;
   }
-
-
 }
 
 // PC

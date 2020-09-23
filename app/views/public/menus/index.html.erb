@@ -3,9 +3,7 @@
   <div class="public-menus-index__menu-list">
   <% @menus.each do |menu| %>
     <div class="public-menus-index__menu-list__menu-item">
-      <div class="flex menu-title">
-        <h3>メニュー名：<%= link_to "#{menu.title}", public_menu_path(menu), style: "display: inline;" %></h3>
-      </div>
+      <h3>メニュー名：<%= link_to "#{menu.title}", public_menu_path(menu) %></h3>
       <div class="flex menu-body">
         <div class="menu-image">
           <%= link_to public_menu_path(menu) do %>
