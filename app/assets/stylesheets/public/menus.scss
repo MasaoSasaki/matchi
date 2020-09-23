@@ -7,20 +7,40 @@
 // 共通
 
 // /index
-.public-menus-index h2 {
-  margin: 20px 0;
-  text-align: center;
+.public-menus-index {
+
+  h2 {
+    margin: 20px 0;
+    text-align: center;
+  }
+
+  &__menu-list {
+
+    &__menu-item {
+      margin: 20px 0;
+      padding: 10px;
+      border: solid 1px $thema-color-font;
+      border-radius: 20px;
+
+      h3 {
+        margin-top: 0;
+      }
+
+      td {
+        padding: 0 10px;
+      }
+    }
+  }
 }
 
-.menus {
-  margin: 20px 0;
-  padding-top: 10px;
-  border: solid 1px $thema-color-font;
-  border-radius: 20px;
-}
 
 .menu-title {
   justify-content: center;
+}
+
+
+.menu_image {
+  object-fit: cover;
 }
 
 
@@ -39,9 +59,8 @@
 @media (max-width: $media-sp-max) {
 
   .menu_image {
-    object-fit: cover;
-    width: 100%;
-    height: 300px;
+    width: 150px;
+    height: 100px;
   }
 
 }
@@ -52,6 +71,13 @@
 
 // PC・タブレット共通
 @media (min-width: $media-tb-min) {
+
+  .menu_image {
+    width: 300px;
+    height: 200px;
+  }
+
+
 }
 
 // PC
