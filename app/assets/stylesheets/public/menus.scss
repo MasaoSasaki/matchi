@@ -37,21 +37,28 @@
   }
 }
 
-.menu_image {
-  object-fit: cover;
-}
-
-
 // /show
-.public-menus-show h2 {
-  text-align: center;
-  margin: 20px 0;
-}
+.public-menus-show {
 
-.public-menus-show div {
-  margin: 15px 0;
-}
+  h2 {
+    text-align: center;
+    margin: 20px 0;
+  }
 
+  div {
+    margin: 15px 0;
+  }
+
+  .menu_image {
+    object-fit: cover;
+    width: 100%;
+    height: 300px;
+  }
+
+  .reservation {
+    text-align: center;
+  }
+}
 
 // スマホ
 @media (max-width: $media-sp-max) {

@@ -87,6 +87,10 @@ ul {
   pointer-events: none;
 }
 
+.menu_image, .restaurant_image, .user_image {
+  object-fit: cover;
+}
+
 // application.html.erb
 .layouts-app-header {
   &__notice {
@@ -541,17 +545,4 @@ footer {
   .menus-edit-h2 {
     text-align: center;
   }
-
-  // /public/menus/show
-  .menu-show .menu_image {
-    object-fit: cover;
-    width: 100%;
-    height: 300px;
-  }
-
-  .reservation {
-    text-align: center;
-  }
-
-
 }
