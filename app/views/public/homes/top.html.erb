@@ -1,12 +1,23 @@
 <%= hidden_field_tag :restaurants_json, value: "#{@restaurants_json}" %>
 
 <div class="public-homes-top">
-  <section>
-    <div class="public-homes-top--image"></div>
+  <section class="public-homes-top__header-image">
+    <div class="public-homes-top__header-image__contents">
+      <h2>Connect With Trust</h2>
+      <p>あなたの街の飲食店を、あなたの信頼でお得に予約する。</p>
+      <% if public_user_signed_in? %>
+      <% else %>
+        <div>
+          <%= link_to '新規登録', new_public_user_path, class: "btn btn-success" %>
+          <%= link_to 'ログイン', new_public_user_session_path, class: "btn btn-primary" %>
+        </div>
+        <%= link_to 'サービス紹介', about_path, class: 'btn btn-warning' %>
+      <% end %>
+    </div>
   </section>
 
   <%# メインコンテンツ %>
-  <section class="top-container top-main">
+  <section class="top-container public-homes-top__main">
     <div class="top-contents">
       <ul class="top-nav">
         <%= link_to about_path do %>
@@ -15,15 +26,15 @@
         <%= link_to do %>
           <li>特集</li>
         <% end %>
-        <%= link_to do %>
-          <li>ランキング</li>
+        <%= link_to public_menus_path do %>
+          <li>メニュー一覧</li>
         <% end %>
-        <%= link_to do %>
-          <li>お知らせ</li>
+        <%= link_to public_restaurants_path do %>
+          <li>レストラン一覧</li>
         <% end %>
       </ul>
-      <div class="restaurants-all">
-        <h2>レストラン一覧</h2>
+      <div class="public-homes-top__restaurants-all">
+        <h2>おすすめレストラン</h2>
         <% restaurant_count = 0 %>
         <% @restaurants.each do |restaurant| %>
           <%# 最新の店舗3件まで表示 %>
@@ -44,12 +55,15 @@
             <% break %>
           <% end %>
         <% end %>
-        <h2>メニュー一覧</h2>
+        <p><%= link_to 'レストラン一覧', public_restaurants_path %></p>
+      </div>
+      <div class="public-homes-top__menus-all">
+        <h2>おすすめメニュー</h2>
         <% menu_count = 0 %>
         <% @menus.each do |menu| %>
           <%# 最新のメニュー3個まで表示 %>
           <% if menu_count < 3 %>
-            <div class="flex top-menus">
+            <div class="flex top-menu">
               <div class="menu-image">
                 <%= link_to public_menu_path(menu) do %>
                   <%= attachment_image_tag menu, :menu_image, fallback: "no_image.png" %>
@@ -57,9 +71,9 @@
               </div>
               <div class="menu-info">
                 <h3><%= link_to "#{menu.title}", public_menu_path(menu) %></h3>
-                <small>店名：<%= @restaurants.find(menu.restaurant_id).name %></small>
-                <p>正規価格：<%= menu.regular_price.to_s(:delimited) %> 円</p>
-                <p>提供価格：<%= menu.discount_price.to_s(:delimited) %> 円</p>
+                <p>店名：<%= menu.restaurant.name %></p>
+                <h4>正規価格：<%= menu.regular_price.to_s(:delimited) %> 円</h4>
+                <h4>提供価格：<%= menu.discount_price.to_s(:delimited) %> 円</h4>
               </div>
             </div>
           <% menu_count += 1 %>
@@ -67,6 +81,7 @@
             <% break %>
           <% end %>
         <% end %>
+        <p><%= link_to 'メニュー一覧', public_menus_path %></p>
       </div>
     </div>
 

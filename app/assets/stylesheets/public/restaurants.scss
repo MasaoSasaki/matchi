@@ -1,3 +1,74 @@
 // Place all the styles related to the public/restaurants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "variables";
+
+// 共通
+// /index
+.public-restaurants-index {
+
+  h2 {
+    margin: 20px 0;
+    text-align: center;
+  }
+
+  &__restaurant-list {
+
+    &__restaurant-item {
+      margin: 20px 0;
+      padding: 10px;
+      border: solid 1px $thema-color-font;
+      border-radius: 20px;
+
+      h3 {
+        margin-top: 0;
+        text-align: center;
+      }
+
+      .restaurant_image {
+        margin-right: 20px;
+      }
+
+      a {
+        color: $thema-color-font;
+      }
+
+    }
+  }
+
+}
+
+.restaurant-contents {
+  flex: 1;
+}
+
+
+// スマホ
+@media (max-width: $media-sp-max) {
+
+  .restaurant_image {
+    width: 150px;
+    height: 100px;
+  }
+}
+
+// タブレット
+@media (min-width: $media-tb-min) and (max-width: $media-tb-max) {
+}
+
+// PC・タブレット共通
+@media (min-width: $media-tb-min) {
+
+  .restaurant_image {
+    width: 300px;
+    height: 200px;
+  }
+}
+
+// PC
+@media (min-width: $media-pc-min) {
+
+
+}
+

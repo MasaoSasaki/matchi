@@ -5,7 +5,7 @@
     <%= render "owner/restaurants/shared/error_messages", resource: resource %>
 
     <div class="field">
-      <h3><%= f.label :email, value: 'メールアドレス' %></h3>
+      <h3><%= f.label :email, 'メールアドレス' %></h3>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: '必須' %>
     </div>
 
@@ -14,7 +14,7 @@
     <% end %>
 
     <div class="field">
-      <h3><%= f.label :password, value: '新しいパスワード' %></h3>
+      <h3><%= f.label :password, '新しいパスワード' %></h3>
       <small>(<%= @minimum_password_length %>文字以上)</small>
       <%= f.password_field :password, autocomplete: "new-password", placeholder: '必須' %>
       <% if @minimum_password_length %>
@@ -23,12 +23,12 @@
     </div>
 
     <div class="field">
-      <h3><%= f.label :password_confirmation, value: '新しいパスワード（再入力）' %></h3>
+      <h3><%= f.label :password_confirmation, '新しいパスワード（再入力）' %></h3>
       <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '必須' %>
     </div>
 
     <div class="field">
-      <h3><%= f.label :current_password, value: '現在のパスワード' %></h3>
+      <h3><%= f.label :current_password, '現在のパスワード' %></h3>
       <%= f.password_field :current_password, autocomplete: "current-password", placeholder: '必須' %>
     </div>
 

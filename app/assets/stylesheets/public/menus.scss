@@ -4,7 +4,50 @@
 
 @import "variables";
 
-@media (max-width: $media-sp-max) {
+// 共通
+// /index
+.public-menus-index {
+
+  h2 {
+    margin: 20px 0;
+    text-align: center;
+  }
+
+  &__menu-list {
+
+    &__menu-item {
+      margin: 20px 0;
+      padding: 10px;
+      border: solid 1px $thema-color-font;
+      border-radius: 20px;
+
+      h3 {
+        margin-top: 0;
+        text-align: center;
+      }
+
+      td {
+        padding: 0 10px;
+      }
+
+      a {
+        color: $thema-color-font;
+      }
+    }
+  }
+}
+
+// /show
+.public-menus-show {
+
+  h2 {
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  div {
+    margin: 15px 0;
+  }
 
   .menu_image {
     object-fit: cover;
@@ -12,4 +55,68 @@
     height: 300px;
   }
 
+  .reservation {
+    text-align: center;
+  }
+}
+
+// スマホ
+@media (max-width: $media-sp-max) {
+  .public-menus-index {
+
+    .menu_image {
+      width: 150px;
+      height: 100px;
+    }
+  }
+}
+
+// タブレット
+@media (min-width: $media-tb-min) and (max-width: $media-tb-max) {
+}
+
+// PC・タブレット共通
+@media (min-width: $media-tb-min) {
+  .public-menus-index {
+
+    .menu_image {
+      width: 300px;
+      height: 200px;
+    }
+  }
+}
+
+// PC
+@media (min-width: $media-pc-min) {
+  .public-menus-index {
+
+    // /public/menus/index
+    .menu-list {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    // /public/menu/show
+    .menu-head {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .menu-head-contents {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .menu-body {
+      flex: 1;
+    }
+
+    .menu-image {
+      flex: 1;
+    }
+
+    .reservation {
+      text-align: center;
+    }
+  }
 }
