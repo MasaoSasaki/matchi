@@ -1,12 +1,21 @@
 <div class="contents public-restaurants-index">
-  <h2><u><i>Restaurants</i></u></h2>
-  <div class="flex restaurants-contents">
-    <div class="restaurant-image"></div>
+  <h2><u><i>レストラン一覧</i></u></h2>
+  <div class="public-restaurants-index__restaurant-list">
     <% @restaurants.each do |restaurant| %>
-      <div class="restaurant-contents">
-        <p><%= link_to "#{restaurant.name}", public_restaurant_path(restaurant) %></p>
-        <p><%= restaurant.prefecture %></p>
-        <p><%= link_to 'メニュー一覧', public_menus_path(restaurant) %></p>
+      <div class="public-restaurants-index__restaurant-list__restaurant-item">
+        <h3><%= link_to "#{restaurant.name}", public_restaurant_path(restaurant) %></h3>
+        <div class="flex restaurant-body">
+          <div class="restaurant-image">
+            <%= link_to public_restaurant_path(restaurant) do %>
+              <%= attachment_image_tag restaurant, :restaurant_image, fallback: "no_image.png" %>
+            <% end %>
+          </div>
+          <div class="restaurant-contents">
+            <p>住所：<%= "#{restaurant.prefecture}" + "#{restaurant.city}" + "#{restaurant.street}" + "#{restaurant.building}" %></p>
+            <p>連絡先：<%= restaurant.phone_number %></p>
+            <p><%= link_to 'メニュー一覧', public_menus_path(restaurant) %></p>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>

@@ -87,12 +87,11 @@ ul {
   pointer-events: none;
 }
 
-// application.html.erb
-header {
-  border-bottom: solid 1px #ccc;
-  // margin-bottom: 30px;
+.menu_image, .restaurant_image, .user_image {
+  object-fit: cover;
 }
 
+// application.html.erb
 .layouts-app-header {
   &__notice {
     line-height: 30px;
@@ -100,11 +99,11 @@ header {
     p {
       color: black;
       text-align: center;
-      animation: blinkAnime 2.0s infinite alternate;
+      animation: blinkAnime 1s infinite alternate;
     }
 
     @keyframes blinkAnime{
-      0% { color: #ffffff }
+      0% { color: $thema-color1 }
       100% { color: #ff0000 }
    }
 
@@ -129,30 +128,9 @@ header {
 
 .body-container {
   min-height: 500px;
-}
-
-// main
-main {
-  margin: 30px 0;
-}
-
-// owner/restaurants/show
-.restaurant-introduction {
-  margin: 20px 0;
-}
-
-.restaurant_image {
-  text-align: center;
-  object-fit: cover;
-}
-
-.restaurant-status {
-  margin: 20px 0;
-}
-
-// /owner/restaurants
-.restaurant-edit .submit {
-  text-align: center;
+  border-top: solid 1.3px #ccc;
+  border-bottom: solid 1.3px #ccc;
+  padding-bottom: 20px;
 }
 
 // /owner/restaurants/menus/new
@@ -182,43 +160,6 @@ main {
   }
 }
 
-// /public/restaurants
-.public-restaurants-index > h2 {
-  text-align: center;
-}
-
-.restaurant-contents {
-  flex: 1;
-}
-
-// /public/menus/index
-.public-menus-index h2 {
-  margin: 20px 0;
-  text-align: center;
-}
-
-.menus {
-  margin: 20px 0;
-  padding-top: 10px;
-  border: solid 1px $thema-color-font;
-  border-radius: 20px;
-}
-
-.menu-title {
-  justify-content: center;
-}
-
-
-// /public/menus/show
-.public-menus-show h2 {
-  text-align: center;
-  margin: 20px 0;
-}
-
-.public-menus-show div {
-  margin: 15px 0;
-}
-
 // /public/users/reservation/index
 .public-users-reservations-index {
 
@@ -243,11 +184,7 @@ main {
 
 //devise
 .devise-form h2 {
-  margin: 10px 0;
-}
-
-.session {
-  text-align: center;
+  margin: 20px 0;
 }
 
 .actions {
@@ -263,9 +200,7 @@ main {
 
 // footer
 footer {
-  padding-top: 20px;
-  margin-bottom: 20px;
-  border-top: 1px solid #ccc;
+  padding: 20px 0 40px;
 }
 
 .copyright {
@@ -318,11 +253,6 @@ footer {
     padding: 30px;
   }
 
-  .top-main {
-    padding: 0 70px;
-    display: flex;
-  }
-
   // owner/restaurants/menus/edit,new
   .image-preview img {
     width: 100%;
@@ -342,13 +272,6 @@ footer {
     width: 90%;
     height: 100px;
   }
-
-  // /public/homes/terms
-  .homes-container {
-    max-width: 900px;
-    padding: 70px;
-  }
-
 }
 
 // PC・タブレット共通
@@ -374,32 +297,10 @@ footer {
     margin: 0 auto;
   }
 
-  .top-menus .menu_image, .top-restaurant .restaurant_image {
-    object-fit: cover;
-    width: 200px;
-    height: 150px;
-  }
-
-
   // public/user/profile
   .profile-head {
     display: flex;
     justify-content: space-between;
-  }
-
-  // owner/restaurants/show
-  .restaurant-head {
-    display: flex;
-    justify-content: space-between;
-  }
-  // .restaurant-head h1 {
-  // }
-  // .restaurant-head p {
-  // }
-
-  .restaurant-status {
-    display: flex;
-    justify-content: space-around;
   }
 
   // owner/restaurant/menus/show
@@ -414,42 +315,6 @@ footer {
   .menu-form2 {
     flex: 1;
   }
-
-  .menu
-
-  // /public/menus/index
-  .menu-list {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  // /public/menu/show
-  .menu-head {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .menu-head-contents {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .menu-body {
-    flex: 1;
-  }
-
-  .menu-image {
-    flex: 1;
-  }
-
-  .menu-image .menu_image {
-    object-fit: cover;
-  }
-
-  .reservation {
-    text-align: center;
-  }
-
 }
 
 // タブレット端末用
@@ -458,16 +323,6 @@ footer {
   .contents {
     margin: 0 auto;
     padding: 0 70px;
-  }
-
-  .top-main {
-    padding: 0 30px;
-  }
-
-  .top-side {
-    width: 100%;
-    margin-top: 20px;
-    padding: 0;
   }
 
   // /owner/restaurants/menus/edit,new
@@ -499,18 +354,6 @@ footer {
     padding: 0.5em;
     font-size: 1.1em;
     background-color: #ffdd00;
-  }
-
-  .top-restaurant .restaurant_image {
-    object-fit: cover;
-    width: 100px;
-    height: 70px;
-  }
-
-  .top-menus .menu_image {
-    object-fit: cover;
-    width: 100px;
-    height: 70px;
   }
 
   .layouts-app-header {
@@ -690,17 +533,4 @@ footer {
   .menus-edit-h2 {
     text-align: center;
   }
-
-  // /public/menus/show
-  .menu-show .menu_image {
-    object-fit: cover;
-    width: 100%;
-    height: 300px;
-  }
-
-  .reservation {
-    text-align: center;
-  }
-
-
 }

@@ -47,9 +47,9 @@ Rails.application.routes.draw do
     # get '/', to: 'homes#top'
     resources :users, only: %i[update new] do
       get 'completion', to: 'users#completion'
-      resources :reservations, only: %i[index show new create]
       get 'reservations/confirm', to: 'reservations#confirm'
       get 'reservations/completion', to: 'reservations#completion'
+      resources :reservations, only: %i[index show new create]
       resources :bookmarks, only: %i[:index show]
     end
 

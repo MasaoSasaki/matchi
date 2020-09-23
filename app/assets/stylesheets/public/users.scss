@@ -17,6 +17,15 @@
   }
 }
 
+// sessions/new
+.public-users-sessions-new {
+  text-align: center;
+
+  h2 {
+    margin: 20px 0;
+  }
+}
+
 // スマホ
 @media (max-width: $media-sp-max) {
 
@@ -130,4 +139,9 @@
     font-size: 0.8em;
   }
 
+}
+
+
+.session {
+  text-align: center;
 }
