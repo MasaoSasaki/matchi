@@ -129,25 +129,6 @@ ul {
   padding-bottom: 20px;
 }
 
-// owner/restaurants/show
-.restaurant-introduction {
-  margin: 20px 0;
-}
-
-.restaurant_image {
-  text-align: center;
-  object-fit: cover;
-}
-
-.restaurant-status {
-  margin: 20px 0;
-}
-
-// /owner/restaurants
-.restaurant-edit .submit {
-  text-align: center;
-}
-
 // /owner/restaurants/menus/new
 .menus-create {
   text-align: right;
@@ -324,13 +305,6 @@ footer {
     width: 90%;
     height: 100px;
   }
-
-  // /public/homes/terms
-  .homes-container {
-    max-width: 900px;
-    padding: 70px;
-  }
-
 }
 
 // PC・タブレット共通
@@ -367,21 +341,6 @@ footer {
   .profile-head {
     display: flex;
     justify-content: space-between;
-  }
-
-  // owner/restaurants/show
-  .restaurant-head {
-    display: flex;
-    justify-content: space-between;
-  }
-  // .restaurant-head h1 {
-  // }
-  // .restaurant-head p {
-  // }
-
-  .restaurant-status {
-    display: flex;
-    justify-content: space-around;
   }
 
   // owner/restaurant/menus/show

@@ -1,26 +1,26 @@
-<div class="contents devise-form">
+<div class="contents devise-form owner-restaurants-sessions-new">
   <h2>店舗ログイン</h2>
   <small>※PCからの利用を推奨します。スマートフォンの場合、表示が崩れる場合があります。</small>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
+    <div class="form-group">
       <%= f.label :email, value: 'メールアドレス' %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
 
-    <div class="field">
+    <div class="form-group">
       <%= f.label :password, value: 'パスワード' %><br />
       <%= f.password_field :password, autocomplete: "current-password" %>
     </div>
 
     <% if devise_mapping.rememberable? %>
-      <div class="field">
+      <div class="form-group">
         <%= f.check_box :remember_me %>
         <%= f.label :remember_me, value: 'パスワードを保持する。' %>
       </div>
     <% end %>
 
-    <div class="actions">
-      <%= f.submit "ログイン" %>
+    <div class="form-group">
+      <%= f.submit "ログイン", class: "btn btn-primary" %>
     </div>
   <% end %>
 
