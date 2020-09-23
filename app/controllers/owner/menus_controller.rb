@@ -60,10 +60,9 @@ class Owner::MenusController < Owner::Base
           new_menu_tag.save
         end
       end
-
       redirect_to owner_restaurant_menu_path(current_owner_restaurant, menu_new)
     else
-      render :edit
+      render :new
     end
   end
 

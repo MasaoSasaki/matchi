@@ -1,5 +1,5 @@
 <div class="menu-form">
-  <%= form_with model: [restaurant, menu], url: path, local: true do |f| %>
+  <%= form_with model: [restaurant, menu], url: url, method: method, local: true do |f| %>
     <section class="menu-status">
       <div class="menu-form1">
         <h3>メニュー詳細</h3>
@@ -97,7 +97,7 @@
       </div>
     </section>
 
-    <div class="submit"><%= f.button "#{submit}", onclick: 'submit();', type: 'button', class: 'btn' %></div>
+    <div class="submit"><%= f.button "#{submit}", onclick: 'submit();', type: 'button', class: "btn btn-primary" %></div>
   <% end %>
 
 </div>
