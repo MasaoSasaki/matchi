@@ -1,7 +1,7 @@
 class Owner::MenusController < Owner::Base
 
   before_action :current_restaurant?
-  before_action :current_menu?, except: %i[index new create]
+  before_action :current_menu?, except: %i[index new]
   before_action :api, only: %i[edit new create update]
 
   def index
