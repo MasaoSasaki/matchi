@@ -1,6 +1,6 @@
 <div class="contents public-reservation-new">
   <h2>予約情報の入力</h2>
-    <%= form_with url: public_user_reservations_confirm_path, method: :get, local: true do |f| %>
+    <%= form_with url: public_user_reservations_confirm_path(current_public_user), method: :get, local: true do |f| %>
     <table>
       <tbody>
         <tr>
@@ -47,7 +47,7 @@
       </tbody>
     </table>
     <%= f.hidden_field :menu_id, value: @menu.id %>
-    <%= f.submit '確認する', class: "btn reservation-confirm" %>
+    <%= f.submit '確認する', class: "btn btn-success" %>
   <% end %>
   <%= link_to '前のページへ', :back %>
   <%= link_to 'メニュー一覧へ', root_path %>
