@@ -1,7 +1,7 @@
 <div class="contents contacts-new">
   <h2>お問い合わせ</h2>
   <p>ご意見・ご要望・新規出店はこちらよりお問い合わせください。</p>
-  <%= form_with model: @contact, url: contacts_create_path, method: :post, local: true do |f| %>
+  <%= form_with url: confirm_contact_path, method: :get, local: true do |f| %>
 
     <% if public_user_signed_in? %>
       <div class="form-group">
@@ -17,10 +17,13 @@
 
   <div class="form-group">
     <h3><%= f.label :message, 'お問い合わせ内容' %></h3>
-    <%= f.text_area :message, class: 'form-control' %>
+    <%= f.text_area :message, class: 'form-control' %><span id="contacts-new__contact_message--notice"></span>
   </div>
 
-  <div class="contact-submit"><%= f.submit '送信', class: "btn btn-default" %></div>
+  <div class="contact-submit"><%= f.submit '確認する', class: "btn btn-default" %></div>
 
   <% end %>
+
+  <%= render partial: 'layouts/error_messages', locals: {model: @contact} %>
+
 </div>
