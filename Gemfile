@@ -78,6 +78,7 @@ gem 'gon'
 gem 'jp_prefecture', '~> 0.10.0'
 gem 'rails-i18n'
 gem 'enum_help'
+gem 'meta-tags'
 
 gem 'dotenv-rails'
 group :production do
