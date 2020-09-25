@@ -3,8 +3,9 @@
   <%= render partial: 'form', locals: {
     restaurant: @restaurant,
     menu: @menu,
+    url: owner_restaurant_menus_path,
+    method: :post,
     tags: @tags,
     menu_tags: @menu_tags,
-    path: owner_restaurant_menus_path,
     truth: false, submit: '作成' } %>
 </div>

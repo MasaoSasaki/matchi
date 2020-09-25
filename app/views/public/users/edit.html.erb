@@ -7,7 +7,7 @@
   </div>
   <%= form_with model: @current_user, url: public_user_path(@current_user), local: true, method: :patch do |f| %>
     <h2><u><%= "#{@current_user.name_family}" + "#{@current_user.name_first}" %></u> 様</h2>
-    <small>お名前の変更は<%= link_to 'こちら', contact_path %>より、直接お問い合わせください。</small>
+    <small>お名前の変更は<%= link_to 'こちら', new_contact_path %>より、直接お問い合わせください。</small>
     <table class="edit-head">
       <body>
         <tr>

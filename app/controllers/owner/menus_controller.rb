@@ -1,7 +1,7 @@
 class Owner::MenusController < Owner::Base
 
   before_action :current_restaurant?
-  before_action :current_menu?, except: %i[index new]
+  before_action :current_menu?, except: %i[index new create]
   before_action :api, only: %i[edit new create update]
 
   def index
@@ -31,13 +31,17 @@ class Owner::MenusController < Owner::Base
     menu_new = Menu.new(menu_params)
     menu_new.restaurant_id = current_owner_restaurant.id
     if menu_new.save
-      # 推奨タグの新規追加
-      params[:tag_id].each do |tag, box|
-        if box == "1"
-          menu_tag = MenuTag.new
-          menu_tag.menu_id = menu_new.id
-          menu_tag.tag_id = tag.to_i
-          menu_tag.save
+
+      # 推奨タグが選択されているかどうか？
+      unless params[:tag_id].nil?
+        # 推奨タグの新規追加
+        params[:tag_id].each do |tag, box|
+          if box == "1"
+            menu_tag = MenuTag.new
+            menu_tag.menu_id = menu_new.id
+            menu_tag.tag_id = tag.to_i
+            menu_tag.save
+          end
         end
       end
 
@@ -60,10 +64,9 @@ class Owner::MenusController < Owner::Base
           new_menu_tag.save
         end
       end
-
       redirect_to owner_restaurant_menu_path(current_owner_restaurant, menu_new)
     else
-      render :edit
+      render :new
     end
   end
 

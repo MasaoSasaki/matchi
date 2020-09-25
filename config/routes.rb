@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
 
-  get 'contacts/new'
-  post 'contacts/create'
   get '/', to: 'public/homes#top', as: 'root'
   get 'about', to: 'public/homes#about'
-  get 'contact', to: 'contacts#new'
   get 'privacy', to: 'public/homes#privacy'
   get 'terms', to: 'public/homes#terms'
   get 'admin', to: 'public/homes#admin'
@@ -14,6 +11,14 @@ Rails.application.routes.draw do
   get 'mypage/withdraw', to: 'public/users#withdraw'
   get 'myprofile', to: 'public/users#profile'
   get 'myinfo', to: 'public/users#info'
+
+  scope :contact do
+    post '/', to: 'contacts#create', as: 'contact'
+    get 'form', to: 'contacts#new', as: 'new_contact'
+    post 'confirm', to: 'contacts#confirm', as: "confirm_contact"
+    post 'back', to: 'contacts#back', as: "back_contact"
+    post 'completion', to: 'contacts#completion', as: "completion_contact"
+  end
 
   namespace :master do
     devise_for :admins, controllers: {
