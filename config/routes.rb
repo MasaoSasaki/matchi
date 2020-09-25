@@ -14,9 +14,10 @@ Rails.application.routes.draw do
 
   scope :contact do
     post '/', to: 'contacts#create', as: 'contact'
-    get 'new', to: 'contacts#new', as: 'new_contact'
-    get 'confirm', to: 'contacts#confirm', as: "confirm_contact"
-    get 'completion', to: 'contacts#completion', as: "completion_contact"
+    get 'form', to: 'contacts#new', as: 'new_contact'
+    post 'confirm', to: 'contacts#confirm', as: "confirm_contact"
+    post 'back', to: 'contacts#back', as: "back_contact"
+    post 'completion', to: 'contacts#completion', as: "completion_contact"
   end
 
   namespace :master do

@@ -81,6 +81,10 @@ ja:
         reservation_status: 予約状況
         payment_method: 支払い方法
 
+      contact:
+        email: ご連絡先
+        message: お問い合わせ内容
+
   enums:
     reservation:
       payment_method:

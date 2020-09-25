@@ -1,15 +1,14 @@
 <div class="contents contacts-confirm">
-  <h2>以下の内容で送信します。</h2>
+  <%= form_with model: @contact, url: completion_contact_path, local: true do |f| %>
+    <h2>以下の内容で送信します。</h2>
 
-  <h3>ご連絡先</h3>
-  <p><%= params[:email] %></p>
+    <h3>ご連絡先</h3>
+    <p><%= f.email_field :email, value: @contact.email, readonly: true %></p>
 
-  <h3>お問い合わせ内容</h3>
-  <p><%= params[:message] %></p>
+    <h3>お問い合わせ内容</h3>
+    <p><%= f.text_area :message, value: @contact.message, readonly: true %></p>
 
-  <%= form_with model: @contact, url: contact_path, method: :post, local: true do |f| %>
-    <%= f.hidden_field :email, value: params[:email] %>
-    <%= f.hidden_field :message, value: params[:message] %>
+    <%= f.submit '修正する', class: "btn btn-default", name: :back %>
     <%= f.submit '送信', class: "btn btn-primary" %>
   <% end %>
 </div>
