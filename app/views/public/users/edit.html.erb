@@ -75,7 +75,7 @@
     </table>
     <div class="flex users-edit-btn">
       <div class="submit"><%= f.submit '変更を保存', class: 'btn btn-default' %></div>
-      <div class="destroy"><%= link_to '退会する', mypage_withdraw_path(@current_user) %></div>
+      <div class="destroy"><%= link_to '退会する', users_withdraw_path(current_user), class: "btn btn-danger" %></div>
     </div>
   <% end %>
 
