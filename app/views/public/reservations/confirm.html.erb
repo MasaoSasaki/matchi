@@ -1,5 +1,5 @@
 <div class="contents public-reservation-confirm">
-  <%= form_with model: [current_public_user, @reservation], url: public_user_reservations_path, local: true do |f| %>
+  <%= form_with model: [current_user, @reservation], url: user_reservations_path, local: true do |f| %>
     <h2>予約情報の確認</h2>
     <h3>メニュー名</h3>
     <%= @menu.title %>

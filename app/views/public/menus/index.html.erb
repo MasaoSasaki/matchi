@@ -3,10 +3,10 @@
   <div class="public-menus-index__menu-list">
   <% @menus.each do |menu| %>
     <div class="public-menus-index__menu-list__menu-item">
-      <h3>メニュー名：<%= link_to "#{menu.title}", public_menu_path(menu) %></h3>
+      <h3>メニュー名：<%= link_to "#{menu.title}", menu_path(menu) %></h3>
       <div class="flex menu-body">
         <div class="menu-image">
-          <%= link_to public_menu_path(menu) do %>
+          <%= link_to menu_path(menu) do %>
             <%= attachment_image_tag menu, :menu_image, fallback: "no_image.png" %>
           <% end %>
         </div>
@@ -18,7 +18,7 @@
                 <td><h4>提供価格</h4><p><%= menu.discount_price.to_s(:delimited) %> 円</p></td>
               </tr>
               <tr>
-                <td><h4>店舗名</h4><%= link_to "#{@restaurants.find(menu.restaurant_id).name}", public_restaurant_path(menu.restaurant_id) %></td>
+                <td><h4>店舗名</h4><%= link_to "#{@restaurants.find(menu.restaurant_id).name}", restaurant_path(menu.restaurant_id) %></td>
                 <td><h4>住所</h4><%= "#{@restaurants.find(menu.restaurant_id).prefecture}" + "#{@restaurants.find(menu.restaurant_id).city}" + "#{@restaurants.find(menu.restaurant_id).street}" + "#{@restaurants.find(menu.restaurant_id).building}" %></td>
               </tr>
             </tbody>

@@ -1,6 +1,6 @@
 class Public::BookmarksController < Public::Base
 
-  before_action :authenticate_public_user!
+  before_action :authenticate_user!
 
   def index
   end

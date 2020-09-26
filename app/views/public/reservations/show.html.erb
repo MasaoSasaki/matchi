@@ -20,17 +20,17 @@
       <tr>
         <td><h3>店舗名</h3></td>
         <td></td>
-        <td><p><%= link_to "#{@restaurant.name}", public_restaurant_path(@restaurant) %></p></td>
+        <td><p><%= link_to "#{@restaurant.name}", restaurant_path(@restaurant) %></p></td>
       </tr>
       <tr>
         <td><h3>メニュー</h3></td>
         <td></td>
-        <td><p><%= link_to "#{@menu.title}", public_menu_path(@menu) %></p></td>
+        <td><p><%= link_to "#{@menu.title}", menu_path(@menu) %></p></td>
       </tr>
       <tr>
         <td><h3>予約者氏名</h3></td>
         <td></td>
-        <td><p><%= @current_user.name_family + @current_user.name_first %> 様</p></td>
+        <td><p><%= current_user.name_family + current_user.name_first %> 様</p></td>
       </tr>
       <tr>
         <td><h3>人数</h3></td>
@@ -40,12 +40,12 @@
       <tr>
         <td><h3>ご連絡先</h3></td>
         <td><h4>電話番号</h4></td>
-        <td><p><%= @current_user.phone_number %></p></td>
+        <td><p><%= current_user.phone_number %></p></td>
       </tr>
       <tr>
         <td></td>
         <td><h3>メールアドレス</h3></td>
-        <td><p><%= @current_user.email %></p></td>
+        <td><p><%= current_user.email %></p></td>
       </tr>
       <tr>
         <td><h3>お支払い方法</h3></td>
@@ -64,5 +64,5 @@
       </tr>
     </tbody>
   </table>
-  <%= link_to 'マイページへ戻る', mypage_path(@current_user) %>
+  <%= link_to 'マイページへ戻る', user_mypage_path(current_user) %>
 </div>

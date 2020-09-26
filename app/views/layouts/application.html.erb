@@ -49,11 +49,11 @@
                 <li><%= link_to '店舗トップ', owner_restaurant_path(current_owner_restaurant), class: "btn btn-warning" %></li>
                 <li><%= link_to '店舗ログアウト', destroy_owner_restaurant_session_path, class: "btn btn-warning", method: :delete %></li>
               <% end %>
-              <% if public_user_signed_in? %>
-                <li><%= link_to '一般会員TOP', mypage_path(current_public_user), class: "btn btn-default" %></li>
-                <li><%= link_to '一般会員ログアウト', destroy_public_user_session_path, class: "btn btn-danger", method: :delete %></li>
+              <% if user_signed_in? %>
+                <li><%= link_to '一般会員TOP', user_mypage_path(current_user), class: "btn btn-default" %></li>
+                <li><%= link_to '一般会員ログアウト', destroy_user_session_path, class: "btn btn-danger", method: :delete %></li>
               <% else %>
-                <li><%= link_to '一般会員ログイン', new_public_user_session_path, class: "btn btn-primary" %></li>
+                <li><%= link_to '一般会員ログイン', new_user_session_path, class: "btn btn-primary" %></li>
               <% end %>
 
             <%# urlに'master'があれば管理者用ヘッダー %>
@@ -63,11 +63,11 @@
                 <li><%= link_to '管理者トップ', new_master_admin_session_path, class: 'btn btn-danger' %></li>
                 <li><%= link_to '管理者ログアウト', destroy_master_admin_session_path, class: "btn btn-danger", method: :delete %></li>
               <% end %>
-              <% if public_user_signed_in? %>
-                <li><%= link_to '一般会員TOP', mypage_path(current_public_user), class: "btn btn-default" %></li>
-                <li><%= link_to '一般会員ログアウト', destroy_public_user_session_path, class: "btn btn-danger", method: :delete %></li>
+              <% if user_signed_in? %>
+                <li><%= link_to '一般会員TOP', user_mypage_path(current_user), class: "btn btn-default" %></li>
+                <li><%= link_to '一般会員ログアウト', destroy_user_session_path, class: "btn btn-danger", method: :delete %></li>
               <% else %>
-                <li><%= link_to '一般会員ログイン', new_public_user_session_path, class: "btn btn-primary" %></li>
+                <li><%= link_to '一般会員ログイン', new_user_session_path, class: "btn btn-primary" %></li>
               <% end %>
               <% if owner_restaurant_signed_in? %>
                 <li><%= link_to '店舗トップ', owner_restaurant_path(current_owner_restaurant), class: "btn btn-warning" %></li>
@@ -92,15 +92,15 @@
                 <li><%= link_to '管理者ログアウト', destroy_master_admin_session_path, class: "btn btn-danger", method: :delete %></li>
                 <li><%= link_to '店舗ログイン', new_owner_restaurant_session_path, class: "btn btn-warning" %></li>
               <% end %>
-              <% if public_user_signed_in? %>
-                <li><%= link_to 'MyPage', mypage_path(current_public_user), class: "btn btn-default" %></li>
+              <% if user_signed_in? %>
+                <li><%= link_to 'MyPage', user_mypage_path(current_user), class: "btn btn-default" %></li>
                   <%# if alert.count >= 1 %>
                     <li><%#= link_to 'お知らせがあります。' %></li>
                   <%# end %>
-                <li><%= link_to 'ログアウト', destroy_public_user_session_path, class: "btn btn-danger", method: :delete %></li>
+                <li><%= link_to 'ログアウト', destroy_user_session_path, class: "btn btn-danger", method: :delete %></li>
               <% else %>
-                <li><%= link_to '新規登録', new_public_user_path, class: "btn btn-success" %></li>
-                <li><%= link_to 'ログイン', new_public_user_session_path, class: "btn btn-primary" %></li>
+                <li><%= link_to '新規登録', new_user_registration_path, class: "btn btn-success" %></li>
+                <li><%= link_to 'ログイン', new_user_session_path, class: "btn btn-primary" %></li>
               <% end %>
             <% end %>
           </ul>
@@ -125,17 +125,17 @@
       <%# ハンバーガーメーニュー %>
       <div class="hamburger-menu">
         <ul>
-          <% if public_user_signed_in? %>
-            <li><%= link_to 'MyPage', mypage_path(current_public_user) %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to 'MyPage', user_mypage_path(current_user) %></li>
           <% else %>
-            <li><%= link_to '新規登録', new_public_user_path %></li>
-            <li><%= link_to 'ログイン', new_public_user_session_path %></li>
+            <li><%= link_to '新規登録', new_user_registration_path %></li>
+            <li><%= link_to 'ログイン', new_user_session_path %></li>
           <% end %>
           <li><%= link_to 'サービス紹介', about_path %></li>
-          <li><%= link_to 'レストラン一覧', public_restaurants_path %></li>
-          <li><%= link_to 'メニュー一覧', public_menus_path %></li>
-          <% if public_user_signed_in? %>
-            <li><%= link_to 'ログアウト', destroy_public_user_session_path, method: :delete %></li>
+          <li><%= link_to 'レストラン一覧', restaurants_path %></li>
+          <li><%= link_to 'メニュー一覧', menus_path %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
           <% end %>
         </ul>
       </div>

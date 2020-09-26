@@ -35,6 +35,9 @@ class Public::Users::SessionsController < Devise::SessionsController
       if @user.valid_password?(params[:user][:password]) && @user.active_for_authentication? == false
         flash[:error] = "退会済みです。"
         render :new
+      elsif !@user.valid_password?(params[:user][:password])
+        flash[:error] = "IDまたはパスワードが違います。"
+        render :new
       end
     else
       flash[:error] = "必須項目を入力してください。"

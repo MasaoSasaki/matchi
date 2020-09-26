@@ -28,7 +28,8 @@
 
 .contacts-confirm {
 
-  #contact_email, #contact_message {
+  input[readonly] {
+    background-color: $thema-color1;
     border: none;
     outline: none;
   }
