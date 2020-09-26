@@ -20,8 +20,8 @@ class ContactsController < ApplicationController
   end
 
   def completion
-    @contact = Contact.new(contact_params)
-    render :new if @contact.invalid?
+    contact = Contact.new(contact_params)
+    render :new if contact.invalid?
   end
 
   private

@@ -33,7 +33,7 @@
   <div class="hidden user-status">
     <h3>実績</h3>
     <h4>会員ランク：<%#= current_user.rank %></h4>
-    <h4>予約数：<%= current_user.reservation.count %> 件</h4>
+    <h4>予約数：<%= current_user.reservations.count %> 件</h4>
     <h4>レビューした数：<%#= @restaurant_reviews.count + @menu_reviews.count %></h4>
     <h4>レビューされた数：<%#= @current_user_reviews.count %></h4>
   </div>

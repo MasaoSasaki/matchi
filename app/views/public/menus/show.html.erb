@@ -45,7 +45,7 @@
       <% end %>
     <% else %>
       <%= submit_tag '予約情報を入力する', class: "btn btn-success inactive" %>
-      <p><%= link_to '新規ご登録', new_user_path %>、または<%= link_to 'ログイン', user_session_path %>後に予約が可能になります。</p>
+      <p><%= link_to '新規ご登録', new_user_registration_path %>、または<%= link_to 'ログイン', user_session_path %>後に予約が可能になります。</p>
     <% end %>
   </div>
   <%= link_to 'メニュー一覧', menus_path %>

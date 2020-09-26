@@ -30,6 +30,16 @@
   }
 }
 
+// registrations/confirm
+.public-users-registrations-confirm {
+
+  input[readonly] {
+    background-color: $thema-color1;
+    border: none;
+    outline: none;
+  }
+}
+
 // スマホ
 @media (max-width: $media-sp-max) {
 

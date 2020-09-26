@@ -53,8 +53,12 @@ Rails.application.routes.draw do
       passwords: 'public/users/passwords'
     }
 
-    resources :users, only: %i[update new] do
-      get 'completion', to: 'users#completion'
+    devise_scope :user do
+      post 'users/sign_up/confirm', to: 'users/registrations#confirm'
+      get 'users/sign_up/complete', to: 'users/registrations#complete'
+    end
+
+    resources :users, only: %i[update] do
       get 'reservations/confirm', to: 'reservations#confirm'
       get 'reservations/completion', to: 'reservations#completion'
       resources :reservations, only: %i[index show new create]

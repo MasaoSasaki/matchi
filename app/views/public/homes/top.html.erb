@@ -8,7 +8,7 @@
       <% if user_signed_in? %>
       <% else %>
         <div>
-          <%= link_to '新規登録', new_user_path, class: "btn btn-success" %>
+          <%= link_to '新規登録', new_user_registration_path, class: "btn btn-success" %>
           <%= link_to 'ログイン', new_user_session_path, class: "btn btn-primary" %>
         </div>
         <%= link_to 'サービス紹介', about_path, class: 'btn btn-warning' %>
@@ -91,7 +91,7 @@
         <div class="simple-mypage">マイページ</div>
       <% else %>
         <div class="new-registration">
-          <%= link_to '新規登録', new_user_path, class: "btn registration" %>
+          <%= link_to '新規登録', new_user_registration_path, class: "btn registration" %>
           <p>登録済みの方は<%= link_to 'こちら', new_user_session_path%></p>
         </div>
       <% end %>

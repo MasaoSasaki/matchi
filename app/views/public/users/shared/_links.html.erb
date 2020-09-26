@@ -5,7 +5,7 @@
 
 <% if false %>
   <% if controller_name != 'registrations' %>
-    <%= link_to "新規登録はこちら", new_user_path %><br />
+    <%= link_to "新規登録はこちら", new_user_registration_path %><br />
   <% end %>
 
   <% if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>

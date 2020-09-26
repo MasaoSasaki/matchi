@@ -1,15 +1,10 @@
 class Public::UsersController < Public::Base
 
-  before_action :authenticate_user!, except: %i[new]
-
   def show
     @reservation_count = Reservation.where(user_id: current_user.id).count
   end
 
   def edit
-  end
-
-  def new
   end
 
   def update
@@ -36,9 +31,6 @@ class Public::UsersController < Public::Base
   end
 
   def withdrew
-  end
-
-  def completion
   end
 
   private

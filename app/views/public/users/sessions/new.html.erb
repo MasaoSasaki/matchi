@@ -2,16 +2,16 @@
   <h2>会員ログイン</h2>
   <p class="error-message"><%= flash[:error] %></p>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="session-form">
-    <div class="form-group">
-      <%= f.label :email, "ログインID" %>
-      <%= f.text_field :email, autofocus: true, autocomplete: "email", required: true %>
+    <div class="session-form">
+      <div class="form-group">
+        <%= f.label :email, "ログインID" %>
+        <%= f.text_field :email, autofocus: true, autocomplete: "email", required: true %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password, 'パスワード' %>
+        <%= f.password_field :password, autocomplete: "current-password", required: true %>
+      </div>
     </div>
-    <div class="form-group">
-      <%= f.label :password, 'パスワード' %>
-      <%= f.password_field :password, autocomplete: "current-password", required: true %>
-    </div>
-  </div>
 
     <% if devise_mapping.rememberable? %>
       <div class="form-group">
