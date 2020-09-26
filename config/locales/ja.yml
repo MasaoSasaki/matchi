@@ -91,3 +91,9 @@ ja:
         cash: "店舗でお支払い"
         credit: "クレジットカード支払い"
         bank: "銀行振り込み"
+
+    user:
+      user_status:
+        member: "有効会員"
+        withdrew: "退会済み"
+        forced: "強制退会"

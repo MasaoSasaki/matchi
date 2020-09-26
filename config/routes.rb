@@ -60,6 +60,7 @@ Rails.application.routes.draw do
 
     patch 'users/:id/withdrawal', to: 'users#withdrawal', as: 'users/withdrawal'
     get 'users/:id/withdrew', to: 'users#withdrew', as: 'users/withdrew'
+    get 'users/:id/withdraw', to: 'users#withdraw', as: 'users/withdraw'
 
     resources :restaurants, only: %i[index show]
     resources :menus, only: %i[index show]
