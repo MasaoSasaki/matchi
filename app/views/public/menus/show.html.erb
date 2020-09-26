@@ -14,7 +14,6 @@
         <p><%= @menu.discount_price.to_s(:delimited) %> 円</p>
         <h3>予約方法</h3>
         <p><%= @menu.reservation_method %></p>
-        <%# <h3>タグ</h3> %>
       </div>
       <div class="menu-image"><%= attachment_image_tag @menu, :menu_image, fallback: "no_image.png" %></div>
     </div>
