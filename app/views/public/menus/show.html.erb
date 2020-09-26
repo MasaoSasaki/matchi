@@ -27,27 +27,27 @@
     </div>
   </div>
   <div class="reservation">
-    <% if public_user_signed_in? %>
+    <% if user_signed_in? %>
       <% case @menu.reservation_method %>
       <% when "ご予約不可" %>
         <%= submit_tag '予約情報を入力する', class: "btn btn-success inactive" %>
         <p>予約不可のメニューです、直接店舗にご来店ください。</p>
       <% when "ご予約可能" %>
-        <%= form_with url: new_public_user_reservation_path(current_public_user), method: :get, local: true do |f| %>
+        <%= form_with url: new_user_reservation_path(current_user), method: :get, local: true do |f| %>
           <%= f.hidden_field :menu_id, value: params[:id] %>
           <%= f.submit '予約情報を入力する', class: "btn btn-success" %>
         <% end %>
       <% when "ご予約のみ" %>
-        <%= form_with url: new_public_user_reservation_path(current_public_user), method: :get, local: true do |f| %>
+        <%= form_with url: new_user_reservation_path(current_user), method: :get, local: true do |f| %>
           <%= f.hidden_field :menu_id, value: params[:id] %>
           <%= f.submit '予約情報を入力する', class: "btn btn-success" %>
         <% end %>
       <% end %>
     <% else %>
       <%= submit_tag '予約情報を入力する', class: "btn btn-success inactive" %>
-      <p><%= link_to '新規ご登録', new_public_user_path %>、または<%= link_to 'ログイン', public_user_session_path %>後に予約が可能になります。</p>
+      <p><%= link_to '新規ご登録', new_user_path %>、または<%= link_to 'ログイン', user_session_path %>後に予約が可能になります。</p>
     <% end %>
   </div>
-  <%= link_to 'メニュー一覧', public_menus_path %>
+  <%= link_to 'メニュー一覧', menus_path %>
   <%= link_to 'TOP', root_path %>
 </div>

@@ -4,12 +4,16 @@
 
 @import "variables";
 
+// profile
+.profile_image {
+  object-fit: cover;
+}
 
 .public-users-_user_links {
   margin-top: 20px;
 }
 
-// new.html.erb
+// new
 .password-confirmation {
 
   &--confirm {
@@ -105,10 +109,6 @@
     text-align: center;
     margin-right: 20px;
     flex: 1;
-  }
-
-  .profile_image {
-    object-fit: cover;
   }
 
   .handle-name-sns {

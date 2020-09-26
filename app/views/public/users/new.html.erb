@@ -2,7 +2,7 @@
 <div class="contents public-users-new sp">
   <h2>新規会員登録</h2>
 
-  <%= form_with url: new_public_user_registration_path, method: :get, local: true do |f| %>
+  <%= form_with url: new_user_path, method: :get, local: true do |f| %>
   <table>
     <tbody>
       <tr>
@@ -60,7 +60,7 @@
 <div class="contents public-users-new pc">
   <h2>新規会員登録</h2>
 
-  <%= form_with url: new_public_user_registration_path, method: :get, local: true do |f| %>
+  <%= form_with url: new_user_path, method: :get, local: true do |f| %>
   <%#= render "public/users/shared/error_messages", resource: resource %>
   <table>
     <tbody>

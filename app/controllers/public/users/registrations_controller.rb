@@ -14,7 +14,7 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
       @password += "*"
       i += 1
     end
-    
+
     super
   end
 
@@ -54,7 +54,7 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
 
   #アカウント編集後
   def after_update_path_for(resource)
-    myinfo_path
+    user_info_path
   end
 
   # protected

@@ -1,12 +1,12 @@
 <div class="contents users-edit">
   <h2>登録情報編集</h2>
 
-  <%= render partial: 'layouts/error_messages', locals: {model: @current_user} %>
+  <%= render partial: 'layouts/error_messages', locals: {model: current_user} %>
 
   <div class="">
   </div>
-  <%= form_with model: @current_user, url: public_user_path(@current_user), local: true, method: :patch do |f| %>
-    <h2><u><%= "#{@current_user.name_family}" + "#{@current_user.name_first}" %></u> 様</h2>
+  <%= form_with model: current_user, url: user_path(current_user), local: true, method: :patch do |f| %>
+    <h2><u><%= "#{current_user.name_family}" + "#{current_user.name_first}" %></u> 様</h2>
     <small>お名前の変更は<%= link_to 'こちら', new_contact_path %>より、直接お問い合わせください。</small>
     <table class="edit-head">
       <body>

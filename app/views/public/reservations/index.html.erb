@@ -15,9 +15,9 @@
       <tr>
         <td><%= reservation.id %></td>
         <td><%= "#{reservation.reservation_year}年 #{reservation.reservation_month}月 #{reservation.reservation_day}日" %></td>
-        <td><%= link_to "#{@restaurants.find(@menus.find(reservation.menu_id).restaurant_id).name}", public_restaurant_path(@menus.find(reservation.menu_id).restaurant_id) %></td>
+        <td><%= link_to "#{@restaurants.find(@menus.find(reservation.menu_id).restaurant_id).name}", restaurant_path(@menus.find(reservation.menu_id).restaurant_id) %></td>
         <td><%= reservation.people %> 名</td>
-        <td><%= link_to "#{@menus.find(reservation.menu_id).title}", public_user_reservation_path(current_public_user, reservation) %></td>
+        <td><%= link_to "#{@menus.find(reservation.menu_id).title}", user_reservation_path(current_user, reservation) %></td>
       </tr>
       <% end %>
     </tbody>

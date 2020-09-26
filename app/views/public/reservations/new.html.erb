@@ -1,6 +1,6 @@
 <div class="contents public-reservation-new">
   <h2>予約情報の入力</h2>
-    <%= form_with url: public_user_reservations_confirm_path(current_public_user), method: :get, local: true do |f| %>
+    <%= form_with url: user_reservations_confirm_path(current_user), method: :get, local: true do |f| %>
     <table>
       <tbody>
         <tr>

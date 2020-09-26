@@ -5,11 +5,11 @@
     <div class="public-homes-top__header-image__contents">
       <h2>Connect With Trust</h2>
       <p>あなたの街の飲食店を、あなたの信頼でお得に予約する。</p>
-      <% if public_user_signed_in? %>
+      <% if user_signed_in? %>
       <% else %>
         <div>
-          <%= link_to '新規登録', new_public_user_path, class: "btn btn-success" %>
-          <%= link_to 'ログイン', new_public_user_session_path, class: "btn btn-primary" %>
+          <%= link_to '新規登録', new_user_path, class: "btn btn-success" %>
+          <%= link_to 'ログイン', new_user_session_path, class: "btn btn-primary" %>
         </div>
         <%= link_to 'サービス紹介', about_path, class: 'btn btn-warning' %>
       <% end %>
@@ -26,10 +26,10 @@
         <%= link_to do %>
           <li>特集</li>
         <% end %>
-        <%= link_to public_menus_path do %>
+        <%= link_to menus_path do %>
           <li>メニュー一覧</li>
         <% end %>
-        <%= link_to public_restaurants_path do %>
+        <%= link_to restaurants_path do %>
           <li>レストラン一覧</li>
         <% end %>
       </ul>
@@ -41,12 +41,12 @@
           <% if restaurant_count < 3 %>
             <div class="flex top-restaurant">
               <div class="restaurant-image">
-                <%= link_to public_restaurant_path(restaurant) do %>
+                <%= link_to restaurant_path(restaurant) do %>
                   <%= attachment_image_tag restaurant, :restaurant_image, fallback: "no_image.png" %>
                 <% end %>
               </div>
               <div class="restaurant-info">
-                <h3><%= link_to "#{restaurant.name}", public_restaurant_path(restaurant) %></h3>
+                <h3><%= link_to "#{restaurant.name}", restaurant_path(restaurant) %></h3>
                 <p><%= "#{restaurant.prefecture}" + "#{restaurant.city}" %></p>
               </div>
             </div>
@@ -55,7 +55,7 @@
             <% break %>
           <% end %>
         <% end %>
-        <p><%= link_to 'レストラン一覧', public_restaurants_path %></p>
+        <p><%= link_to 'レストラン一覧', restaurants_path %></p>
       </div>
       <div class="public-homes-top__menus-all">
         <h2>おすすめメニュー</h2>
@@ -65,12 +65,12 @@
           <% if menu_count < 3 %>
             <div class="flex top-menu">
               <div class="menu-image">
-                <%= link_to public_menu_path(menu) do %>
+                <%= link_to menu_path(menu) do %>
                   <%= attachment_image_tag menu, :menu_image, fallback: "no_image.png" %>
                 <% end %>
               </div>
               <div class="menu-info">
-                <h3><%= link_to "#{menu.title}", public_menu_path(menu) %></h3>
+                <h3><%= link_to "#{menu.title}", menu_path(menu) %></h3>
                 <p>店名：<%= menu.restaurant.name %></p>
                 <h4>正規価格：<%= menu.regular_price.to_s(:delimited) %> 円</h4>
                 <h4>提供価格：<%= menu.discount_price.to_s(:delimited) %> 円</h4>
@@ -81,18 +81,18 @@
             <% break %>
           <% end %>
         <% end %>
-        <p><%= link_to 'メニュー一覧', public_menus_path %></p>
+        <p><%= link_to 'メニュー一覧', menus_path %></p>
       </div>
     </div>
 
     <%# サイドバー %>
     <div class="top-side">
-      <% if public_user_signed_in? %>
+      <% if user_signed_in? %>
         <div class="simple-mypage">マイページ</div>
       <% else %>
         <div class="new-registration">
-          <%= link_to '新規登録', new_public_user_registration_path, class: "btn registration" %>
-          <p>登録済みの方は<%= link_to 'こちら', new_public_user_session_path%></p>
+          <%= link_to '新規登録', new_user_path, class: "btn registration" %>
+          <p>登録済みの方は<%= link_to 'こちら', new_user_session_path%></p>
         </div>
       <% end %>
       <div class="new-menus">
@@ -104,8 +104,8 @@
               <%# 最新のメニュー3個まで表示 %>
               <% if menu_count < 3 %>
                 <li class="top-menu">
-                  <p><%= link_to "#{menu.title}", public_menu_path(menu), id: 'menu-show-link' %></p>
-                  <%= link_to public_menu_path(menu) do %>
+                  <p><%= link_to "#{menu.title}", menu_path(menu), id: 'menu-show-link' %></p>
+                  <%= link_to menu_path(menu) do %>
                     <%= attachment_image_tag menu, :menu_image, width: 200, height: 100, fallback: "no_image.png", class: "side-bar-menu-image" %>
                   <% end %>
                 </li>
