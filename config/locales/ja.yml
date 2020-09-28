@@ -85,6 +85,9 @@ ja:
         email: ご連絡先
         message: お問い合わせ内容
 
+      tag:
+        name: タグ名
+
   enums:
     reservation:
       payment_method:

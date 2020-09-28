@@ -1,3 +1,45 @@
 // Place all the styles related to the master/tags controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "variables";
+
+// 共通
+.master-tags-index {
+
+  &__tags--tag {
+    display: inline-block;
+    background-color: $thema-color2;
+    border-radius: 5px;
+    padding: 0.2em 0.4em;
+    margin: 5px;
+    border-radius: 5px;
+
+    form {
+      display: inline;
+
+      input {
+        background-color: $thema-color2;
+        border: none;
+        outline: none;
+      }
+    }
+  }
+}
+
+// スマホ
+@media (max-width: $media-sp-max) {
+}
+
+// タブレット
+@media (min-width: $media-tb-min) and (max-width: $media-tb-max) {
+}
+
+// PC・タブレット共通
+@media (min-width: $media-tb-min) {
+}
+
+// PC
+@media (min-width: $media-pc-min) {
+}
+
