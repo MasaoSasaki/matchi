@@ -10,14 +10,10 @@ class Master::TagsController < Master::Base
     @tag = Tag.new(tag_params)
 
     respond_to do |format|
-      if !Tag.find_by(name: @tag.name)
-        if @tag.save
-          format.js { flash.now[:success] = "保存しました。" }
-        else
-          format.js
-        end
+      if @tag.save
+        format.js { flash.now[:success] = "保存しました。" }
       else
-        format.js { flash.now[:danger] = "すでに存在するタグです。" }
+        format.js
       end
     end
   end
