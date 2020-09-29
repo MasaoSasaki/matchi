@@ -13,10 +13,13 @@ class Restaurant < ApplicationRecord
   jp_prefecture :prefecture, method_name: :pref
 
   # バリデーションチェック
-  validates :email, presence: true
-  validates :name, presence: true
-  validates :postal_code, presence: true
-  validates :phone_number, presence: true
+
+  with_options on: :update? do
+    validates :email, presence: true
+    validates :name, presence: true
+    validates :postal_code, presence: true
+    validates :phone_number, presence: true
+  end
 
   def prefecture_name
     JpPrefecture::Prefecture.find(code: prefecture_id).try(:name)

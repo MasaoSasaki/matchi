@@ -85,7 +85,7 @@
         </tbody>
       </table>
       <div class="submit"><%= f.submit '情報を更新する', id: 'restaurant-update', class: 'btn btn-default' %></div>
-      <div><%= link_to '店舗情報に戻る', owner_restaurant_path(@restaurant) %></div>
+      <div><%= link_to '店舗情報に戻る', owner_restaurant_path(@restaurant) %><br><%= link_to 'パスワードの変更はこちら', edit_owner_restaurant_registration_path(current_owner_restaurant) %></div>
     <% end %>
   </section>
 </div>

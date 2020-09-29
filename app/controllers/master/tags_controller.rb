@@ -23,7 +23,6 @@ class Master::TagsController < Master::Base
     @tag = Tag.new
     Tag.find(params[:id]).destroy
     flash.now[:warning] = "削除しました。"
-    render :destroy
   end
 
   private

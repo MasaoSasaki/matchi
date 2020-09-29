@@ -1,25 +1,46 @@
 <div class="contents master-rsetaurants-index">
-  <h1>店舗一覧</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>店舗名</td>
-        <th>メニュー数</td>
-        <th>レビュアー数</th>
-        <th>レビューイ数</th>
-        <th>評価</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @restaurants.each do |restaurant| %>
+  <div class="master-restaurants-index--list">
+    <h1>店舗一覧</h1>
+    <table>
+      <thead>
         <tr>
-          <td><%= link_to "#{restaurant.name}", owner_restaurant_path(restaurant) %></td>
-          <td><%= @menus.where(restaurant_id: restaurant.id).count %></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <th>店舗名</td>
+          <th>メニュー数</td>
+          <th>レビュアー数</th>
+          <th>レビューイ数</th>
+          <th>評価</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @restaurants.each do |restaurant| %>
+          <tr>
+            <td><%= link_to "#{restaurant.name}", owner_restaurant_path(restaurant) %></td>
+            <td><%= @menus.where(restaurant_id: restaurant.id).count %></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="master-restaurants-index--form">
+    <h2>店舗新規登録</h2>
+
+    <%= form_with model: @restaurant, url: master_restaurants_path(@restaurant), local: true do |f| %>
+      <%= render partial: "layouts/error_messages", locals: {model: @restaurant} %>
+
+      <div class="form-group">
+        <%= f.label :email %><br>
+        <%= f.email_field :email, autocomplete: "email", required: true  %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "登録", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+    <p>登録後は速やかに、パスワードの変更を店舗にお願いしてください。<br>初期パスワードについてはサイト管理者にお問い合わせください。</p>
+    <%= link_to 'パスワードの変更はこちら', edit_owner_restaurant_registration_path(current_owner_restaurant) %>
+
+  </div>
 </div>
