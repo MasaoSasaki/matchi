@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     }
     get '/', to: 'admins#top'
     resources :users, only: %i[index show update]
-    resources :restaurants, only: %i[index show]
+    resources :restaurants, only: %i[index create]
     resources :tags, only: %i[index create destroy]
   end
 

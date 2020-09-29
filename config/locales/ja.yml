@@ -13,11 +13,13 @@ ja:
       admin:
         email: メールアドレス
         password: パスワード
+        password_confirmation: パスワード(再入力)
         current_password: 現在のパスワード
 
       restaurant:
         email: メールアドレス
         password: パスワード
+        password_confirmation: パスワード(再入力)
         current_password: 現在のパスワード
         name: 店舗名
         restaurant_image_id: 店舗画像
@@ -37,6 +39,7 @@ ja:
       user:
         email: メールアドレス
         password: パスワード
+        password_confirmation: パスワード(再入力)
         current_password: 現在のパスワード
         name_family: 姓
         name_first: 名

@@ -4,5 +4,4 @@
   $(".master-tags-index--messages").html("<p><%= j(render partial: 'layouts/flash_messages', locals: {model: @tag}) %></p>")
   $("#master-tags-index--tag-list").html("<%= j(render @tags) %>")
   $("#tag_name").val('')
-  $("#validation-errors").remove("<%= j(render partial: 'layouts/error_messages', locals: {model: @tag}) %>")
 <% end %>
