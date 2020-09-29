@@ -2,7 +2,6 @@ class AddDefault < ActiveRecord::Migration[5.2]
 
   def up
     change_column :users, :handle_name, :string, default: ""
-    change_column :users, :profile, :text, default: ""
     change_column :users, :profile_image_id, :string, default: ""
     change_column :users, :twitter, :string, default: ""
     change_column :users, :facebook, :string, default: ""
@@ -25,7 +24,6 @@ class AddDefault < ActiveRecord::Migration[5.2]
 
   def down
     change_column_default :users, :handle_name, nil
-    change_column_default :users, :profile, nil
     change_column_default :users, :profile_image_id, nil
     change_column_default :users, :twitter, nil
     change_column_default :users, :facebook, nil
