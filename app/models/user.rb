@@ -6,20 +6,23 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :reservation
-
-  enum user_status: [:"有効会員", :"退会済み", :"強制退会"]
+  has_many :reservations
 
   attachment :profile_image
 
-  validates :name_family, presence: true
-  validates :name_first, presence: true
-  validates :name_family_kana, presence: true
-  validates :name_first_kana, presence: true
-  validates :phone_number, presence: true
+  enum user_status: {member: 0, withdrew: 1, forced: 2}
 
+  with_options presence: true do
+    validates :name_family
+    validates :name_first
+    validates :name_family_kana
+    validates :name_first_kana
+    validates :phone_number
+  end
+
+  # ログイン時、有効会員(member)かどうか？
   def active_for_authentication?
-    super && (self.user_status == "有効会員")
+    super && (self.user_status == "member")
   end
 
 end

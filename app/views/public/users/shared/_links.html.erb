@@ -1,11 +1,11 @@
 <% if controller_name != 'sessions' %>
-  <%= link_to "ログイン画面へ", new_public_user_session_path %><br />
+  <%= link_to "ログイン画面へ", new_user_session_path %><br />
   <%= link_to "TOP画面へ", root_path %><br />
 <% end %>
 
 <% if false %>
   <% if controller_name != 'registrations' %>
-    <%= link_to "新規登録はこちら", new_public_user_registration_path %><br />
+    <%= link_to "新規登録はこちら", new_user_registration_path %><br />
   <% end %>
 
   <% if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>

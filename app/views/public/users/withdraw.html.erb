@@ -1,14 +1,14 @@
 <div class="contents users-withdraw">
   <p>本当に退会しますか？</p>
-  <p>現在お持ちのポイントは失われます。</p>
-  <p>現在保有のポイント数：<%= @current_user %></p>
+  <%# <p>現在お持ちのポイントは失われます。</p> %>
+  <%# <p>現在保有のポイント数：<%= current_user.point</p> %>
 
-  <p>メールマガジンが不要な方は<%= link_to 'こちら', mypage_edit_path(@current_user) %></p>
+  <p>メールマガジンが不要な方は<%= link_to 'こちら', user_edit_path(current_user) %></p>
 
   <p>
     来店前の予約が残っている場合、解約を行うことができません。<br>
     誠に恐れ入りますが、来店完了後に再度手続きを行ってください。
   </p>
 
-  <%= link_to '退会する', public_users_withdrawal_path(@current_user), method: :patch, class: 'btn' %>
+  <%= link_to '退会する', users_withdrawal_path(current_user), method: :patch, class: "btn btn-danger" %>
 </div>

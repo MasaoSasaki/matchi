@@ -1,8 +1,6 @@
 class Public::BookmarksController < Public::Base
 
-  before_action :authenticate_public_user!
-    before_action :authenticate_public_user!, except: %i[top about contact privacy terms admin redirect new]
-
+  before_action :authenticate_user!
 
   def index
   end

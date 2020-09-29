@@ -30,11 +30,14 @@ class Public::Users::SessionsController < Devise::SessionsController
   protected
 
   def reject_user
-    @user = User.find_by(email: params[:public_user][:email])
+    @user = User.find_by(email: params[:user][:email])
     if @user
-      if @user.valid_password?(params[:public_user][:password]) && @user.active_for_authentication? == false
+      if @user.valid_password?(params[:user][:password]) && @user.active_for_authentication? == false
         flash[:error] = "退会済みです。"
-        redirect_to new_public_user_session_path
+        render :new
+      elsif !@user.valid_password?(params[:user][:password])
+        flash[:error] = "IDまたはパスワードが違います。"
+        render :new
       end
     else
       flash[:error] = "必須項目を入力してください。"

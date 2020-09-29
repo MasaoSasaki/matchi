@@ -263,7 +263,6 @@ addEventListener('DOMContentLoaded', function() {
       }).done(function(result) {
         showResult(result);
       }).fail(function(result) {
-        console.log(result.responses[0])
         console.log('取得に失敗しました。');
       });
     }
@@ -281,156 +280,263 @@ addEventListener('DOMContentLoaded', function() {
 
 // 新規会員登録フォームのバリデーション
 addEventListener('DOMContentLoaded', function() {
+  if (document.getElementsByClassName("public-users-new")[0] != null) {
+    const newUserNameFamilyForm = document.getElementById("new-user-name_family");
+    const newUserNameFirstForm = document.getElementById("new-user-name_first");
+    const newUserNameFamilyKanaForm = document.getElementById("new-user-name_family_kana");
+    const newUserNameFirstKanaForm = document.getElementById("new-user-name_first_kana");
+    const newUserPhoneNumberForm = document.getElementById("new-user-phone_number");
+    const newUserEmailForm = document.getElementById("new-user-email");
+    const newUserPasswordForm = document.getElementById("new-user-password");
+    const newUserPasswordConfirmationForm = document.getElementById("new-user-password_confirmation");
 
-  const newUserNameFamilyForm = document.getElementById("new-user-name_family");
-  const newUserNameFirstForm = document.getElementById("new-user-name_first");
-  const newUserNameFamilyKanaForm = document.getElementById("new-user-name_family_kana");
-  const newUserNameFirstKanaForm = document.getElementById("new-user-name_first_kana");
-  const newUserPhoneNumberForm = document.getElementById("new-user-phone_number");
-  const newUserEmailForm = document.getElementById("new-user-email");
-  const newUserPasswordForm = document.getElementById("new-user-password");
-  const newUserPasswordConfirmationForm = document.getElementById("new-user-password_confirmation");
+    const newUserSubmit = document.getElementById("new-user-submit");
 
-  const newUserSubmit = document.getElementById("new-user-submit");
+    let formArray = [
+      newUserNameFamilyForm,
+      newUserNameFirstForm,
+      newUserNameFamilyKanaForm,
+      newUserNameFirstKanaForm,
+      newUserPhoneNumberForm,
+      newUserEmailForm,
+      newUserPasswordForm,
+      newUserPasswordConfirmationForm
+    ];
 
-  let formArray = [
-    newUserNameFamilyForm,
-    newUserNameFirstForm,
-    newUserNameFamilyKanaForm,
-    newUserNameFirstKanaForm,
-    newUserPhoneNumberForm,
-    newUserEmailForm,
-    newUserPasswordForm,
-    newUserPasswordConfirmationForm
-  ];
-
-  function nameForm(form, span) {
-    form.className = "success-form";
-    span.textContent = "OK";
-    span.className = "success-message";
-  }
-
-  function nameKanaForm(form, span) {
-    if (form.value.match(/^[ァ-ンヴー]*$/)) {
+    function nameForm(form, span) {
       form.className = "success-form";
       span.textContent = "OK";
       span.className = "success-message";
-    } else {
-      form.className = "error-form";
-      span.textContent = "カナ文字をご入力ください。";
-      span.className = "error-message";
     }
-  }
 
-  function passwordForm(form, span) {
-    if (form.value.match(/^[0-9a-zA-Z]*$/)) {
-      if (6 <= form.value.length) {
+    function nameKanaForm(form, span) {
+      if (form.value.match(/^[ァ-ンヴー]*$/)) {
         form.className = "success-form";
         span.textContent = "OK";
         span.className = "success-message";
       } else {
         form.className = "error-form";
-        span.textContent = "6桁以上をご入力ください。";
+        span.textContent = "カナ文字をご入力ください。";
         span.className = "error-message";
       }
-    } else {
-      form.className = "error-form";
-      span.textContent = "半角英数字(6桁以上)のみご入力ください。";
-      span.className = "error-message";
     }
-  }
 
-  function passwordConfirmationForm(form, span) {
-    // passwordForm(form, span);
-    if (form.value !== newUserPasswordForm.value) {
-      form.className = "error-form";
-      span.textContent = "パスワードが一致しません。";
-      span.className = "error-message";
-    } else {
-      form.className = "success-form";
-      span.textContent = "OK";
-      span.className = "success-message";
+    function passwordForm(form, span) {
+      if (form.value.match(/^[0-9a-zA-Z]*$/)) {
+        if (6 <= form.value.length) {
+          form.className = "success-form";
+          span.textContent = "OK";
+          span.className = "success-message";
+        } else {
+          form.className = "error-form";
+          span.textContent = "6桁以上をご入力ください。";
+          span.className = "error-message";
+        }
+      } else {
+        form.className = "error-form";
+        span.textContent = "半角英数字(6桁以上)のみご入力ください。";
+        span.className = "error-message";
+      }
     }
-  }
 
-  function validation(form, span) {
-    if (form.value == "") {
-      form.className = "error-form";
-      span.textContent = "入力必須項目です。";
-      span.className = "error-message";
-    } else {
-      switch (form) {
-        // 名前（漢字）フォーム
-        case newUserNameFamilyForm:
-          nameForm(form, span);
-          break
-        case newUserNameFirstForm:
-          nameForm(form, span);
-          break
-        // 名前（カナ）フォーム
-        case newUserNameFamilyKanaForm:
-          nameKanaForm(form, span);
-          console.log(form, span);
-          break
-        case newUserNameFirstKanaForm:
-          nameKanaForm(form, span);
-          break
+    function passwordConfirmationForm(form, span) {
+      // passwordForm(form, span);
+      if (form.value !== newUserPasswordForm.value) {
+        form.className = "error-form";
+        span.textContent = "パスワードが一致しません。";
+        span.className = "error-message";
+      } else {
+        form.className = "success-form";
+        span.textContent = "OK";
+        span.className = "success-message";
+      }
+    }
 
-        // 電話番号フォーム
-        case newUserPhoneNumberForm:
-          if (form.value.match(/^[0-9]*$/)) {
-            if (9 <= form.value.length && form.value.length <= 11) {
+    function validation(form, span) {
+      if (form.value == "") {
+        form.className = "error-form";
+        span.textContent = "入力必須項目です。";
+        span.className = "error-message";
+      } else {
+        switch (form) {
+          // 名前（漢字）フォーム
+          case newUserNameFamilyForm:
+            nameForm(form, span);
+            break
+          case newUserNameFirstForm:
+            nameForm(form, span);
+            break
+          // 名前（カナ）フォーム
+          case newUserNameFamilyKanaForm:
+            nameKanaForm(form, span);
+            break
+          case newUserNameFirstKanaForm:
+            nameKanaForm(form, span);
+            break
+
+          // 電話番号フォーム
+          case newUserPhoneNumberForm:
+            if (form.value.match(/^[0-9]*$/)) {
+              if (9 <= form.value.length && form.value.length <= 11) {
+                form.className = "success-form";
+                span.textContent = "OK";
+                span.className = "success-message";
+              } else {
+                form.className = "error-form";
+                span.textContent = "9桁~11桁をご入力ください。";
+                span.className = "error-message";
+              }
+            } else {
+              form.className = "error-form";
+              span.textContent = "半角数字(9桁~11桁)のみご入力ください。";
+              span.className = "error-message";
+            }
+            break
+
+          // メールアドレスフォーム
+          case newUserEmailForm:
+            if (form.value.match(/@/)) {
               form.className = "success-form";
               span.textContent = "OK";
               span.className = "success-message";
             } else {
               form.className = "error-form";
-              span.textContent = "9桁~11桁をご入力ください。";
+              span.textContent = "入力された値は無効です。";
               span.className = "error-message";
             }
-          } else {
-            form.className = "error-form";
-            span.textContent = "半角数字(9桁~11桁)のみご入力ください。";
-            span.className = "error-message";
-          }
-          break
+            break
 
-        // メールアドレスフォーム
-        case newUserEmailForm:
-          if (form.value.match(/@/)) {
-            form.className = "success-form";
-            span.textContent = "OK";
-            span.className = "success-message";
-          } else {
-            form.className = "error-form";
-            span.textContent = "入力された値は無効です。";
-            span.className = "error-message";
-          }
-          break
-
-        // パスワードフォーム
-        case newUserPasswordForm:
-          passwordForm(form, span);
-          break
-        case newUserPasswordConfirmationForm:
-          passwordConfirmationForm(form, span);
-          break
+          // パスワードフォーム
+          case newUserPasswordForm:
+            passwordForm(form, span);
+            break
+          case newUserPasswordConfirmationForm:
+            passwordConfirmationForm(form, span);
+            break
+        }
       }
     }
-    console.log("完了しました。")
-  }
 
-  for (let i = 0; i < formArray.length; i++) {
-    formArray[i].addEventListener('focusout', function() {
-      // フォームに値が入力されているかどうか？
-      console.log(document.getElementById(`${formArray[i].id}--notice`));
-      validation(formArray[i], document.getElementById(`${formArray[i].id}--notice`));
-      console.log(document.getElementsByClassName("success-message").length);
-      if (document.getElementsByClassName("success-message").length === 8) {
-        newUserSubmit.classList.remove("inactive");
-      } else if (newUserSubmit.classList.contains("inactive") == false) {
-        newUserSubmit.classList.add("inactive");
-      }
-    });
+    for (let i = 0; i < formArray.length; i++) {
+      formArray[i].addEventListener('focusout', function() {
+        // フォームに値が入力されているかどうか？
+        validation(formArray[i], document.getElementById(`${formArray[i].id}--notice`));
+        if (document.getElementsByClassName("success-message").length === 8) {
+          newUserSubmit.classList.remove("inactive");
+        } else if (newUserSubmit.classList.contains("inactive") == false) {
+          newUserSubmit.classList.add("inactive");
+        }
+      });
+    }
   }
 });
+
+// // コンタクトフォームのバリデーション
+// addEventListener('DOMContentLoaded', function() {
+//   if (document.getElementsByClassName("contacts-new")[0] != null) {
+//     const newEmailForm = document.getElementById("contacts-new__email-form");
+//     const newMessageForm = document.getElementById("contacts-new__message-form");
+
+
+//     const newContactSubmit = document.getElementById("new-contacts-submit");
+
+//     let formArray = [newEmailForm, newMessageForm]
+
+//     function messageForm(form, span) {
+//       form.className = "success-form";
+//       span.textContent = "OK";
+//       span.className = "success-message";
+//     }
+
+//     function validation(form, span) {
+//       if (form.value == "") {
+//         form.className = "error-form";
+//         span.textContent = "入力必須項目です。";
+//         span.className = "error-message";
+//       } else {
+//         switch (form) {
+//           // メールアドレスフォーム
+//           case newEmailForm:
+//             if (form.value.match(/@/)) {
+//               form.className = "success-form";
+//               span.textContent = "OK";
+//               span.className = "success-message";
+//             } else {
+//               form.className = "error-form";
+//               span.textContent = "入力された値は無効です。";
+//               span.className = "error-message";
+//             }
+//             break
+//             // メッセージフォーム
+//           case newMessageForm:
+//             messageForm(form, span);
+//             break
+//         }
+//       }
+//     }
+
+//     // ページ読み込み時にバリデーションチェック
+//     for (let i = 0; i < formArray.length; i++) {
+//       // フォームに値が入力されているかどうか？
+//       let span = document.getElementById(`${formArray[i].id}--notice`);
+//       console.log(span, formArray[i])
+//       if (formArray[i].value != "") {
+//         switch (form) {
+//           // emailフォーム
+//           case newEmailForm:
+//             if (form.value.match(/@/)) {
+//               form.className = "success-form";
+//               span.textContent = "OK";
+//               span.className = "success-message";
+//             }
+//           break
+//           // messageフォーム
+//           case newMessageForm:
+//             messageForm(form, span);
+//             break
+//         }
+//         if (document.getElementsByClassName("success-message").length === 2) {
+//           newContactSubmit.classList.remove("inactive");
+//         } else if (newContactSubmit.classList.contains("inactive") == false) {
+//           newContactSubmit.classList.add("inactive");
+//         }
+//       }
+//     }
+
+
+//     // フォーカスアウト時にバリデーションチェック
+//     for (let i = 0; i < formArray.length; i++) {
+//       formArray[i].addEventListener('focusout', function() {
+//         // フォームに値が入力されているかどうか？
+//         validation(formArray[i], document.getElementById(`${formArray[i].id}--notice`));
+//         if (document.getElementsByClassName("success-message").length === 2) {
+//           newContactSubmit.classList.remove("inactive");
+//         } else if (newContactSubmit.classList.contains("inactive") == false) {
+//           newContactSubmit.classList.add("inactive");
+//         }
+//       });
+//     }
+
+//     // const errorMessages = document.getElementsByClassName("error-messages")[0];
+//     // const contactMessageForm = document.getElementById("contact_message");
+//     // for (let i = 0; i < errorMessages.childElementCount; i++) {
+//     //   let errorMessageText = document.getElementsByClassName("error-message")[i].textContent;
+//     //   const commonErrorMessage = "を入力してください"
+//     //   console.log(i);
+
+//     //   switch (errorMessageText) {
+//     //     case `お問い合わせ内容${commonErrorMessage}`:
+//     //       console.log(errorMessageText);
+//     //       contactMessageForm.className = "error-form";
+//     //       // span.textContent = "半角数字(9桁~11桁)のみご入力ください。";
+//     //       // .className = "error-message";
+//     //       break
+//     //   }
+//     // }
+//     // switch (errorMessage) {
+//     //   case "お問い合わせ内容を入力してください"
+//     //     console.log(contactMessageForm);
+//     //     break
+//     // }
+//   }
+// });

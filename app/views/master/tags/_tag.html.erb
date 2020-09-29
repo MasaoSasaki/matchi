@@ -1,0 +1,4 @@
+<div class="master-tags-index__tags--tag">
+  <%= tag.name %>(<%= tag.menu_tag_ids.count %>)
+  <%= link_to 'Ｘ', master_tag_path(tag), method: :delete, remote: true %>
+</div>

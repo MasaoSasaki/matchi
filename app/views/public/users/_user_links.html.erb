@@ -1,15 +1,15 @@
 <div class="public-users-_user_links">
   <ul>
-    <li><%= link_to 'プロフィールを確認', myprofile_path(@current_user) %></li>
-    <li><%= link_to '登録情報確認', myinfo_path(@current_user) %></li>
-      <% if request.fullpath.include?('info') %>
-        <li><%= link_to 'パスワードの変更はこちら', edit_public_user_registration_path(@current_user) %></li>
-      <% end %>
-    <li><%= link_to '現在の予約状況', public_user_reservations_path(@current_user) %></li>
-    <li><%= link_to '予約履歴', public_user_reservations_path(@current_user) %></li>
-      <% if false %>
-        <li><%= link_to 'ブックマーク', public_user_bookmarks_path(@current_user) %></li>
-        <li><%= link_to 'レビュー一覧' %></li>
-      <% end %>
+    <li><%= link_to 'プロフィールを確認', user_profile_path(current_user) %></li>
+    <li><%= link_to '登録情報確認', user_info_path(current_user) %></li>
+    <li><%= link_to 'パスワードの変更はこちら', edit_user_registration_path(current_user) %></li>
+    <% if controller_path == 'public/users' %>
+      <li><%= link_to '現在の予約状況', user_reservations_path(current_user) %></li>
+      <li><%= link_to '予約履歴', user_reservations_path(current_user) %></li>
+    <% end %>
+    <% if false %>
+      <li><%= link_to 'ブックマーク', user_bookmarks_path(current_user) %></li>
+      <li><%= link_to 'レビュー一覧' %></li>
+    <% end %>
   </ul>
 </div>

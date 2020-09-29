@@ -1,16 +1,12 @@
 <div class="contents master-tags-index">
-  <div class="tags">
-    <h2>タグ一覧</h2>
-    <% @tags.each do |tag| %>
-    <div class="tag">
-      <%= tag.name %>
-      <%= link_to '削除', master_tag_path(tag), method: :delete %>
-    </div>
-    <% end %>
+  <div class="master-tags-index--messages"></div>
+  <h2>タグ一覧</h2>
+  <div class="master-tags-index__list" id="master-tags-index--tag-list">
+    <%= render @tags %>
   </div>
-  <div class="new-tag-form">
-    <%= form_with model: @tag, url: master_tags_path, method: :post, local: true do |f| %>
-      <%= f.text_field :name, autofocus: true %>
+  <div class="master-tags-index__form">
+    <%= form_with model: @tag, url: master_tags_path(@tag) do |f| %>
+      <%= f.text_field :name %>
       <%= f.submit %>
     <% end %>
   </div>

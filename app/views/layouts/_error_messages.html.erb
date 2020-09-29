@@ -1,5 +1,6 @@
 <% if model.errors.any? %>
-  <div class="validation-errors">
+  <div id="validation-errors">
+    <p><%= model.errors.count %>件のエラーがあります。</p>
     <ul class="error-messages">
       <% model.errors.full_messages.each do |message| %>
         <li class="error-message"><%= message %></li>

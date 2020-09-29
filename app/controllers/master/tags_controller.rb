@@ -2,20 +2,27 @@ class Master::TagsController < Master::Base
 
   def index
     @tags = Tag.all
+    @tag = Tag.new
   end
 
   def create
+    @tags = Tag.all
     @tag = Tag.new(tag_params)
-    if @tag.save
-      redirect_to action: 'index'
-    else
-      render 'index'
+
+    respond_to do |format|
+      if @tag.save
+        format.js { flash.now[:success] = "保存しました。" }
+      else
+        format.js
+      end
     end
   end
 
   def destroy
+    @tags = Tag.all
+    @tag = Tag.new
     Tag.find(params[:id]).destroy
-    redirect_to action: 'index'
+    flash.now[:warning] = "削除しました。"
   end
 
   private

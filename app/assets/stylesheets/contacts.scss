@@ -4,26 +4,39 @@
 
 @import "variables";
 
-
 // 共通
+.contacts-new {
 
-// スマホ
-@media (max-width: $media-sp-max) {
-
-  .contacts-new {
-    div {
-      margin: 20px 0;
-    }
+  div, h2, h3, p {
+    text-align: center;
   }
 
-  #contact_message {
+  #contacts-new__email-form {
     width: 100%;
+    max-width: 400px;
+  }
+  #contacts-new__message-form {
+    width: 100%;
+    max-width: 400px;
     height: 100px;
   }
 
-  .contact-submit {
-    text-align: center;
+  span {
+    text-align: none;
   }
+}
+
+.contacts-confirm {
+
+  input[readonly] {
+    background-color: $thema-color1;
+    border: none;
+    outline: none;
+  }
+}
+
+// スマホ
+@media (max-width: $media-sp-max) {
 }
 
 // タブレット

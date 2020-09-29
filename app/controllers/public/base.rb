@@ -10,7 +10,7 @@ class Public::Base < ApplicationController
   # 入力されたメニューIDが存在するかどうか？
   def exist_public_menu?
     unless Menu.find_by(id: params[:id])
-      redirect_to public_menus_path
+      redirect_to menus_path
     end
   end
 

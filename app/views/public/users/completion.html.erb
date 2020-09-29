@@ -1,9 +1,0 @@
-<div class="contents public-users-completion">
-  <% if request.referrer.include?('users/sign_up') %>
-    <h2>登録が完了しました！</h2>
-  <% else %>
-    <p>既に登録済みです。</p>
-  <% end %>
-  <p>プロフィールを充実させることで、店舗からの信頼が高まります！</p>
-  <%= render 'user_links' %>
-</div>

@@ -13,11 +13,13 @@ ja:
       admin:
         email: メールアドレス
         password: パスワード
+        password_confirmation: パスワード(再入力)
         current_password: 現在のパスワード
 
       restaurant:
         email: メールアドレス
         password: パスワード
+        password_confirmation: パスワード(再入力)
         current_password: 現在のパスワード
         name: 店舗名
         restaurant_image_id: 店舗画像
@@ -37,6 +39,7 @@ ja:
       user:
         email: メールアドレス
         password: パスワード
+        password_confirmation: パスワード(再入力)
         current_password: 現在のパスワード
         name_family: 姓
         name_first: 名
@@ -81,9 +84,22 @@ ja:
         reservation_status: 予約状況
         payment_method: 支払い方法
 
+      contact:
+        email: ご連絡先
+        message: お問い合わせ内容
+
+      tag:
+        name: タグ名
+
   enums:
     reservation:
       payment_method:
         cash: "店舗でお支払い"
         credit: "クレジットカード支払い"
         bank: "銀行振り込み"
+
+    user:
+      user_status:
+        member: "有効会員"
+        withdrew: "退会済み"
+        forced: "強制退会"
