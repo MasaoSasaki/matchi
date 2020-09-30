@@ -1,6 +1,7 @@
 class Owner::RestaurantsController < Owner::Base
 
   before_action :current_restaurant?, only: %i[show]
+  before_action :api, only: %i[edit]
 
   def show
     @restaurant = Restaurant.find(params[:id])
