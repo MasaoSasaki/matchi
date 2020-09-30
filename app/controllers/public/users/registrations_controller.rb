@@ -10,8 +10,11 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  # end
+  def create
+    @user = User.new(sign_up_params)
+    render :new and return if params[:back]
+    super
+  end
 
   # GET /resource/edit
   # def edit
@@ -39,7 +42,7 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
 
   def confirm
     @user = User.new(sign_up_params)
-    render :new if @user.invalid?
+    render :new and return if @user.invalid?
 
     # パスワードの視覚的暗号化"*"
     i = 0
