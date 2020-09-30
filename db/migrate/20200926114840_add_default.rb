@@ -2,7 +2,6 @@ class AddDefault < ActiveRecord::Migration[5.2]
 
   def up
     change_column :users, :handle_name, :string, default: ""
-    change_column :users, :profile, :text, default: ""
     change_column :users, :profile_image_id, :string, default: ""
     change_column :users, :twitter, :string, default: ""
     change_column :users, :facebook, :string, default: ""
@@ -12,20 +11,15 @@ class AddDefault < ActiveRecord::Migration[5.2]
     change_column :users, :birth_month, :integer, default: 1
     change_column :users, :birth_day, :integer, default: 1
     change_column :menus, :menu_image_id, :string, default: ""
-    change_column :menus, :content, :text, default: ""
-    change_column :menus, :cancel, :text, default: ""
-    change_column :restaurants, :introduction, :text, default: ""
     change_column :restaurants, :corporate, :string, default: ""
     change_column :restaurants, :twitter, :string, default: ""
     change_column :restaurants, :facebook, :string, default: ""
     change_column :restaurants, :instagram, :string, default: ""
-    change_column :restaurants, :completion_message, :text, default: ""
     change_column :restaurants, :building, :string, default: ""
   end
 
   def down
     change_column_default :users, :handle_name, nil
-    change_column_default :users, :profile, nil
     change_column_default :users, :profile_image_id, nil
     change_column_default :users, :twitter, nil
     change_column_default :users, :facebook, nil
@@ -35,14 +29,10 @@ class AddDefault < ActiveRecord::Migration[5.2]
     change_column_default :users, :birth_month, nil
     change_column_default :users, :birth_day, nil
     change_column_default :menus, :menu_image_id, nil
-    change_column_default :menus, :content, nil
-    change_column_default :menus, :cancel, nil
-    change_column_default :restaurants, :introduction, nil
     change_column_default :restaurants, :corporate, nil
     change_column_default :restaurants, :twitter, nil
     change_column_default :restaurants, :facebook, nil
     change_column_default :restaurants, :instagram, nil
-    change_column_default :restaurants, :completion_message, nil
     change_column_default :restaurants, :building, nil
   end
 
