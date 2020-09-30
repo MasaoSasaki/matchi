@@ -53,3 +53,8 @@
   display: flex;
   justify-content: space-around;
 }
+
+.image-preview img {
+  height: 250px;
+  object-fit: cover;
+}

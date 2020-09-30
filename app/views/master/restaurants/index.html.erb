@@ -4,6 +4,7 @@
     <table>
       <thead>
         <tr>
+          <th>店舗ID</td>
           <th>店舗名</td>
           <th>メニュー数</td>
           <th>レビュアー数</th>
@@ -14,6 +15,7 @@
       <tbody>
         <% @restaurants.each do |restaurant| %>
           <tr>
+            <td><%= link_to restaurant.id, owner_restaurant_path(restaurant) %></td>
             <td><%= link_to "#{restaurant.name}", owner_restaurant_path(restaurant) %></td>
             <td><%= @menus.where(restaurant_id: restaurant.id).count %></td>
             <td></td>
