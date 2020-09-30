@@ -42,7 +42,7 @@
             <% if url.include?('owner') %>
               <% if master_admin_signed_in? %>
                 <li><%= link_to '店舗新規登録', new_owner_restaurant_registration_path, class: "btn btn-danger" %></li>
-                <li><%= link_to '管理者トップ', new_master_admin_session_path, class: 'btn btn-danger' %></li>
+                <li><%= link_to '管理者トップ', master_path, class: 'btn btn-danger' %></li>
                 <li><%= link_to '管理者ログアウト', destroy_master_admin_session_path, class: "btn btn-danger", method: :delete %></li>
               <% end %>
               <% if owner_restaurant_signed_in? %>
@@ -60,7 +60,7 @@
             <% elsif url.include?('master') %>
               <% if master_admin_signed_in? %>
                 <li><%= link_to '店舗新規登録', new_owner_restaurant_registration_path, class: "btn btn-danger" %></li>
-                <li><%= link_to '管理者トップ', new_master_admin_session_path, class: 'btn btn-danger' %></li>
+                <li><%= link_to '管理者トップ', master_path, class: 'btn btn-danger' %></li>
                 <li><%= link_to '管理者ログアウト', destroy_master_admin_session_path, class: "btn btn-danger", method: :delete %></li>
               <% end %>
               <% if user_signed_in? %>
@@ -80,7 +80,7 @@
             <% else %>
               <% if master_admin_signed_in? && owner_restaurant_signed_in? %>
                 <li><%= link_to '店舗新規登録', new_owner_restaurant_registration_path, class: "btn btn-danger" %></li>
-                <li><%= link_to '管理者トップ', new_master_admin_session_path, class: 'btn btn-danger' %></li>
+                <li><%= link_to '管理者トップ', master_path, class: 'btn btn-danger' %></li>
                 <li><%= link_to '管理者ログアウト', destroy_master_admin_session_path, class: "btn btn-danger", method: :delete %></li>
                 <li><%= link_to '店舗TOP', owner_restaurant_path(current_owner_restaurant), class: "btn btn-warning" %></li>
                 <li><%= link_to '店舗ログアウト', destroy_owner_restaurant_session_path, class: "btn btn-warning", method: :delete %></li>
