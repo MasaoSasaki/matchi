@@ -11,7 +11,6 @@ window.addEventListener 'DOMContentLoaded', ->
       document.getElementById("tag-list").insertAdjacentHTML 'beforeend', "<p class='inline-block add-menu-tag'><span class='menu-tag'>#{tagName} <a>x</a></span></p>"
       document.getElementsByClassName("add-menu-tag")[0].insertAdjacentHTML 'beforeend', "<input type='hidden' value='#{tagName}' name='tag[]'></input>"
       tagForm.value = ""
-      console.log 'click'
 
     # // エンターキーを押して追加
     tagForm.addEventListener 'keypress', (key) ->

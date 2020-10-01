@@ -1,22 +1,14 @@
-<div class="contents restaurant-show">
-  <section class="restaurant-info">
-    <div class="restaurant-head">
-      <h1 class="restaurant-show-h1">店舗名：<%= @restaurant.name %> 様</h1>
-      <% if false %><p class="">来店前予約件数<%= @reservation_count %>件</p><% end %>
+<div class="contents owner-restaurants-show">
+  <h2>店舗名：<%= @current_restaurant.name %> 様</h2>
+  <div class="owner-restaurants-show__status">
+    <div class="owner-restaurants-show__status__info">
+      <p>メニュー数：<%= @menus.count %></p>
+      <p>予約数：<%= @reservations %></p>
     </div>
-    <div class="restaurant-image">
-      <%= attachment_image_tag @restaurant, :restaurant_image, style: "height: 250px; width: 100%;" %>
+    <div class="owner-restaurants-show__status__confirm">
+      <%= link_to 'メニュー一覧・編集', owner_restaurant_menus_path(@current_restaurant) %>
+      <%= link_to '予約履歴', owner_reservations_path %>
     </div>
-    <div class="restaurant-introduction">
-      <h3>店舗紹介</h3>
-      <%= @restaurant.introduction %>
-    </div>
-  </section>
-  <section class="restaurant-status">
-    <div class="restaurant-info">
-      <div><%= link_to '予約履歴', owner_reservations_path %></div>
-      <div><%= link_to 'メニュー一覧', owner_restaurant_menus_path(@restaurant) %></div>
-    </div>
-    <div class="restaurant-edit"><%= link_to '店舗情報編集', edit_owner_restaurant_path, class: 'btn' %></div>
-  </section>
+  </div>
+  <div class="owner-restaurants-show__status__edit"><%= link_to '店舗情報編集', edit_owner_restaurant_path, class: 'btn btn-success' %></div>
 </div>

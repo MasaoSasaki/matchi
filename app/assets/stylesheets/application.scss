@@ -53,6 +53,10 @@ ul {
   text-decoration: underline;
 }
 
+.center {
+  text-align: center;
+}
+
 .circle {
   border-radius: 50%;
 }
@@ -272,6 +276,10 @@ footer {
     width: 90%;
     height: 100px;
   }
+
+  .sp {
+    display: none;
+  }
 }
 
 // PC・タブレット共通
@@ -281,10 +289,6 @@ footer {
     margin: 0 auto;
     padding: 0 70px;
     max-width: 900px;
-  }
-
-  .sp {
-    display: none;
   }
 
   .sp-header {
@@ -331,7 +335,6 @@ footer {
     height: 250px;
     object-fit: cover;
   }
-
 }
 
 // スマホ用

@@ -228,7 +228,6 @@ addEventListener('DOMContentLoaded', function() {
   const menuImageForm = document.getElementById("menu_menu_image");
   const restaurantImageForm = document.getElementById("restaurant_restaurant_image");
   if (menuImageForm || restaurantImageForm != null) {
-    console.log("uploade");
     const googlePlatformAPIKey = gon.google_platform_api_key;
     const googlePlatformAPITagUrl = 'https://vision.googleapis.com/v1/images:annotate?key=';
     const apiTagUrl = googlePlatformAPITagUrl + googlePlatformAPIKey;

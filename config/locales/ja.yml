@@ -22,7 +22,7 @@ ja:
         password_confirmation: パスワード(再入力)
         current_password: 現在のパスワード
         name: 店舗名
-        restaurant_image_id: 店舗画像
+        restaurant_image: 店舗画像
         introduction: 店舗説明
         postal_code: 郵便番号
         prefecture: 都道府県
@@ -47,6 +47,7 @@ ja:
         name_first_kana: メイ
         handle_name: ハンドルネーム
         profile: プロフィール
+        profile_image: プロフィール画像
         twitter: Twitter
         facebook: Facebook
         instagram: Instagram
