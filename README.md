@@ -14,10 +14,11 @@ Ruby 2.5.7
 Rails 5.2.4
 #### ライブラリ
 jQuery 1.12.4
+bootstrap
 #### 外部API
 Google(Google Maps Javascript/Geolocation/Geocoding/CloudVision)
 #### インフラ
-vagrant
+vagrant/VirtualBox
 AWS(EC2/RDS/Route53/Certificate Manager/ALB/WorkMail)
 gem(devise/refile/gon/dotenv)
 MySQL 5.7.22

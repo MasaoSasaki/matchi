@@ -1,7 +1,7 @@
-<div class="contents menus-new">
-  <h2>メニュー追加</h2>
+<div class="contents owner-menus-new">
+  <h2>Create Menus</h2>
   <%= render partial: 'form', locals: {
-    restaurant: @restaurant,
+    current_restaurant: @current_restaurant,
     menu: @menu,
     url: owner_restaurant_menus_path,
     method: :post,

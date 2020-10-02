@@ -4,7 +4,6 @@ class Restaurant < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :reservations
   has_many :menus, dependent: :destroy
 
   attachment :restaurant_image

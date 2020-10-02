@@ -1,21 +1,20 @@
 class Owner::RestaurantsController < Owner::Base
 
   before_action :current_restaurant?, only: %i[show]
+  before_action :set_current_restaurant
+  before_action :api, only: %i[edit]
 
   def show
-    @restaurant = Restaurant.find(params[:id])
-    current_menu = Menu.where(restaurant_id: params[:id])
-    @reservations_count = Reservation.where(menu_id: current_menu).count
+    @menus = @current_restaurant.menus
+    @reservations = Reservation.where(menu_id: @menus).count
   end
 
   def edit
-    @restaurant = Restaurant.find(params[:id])
   end
 
   def update
-    @restaurant = Restaurant.find(params[:id])
-    if @restaurant.update(restaurant_params)
-      redirect_to owner_restaurant_path(@restaurant)
+    if @current_restaurant.update(restaurant_params)
+      redirect_to owner_restaurant_path(@current_restaurant)
     else
       render :edit
     end

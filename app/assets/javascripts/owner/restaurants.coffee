@@ -4,10 +4,10 @@
 
 # 郵便番号から住所自動入力（詳細：https://github.com/ninton/jquery.jpostal.js/）
 $ ->
-  $("#restaurant_postal_code").jpostal({
+  $("#postal_code-sp, #postal_code-pc").jpostal({
     # 郵便番号の入力欄が１つの場合
     # 111-1111と1111111のどちらの入力形式でも住所を自動入力してくれる
-    postcode : [ "#restaurant_postal_code" ],
+    postcode : [ "#postal_code-sp, #postal_code-pc" ],
 
     # 郵便番号の入力欄が3桁-4桁で分かれている場合
     # postcode : [ '#zipcode1', '#zipcode2' ]

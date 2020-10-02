@@ -1,7 +1,7 @@
 <div class="contents menus-edit">
   <h2 class="menus-edit-h2">メニュー編集</h2>
   <%= render partial: 'form', locals: {
-    restaurant: @restaurant,
+    current_restaurant: @current_restaurant,
     menu: @menu,
     url: owner_restaurant_menu_path,
     method: :patch,
