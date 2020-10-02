@@ -39,6 +39,10 @@
 @media (max-width: $media-sp-max) {
 }
 
+// スマホ・タブレット共通
+@media (max-width: $media-tb-max) {
+}
+
 // タブレット
 @media (min-width: $media-tb-min) and (max-width: $media-tb-max) {
 }

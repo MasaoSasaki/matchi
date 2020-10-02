@@ -1,10 +1,9 @@
-<div class="contents menus-index">
-  <h1>Menus</h1>
-  <div class="menus-create"><%= link_to 'メニュー作成', new_owner_restaurant_menu_path(@current_restaurant), class: 'btn' %></div>
+<div class="contents owner-menus-index">
+  <h2>Menus</h2>
   <table>
     <thead>
       <tr>
-        <th>メニューID</th>
+        <th>ID</th>
         <th>イメージ画像</th>
         <th>メニュー名</th>
         <th>予約状況</th>
@@ -14,8 +13,12 @@
     <% @menus.each do |menu| %>
       <tbody>
         <tr>
-          <td><%= menu.id %></td>
-          <td><%= attachment_image_tag menu, :menu_image, style: "height: 70px; width: 100px;", fallbak: "no_image.png" %></td>
+          <td rowspan="2"><%= menu.id %></td>
+          <td>
+            <%= link_to owner_restaurant_menu_path(@current_restaurant, menu) do %>
+              <%= attachment_image_tag menu, :menu_image, fallbak: "no_image.png" %>
+            <% end %>
+          </td>
           <td><%= link_to "#{menu.title}", owner_restaurant_menu_path(@current_restaurant, menu) %></td>
           <td><%= menu.reservation_method %></td>
           <td>
@@ -26,7 +29,16 @@
             <% end %>
           </td>
         </tr>
+        <tr class="tag-list">
+          <td colspan="1" class="tag-index">タグ一覧(<%= menu.menu_tags.count %>)</td>
+          <td colspan="4">
+            <% menu.menu_tags.each do |menu_tag| %>
+              <span class="menu-tag"><%= menu_tag.tag.name %></span>
+            <% end %>
+          </td>
+        </tr>
       </tbody>
     <% end %>
   </table>
+  <div class="owner-menus-index--add-menus"><%= link_to 'メニュー新規追加', new_owner_restaurant_menu_path(@current_restaurant), class: 'btn btn-success' %></div>
 </div>

@@ -3,9 +3,9 @@ class Owner::MenusController < Owner::Base
   before_action :current_restaurant?
   before_action :current_menu?, except: %i[index new create]
   before_action :api, only: %i[edit new create update]
+  before_action :set_current_restaurant, only: %i[index new edit create update]
 
   def index
-    @current_restaurant = current_owner_restaurant
     @menus = Menu.where(restaurant_id: params[:restaurant_id])
   end
 
@@ -15,7 +15,6 @@ class Owner::MenusController < Owner::Base
   end
 
   def new
-    @restaurant = Restaurant.find(params[:restaurant_id])
     @menu = Menu.new
     @menu_tags = MenuTag.where(menu_id: params[:id])
     @tags = Tag.all
@@ -29,7 +28,7 @@ class Owner::MenusController < Owner::Base
 
   def create
     menu_new = Menu.new(menu_params)
-    menu_new.restaurant_id = current_owner_restaurant.id
+    menu_new.restaurant_id = @current_restaurant.id
     if menu_new.save
 
       # 推奨タグが選択されているかどうか？
@@ -64,7 +63,7 @@ class Owner::MenusController < Owner::Base
           new_menu_tag.save
         end
       end
-      redirect_to owner_restaurant_menu_path(current_owner_restaurant, menu_new)
+      redirect_to owner_restaurant_menu_path(@current_restaurant, menu_new)
     else
       render :new
     end
@@ -115,7 +114,7 @@ class Owner::MenusController < Owner::Base
           end
         end
       end
-      redirect_to owner_restaurant_menu_path(current_owner_restaurant, menu)
+      redirect_to owner_restaurant_menu_path(@current_restaurant, menu)
     else
       render :edit
     end

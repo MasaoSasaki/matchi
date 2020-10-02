@@ -14,8 +14,58 @@
   }
 }
 
+// show
+.owner-restaurants-show {
+
+  &__status {
+    margin: 20px 0;
+  }
+}
+
+// edit
+.owner-restaurants-edit-pc, .owner-restaurants-edit-sp {
+
+  p {
+    padding: 0;
+  }
+
+  .head {
+    border-top: solid 1px $thema-color-font;
+  }
+
+  table {
+    margin: 0 auto;
+  }
+
+  tr > td {
+    min-width: 130px;
+  }
+
+  th, td {
+    padding: 5px;
+  }
+}
+
 // スマホ
 @media (max-width: $media-sp-max) {
+}
+
+// スマホ・タブレット共通
+@media (max-width: $media-tb-max) {
+   // edit
+  .owner-restaurants-edit-sp {
+
+    &--form {
+
+      .introduction, .completion_message {
+        text-align: center;
+      }
+    }
+  }
+
+  .owner-restaurants-edit-pc {
+    display: none;
+  }
 }
 
 // タブレット
@@ -24,10 +74,42 @@
 
 // PC・タブレット共通
 @media (min-width: $media-tb-min) {
+  // show
+  .owner-restaurants-show {
+
+    &__status {
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+
+      &__info, &__confirm {
+        flex: 1;
+
+        a {
+          display: block;
+        }
+      }
+    }
+  }
+
+  // edit
+  .owner-restaurants-edit-pc {
+
+    &--form {
+
+      .name, .introduction, .completion_message {
+        text-align: center;
+      }
+    }
+  }
 }
 
 // PC
 @media (min-width: $media-pc-min) {
+  // edit
+  .owner-restaurants-edit-sp {
+    display: none;
+  }
 }
 
 // owner/restaurants/show
@@ -40,20 +122,7 @@
   object-fit: cover;
 }
 
-.restaurant-status {
-  margin: 20px 0;
-}
-
 // /owner/restaurants
-.restaurant-edit .submit {
-  text-align: center;
-}
-
-.restaurant-status {
-  display: flex;
-  justify-content: space-around;
-}
-
 .image-preview img {
   height: 250px;
   object-fit: cover;
