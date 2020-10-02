@@ -16,7 +16,7 @@ class Owner::MenuTagsController < Owner::Base
   def destroy
     menu_tag = MenuTag.find(params[:id])
     menu_tag.destroy
-    redirect_to edit_owner_restaurant_menu_path(@restaurant, menu_tag.menu)
+    redirect_to edit_owner_restaurant_menu_path(@current_restaurant, menu_tag.menu)
   end
 
 end
