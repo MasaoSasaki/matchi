@@ -19,4 +19,8 @@ class Owner::Base < ApplicationController
     end
   end
 
+  def set_current_restaurant
+    @restaurant = current_owner_restaurant
+  end
+
 end

@@ -1,5 +1,7 @@
 class Owner::MenuTagsController < Owner::Base
 
+  before_action :set_current_restaurant, only: %i[destroy]
+
   def create
     new_menu_tag = MenuTag.new
     menu_id = params[:menu_id]
@@ -12,8 +14,9 @@ class Owner::MenuTagsController < Owner::Base
   end
 
   def destroy
-    MenuTag.find(params[:tag_id]).destroy
-    redirect_to edit_owner_restaurant_menu_path(params[:restaurant_id], params[:menu_id])
+    menu_tag = MenuTag.find(params[:id])
+    menu_tag.destroy
+    redirect_to edit_owner_restaurant_menu_path(@restaurant, menu_tag.menu)
   end
 
 end

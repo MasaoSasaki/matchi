@@ -20,10 +20,6 @@ class Owner::RestaurantsController < Owner::Base
     end
   end
 
-  def set_current_restaurant
-    @current_restaurant = current_owner_restaurant
-  end
-
   private
   def restaurant_params
     params.require(:restaurant).permit(

@@ -95,6 +95,7 @@ ul {
   object-fit: cover;
 }
 
+// お知らせメッセージ
 // application.html.erb
 .layouts-app-header {
   &__notice {
@@ -135,33 +136,6 @@ ul {
   border-top: solid 1.3px #ccc;
   border-bottom: solid 1.3px #ccc;
   padding-bottom: 20px;
-}
-
-// /owner/restaurants/menus/new
-.menus-create {
-  text-align: right;
-}
-
-// /owner/restaurants/menus/edit
-.menu-status div, .menu-form section {
-  margin: 20px 0;
-}
-
-.menu-form .submit {
-  text-align: center;
-}
-
-.menu-tag {
-  display: inline-block;
-  padding: 0.2em 0.4em;
-  margin: 5px;
-  background: $thema-color2;
-  border-radius: 5px;
-  font-size: 0.9em;
-
-  a:hover {
-    cursor: pointer;
-  }
 }
 
 // /public/users/reservation/index
@@ -252,34 +226,6 @@ footer {
 
 // PC端末用
 @media (min-width: $media-pc-min) {
-
-  td, th {
-    padding: 30px;
-  }
-
-  // owner/restaurants/menus/edit,new
-  .image-preview img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-  }
-
-  .menu-form-area {
-    display: flex;
-  }
-
-  .content-form, .cancel-form {
-    flex: 1;
-  }
-
-  #menu_content, #menu_cancel {
-    width: 90%;
-    height: 100px;
-  }
-
-  .sp {
-    display: none;
-  }
 }
 
 // PC・タブレット共通
@@ -306,19 +252,6 @@ footer {
     display: flex;
     justify-content: space-between;
   }
-
-  // owner/restaurant/menus/show
-  .menu-status {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .menu-form1 {
-    flex: 1;
-  }
-  .menu-form2 {
-    flex: 1;
-  }
 }
 
 // タブレット端末用
@@ -327,13 +260,6 @@ footer {
   .contents {
     margin: 0 auto;
     padding: 0 70px;
-  }
-
-  // /owner/restaurants/menus/edit,new
-  .image-preview img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
   }
 }
 
@@ -499,41 +425,5 @@ footer {
 
   .profile_image {
     padding-right: 0;
-  }
-
-  // owner/restaurants/menus/edit,new
-  .image-preview img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-  }
-
-  .content-form, .cancel-form {
-    text-align: center;
-  }
-
-  #menu_content, #menu_cancel {
-    width: 90%;
-    height: 200px;
-    margin-bottom: 10px;
-  }
-
-  // owner/restaurants/menus/edit
-  .menu-form1 table {
-    margin: 0 auto;
-  }
-
-  .menu-form2 {
-    h3, div {
-    text-align: center;
-    }
-  }
-
-  .menu-form-content, .menu-form-cancel {
-    text-align: center;
-  }
-
-  .menus-edit-h2 {
-    text-align: center;
   }
 }
