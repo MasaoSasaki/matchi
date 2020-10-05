@@ -223,7 +223,33 @@ $(function() {
 //   });
 // });
 
-//メニュー写真、店舗写真にプレビューを表示
+// メニュー写真、店舗写真のプレビュー表示（JSONをAPIをRailsに任せるための準備）
+// addEventListener('DOMContentLoaded', function() {
+//   const fileForm = document.getElementsByClassName("attachment_image");
+//   const previewArea = document.getElementsByClassName("image-preview");
+
+//   for (let i = 0; i < fileForm.length; i++) {
+//     fileForm[i].addEventListener('change', function() {
+//       imagePreview(fileForm[i], previewArea[i]);
+//     });
+//   }
+
+//   function imagePreview(fileForm, previewArea) {
+//     console.log(fileForm.id)
+//     const file = fileForm.files[0];
+//     // 画像ファイル以外はリターン
+//     if (file.type != "image/gif" && file.type != "image/png" && file.type != "image/jpeg") {
+//       return;
+//     }
+//     const fileReader = new FileReader();
+//     fileReader.onloadend = function() {
+//       previewArea.insertAdjacentHTML('afterbegin', `<img src="${fileReader.result}">`);
+//     }
+//     fileReader.readAsDataURL(file);
+//   }
+// });
+
+// メニュー写真、店舗写真にプレビューを表示
 addEventListener('DOMContentLoaded', function() {
   const menuImageForm = document.getElementById("menu_menu_image");
   const restaurantImageForm = document.getElementById("restaurant_restaurant_image");

@@ -5,7 +5,6 @@ class Owner::RestaurantsController < Owner::Base
   before_action :api, only: %i[edit]
 
   def show
-    binding.pry
     @menus = @current_restaurant.menus
     @reservations = Reservation.where(menu_id: @menus).count
   end
