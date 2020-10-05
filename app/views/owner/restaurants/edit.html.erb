@@ -1,175 +1,179 @@
-<%# pc %>
-<div class="contents owner-restaurants-edit-pc">
+<% if @current_restaurant == @restaurant %>
+  <%# pc %>
+  <div class="contents owner-restaurants-edit-pc">
 
-  <%= render partial: 'layouts/error_messages', locals: {model: @current_restaurant} %>
+    <%= render partial: 'layouts/error_messages', locals: {model: @current_restaurant} %>
 
-  <%= form_with model: @current_restaurant, url: owner_restaurant_path, method: :patch, local: :true do |f| %>
-    <table class="owner-restaurants-edit--form">
-      <tbody>
-        <tr>
-          <td colspan="2" class="name"><h3><%= f.label :name %></h3></td>
-          <td><%= f.text_field :name, required: true %></td>
-        </tr>
-        <tr class="head">
-          <td rowspan="2"><h3><%= f.label :restaurant_image %></h3></td>
-          <td colspan="2"><%= f.attachment_field :restaurant_image, class: "attachment_image", accept: "image/*" %></td>
-        </tr>
-        <tr>
-          <td colspan="2" class="image-preview"></td>
-        </tr>
-        <tr class="head">
-          <td rowspan="5"><h3>住所</h3></td>
-          <td><p><%= f.label :postal_code, '郵便番号(半角7桁、ハイフンなし)' %></p></td>
-          <td><%= f.text_field :postal_code, placeholder: '1234567', required: true, id: "postal_code-pc" %></td>
-        </tr>
-        <tr>
-          <td><p><%= f.label :prefecture %></p></td>
-          <td><%= f.collection_select :prefecture, JpPrefecture::Prefecture.all, :name, :name, include_blank: '都道府県', class: "restaurant_prefecture" %></td>
-        </tr>
-        <tr>
-          <td><p><%= f.label :city  %></p></td>
-          <td><%= f.text_field :city, required: true, class: "restaurant_city" %></td>
-        </tr>
-        <tr>
-          <td><p><%= f.label :street %></p></td>
-          <td><%= f.text_field :street, required: true, class: "restaurant_street" %></td>
-        </tr>
-        <tr>
-          <td><p><%= f.label :building %></p></td>
-          <td><%= f.text_field :building %></td>
-        </tr>
-        <tr class="head">
-          <td rowspan="6"><h3>連絡先</h3></td>
-          <td><p><%= f.label :phone_number, '電話番号(半角数字、ハイフンなし)' %></p></td>
-          <td><%= f.text_field :phone_number, placeholder: '123456789012', required: true %></td>
-        </tr>
-        <tr>
-          <td><p><%= f.label :email %></p></td>
-          <td><%= f.text_field :email, placeholder: 'example.com', required: true %></td>
-        </tr>
-        <tr>
-          <td><p><%= f.label :twitter %></p></td>
-          <td><%= f.text_field :twitter %></td>
-        </tr>
-        <tr>
-          <td><p><%= f.label :facebook%></p></td>
-          <td><%= f.text_field :facebook %></td>
-        </tr>
-        <tr>
-          <td><p><%= f.label :instagram %></p></td>
-          <td><%= f.text_field :instagram %></td>
-        </tr>
-        <tr>
-          <td><p><%= f.label :corporate %></p></td>
-          <td><%= f.text_field :corporate %></td>
-        </tr>
-        <tr class="head">
-          <td colspan="2" class="introduction"><h3>店舗紹介</h3></td>
-          <td><%= f.text_area :introduction, size: '50x10' %></td>
-        </tr>
-        <tr class="head">
-          <td colspan="2" class="completion_message"><h3>完了メッセージ</h3><p>お客様のご予約が完了された時に<br>表示されるメッセージです。<br>伝言等があればご記載ください。</p></td>
-          <td><%= f.text_area :completion_message, size: '50x10' %></td>
-        </tr>
+    <%= form_with model: @current_restaurant, url: owner_restaurant_path, method: :patch, local: :true do |f| %>
+      <table class="owner-restaurants-edit--form">
+        <tbody>
+          <tr>
+            <td colspan="2" class="name"><h3><%= f.label :name %></h3></td>
+            <td><%= f.text_field :name, required: true %></td>
+          </tr>
+          <tr class="head">
+            <td rowspan="2"><h3><%= f.label :restaurant_image %></h3></td>
+            <td colspan="2"><%= f.attachment_field :restaurant_image, class: "attachment_image", accept: "image/*" %></td>
+          </tr>
+          <tr>
+            <td colspan="2" class="image-preview"></td>
+          </tr>
+          <tr class="head">
+            <td rowspan="5"><h3>住所</h3></td>
+            <td><p><%= f.label :postal_code, '郵便番号(半角7桁、ハイフンなし)' %></p></td>
+            <td><%= f.text_field :postal_code, placeholder: '1234567', required: true, id: "postal_code-pc" %></td>
+          </tr>
+          <tr>
+            <td><p><%= f.label :prefecture %></p></td>
+            <td><%= f.collection_select :prefecture, JpPrefecture::Prefecture.all, :name, :name, include_blank: '都道府県', class: "restaurant_prefecture" %></td>
+          </tr>
+          <tr>
+            <td><p><%= f.label :city  %></p></td>
+            <td><%= f.text_field :city, required: true, class: "restaurant_city" %></td>
+          </tr>
+          <tr>
+            <td><p><%= f.label :street %></p></td>
+            <td><%= f.text_field :street, required: true, class: "restaurant_street" %></td>
+          </tr>
+          <tr>
+            <td><p><%= f.label :building %></p></td>
+            <td><%= f.text_field :building %></td>
+          </tr>
+          <tr class="head">
+            <td rowspan="6"><h3>連絡先</h3></td>
+            <td><p><%= f.label :phone_number, '電話番号(半角数字、ハイフンなし)' %></p></td>
+            <td><%= f.text_field :phone_number, placeholder: '123456789012', required: true %></td>
+          </tr>
+          <tr>
+            <td><p><%= f.label :email %></p></td>
+            <td><%= f.text_field :email, placeholder: 'example.com', required: true %></td>
+          </tr>
+          <tr>
+            <td><p><%= f.label :twitter %></p></td>
+            <td><%= f.text_field :twitter %></td>
+          </tr>
+          <tr>
+            <td><p><%= f.label :facebook%></p></td>
+            <td><%= f.text_field :facebook %></td>
+          </tr>
+          <tr>
+            <td><p><%= f.label :instagram %></p></td>
+            <td><%= f.text_field :instagram %></td>
+          </tr>
+          <tr>
+            <td><p><%= f.label :corporate %></p></td>
+            <td><%= f.text_field :corporate %></td>
+          </tr>
+          <tr class="head">
+            <td colspan="2" class="introduction"><h3>店舗紹介</h3></td>
+            <td><%= f.text_area :introduction, size: '50x10' %></td>
+          </tr>
+          <tr class="head">
+            <td colspan="2" class="completion_message"><h3>完了メッセージ</h3><p>お客様のご予約が完了された時に<br>表示されるメッセージです。<br>伝言等があればご記載ください。</p></td>
+            <td><%= f.text_area :completion_message, size: '50x10' %></td>
+          </tr>
 
-      </tbody>
-    </table>
-    <div class="submit"><%= f.submit '更新', id: 'restaurant-update', class: 'btn btn-primary' %></div>
-    <div><%= link_to '店舗情報に戻る', owner_restaurant_path(@current_restaurant) %><br><%= link_to 'パスワードの変更はこちら', edit_owner_restaurant_registration_path(current_owner_restaurant) %></div>
-  <% end %>
-</div>
+        </tbody>
+      </table>
+      <div class="submit"><%= f.submit '更新', id: 'restaurant-update', class: 'btn btn-primary' %></div>
+      <div><%= link_to '店舗情報に戻る', owner_restaurant_path(@current_restaurant) %><br><%= link_to 'パスワードの変更はこちら', edit_owner_restaurant_registration_path(current_owner_restaurant) %></div>
+    <% end %>
+  </div>
 
-<%# tb & sp %>
-<div class="contents owner-restaurants-edit-sp">
+  <%# tb & sp %>
+  <div class="contents owner-restaurants-edit-sp">
 
-  <%= render partial: 'layouts/error_messages', locals: {model: @current_restaurant} %>
+    <%= render partial: 'layouts/error_messages', locals: {model: @current_restaurant} %>
 
-  <%= form_with model: @current_restaurant, url: owner_restaurant_path, method: :patch, local: :true do |f| %>
-    <table class="owner-restaurants-edit--form">
-      <tbody>
-        <tr>
-          <td><h3><%= f.label :name %></h3></td>
-          <td class="center"><%= f.text_field :name, required: true %></td>
-        </tr>
-        <tr class="head">
-          <td><h3><%= f.label :restaurant_image %></h3></td>
-          <td><%= f.attachment_field :restaurant_image, class: "attachment_image" %></td>
-        </tr>
-        <tr>
-          <td colspan="2" class="image-preview"></td>
-        </tr>
-        <tr>
-          <td colspan="2"><h3>住所</h3></td>
-        </tr>
-        <tr class="head">
-          <td><p><%= f.label :postal_code, '郵便番号(半角7桁、ハイフンなし)' %></p></td>
-          <td class="center"><%= f.text_field :postal_code, placeholder: '1234567', required: true, id: "postal_code-sp" %></td>
-        </tr>
-        <tr>
-          <td><p><%= f.label :prefecture %></p></td>
-          <td class="center"><%= f.collection_select :prefecture, JpPrefecture::Prefecture.all, :name, :name, include_blank: '都道府県', class: "restaurant_prefecture" %></td>
-        </tr>
-        <tr>
-          <td><p><%= f.label :city  %></p></td>
-          <td class="center"><%= f.text_field :city, required: true, class: "restaurant_city" %></td>
-        </tr>
-        <tr>
-          <td><p><%= f.label :street %></p></td>
-          <td class="center"><%= f.text_field :street, required: true, class: "restaurant_street" %></td>
-        </tr>
-        <tr>
-          <td><p><%= f.label :building %></p></td>
-          <td class="center"><%= f.text_field :building %></td>
-        </tr>
-        <tr>
-          <td colspan="2"><h3>連絡先</h3></td>
-        </tr>
-        <tr class="head">
-          <td><p><%= f.label :phone_number, '電話番号(半角数字、ハイフンなし)' %></p></td>
-          <td class="center"><%= f.text_field :phone_number, placeholder: '123456789012', required: true %></td>
-        </tr>
-        <tr>
-          <td><p><%= f.label :email %></p></td>
-          <td class="center"><%= f.text_field :email, placeholder: 'example.com', required: true %></td>
-        </tr>
-        <tr>
-          <td><p><%= f.label :twitter %></p></td>
-          <td class="center"><%= f.text_field :twitter %></td>
-        </tr>
-        <tr>
-          <td><p><%= f.label :facebook%></p></td>
-          <td class="center"><%= f.text_field :facebook %></td>
-        </tr>
-        <tr>
-          <td><p><%= f.label :instagram %></p></td>
-          <td class="center"><%= f.text_field :instagram %></td>
-        </tr>
-        <tr>
-          <td><p><%= f.label :corporate %></p></td>
-          <td class="center"><%= f.text_field :corporate %></td>
-        </tr>
-        <tr>
-          <td colspan="2"><h3>店舗紹介</h3></td>
-        </tr>
-        <tr class="head">
-          <td colspan="2" class="center"><%= f.text_area :introduction, size: '50x10' %></td>
-        </tr>
-        <tr>
-          <td colspan="2">
-            <h3>完了メッセージ</h3>
-          </td>
-        </tr>
-        <tr class="head">
-          <td colspan="2">
-            <p>お客様のご予約が完了された時に表示されるメッセージです。<br>伝言等があればご記載ください。</p>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2" class="center"><%= f.text_area :completion_message, size: '50x10' %></td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="center"><%= f.submit '更新', id: 'restaurant-update', class: 'btn btn-primary center' %></div>
-    <div><%= link_to '店舗情報に戻る', owner_restaurant_path(@current_restaurant) %><br><%= link_to 'パスワードの変更はこちら', edit_owner_restaurant_registration_path(current_owner_restaurant) %></div>
-  <% end %>
-</div>
+    <%= form_with model: @current_restaurant, url: owner_restaurant_path, method: :patch, local: :true do |f| %>
+      <table class="owner-restaurants-edit--form">
+        <tbody>
+          <tr>
+            <td><h3><%= f.label :name %></h3></td>
+            <td class="center"><%= f.text_field :name, required: true %></td>
+          </tr>
+          <tr class="head">
+            <td><h3><%= f.label :restaurant_image %></h3></td>
+            <td><%= f.attachment_field :restaurant_image, class: "attachment_image" %></td>
+          </tr>
+          <tr>
+            <td colspan="2" class="image-preview"></td>
+          </tr>
+          <tr>
+            <td colspan="2"><h3>住所</h3></td>
+          </tr>
+          <tr class="head">
+            <td><p><%= f.label :postal_code, '郵便番号(半角7桁、ハイフンなし)' %></p></td>
+            <td class="center"><%= f.text_field :postal_code, placeholder: '1234567', required: true, id: "postal_code-sp" %></td>
+          </tr>
+          <tr>
+            <td><p><%= f.label :prefecture %></p></td>
+            <td class="center"><%= f.collection_select :prefecture, JpPrefecture::Prefecture.all, :name, :name, include_blank: '都道府県', class: "restaurant_prefecture" %></td>
+          </tr>
+          <tr>
+            <td><p><%= f.label :city  %></p></td>
+            <td class="center"><%= f.text_field :city, required: true, class: "restaurant_city" %></td>
+          </tr>
+          <tr>
+            <td><p><%= f.label :street %></p></td>
+            <td class="center"><%= f.text_field :street, required: true, class: "restaurant_street" %></td>
+          </tr>
+          <tr>
+            <td><p><%= f.label :building %></p></td>
+            <td class="center"><%= f.text_field :building %></td>
+          </tr>
+          <tr>
+            <td colspan="2"><h3>連絡先</h3></td>
+          </tr>
+          <tr class="head">
+            <td><p><%= f.label :phone_number, '電話番号(半角数字、ハイフンなし)' %></p></td>
+            <td class="center"><%= f.text_field :phone_number, placeholder: '123456789012', required: true %></td>
+          </tr>
+          <tr>
+            <td><p><%= f.label :email %></p></td>
+            <td class="center"><%= f.text_field :email, placeholder: 'example.com', required: true %></td>
+          </tr>
+          <tr>
+            <td><p><%= f.label :twitter %></p></td>
+            <td class="center"><%= f.text_field :twitter %></td>
+          </tr>
+          <tr>
+            <td><p><%= f.label :facebook%></p></td>
+            <td class="center"><%= f.text_field :facebook %></td>
+          </tr>
+          <tr>
+            <td><p><%= f.label :instagram %></p></td>
+            <td class="center"><%= f.text_field :instagram %></td>
+          </tr>
+          <tr>
+            <td><p><%= f.label :corporate %></p></td>
+            <td class="center"><%= f.text_field :corporate %></td>
+          </tr>
+          <tr>
+            <td colspan="2"><h3>店舗紹介</h3></td>
+          </tr>
+          <tr class="head">
+            <td colspan="2" class="center"><%= f.text_area :introduction, size: '50x10' %></td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <h3>完了メッセージ</h3>
+            </td>
+          </tr>
+          <tr class="head">
+            <td colspan="2">
+              <p>お客様のご予約が完了された時に表示されるメッセージです。<br>伝言等があればご記載ください。</p>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="center"><%= f.text_area :completion_message, size: '50x10' %></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="center"><%= f.submit '更新', id: 'restaurant-update', class: 'btn btn-primary center' %></div>
+      <div><%= link_to '店舗情報に戻る', owner_restaurant_path(@current_restaurant) %><br><%= link_to 'パスワードの変更はこちら', edit_owner_restaurant_registration_path(current_owner_restaurant) %></div>
+    <% end %>
+  </div>
+<% else %>
+  <p>編集権限がありません。</p>
+<% end %>

@@ -1,11 +1,15 @@
-<div class="contents owner-menus-new">
-  <h2>Create Menus</h2>
-  <%= render partial: 'form', locals: {
-    current_restaurant: @current_restaurant,
-    menu: @menu,
-    url: owner_restaurant_menus_path,
-    method: :post,
-    tags: @tags,
-    menu_tags: @menu_tags,
-    truth: false, submit: '作成' } %>
-</div>
+<% if @current_restaurant == @restaurant %>
+  <div class="contents owner-menus-new">
+    <h2>Create Menus</h2>
+    <%= render partial: 'form', locals: {
+      current_restaurant: @current_restaurant,
+      menu: @menu,
+      url: owner_restaurant_menus_path,
+      method: :post,
+      tags: @tags,
+      menu_tags: @menu_tags,
+      truth: false, submit: '作成' } %>
+  </div>
+<% else %>
+<p>権限がありません。</p>
+<% end %>

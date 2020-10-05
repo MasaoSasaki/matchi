@@ -40,9 +40,11 @@
     <div class="menus-content">内容：<br><%= @menu.content %></div>
     <div class="menus-cancel">キャンセル規定：<br><%= @menu.cancel %></div>
   </section>
-  <%= link_to '編集', edit_owner_restaurant_menu_path(current_owner_restaurant, @menu) %>
-  <%= link_to '削除', owner_restaurant_menu_path(current_owner_restaurant, @menu), method: :delete,
-    data: { confirm: "削除しますか？編集から販売状況を「停止中」に変更することでもメニューを非公開にすることができます。削除を続ける場合は「OK」を押してください。" }
-  %>
+  <% if @current_restaurant == @restaurant %>
+    <%= link_to '編集', edit_owner_restaurant_menu_path(current_owner_restaurant, @menu) %>
+    <%= link_to '削除', owner_restaurant_menu_path(current_owner_restaurant, @menu), method: :delete,
+      data: { confirm: "削除しますか？編集から販売状況を「停止中」に変更することでもメニューを非公開にすることができます。削除を続ける場合は「OK」を押してください。" }
+    %>
+  <% end %>
   <%= link_to '一覧に戻る', owner_restaurant_menus_path %>
 </div>
