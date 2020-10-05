@@ -12,7 +12,7 @@
         </tr>
         <tr class="head">
           <td rowspan="2"><h3><%= f.label :restaurant_image %></h3></td>
-          <td colspan="2"><%= f.attachment_field :restaurant_image %></td>
+          <td colspan="2"><%= f.attachment_field :restaurant_image, class: "attachment_image", accept: "image/*" %></td>
         </tr>
         <tr>
           <td colspan="2" class="image-preview"></td>
@@ -93,7 +93,7 @@
         </tr>
         <tr class="head">
           <td><h3><%= f.label :restaurant_image %></h3></td>
-          <td><%= f.attachment_field :restaurant_image %></td>
+          <td><%= f.attachment_field :restaurant_image, class: "attachment_image" %></td>
         </tr>
         <tr>
           <td colspan="2" class="image-preview"></td>
