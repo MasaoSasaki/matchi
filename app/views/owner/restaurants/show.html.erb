@@ -1,14 +1,21 @@
 <div class="contents owner-restaurants-show">
-  <h2>店舗名：<%= @current_restaurant.name %> 様</h2>
+  <h2>店舗名：<%= @restaurant.name %> 様</h2>
   <div class="owner-restaurants-show__status">
     <div class="owner-restaurants-show__status__info">
       <p>メニュー数：<%= @menus.count %></p>
       <p>予約数：<%= @reservations %></p>
     </div>
     <div class="owner-restaurants-show__status__confirm">
-      <%= link_to 'メニュー一覧・編集', owner_restaurant_menus_path(@current_restaurant) %>
+      <%= link_to 'メニュー一覧・編集', owner_restaurant_menus_path(@restaurant) %>
       <%= link_to '予約履歴', owner_reservations_path %>
     </div>
   </div>
-  <div class="owner-restaurants-show__status__edit"><%= link_to '店舗情報編集', edit_owner_restaurant_path, class: 'btn btn-success' %></div>
+  <% if @currenr_restaurant == @restaurant %>
+    <div class="owner-restaurants-show__status__edit"><%= link_to '店舗情報編集', edit_owner_restaurant_path, class: 'btn btn-success' %></div>
+  <% else %>
+    <div class="owner-restaurants-show__status__edit">
+    <%= link_to '店舗情報編集', edit_owner_restaurant_path, class: 'btn btn-success inactive' %>
+    <p>店舗管理者のみが編集可能できます。</p>
+    </div>
+  <% end %>
 </div>

@@ -15,11 +15,11 @@
         <tr>
           <td rowspan="2"><%= menu.id %></td>
           <td>
-            <%= link_to owner_restaurant_menu_path(@current_restaurant, menu) do %>
+            <%= link_to owner_restaurant_menu_path(@restaurant, menu) do %>
               <%= attachment_image_tag menu, :menu_image, fallbak: "no_image.png" %>
             <% end %>
           </td>
-          <td><%= link_to "#{menu.title}", owner_restaurant_menu_path(@current_restaurant, menu) %></td>
+          <td><%= link_to "#{menu.title}", owner_restaurant_menu_path(@restaurant, menu) %></td>
           <td><%= menu.reservation_method %></td>
           <td>
             <% if menu.is_sale_frag == true %>
@@ -40,5 +40,10 @@
       </tbody>
     <% end %>
   </table>
-  <div class="owner-menus-index--add-menus"><%= link_to 'メニュー新規追加', new_owner_restaurant_menu_path(@current_restaurant), class: 'btn btn-success' %></div>
+  <% if @current_restaurant == @restaurant %>
+    <div class="owner-menus-index--add-menus"><%= link_to 'メニュー新規追加', new_owner_restaurant_menu_path(@restaurant), class: 'btn btn-success' %></div>
+  <% else %>
+    <div class="owner-menus-index--add-menus"><%= link_to 'メニュー新規追加', new_owner_restaurant_menu_path(@restaurant), class: 'btn btn-success inactive' %></div>
+    <p>店舗管理者のみが編集可能できます。</p>
+  <% end %>
 </div>

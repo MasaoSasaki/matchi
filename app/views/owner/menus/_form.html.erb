@@ -4,7 +4,7 @@
       <div class="menu-form1">
         <h3>メニュー画像</h3>
         <div class="menu-image">
-          <%= f.attachment_field :menu_image %>
+          <%= f.attachment_field :menu_image, class: "attachment_image" %>
           <div class="image-preview"></div>
           <h4>タグの追加（任意）</h4>
           <%= text_field_tag :tag_name %>
