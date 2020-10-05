@@ -10,7 +10,7 @@
       <%= link_to '予約履歴', owner_reservations_path %>
     </div>
   </div>
-  <% if @currenr_restaurant == @restaurant %>
+  <% if @current_restaurant == @restaurant %>
     <div class="owner-restaurants-show__status__edit"><%= link_to '店舗情報編集', edit_owner_restaurant_path, class: 'btn btn-success' %></div>
   <% else %>
     <div class="owner-restaurants-show__status__edit">
