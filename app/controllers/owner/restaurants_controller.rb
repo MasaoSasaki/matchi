@@ -5,11 +5,13 @@ class Owner::RestaurantsController < Owner::Base
   before_action :api, only: %i[edit]
 
   def show
-    @menus = @current_restaurant.menus
+    @restaurant = Restaurant.find(params[:id])
+    @menus = @restaurant.menus
     @reservations = Reservation.where(menu_id: @menus).count
   end
 
   def edit
+    @restaurant = Restaurant.find(params[:id])
   end
 
   def update

@@ -1,20 +1,23 @@
 class Owner::MenusController < Owner::Base
 
   before_action :current_restaurant?
-  before_action :current_menu?, except: %i[index new create]
+  before_action :current_menu?, except: %i[index new create], unless: :master_admin_signed_in?
   before_action :api, only: %i[edit new create update]
   before_action :set_current_restaurant, only: %i[index new edit create update]
 
   def index
-    @menus = Menu.where(restaurant_id: params[:restaurant_id])
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    @menus = @restaurant.menus
   end
 
   def show
+    @restaurant = Restaurant.find(params[:restaurant_id])
     @menu = Menu.find(params[:id])
     @menu_tags = MenuTag.where(menu_id: params[:id])
   end
 
   def new
+    @restaurant = Restaurant.find(params[:restaurant_id])
     @menu = Menu.new
     @menu_tags = MenuTag.where(menu_id: params[:id])
     @tags = Tag.all
