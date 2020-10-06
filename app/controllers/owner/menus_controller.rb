@@ -3,21 +3,19 @@ class Owner::MenusController < Owner::Base
   before_action :current_restaurant?
   before_action :current_menu?, except: %i[index new create], unless: :master_admin_signed_in?
   before_action :api, only: %i[edit new create update]
-  before_action :set_current_restaurant, only: %i[index new edit create update]
+  before_action :set_current_restaurant, except: %i[destroy]
+  before_action :set_restaurant, only: %i[index show new edit]
 
   def index
-    @restaurant = Restaurant.find(params[:restaurant_id])
     @menus = @restaurant.menus
   end
 
   def show
-    @restaurant = Restaurant.find(params[:restaurant_id])
     @menu = Menu.find(params[:id])
     @menu_tags = MenuTag.where(menu_id: params[:id])
   end
 
   def new
-    @restaurant = Restaurant.find(params[:restaurant_id])
     @menu = Menu.new
     @menu_tags = MenuTag.where(menu_id: params[:id])
     @tags = Tag.all
@@ -73,7 +71,6 @@ class Owner::MenusController < Owner::Base
   end
 
   def update
-    restaurant = Restaurant.find(params[:restaurant_id])
     menu = Menu.find(params[:id])
     menu.reservation_method = params[:reservation_method].to_i
     if menu.update(menu_params)
@@ -127,6 +124,10 @@ class Owner::MenusController < Owner::Base
     menu = Menu.find(params[:id])
     menu.destroy
     redirect_to owner_restaurant_menus_path
+  end
+
+  def set_restaurant
+    @restaurant = Restaurant.find(params[:restaurant_id])
   end
 
   private
