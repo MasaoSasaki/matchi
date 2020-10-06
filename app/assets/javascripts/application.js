@@ -254,7 +254,7 @@ addEventListener('DOMContentLoaded', function() {
   const menuImageForm = document.getElementById("menu_menu_image");
   const restaurantImageForm = document.getElementById("restaurant_restaurant_image");
   if (menuImageForm || restaurantImageForm != null) {
-    const googlePlatformAPIKey = gon.google_platform_api_key;
+    const googlePlatformAPIKey = gon.gcp_api_key;
     const googlePlatformAPITagUrl = 'https://vision.googleapis.com/v1/images:annotate?key=';
     const apiTagUrl = googlePlatformAPITagUrl + googlePlatformAPIKey;
     $("#menu_menu_image, #restaurant_restaurant_image").on("change", function() {
