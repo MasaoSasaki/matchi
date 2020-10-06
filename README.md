@@ -3,6 +3,7 @@ matchi(マッチ)
 
 ## サイトURL
 https://matchi-gourmet.com
+※GoogleAdSense審査中のため、head要素内scriptタグに一時的なエラーが出ていますが仕様となっております。
 
 ## 使用言語・技術
 ### 言語
