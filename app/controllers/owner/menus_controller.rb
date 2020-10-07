@@ -5,11 +5,12 @@ class Owner::MenusController < Owner::Base
   before_action :current_restaurant?
   before_action :current_menu?, except: %i[index new create], unless: :master_admin_signed_in?
   before_action :set_current_restaurant, except: %i[destroy]
+  before_action :set_restaurant, only: %i[index show new edit]
   # get_vision_tagsのPOSTアクションのみcsrf除外
   protect_from_forgery with: :null_session, only: %i[get_vision_tags]
 
   def index
-    @menus = @current_restaurant.menus
+    @menus = @restaurant.menus
   end
 
   def show
@@ -138,6 +139,10 @@ class Owner::MenusController < Owner::Base
     menu = Menu.find(params[:id])
     menu.destroy
     redirect_to owner_restaurant_menus_path
+  end
+
+  def set_restaurant
+    @restaurant = Restaurant.find(params[:restaurant_id])
   end
 
   def get_vision_tags
