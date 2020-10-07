@@ -196,13 +196,6 @@ $(function() {
 //   }
 // });
 
-// xを押すとタグの削除
-$(function() {
-  $("body").on('click', ".menu-tag > a", function() {
-    $(this).parents("p").remove();
-  });
-});
-
 // メニュータグの追加(jQuery版)
 // $(function() {
   //   function addTags() {
@@ -223,7 +216,7 @@ $(function() {
 //   });
 // });
 
-// メニュー写真、店舗写真のプレビュー表示（JSONをAPIをRailsに任せるための準備）
+// メニュー写真、店舗写真のプレビュー表示
 addEventListener('DOMContentLoaded', function() {
   const fileForm = document.getElementsByClassName("attachment_image");
   const previewArea = document.getElementsByClassName("image-preview");
@@ -245,52 +238,78 @@ addEventListener('DOMContentLoaded', function() {
     fileReader.onloadend = function() {
       const dataUrl = fileReader.result;
       previewArea.insertAdjacentHTML('afterbegin', `<img src="${dataUrl}">`);
+      const tagList = document.getElementById("tag-list");
 
-      // アップロードされた画像がメニュー画像ならGCPを叩く
+      // アップロードされた画像がメニュー画像ならRailsに画像データを渡す
       if (fileForm.id == "menu_menu_image") {
-        const googlePlatformAPIKey = gon.google_platform_api_key;
-        const googlePlatformAPITagUrl = 'https://vision.googleapis.com/v1/images:annotate?key=';
-        const apiTagUrl = googlePlatformAPITagUrl + googlePlatformAPIKey;
-        makeRequest(dataUrl, getAPIInfo);
-
-        // base64エンコード
-        function makeRequest(dataUrl, callback) {
-          var end = dataUrl.indexOf(",");
-          var request = "{'requests': [{'image': {'content': '" + dataUrl.slice(end + 1) + "'}, 'features': [{'type': 'LABEL_DETECTION'}]}]}"
-          callback(request);
-        }
-
-        // APIリクエスト
-        function getAPIInfo(request) {
+        tagList.insertAdjacentHTML("beforebegin", `<button name="button" type="button" id="vision-api-event">タグを取得</button>`)
+        const getTagsBtn = document.getElementById("vision-api-event");
+        var end = dataUrl.indexOf(",");
+        getTagsBtn.addEventListener('click', function() {
           $.ajax({
-            url: apiTagUrl,
+            url: '/owner/menus/get_vision_tags',
             type: 'POST',
-            async: true,
-            cache: false,
-            data: request,
-            dataType: 'json',
-            contentType: 'application/json',
-          }).done(function(result) {
-            showResult(result);
-          }).fail(function(result) {
-            console.log('取得に失敗しました。');
-          });
-        }
+            data: {
+              menu_image: dataUrl.slice(end + 1)
+            },
+          }) .done(function() {
+            console.log("成功")
+          }) .fail(function() {
+            console.log("失敗")
+          })
+        });
 
-        // JSONResult
-        function showResult(result) {
-          var responses = result.responses[0];
-          for (let i = 0; i < responses.labelAnnotations.length; i++) {
-            document.getElementById("tag-list").insertAdjacentHTML('afterend', `<p class="inline-block" id=api-tag${i}><span class="menu-tag api-menu-tag">${responses.labelAnnotations[i].description} <a>x</a></span></p>`)
-            document.getElementById("api-tag"+i).insertAdjacentHTML('afterbegin', `<input type="hidden" value="${responses.labelAnnotations[i].description}" name="tag[]"></input>`);
-          }
-        }
+        // (APIリクエストをRails側での処理に変更)
+        // const googlePlatformAPIKey = gon.gcp_api_key;
+        // const googlePlatformAPITagUrl = 'https://vision.googleapis.com/v1/images:annotate?key=';
+        // const apiTagUrl = googlePlatformAPITagUrl + googlePlatformAPIKey;
+        // makeRequest(dataUrl, getAPIInfo);
+
+        // // base64エンコード
+        // function makeRequest(dataUrl, callback) {
+        //   var end = dataUrl.indexOf(",");
+        //   var request = "{'requests': [{'image': {'content': '" + dataUrl.slice(end + 1) + "'}, 'features': [{'type': 'LABEL_DETECTION'}]}]}"
+        //   callback(request);
+        // }
+
+        // // APIリクエスト
+        // function getAPIInfo(request) {
+        //   $.ajax({
+        //     url: apiTagUrl,
+        //     type: 'POST',
+        //     async: true,
+        //     cache: false,
+        //     data: request,
+        //     dataType: 'json',
+        //     contentType: 'application/json',
+        //   }).done(function(result) {
+        //     showResult(result);
+        //   }).fail(function(result) {
+        //     console.log('取得に失敗しました。');
+        //   });
+        // }
+
+        // // JSONResult
+        // function showResult(result) {
+        //   var responses = result.responses[0];
+        //   for (let i = 0; i < responses.labelAnnotations.length; i++) {
+        //     tagList.insertAdjacentHTML('afterend', `<p class="inline-block" id=api-tag${i}><span class="menu-tag api-menu-tag">${responses.labelAnnotations[i].description} <a>x</a></span></p>`)
+        //     document.getElementById("api-tag"+i).insertAdjacentHTML('afterbegin', `<input type="hidden" value="${responses.labelAnnotations[i].description}" name="tag[]"></input>`);
+        //   }
+        // }
       }
     }
   }
 });
 
-// メニュー写真、店舗写真にプレビューを表示(一部jQueryで実装版)
+// xを押すとタグの削除
+$(function() {
+  $("body").on('click', ".menu-tag > a", function() {
+    $(this).parents("p").remove();
+  });
+});
+
+// メニュー写真、店舗写真にプレビューを表示(APIリクエストをJSで実装、ユーザー負荷軽減のためRailsからの実装に移行)
 // addEventListener('DOMContentLoaded', function() {
 //   const menuImageForm = document.getElementById("menu_menu_image");
 //   const restaurantImageForm = document.getElementById("restaurant_restaurant_image");
