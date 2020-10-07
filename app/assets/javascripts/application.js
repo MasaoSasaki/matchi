@@ -224,87 +224,128 @@ $(function() {
 // });
 
 // メニュー写真、店舗写真のプレビュー表示（JSONをAPIをRailsに任せるための準備）
-// addEventListener('DOMContentLoaded', function() {
-//   const fileForm = document.getElementsByClassName("attachment_image");
-//   const previewArea = document.getElementsByClassName("image-preview");
-
-//   for (let i = 0; i < fileForm.length; i++) {
-//     fileForm[i].addEventListener('change', function() {
-//       imagePreview(fileForm[i], previewArea[i]);
-//     });
-//   }
-
-//   function imagePreview(fileForm, previewArea) {
-//     console.log(fileForm.id)
-//     const file = fileForm.files[0];
-//     // 画像ファイル以外はリターン
-//     if (file.type != "image/gif" && file.type != "image/png" && file.type != "image/jpeg") {
-//       return;
-//     }
-//     const fileReader = new FileReader();
-//     fileReader.onloadend = function() {
-//       previewArea.insertAdjacentHTML('afterbegin', `<img src="${fileReader.result}">`);
-//     }
-//     fileReader.readAsDataURL(file);
-//   }
-// });
-
-// メニュー写真、店舗写真にプレビューを表示
 addEventListener('DOMContentLoaded', function() {
-  const menuImageForm = document.getElementById("menu_menu_image");
-  const restaurantImageForm = document.getElementById("restaurant_restaurant_image");
-  if (menuImageForm || restaurantImageForm != null) {
-    const googlePlatformAPIKey = gon.gcp_api_key;
-    const googlePlatformAPITagUrl = 'https://vision.googleapis.com/v1/images:annotate?key=';
-    const apiTagUrl = googlePlatformAPITagUrl + googlePlatformAPIKey;
-    $("#menu_menu_image, #restaurant_restaurant_image").on("change", function() {
-      var file = $(this).prop('files')[0];
-      if(!file.type.match('image.*')){
-        return;
-      }
-      var fileReader = new FileReader();
-      fileReader.onloadend = function() {
-        var dataUrl = fileReader.result;
-        $(".image-preview").append(`<img src="${dataUrl}">`);
-        makeRequest(dataUrl, getAPIInfo);
-      }
-      fileReader.readAsDataURL(file);
+  const fileForm = document.getElementsByClassName("attachment_image");
+  const previewArea = document.getElementsByClassName("image-preview");
+
+  for (let i = 0; i < fileForm.length; i++) {
+    fileForm[i].addEventListener('change', function() {
+      imagePreview(fileForm[i], previewArea[i]);
     });
+  }
 
-    // base64エンコード
-    function makeRequest(dataUrl, callback) {
-      var end = dataUrl.indexOf(",");
-      var request = "{'requests': [{'image': {'content': '" + dataUrl.slice(end + 1) + "'}, 'features': [{'type': 'LABEL_DETECTION'}]}]}"
-      callback(request)
+  function imagePreview(fileForm, previewArea) {
+    const file = fileForm.files[0];
+    // 画像ファイル以外はリターン
+    if (file.type != "image/gif" && file.type != "image/png" && file.type != "image/jpeg") {
+      return;
     }
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onloadend = function() {
+      const dataUrl = fileReader.result;
+      previewArea.insertAdjacentHTML('afterbegin', `<img src="${dataUrl}">`);
 
-    // APIリクエスト
-    function getAPIInfo(request) {
-      $.ajax({
-        url: apiTagUrl,
-        type: 'POST',
-        async: true,
-        cache: false,
-        data: request,
-        dataType: 'json',
-        contentType: 'application/json',
-      }).done(function(result) {
-        showResult(result);
-      }).fail(function(result) {
-        console.log('取得に失敗しました。');
-      });
-    }
+      // アップロードされた画像がメニュー画像ならGCPを叩く
+      if (fileForm.id == "menu_menu_image") {
+        const googlePlatformAPIKey = gon.google_platform_api_key;
+        const googlePlatformAPITagUrl = 'https://vision.googleapis.com/v1/images:annotate?key=';
+        const apiTagUrl = googlePlatformAPITagUrl + googlePlatformAPIKey;
+        makeRequest(dataUrl, getAPIInfo);
 
-    // JSONResult
-    function showResult(result) {
-      var responses = result.responses[0]
-      for (let i = 0; i < responses.labelAnnotations.length; i++) {
-        $("#tag-list").append(`<p class="inline-block" id=api-tag${i}><span class="menu-tag api-menu-tag">${responses.labelAnnotations[i].description} <a>x</a></span></p>`);
-        $("#api-tag"+i).append(`<input type="hidden" value="${responses.labelAnnotations[i].description}" name="tag[]"></input>`);
+        // base64エンコード
+        function makeRequest(dataUrl, callback) {
+          var end = dataUrl.indexOf(",");
+          var request = "{'requests': [{'image': {'content': '" + dataUrl.slice(end + 1) + "'}, 'features': [{'type': 'LABEL_DETECTION'}]}]}"
+          callback(request);
+        }
+
+        // APIリクエスト
+        function getAPIInfo(request) {
+          $.ajax({
+            url: apiTagUrl,
+            type: 'POST',
+            async: true,
+            cache: false,
+            data: request,
+            dataType: 'json',
+            contentType: 'application/json',
+          }).done(function(result) {
+            showResult(result);
+          }).fail(function(result) {
+            console.log('取得に失敗しました。');
+          });
+        }
+
+        // JSONResult
+        function showResult(result) {
+          var responses = result.responses[0];
+          for (let i = 0; i < responses.labelAnnotations.length; i++) {
+            document.getElementById("tag-list").insertAdjacentHTML('afterend', `<p class="inline-block" id=api-tag${i}><span class="menu-tag api-menu-tag">${responses.labelAnnotations[i].description} <a>x</a></span></p>`)
+            document.getElementById("api-tag"+i).insertAdjacentHTML('afterbegin', `<input type="hidden" value="${responses.labelAnnotations[i].description}" name="tag[]"></input>`);
+          }
+        }
       }
     }
   }
 });
+
+// メニュー写真、店舗写真にプレビューを表示(一部jQueryで実装版)
+// addEventListener('DOMContentLoaded', function() {
+//   const menuImageForm = document.getElementById("menu_menu_image");
+//   const restaurantImageForm = document.getElementById("restaurant_restaurant_image");
+//   if (menuImageForm || restaurantImageForm != null) {
+//     const googlePlatformAPIKey = gon.google_platform_api_key;
+//     const googlePlatformAPITagUrl = 'https://vision.googleapis.com/v1/images:annotate?key=';
+//     const apiTagUrl = googlePlatformAPITagUrl + googlePlatformAPIKey;
+//     $("#menu_menu_image, #restaurant_restaurant_image").on("change", function() {
+//       var file = $(this).prop('files')[0];
+//       if(!file.type.match('image.*')){
+//         return;
+//       }
+//       var fileReader = new FileReader();
+//       fileReader.onloadend = function() {
+//         var dataUrl = fileReader.result;
+//         $(".image-preview").append(`<img src="${dataUrl}">`);
+//         makeRequest(dataUrl, getAPIInfo);
+//       }
+//       fileReader.readAsDataURL(file);
+//     });
+
+//     // base64エンコード
+//     function makeRequest(dataUrl, callback) {
+//       var end = dataUrl.indexOf(",");
+//       var request = "{'requests': [{'image': {'content': '" + dataUrl.slice(end + 1) + "'}, 'features': [{'type': 'LABEL_DETECTION'}]}]}"
+//       callback(request)
+//     }
+
+//     // APIリクエスト
+//     function getAPIInfo(request) {
+//       $.ajax({
+//         url: apiTagUrl,
+//         type: 'POST',
+//         async: true,
+//         cache: false,
+//         data: request,
+//         dataType: 'json',
+//         contentType: 'application/json',
+//       }).done(function(result) {
+//         showResult(result);
+//       }).fail(function(result) {
+//         console.log('取得に失敗しました。');
+//       });
+//     }
+
+//     // JSONResult
+//     function showResult(result) {
+//       var responses = result.responses[0]
+//       for (let i = 0; i < responses.labelAnnotations.length; i++) {
+//         $("#tag-list").append(`<p class="inline-block" id=api-tag${i}><span class="menu-tag api-menu-tag">${responses.labelAnnotations[i].description} <a>x</a></span></p>`);
+//         $("#api-tag"+i).append(`<input type="hidden" value="${responses.labelAnnotations[i].description}" name="tag[]"></input>`);
+//       }
+//     }
+//   }
+// });
 
 // // 新規会員登録フォームのバリデーション（confirmページをPOSTに変更したため廃止）
 // addEventListener('DOMContentLoaded', function() {
