@@ -12,10 +12,10 @@ class ApplicationController < ActionController::Base
   #   end
   # end
 
-  # Google Cloud PlatformのAPIキーをJSON形式で保存（gem'gon'）
-  def api
-    gon.gcp_api_key = ENV['GCP_API_KEY']
-  end
+  # Google Cloud PlatformのAPIキーをJSON形式で保存（gem'gon'）(jsでAPIキーを使わなくなったためコメントアウト)
+  # def api
+  #   gon.gcp_api_key = ENV['GCP_API_KEY']
+  # end
 
   protected
   # ユーザー新規登録用許可キー

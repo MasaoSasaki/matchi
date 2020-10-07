@@ -1,10 +1,13 @@
 class Owner::MenusController < Owner::Base
 
+  # (jsでAPIキーを使わなくなったためコメントアウト)
+  # before_action :api, only: %i[edit new create update]
   before_action :current_restaurant?
   before_action :current_menu?, except: %i[index new create], unless: :master_admin_signed_in?
-  before_action :api, only: %i[edit new create update]
   before_action :set_current_restaurant, except: %i[destroy]
   before_action :set_restaurant, only: %i[index show new edit]
+  # get_vision_tagsのPOSTアクションのみcsrf除外
+  protect_from_forgery with: :null_session, only: %i[get_vision_tags]
 
   def index
     @menus = @restaurant.menus
@@ -73,6 +76,18 @@ class Owner::MenusController < Owner::Base
   def update
     menu = Menu.find(params[:id])
     menu.reservation_method = params[:reservation_method].to_i
+
+    # 削除されたタグの処理
+    after_existing_tags = params[:existing_tag].map(&:to_i)
+    before_existing_tags = menu.menu_tags.ids
+    unless before_existing_tags == after_existing_tags
+      before_existing_tags.each do |before_existing_tag|
+        unless after_existing_tags.include?(before_existing_tag)
+          MenuTag.find(before_existing_tag).destroy
+        end
+      end
+    end
+
     if menu.update(menu_params)
       # 推奨タグの追加・削除
       params[:tag_id].each do |tag, box|
@@ -128,6 +143,11 @@ class Owner::MenusController < Owner::Base
 
   def set_restaurant
     @restaurant = Restaurant.find(params[:restaurant_id])
+  end
+
+  def get_vision_tags
+    image_file = params[:menu_image]
+    @tags = Vision.get_image_data(image_file)
   end
 
   private

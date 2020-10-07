@@ -39,6 +39,7 @@ Rails.application.routes.draw do
       sessions: 'owner/restaurants/sessions',
       registrations: 'owner/restaurants/registrations'
     }
+    post 'menus/get_vision_tags', to: 'menus#get_vision_tags'
     resources :restaurants, only: %i[show edit update] do
       resources :menus
     end

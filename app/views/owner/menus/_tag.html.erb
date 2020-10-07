@@ -1,0 +1,6 @@
+<% tags.each do |tag| %>
+  <p class="inline-block" id="api-tags">
+    <%= hidden_field_tag "tag[]", tag %>
+    <span class="menu-tag api-menu-tag"><%= tag %> <a>x</a></span>
+  </p>
+<% end %>
