@@ -2,7 +2,7 @@ class Owner::MenusController < Owner::Base
 
   # (jsでAPIキーを使わなくなったためコメントアウト)
   # before_action :api, only: %i[edit new create update]
-  before_action :current_restaurant?
+  before_action :current_restaurant?, except: %i[get_vision_tags]
   before_action :current_menu?, except: %i[index new create], unless: :master_admin_signed_in?
   before_action :set_current_restaurant, except: %i[destroy]
   before_action :set_restaurant, only: %i[index show new edit]

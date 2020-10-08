@@ -246,6 +246,7 @@ addEventListener('DOMContentLoaded', function() {
         const getTagsBtn = document.getElementById("vision-api-event");
         var end = dataUrl.indexOf(",");
         getTagsBtn.addEventListener('click', function() {
+          getTagsBtn.innerText = "取得中...";
           $.ajax({
             url: '/owner/menus/get_vision_tags',
             type: 'POST',
@@ -253,10 +254,11 @@ addEventListener('DOMContentLoaded', function() {
               menu_image: dataUrl.slice(end + 1)
             },
           }) .done(function() {
-            console.log("成功")
+            getTagsBtn.innerText = "取得完了";
+            getTagsBtn.classList.add("inactive");
           }) .fail(function() {
-            console.log("失敗")
-          })
+            getTagsBtn.innerText = "取得できませんでした。";
+          });
         });
 
         // (APIリクエストをRails側での処理に変更)
