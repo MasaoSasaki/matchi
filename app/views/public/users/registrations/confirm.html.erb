@@ -36,7 +36,7 @@
           </td>
         </tr>
         <tr>
-          <td><%= @password %></td>
+          <td><%= blind(@user.password) %></td>
           <td><%= f.hidden_field :password, value: @user.password %></td>
           <td></td>
         </tr>
@@ -90,7 +90,7 @@
               <em>(<%= @minimum_password_length %>文字以上)</em>
             <% end %>
           </td>
-          <td><%= @password %></td>
+          <td><%= blind(@user.password) %></td>
           <td><%= f.hidden_field :password, autocomplete: "new-password", value: @user.password %></td>
           <td></td>
         </tr>
