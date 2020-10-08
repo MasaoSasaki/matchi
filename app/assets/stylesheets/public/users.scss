@@ -61,7 +61,14 @@
 
 // PC・タブレット共通
 @media (min-width: $media-tb-min) {
-//
+// registrations/confirm
+  .public-users-registrations-confirm, .public-users-registrations-new {
+
+    &.sp {
+      display: none;
+    }
+  }
+
   .user-links {
     padding: 20px;
     margin: 20px;
