@@ -167,14 +167,14 @@ function imagePreview(fileForm, previewArea) {
   fileReader.onloadend = function() {
     const dataUrl = fileReader.result;
     previewArea.insertAdjacentHTML('afterbegin', `<img src="${dataUrl}">`);
-    const tagList = document.getElementById("tag-list");
+    const tagList = document.getElementsByClassName("image-preview");
     // アップロードされた画像がメニュー画像ならボタンを表示する
     if (fileForm.id != "menu_menu_image") { return }
-    tagList.insertAdjacentHTML(
-      "beforebegin",
-      `<button name="ja" type="button" class="vision-api-event">タグを取得(日本語)</button>
-      <button name="pure" type="button" class="vision-api-event">タグを取得(英語)</button>
-      <button name="all" type="button" class="vision-api-event">タグを取得(日本語・英語)</button>`
+    tagList[0].insertAdjacentHTML(
+      "afterend",
+      `<button name="ja" type="button" class="vision-api-event btn btn-default">タグを取得(日本語)</button>
+      <button name="pure" type="button" class="vision-api-event btn btn-default">タグを取得(英語)</button>
+      <button name="all" type="button" class="vision-api-event btn btn-default">タグを取得(日本語・英語)</button>`
       );
     const getTagsBtn = document.getElementsByClassName("vision-api-event");
     for (let i = 0; i < getTagsBtn.length; i++) {
@@ -188,7 +188,10 @@ function sendImageData(dataUrl, getTagsBtn) {
   const lang = getTagsBtn.name;
   getTagsBtn.addEventListener('click', function() {
     switch (lang) {
-      case "pure" || "ja":
+      case "pure":
+        document.getElementsByName("all")[0].classList.add("inactive");
+        break;
+      case "ja":
         document.getElementsByName("all")[0].classList.add("inactive");
         break;
       default:

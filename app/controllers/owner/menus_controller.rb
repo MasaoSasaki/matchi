@@ -81,10 +81,11 @@ class Owner::MenusController < Owner::Base
     if params[:existing_tag]
       after_existing_tags = params[:existing_tag].map(&:to_i)
       before_existing_tags = menu.menu_tags.ids
-      return if before_existing_tags == after_existing_tags
-      before_existing_tags.each do |before_existing_tag|
-        unless after_existing_tags.include?(before_existing_tag)
-          MenuTag.find(before_existing_tag).destroy
+      unless before_existing_tags == after_existing_tags
+        before_existing_tags.each do |before_existing_tag|
+          unless after_existing_tags.include?(before_existing_tag)
+            MenuTag.find(before_existing_tag).destroy
+          end
         end
       end
     end

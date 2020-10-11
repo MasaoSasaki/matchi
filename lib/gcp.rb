@@ -27,7 +27,7 @@ module Gcp
       response = http.post(uri, params, headers)
 
       # APIレスポンス出力
-      JSON.parse(response.body)['responses'][0]['labelAnnotations'].pluck('description').take(10)
+      JSON.parse(response.body)['responses'][0]['labelAnnotations'].pluck('description').take(5)
     end
 
     def post_translation_api(context)
