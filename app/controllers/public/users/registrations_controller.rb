@@ -43,15 +43,6 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
   def confirm
     @user = User.new(sign_up_params)
     render :new and return if @user.invalid?
-
-    # パスワードの視覚的暗号化"*"
-    i = 0
-    @password = ""
-    while i < @user.password.length
-      @password += "*"
-      i += 1
-    end
-
   end
 
   def complete
