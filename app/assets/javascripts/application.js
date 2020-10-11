@@ -130,20 +130,18 @@ addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// ページトップにスクロール
-const scrollIcon = document.getElementById("move-head--icon");
-addEventListener('scroll', function() {
-  if (pageYOffset == 0 ) {
-    scrollIcon.classList.add("hidden");
-  } else {
-    scrollIcon.classList.remove("hidden");
-  }
-})
-scrollIcon.addEventListener('click', function() {
-  scrollTo({
-    top: 0,
-    left: 0,
-    behavior: 'smooth'
+// ヘッダーにスクロール
+addEventListener('DOMContentLoaded', function() {
+  const scrollIcon = document.getElementById("move-head--icon");
+  addEventListener('scroll', function() {
+    if (pageYOffset == 0 ) {
+      scrollIcon.classList.add("hidden");
+    } else {
+      scrollIcon.classList.remove("hidden");
+    }
+  })
+  scrollIcon.addEventListener('click', function() {
+    scrollTo(0, 0);
   });
 });
 
@@ -168,51 +166,53 @@ $(function() {
 });
 
 // メニュー写真、店舗写真のプレビュー表示
-const fileForm = document.getElementsByClassName("attachment_image");
-const previewArea = document.getElementsByClassName("image-preview");
-// どのattachment_fieldかを判別
-for (let i = 0; i < fileForm.length; i++) {
-  fileForm[i].addEventListener('change', function() {
-    const fileType = fileForm[i].files[0].type;
-    // 画像ファイル以外はリターン
-    if (fileType != "image/gif" && fileType != "image/png" && fileType != "image/jpeg") { return }
-    imagePreview(fileForm[i], previewArea[i]);
-  });
-}
-// 画像プレビュー表示
-function imagePreview(fileForm, previewArea) {
-  const fileReader = new FileReader();
-  fileReader.readAsDataURL(fileForm.files[0]);
-  fileReader.onloadend = function() {
-    const dataUrl = fileReader.result;
-    previewArea.insertAdjacentHTML('afterbegin', `<img src="${dataUrl}">`);
-    const tagList = document.getElementById("tag-list");
+addEventListener('DOMContentLoaded', function() {
+  const fileForm = document.getElementsByClassName("attachment_image");
+  const previewArea = document.getElementsByClassName("image-preview");
 
-    // アップロードされた画像がメニュー画像ならRailsに画像データを渡す
-    if (fileForm.id == "menu_menu_image") { sendImageData(tagList, dataUrl) }
-  }
-}
-// Railsに画像データを送信
-function sendImageData(tagList, dataUrl) {
-  tagList.insertAdjacentHTML("beforebegin", `<button name="button" type="button" id="vision-api-event">タグを取得</button>`)
-  const getTagsBtn = document.getElementById("vision-api-event");
-  var end = dataUrl.indexOf(",");
-  getTagsBtn.addEventListener('click', function() {
-    getTagsBtn.innerText = "取得中...";
-    $.ajax({
-      url: '/owner/menus/get_vision_tags',
-      type: 'POST',
-      data: {
-        menu_image: dataUrl.slice(end + 1)
-      },
-    }) .done(function() {
-      getTagsBtn.innerText = "取得完了";
-      getTagsBtn.classList.add("inactive");
-    }) .fail(function() {
-      getTagsBtn.innerText = "取得できませんでした。";
+  for (let i = 0; i < fileForm.length; i++) {
+    fileForm[i].addEventListener('change', function() {
+      imagePreview(fileForm[i], previewArea[i]);
     });
-  });
-}
+  }
+
+  function imagePreview(fileForm, previewArea) {
+    const file = fileForm.files[0];
+    // 画像ファイル以外はリターン
+    if (file.type != "image/gif" && file.type != "image/png" && file.type != "image/jpeg") {
+      return;
+    }
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onloadend = function() {
+      const dataUrl = fileReader.result;
+      previewArea.insertAdjacentHTML('afterbegin', `<img src="${dataUrl}">`);
+      const tagList = document.getElementById("tag-list");
+
+      // アップロードされた画像がメニュー画像ならRailsに画像データを渡す
+      if (fileForm.id == "menu_menu_image") {
+        tagList.insertAdjacentHTML("beforebegin", `<button name="button" type="button" id="vision-api-event">タグを取得</button>`)
+        const getTagsBtn = document.getElementById("vision-api-event");
+        var end = dataUrl.indexOf(",");
+        getTagsBtn.addEventListener('click', function() {
+          getTagsBtn.innerText = "取得中...";
+          $.ajax({
+            url: '/owner/menus/get_vision_tags',
+            type: 'POST',
+            data: {
+              menu_image: dataUrl.slice(end + 1)
+            },
+          }) .done(function() {
+            getTagsBtn.innerText = "取得完了";
+            getTagsBtn.classList.add("inactive");
+          }) .fail(function() {
+            getTagsBtn.innerText = "取得できませんでした。";
+          });
+        });
+      }
+    }
+  }
+});
 
 // xを押すとタグの削除
 $(function() {
