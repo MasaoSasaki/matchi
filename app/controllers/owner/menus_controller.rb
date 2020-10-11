@@ -77,10 +77,11 @@ class Owner::MenusController < Owner::Base
     menu = Menu.find(params[:id])
     menu.reservation_method = params[:reservation_method].to_i
 
-    # 削除されたタグの処理
-    after_existing_tags = params[:existing_tag].map(&:to_i)
-    before_existing_tags = menu.menu_tags.ids
-    unless before_existing_tags == after_existing_tags
+    # 現在のタグから削除されたタグの処理
+    if params[:existing_tag]
+      after_existing_tags = params[:existing_tag].map(&:to_i)
+      before_existing_tags = menu.menu_tags.ids
+      return if before_existing_tags == after_existing_tags
       before_existing_tags.each do |before_existing_tag|
         unless after_existing_tags.include?(before_existing_tag)
           MenuTag.find(before_existing_tag).destroy
@@ -147,7 +148,28 @@ class Owner::MenusController < Owner::Base
 
   def get_vision_tags
     image_file = params[:menu_image]
-    @tags = Vision.get_image_data(image_file)
+    tags = Gcp.post_vision_api(image_file)
+
+    case params[:lang_data]
+    # タグを取得する(英語)が押されたら
+    when "pure"
+      @tags_pure = tags
+
+    # タグを取得する(日本語)が押されたら
+    when "ja"
+      @tags_ja = []
+      tags.each do |tag|
+        @tags_ja << Gcp.post_translation_api(tag)
+      end
+
+    # タグを取得する(日本語・英語)が押されたら
+    when "all"
+      @tags_pure = tags
+      @tags_ja = []
+      tags.each do |tag|
+        @tags_ja << Gcp.post_translation_api(tag)
+      end
+    end
   end
 
   private

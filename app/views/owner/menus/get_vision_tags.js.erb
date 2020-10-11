@@ -1,1 +1,8 @@
-$("#tag-list").html("<%= j(render partial: 'owner/menus/tag', locals:{tags: @tags}) %>")
+<% if @tags_ja && @tags_pure %>
+  $("#tag-list").append("<%= j(render partial: 'owner/menus/tag', locals:{tags: @tags_pure}) %>")
+  $("#tag-list").append("<%= j(render partial: 'owner/menus/tag', locals:{tags: @tags_ja}) %>")
+<% elsif @tags_pure %>
+  $("#tag-list").append("<%= j(render partial: 'owner/menus/tag', locals:{tags: @tags_pure}) %>")
+<% elsif @tags_ja %>
+  $("#tag-list").append("<%= j(render partial: 'owner/menus/tag', locals:{tags: @tags_ja}) %>")
+<% end %>

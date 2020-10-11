@@ -16,7 +16,7 @@ module Matchi
     # ja.ymlファイル読み込み
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
 
-    # Cloud Vision APIリクエストファイル
+    # APIリクエストファイル
     config.paths.add 'lib', eager_load: true
 
     # Settings in config/environments/* take precedence over those specified here.
