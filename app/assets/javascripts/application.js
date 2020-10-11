@@ -167,29 +167,51 @@ function imagePreview(fileForm, previewArea) {
   fileReader.onloadend = function() {
     const dataUrl = fileReader.result;
     previewArea.insertAdjacentHTML('afterbegin', `<img src="${dataUrl}">`);
-    const tagList = document.getElementById("tag-list");
-    // アップロードされた画像がメニュー画像ならRailsに画像データを渡す
-    if (fileForm.id == "menu_menu_image") { sendImageData(tagList, dataUrl) }
+    const tagList = document.getElementsByClassName("image-preview");
+    // アップロードされた画像がメニュー画像ならボタンを表示する
+    if (fileForm.id != "menu_menu_image") { return }
+    tagList[0].insertAdjacentHTML(
+      "afterend",
+      `<button name="ja" type="button" class="vision-api-event btn btn-default">タグを取得(日本語)</button>
+      <button name="pure" type="button" class="vision-api-event btn btn-default">タグを取得(英語)</button>
+      <button name="all" type="button" class="vision-api-event btn btn-default">タグを取得(日本語・英語)</button>`
+      );
+    const getTagsBtn = document.getElementsByClassName("vision-api-event");
+    for (let i = 0; i < getTagsBtn.length; i++) {
+      sendImageData(dataUrl, getTagsBtn[i]);
+    }
   }
 }
 // Railsに画像データを送信
-function sendImageData(tagList, dataUrl) {
-  tagList.insertAdjacentHTML("beforebegin", `<button name="button" type="button" id="vision-api-event">タグを取得</button>`)
-  const getTagsBtn = document.getElementById("vision-api-event");
-  var end = dataUrl.indexOf(",");
+function sendImageData(dataUrl, getTagsBtn) {
+  const end = dataUrl.indexOf(",");
+  const lang = getTagsBtn.name;
   getTagsBtn.addEventListener('click', function() {
+    switch (lang) {
+      case "pure":
+        document.getElementsByName("all")[0].classList.add("inactive");
+        break;
+      case "ja":
+        document.getElementsByName("all")[0].classList.add("inactive");
+        break;
+      default:
+        document.getElementsByName("pure")[0].classList.add("inactive");
+        document.getElementsByName("ja")[0].classList.add("inactive");
+    }
     getTagsBtn.innerText = "取得中...";
+    getTagsBtn.classList.add("inactive");
     $.ajax({
       url: '/owner/menus/get_vision_tags',
       type: 'POST',
       data: {
-        menu_image: dataUrl.slice(end + 1)
+        menu_image: dataUrl.slice(end + 1),
+        lang_data: lang
       },
     }) .done(function() {
       getTagsBtn.innerText = "取得完了";
-      getTagsBtn.classList.add("inactive");
     }) .fail(function() {
       getTagsBtn.innerText = "取得できませんでした。";
+      getTagsBtn.classList.remove("inactive");
     });
   });
 }

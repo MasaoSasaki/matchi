@@ -6,6 +6,7 @@
         <div class="menu-image">
           <%= f.attachment_field :menu_image, class: "attachment_image" %>
           <div class="image-preview"></div>
+          <div id="api-tag-list"></div>
           <h4>タグの追加（※重複するタグは１つにまとめられます。）</h4>
           <%= text_field_tag :tag_name %>
           <%= button_tag '追加', type: 'button', class: "add-tag-btn" %>
