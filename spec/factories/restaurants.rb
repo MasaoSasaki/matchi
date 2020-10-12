@@ -7,7 +7,7 @@ FactoryBot.define do
     introduction { "" }
     postal_code { "0000000" }
     phone_number { "00000000000" }
-    corporate { "" }
+    corporate { "a@a.a" }
     twitter { "" }
     facebook { "" }
     instagram { "" }
