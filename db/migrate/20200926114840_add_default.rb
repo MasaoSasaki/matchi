@@ -11,6 +11,7 @@ class AddDefault < ActiveRecord::Migration[5.2]
     change_column :users, :birth_month, :integer, default: 1
     change_column :users, :birth_day, :integer, default: 1
     change_column :menus, :menu_image_id, :string, default: ""
+    change_column :restaurants, :restaurant_image_id, :string, default: ""
     change_column :restaurants, :corporate, :string, default: ""
     change_column :restaurants, :twitter, :string, default: ""
     change_column :restaurants, :facebook, :string, default: ""
@@ -29,6 +30,7 @@ class AddDefault < ActiveRecord::Migration[5.2]
     change_column_default :users, :birth_month, nil
     change_column_default :users, :birth_day, nil
     change_column_default :menus, :menu_image_id, nil
+    change_column_default :restaurants, :restaurant_image_id, nil
     change_column_default :restaurants, :corporate, nil
     change_column_default :restaurants, :twitter, nil
     change_column_default :restaurants, :facebook, nil
