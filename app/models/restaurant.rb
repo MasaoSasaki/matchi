@@ -20,6 +20,9 @@ class Restaurant < ApplicationRecord
     validates :phone_number, presence: true
   end
 
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, format: { with: VALID_EMAIL_REGEX }, length: {maximum:255}
+
   def prefecture_name
     JpPrefecture::Prefecture.find(code: prefecture_id).try(:name)
   end
