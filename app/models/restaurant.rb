@@ -12,9 +12,7 @@ class Restaurant < ApplicationRecord
   jp_prefecture :prefecture, method_name: :pref
 
   # バリデーションチェック
-
   with_options on: :update? do
-    validates :email, presence: true
     validates :name, presence: true
     validates :postal_code, presence: true
     validates :phone_number, presence: true
