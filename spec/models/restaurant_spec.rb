@@ -8,6 +8,10 @@ RSpec.describe Restaurant, type: :model do
         restaurant = build(:restaurant)
         expect(restaurant).to be_valid
       end
+      it ':corporateが空白の場合も保存できる' do
+        restaurant = build(:restaurant, corporate: nil)
+        expect(restaurant).to be_valid
+      end
     end
     context '保存ができない場合のテスト' do
       it ':emailが空白の場合は保存できない' do
@@ -55,10 +59,6 @@ RSpec.describe Restaurant, type: :model do
       it ':phone_numberが15文字を超える場合は保存できない' do
         restaurant = build(:restaurant, phone_number: "0" * 16)
         expect(restaurant).to be_invalid
-      end
-      it ':corporateが空白の場合は保存できる' do
-        restaurant = build(:restaurant, corporate: nil)
-        expect(restaurant).to be_valid
       end
       it ':corporateが255文字を超える場合は保存できない' do
         restaurant = build(:restaurant, corporate: "a@a.a" + ("a" * 255))
