@@ -1,4 +1,5 @@
 FactoryBot.define do
+
   factory :restaurant do
     id { 1 }
     email { "a@a.a" }
@@ -18,4 +19,5 @@ FactoryBot.define do
     street { "" }
     building { "" }
   end
+  
 end
