@@ -5,6 +5,7 @@ class Restaurant < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :menus, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   attachment :restaurant_image
 
