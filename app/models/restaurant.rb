@@ -21,7 +21,6 @@ class Restaurant < ApplicationRecord
     validates :street, presence: true
     validates :building, presence: true
   end
-
   with_options length: { maximum: 255 } do
     validates :email
     validates :password
@@ -36,12 +35,11 @@ class Restaurant < ApplicationRecord
     validates :street
     validates :building
   end
-
   ADDRESS_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, format: { with: ADDRESS_REGEX }
   validates :postal_code, length: { maximum: 9 }
   validates :phone_number, length: { maximum: 15 }
-  # コーポレートサイトは空白、もしくは正規表現でのみ保存可能
+    # コーポレートサイトは空白、もしくは正規表現でのみ保存可能
   validates :corporate, format: { with: ADDRESS_REGEX }, unless: :presense_nil?
 
   def prefecture_name
