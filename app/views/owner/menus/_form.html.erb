@@ -40,7 +40,7 @@
             </tr>
             <tr>
               <td><%= f.label :reservation_method %></td>
-              <td><%= f.select :reservation_method, Menu.reservation_methods.keys.map {|method| [method]} %></td>
+              <td><%= f.select :reservation_method, Menu.reservation_methods_i18n.invert %></td>
             </tr>
             <tr>
               <td><%= f.label :is_sale_frag %></td>
