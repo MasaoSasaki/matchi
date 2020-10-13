@@ -15,10 +15,10 @@ RSpec.describe Tag, type: :model do
       it ':nameの値が重複する場合は保存できない' do
         tag = build(:tag)
         tag.save
-        duplicate_tag = Tag.new(name: tag.name)
+        duplicate_tag = build(:tag, name: tag.name)
         expect(duplicate_tag).to be_invalid
       end
     end
   end
-  
+
 end
