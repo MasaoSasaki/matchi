@@ -5,6 +5,7 @@ class Restaurant < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :menus, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   attachment :restaurant_image
 
@@ -12,9 +13,7 @@ class Restaurant < ApplicationRecord
   jp_prefecture :prefecture, method_name: :pref
 
   # バリデーションチェック
-
   with_options on: :update? do
-    validates :email, presence: true
     validates :name, presence: true
     validates :postal_code, presence: true
     validates :phone_number, presence: true
@@ -23,7 +22,6 @@ class Restaurant < ApplicationRecord
     validates :street, presence: true
     validates :building, presence: true
   end
-
   with_options length: { maximum: 255 } do
     validates :email
     validates :password
@@ -38,13 +36,13 @@ class Restaurant < ApplicationRecord
     validates :street
     validates :building
   end
-
-  ADDRESS_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, format: { with: ADDRESS_REGEX }
   validates :postal_code, length: { maximum: 9 }
   validates :phone_number, length: { maximum: 15 }
-  # コーポレートサイトは空白、もしくは正規表現でのみ保存可能
-  validates :corporate, format: { with: ADDRESS_REGEX }, unless: :presense_nil?
+  with_options format: { with: ADDRESS_REGEX } do
+    validates :email
+    # コーポレートサイトは空白、もしくは正規表現でのみ保存可能
+    validates :corporate, unless: :presense_nil?
+  end
 
   def prefecture_name
     JpPrefecture::Prefecture.find(code: prefecture_id).try(:name)
