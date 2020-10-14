@@ -40,9 +40,8 @@ class User < ApplicationRecord
   end
 
   validates :phone_number, length: { maximum: 15 }
-  MAIL_ADDRESS_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   NAME_KANA_REGEX = /\A[ぁ-んァ-ヶー－]+\z/ # 全角かな・カナのみ
-  with_options format: { with: MAIL_ADDRESS_REGEX } do
+  with_options format: { with: ADDRESS_REGEX } do
     validates :email
     validates :email_sub
   end

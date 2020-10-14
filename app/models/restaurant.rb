@@ -38,7 +38,6 @@ class Restaurant < ApplicationRecord
   end
   validates :postal_code, length: { maximum: 9 }
   validates :phone_number, length: { maximum: 15 }
-  ADDRESS_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   with_options format: { with: ADDRESS_REGEX } do
     validates :email
     # コーポレートサイトは空白、もしくは正規表現でのみ保存可能
