@@ -5,7 +5,7 @@ RSpec.describe MenuTag, type: :model do
   describe 'MenuTagモデルのテスト' do
     context '保存できる場合のテスト' do
       it '保存ができる' do
-        menu_tag = build(:menu_tag)
+        menu_tag = create(:menu_tag)
         expect(menu_tag).to be_valid
       end
     end

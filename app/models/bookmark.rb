@@ -8,5 +8,9 @@ class Bookmark < ApplicationRecord
     validates :user_id
     validates :restaurant_id
   end
+  with_options presence: true do
+    validates :user_id
+    validates :restaurant_id
+  end
 
 end
