@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 2020_09_29_022249) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name", default: "", null: false
-    t.string "restaurant_image_id"
+    t.string "restaurant_image_id", default: ""
     t.text "introduction", default: ""
     t.string "postal_code", default: "", null: false
     t.string "phone_number", default: "", null: false
