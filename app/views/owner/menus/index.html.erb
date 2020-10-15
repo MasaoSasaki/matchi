@@ -20,7 +20,7 @@
             <% end %>
           </td>
           <td><%= link_to "#{menu.title}", owner_restaurant_menu_path(@restaurant, menu) %></td>
-          <td><%= menu.reservation_method %></td>
+          <td><%= menu.reservation_method_i18n %></td>
           <td>
             <% if menu.is_sale_frag == true %>
               <%= '販売中' %>

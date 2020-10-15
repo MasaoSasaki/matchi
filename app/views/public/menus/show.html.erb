@@ -13,7 +13,7 @@
         <h4>提供価格（税込）：</h4>
         <p><%= @menu.discount_price.to_s(:delimited) %> 円</p>
         <h3>予約方法</h3>
-        <p><%= @menu.reservation_method %></p>
+        <p><%= @menu.reservation_method_i18n %></p>
       </div>
       <div class="menu-image"><%= attachment_image_tag @menu, :menu_image, fallback: "no_image.png" %></div>
     </div>
@@ -29,15 +29,15 @@
   <div class="reservation">
     <% if user_signed_in? %>
       <% case @menu.reservation_method %>
-      <% when "ご予約不可" %>
+      <% when "not" %>
         <%= submit_tag '予約情報を入力する', class: "btn btn-success inactive" %>
         <p>予約不可のメニューです、直接店舗にご来店ください。</p>
-      <% when "ご予約可能" %>
+      <% when "done" %>
         <%= form_with url: new_user_reservation_path(current_user), method: :get, local: true do |f| %>
           <%= f.hidden_field :menu_id, value: params[:id] %>
           <%= f.submit '予約情報を入力する', class: "btn btn-success" %>
         <% end %>
-      <% when "ご予約のみ" %>
+      <% when "simply" %>
         <%= form_with url: new_user_reservation_path(current_user), method: :get, local: true do |f| %>
           <%= f.hidden_field :menu_id, value: params[:id] %>
           <%= f.submit '予約情報を入力する', class: "btn btn-success" %>
