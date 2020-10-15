@@ -25,6 +25,10 @@
   box-sizing: border-box;
 }
 
+header {
+  border-bottom: solid 1px #ccc;
+}
+
 body {
   background-color: $thema-color1;
 }
@@ -95,6 +99,27 @@ ul {
   object-fit: cover;
 }
 
+.pc-header {
+  justify-content: space-between;
+
+  li {
+    margin: 0 10px;
+  }
+}
+
+.logo-image {
+  background-image: image-url("logo.png");
+  background-size: cover;
+  background-position: center;
+  width: $logo-image-width;
+  height: $logo-image-height;
+}
+
+.contents {
+  min-height: 300px;
+  padding: 20px;
+}
+
 // お知らせメッセージ
 // application.html.erb
 .layouts-app-header {
@@ -115,29 +140,6 @@ ul {
   }
 }
 
-.pc-header li {
-  margin: 0 10px;
-}
-
-.pc-header {
-  justify-content: space-between;
-}
-
-.logo-image {
-  background-image: image-url("logo.png");
-  background-size: cover;
-  background-position: center;
-  width: $logo-image-width;
-  height: $logo-image-height;
-}
-
-.body-container {
-  min-height: 500px;
-  border-top: solid 1.3px #ccc;
-  border-bottom: solid 1.3px #ccc;
-  padding-bottom: 20px;
-}
-
 // /public/users/reservation/index
 .public-users-reservations-index {
 
@@ -147,17 +149,6 @@ ul {
   h2 {
     text-align: center;
   }
-
-}
-
-// /public/users/reservation/new
-.reservation-confirm {
-  margin: 20px 0;
-}
-
-// /public/users/reservation/confirm
-.reservation-completion {
-  margin: 20px 0;
 }
 
 //devise
@@ -179,6 +170,7 @@ ul {
 // footer
 footer {
   padding: 20px 0 40px;
+  border-top: solid 1px #ccc;
 }
 
 .copyright {
@@ -233,7 +225,8 @@ footer {
 
   .contents {
     margin: 0 auto;
-    padding: 0 70px;
+    padding-left: 70px;
+    padding-right: 70px;
     max-width: 900px;
   }
 
@@ -256,11 +249,6 @@ footer {
 
 // タブレット端末用
 @media (min-width: $media-tb-min) and (max-width: $media-tb-max) {
-
-  .contents {
-    margin: 0 auto;
-    padding: 0 70px;
-  }
 }
 
 // スマホ用
@@ -275,8 +263,7 @@ footer {
   }
 
   .contents {
-    padding: 0 20px;
-    max-width: 900px;
+    // max-width: 900px;
   }
 
   .registration-btn {
@@ -417,12 +404,7 @@ footer {
     left: 0;
   }
 
-  .body-container {
-    min-height: 500px;
-  }
-
   // public/users/profile
-
   .profile_image {
     padding-right: 0;
   }
