@@ -50,6 +50,10 @@
   }
 
   .top-contents {
+    margin: 0 auto;
+    padding: 0 20px 20px;
+    max-width: 100%;
+    flex: 1;
 
     .top-menu, .top-restaurant {
       margin: 10px 0;
@@ -58,7 +62,6 @@
       border-radius: 20px;
     }
   }
-
 
   h3 {
     margin-top: 0;
@@ -79,9 +82,75 @@
 
 }
 
+// about
+.public-homes-about {
+  padding: 40px 70px;
+  background-image: image-url("about_background.jpg");
+  background-size: 130%;
+  background-color: rgba(255, 0, 0, 0.2);
+  background-position: center;
+  background-blend-mode: lighten;
+  background-attachment: fixed;
+
+  &__contents {
+    margin: 10px auto;
+    padding: 30px;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0px 0px 50px white;
+
+    h2 {
+      margin-top: 20px;
+      margin-bottom: 10px;
+      font-style: italic;
+      text-decoration: underline;
+      text-align: center;
+    }
+    p {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    li {
+      padding: 20px;
+      margin: 20px;
+      flex: 1;
+      text-align: center;
+      border-radius: 30px;
+      opacity: 0.8;
+
+      h3 {
+        margin: 10px 0 30px;
+      }
+      p {
+        text-align: left;
+        letter-spacing: 0.2em;
+      }
+
+      &:nth-child(1) {
+        background: #FCDDD7;
+      }
+      &:nth-child(2) {
+        background: #CDFACD;
+      }
+      &:nth-child(3) {
+        background: #E6DCC1;
+      }
+      &:nth-child(4) {
+        background: #FFD4FF;
+      }
+    }
+  }
+}
+
 // スマホ画面
 @media (max-width: $media-sp-max) {
+
+  // top
   .public-homes-top {
+
+    &.top-contents {
+      padding-top: 20px;
+    }
 
     &__header-image {
       height: 200px;
@@ -124,6 +193,10 @@
     }
   }
 
+  // about
+  .public-homes-about {
+    padding: 20px 20px;
+  }
 }
 
 // タブレット画面
@@ -253,6 +326,45 @@
     padding: 70px;
   }
 
+  // about
+  .public-homes-about {
+    padding: 40px 70px;
+    background-image: image-url("about_background.jpg");
+    background-size: 130%;
+    background-color: rgba(255, 0, 0, 0.2);
+    background-position: center;
+    background-blend-mode: lighten;
+
+    &__contents {
+      margin: 10px auto;
+      padding: 30px;
+      border-radius: 50px;
+      background-color: rgba(255, 255, 255, 0.9);
+      box-shadow: 0px 0px 50px white;
+
+      h2 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-style: italic;
+        text-decoration: underline;
+        text-align: center;
+      }
+      p {
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      ul {
+        display: flex;
+
+        li {
+          flex: 1;
+          text-align: center;
+          border-radius: 30px;
+        }
+      }
+    }
+  }
 }
 
 // これより下、未refactoring
@@ -260,10 +372,6 @@
 // /public/homes/top
 .restaurant-info, .menu-info {
   padding-left: 10px;
-}
-
-.top-contents {
-  flex: 1;
 }
 
 .registration {
@@ -319,35 +427,4 @@
 //public/privacy
 .privacy h2, .terms h2, .contact h2, .administrator h2 {
   margin: 1.5em 0 0.4em;
-}
-
-//public/About
-.about-contents h1 {
-  margin-top: 20px;
-  margin-bottom: 10px;
-  font-style: italic;
-  text-decoration: underline;
-  text-align: center;
-}
-
-.about-contents p {
-  text-align: center;
-}
-
-.about-message {
-  max-width: 700px;
-  margin: 10px auto;
-  padding: 30px;
-  font-size: 0.8em;
-  text-align: center;
-  border: 1px solid black;
-  border-radius: 20px;
-  background-color: rgb(255, 240, 240);
-}
-
-.top-contents {
-  margin: 0 auto;
-  padding: 0 20px;
-  max-width: 100%;
-  height: 100%;
 }
