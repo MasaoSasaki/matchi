@@ -105,3 +105,9 @@ ja:
         member: "有効会員"
         withdrew: "退会済み"
         forced: "強制退会"
+
+    menu:
+      reservation_method:
+        only: ご予約のみ
+        done: ご予約可能
+        not: ご予約不可
