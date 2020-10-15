@@ -10,6 +10,7 @@ class Menu < ApplicationRecord
 
   with_options presence: true do
     validates :title
+    validates :reservation_method
   end
 
   with_options length: { maximum: 255 } do
