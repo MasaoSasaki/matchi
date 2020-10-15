@@ -36,7 +36,6 @@ class User < ApplicationRecord
     validates :birth_year
     validates :birth_month
     validates :birth_day
-    validates :user_status
   end
 
   validates :phone_number, length: { maximum: 15 }

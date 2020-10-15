@@ -5,7 +5,7 @@ class Owner::MenusController < Owner::Base
   before_action :current_restaurant?, except: %i[get_vision_tags]
   before_action :current_menu?, except: %i[index new create get_vision_tags], unless: :master_admin_signed_in?
   before_action :set_current_restaurant, except: %i[destroy]
-  before_action :set_restaurant, only: %i[index show new edit]
+  before_action :set_restaurant, only: %i[index show new edit update]
   # get_vision_tagsのPOSTアクションのみcsrf除外
   protect_from_forgery with: :null_session, only: %i[get_vision_tags]
 
@@ -75,7 +75,6 @@ class Owner::MenusController < Owner::Base
 
   def update
     menu = Menu.find(params[:id])
-    menu.reservation_method = params[:reservation_method].to_i
 
     # 現在のタグから削除されたタグの処理
     if params[:existing_tag]
@@ -89,7 +88,7 @@ class Owner::MenusController < Owner::Base
         end
       end
     end
-
+    
     if menu.update(menu_params)
       # 推奨タグの追加・削除
       params[:tag_id].each do |tag, box|
@@ -133,6 +132,9 @@ class Owner::MenusController < Owner::Base
       end
       redirect_to owner_restaurant_menu_path(@current_restaurant, menu)
     else
+      @menu = menu
+      @menu_tags = MenuTag.where(menu_id: params[:id])
+      @tags = Tag.all
       render :edit
     end
   end
