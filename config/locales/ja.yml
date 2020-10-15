@@ -96,18 +96,18 @@ ja:
   enums:
     reservation:
       payment_method:
-        cash: "店舗でお支払い"
-        credit: "クレジットカード支払い"
-        bank: "銀行振り込み"
+        cash: 店舗でお支払い
+        credit: クレジットカード支払い
+        bank: 銀行振り込み
 
     user:
       user_status:
-        member: "有効会員"
-        withdrew: "退会済み"
-        forced: "強制退会"
+        member: 有効会員
+        withdrew: 退会済み
+        forced: 強制退会
 
     menu:
       reservation_method:
-        only: ご予約のみ
+        simply: ご予約のみ
         done: ご予約可能
         not: ご予約不可
