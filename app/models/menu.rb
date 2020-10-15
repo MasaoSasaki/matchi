@@ -4,7 +4,7 @@ class Menu < ApplicationRecord
   has_many :reservations
   has_many :menu_tags, dependent: :destroy
 
-  enum reservation_method: {'ご予約のみ': 0, 'ご予約可能': 1, 'ご予約不可': 2}
+  enum reservation_method: { simply: 0, done: 1, not: 2 }
 
   attachment :menu_image
 
@@ -21,7 +21,6 @@ class Menu < ApplicationRecord
     validates :restaurant_id
     validates :regular_price
     validates :discount_price
-    validates :reservation_method
   end
 
   validates :is_sale_frag, inclusion: { in: [true, false] }
