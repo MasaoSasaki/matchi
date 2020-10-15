@@ -1,5 +1,28 @@
 require 'rails_helper'
 
 RSpec.describe Bookmark, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  describe 'Bookmarkモデルのテスト' do
+    context '保存できる場合のテスト' do
+      it '保存ができる' do
+        bookmark = build(:bookmark)
+        expect(bookmark).to be_valid
+      end
+    end
+    context '保存ができない場合のテスト' do
+      it '外部キーが空白の場合は保存できない' do
+        bookmark = build(:bookmark, user_id: nil)
+        expect(bookmark).to be_invalid
+        bookmark = build(:bookmark, restaurant_id: nil)
+        expect(bookmark).to be_invalid
+      end
+      it '外部キーが文字列型の場合は保存できない' do
+        bookmark = build(:bookmark, user_id: '１')
+        expect(bookmark).to be_invalid
+        bookmark = build(:bookmark, restaurant_id: '１')
+        expect(bookmark).to be_invalid
+      end
+    end
+  end
+
 end

@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :menu do
-    association :restaurant, factory: :restaurant
-    restaurant_id { 1 }
+    association :restaurant
     title { "タイトル" }
     menu_image_id { "" }
     content { "" }
