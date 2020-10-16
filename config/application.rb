@@ -19,6 +19,15 @@ module Matchi
     # APIリクエストファイル
     config.paths.add 'lib', eager_load: true
 
+    # rspecファイル設定
+    config.generators do |g|
+      fixtures: false,
+      view_specs: false,
+      controller_specs: false,
+      helper_specs: false,
+      routing_specs: false
+    end
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
