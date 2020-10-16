@@ -21,7 +21,7 @@ module Matchi
 
     # rspecファイル設定
     config.generators do |g|
-      fixtures: false,
+      g.test_framework :rspec,
       view_specs: false,
       controller_specs: false,
       helper_specs: false,
