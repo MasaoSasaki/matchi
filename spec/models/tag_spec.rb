@@ -12,17 +12,18 @@ RSpec.describe Tag, type: :model do
     context '保村ができない場合のテスト' do
       it ':nameが空白の場合は保存できない' do
         tag = build(:tag, name: nil)
-        expect(tag).to be_invalid
+        tag.valid?
+        expect(tag.errors[:name]).to include("を入力してください")
       end
       it ':nameが255文字を超える場合は保存できない' do
         tag = build(:tag, name: '0' * 256)
-        expect(tag).to be_invalid
+        tag.valid?
+        expect(tag.errors[:name]).to include("は255文字以内で入力してください")
       end
       it ':nameが重複する場合は保存できない' do
-        tag = build(:tag)
-        tag.save
-        duplicate_tag = build(:tag, name: tag.name)
-        expect(duplicate_tag).to be_invalid
+        tag = build(:tag, name: create(:tag).name)
+        tag.valid?
+        expect(tag.errors[:name]).to include("はすでに存在します")
       end
     end
   end
