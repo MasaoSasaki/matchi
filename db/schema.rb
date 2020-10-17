@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2020_09_29_022249) do
     t.text "cancel", default: ""
     t.integer "regular_price", null: false
     t.integer "discount_price", null: false
-    t.integer "reservation_method", default: 0
+    t.integer "reservation_method", default: 0, null: false
     t.boolean "is_sale_frag", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

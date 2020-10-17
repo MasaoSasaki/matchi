@@ -1,8 +1,7 @@
 FactoryBot.define do
 
   factory :user do
-    id { 1 }
-    email { "a@a.a" }
+    sequence(:email) { |n| "primary#{n}@example.com" }
     password { "000000" }
     name_family { "田中" }
     name_first { "太郎" }
@@ -14,7 +13,7 @@ FactoryBot.define do
     facebook { "" }
     instagram { "" }
     phone_number { "00000000000" }
-    email_sub { "b@b.b" }
+    sequence(:email_sub) { |n| "secondary#{n}@example.com.b" }
     birth_year { 1900 }
     birth_month { 1 }
     birth_day { 1 }

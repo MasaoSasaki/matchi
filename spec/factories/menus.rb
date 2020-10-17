@@ -1,7 +1,7 @@
 FactoryBot.define do
+
   factory :menu do
     association :restaurant
-    id { 1 }
     title { "タイトル" }
     menu_image_id { "" }
     content { "" }
@@ -11,4 +11,5 @@ FactoryBot.define do
     reservation_method { 0 }
     is_sale_frag { true }
   end
+  
 end

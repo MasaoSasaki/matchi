@@ -5,7 +5,7 @@ RSpec.describe Reservation, type: :model do
   describe 'Reservationモデルのテスト' do
     context '保存ができる場合のテスト' do
       it '保存ができる' do
-        reservation = build(:reservation)
+        reservation = create(:reservation)
         expect(reservation).to be_valid
       end
     end

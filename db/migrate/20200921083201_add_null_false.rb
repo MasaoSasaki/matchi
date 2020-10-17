@@ -7,6 +7,7 @@ class AddNullFalse < ActiveRecord::Migration[5.2]
     change_column :menus, :title, :string, null: false
     change_column :menus, :regular_price, :integer, null: false
     change_column :menus, :discount_price, :integer, null: false
+    change_column :menus, :reservation_method, :integer, null: false
     change_column :reservations, :user_id, :integer, null: false
     change_column :reservations, :menu_id, :integer, null: false
     change_column :reservations, :reservation_year, :integer, null: false
@@ -26,6 +27,7 @@ class AddNullFalse < ActiveRecord::Migration[5.2]
     change_column :menus, :title, :string, null: true
     change_column :menus, :regular_price, :integer, null: true
     change_column :menus, :discount_price, :integer, null: true
+    change_column :menus, :reservation_method, :integer, null: true
     change_column :reservations, :user_id, :integer, null: true
     change_column :reservations, :menu_id, :integer, null: true
     change_column :reservations, :reservation_year, :integer, null: true

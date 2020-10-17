@@ -1,4 +1,5 @@
 FactoryBot.define do
+
   factory :reservation do
     association :user
     association :menu
@@ -9,4 +10,5 @@ FactoryBot.define do
     people { 2 }
     reservation_status { 0 }
   end
+  
 end

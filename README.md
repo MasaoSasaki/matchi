@@ -17,11 +17,11 @@ Rails 5.2.4
 jQuery 1.12.4
 bootstrap
 #### 外部API
-Google(Google Maps Javascript/Geolocation/Geocoding/CloudVision)
+Google(Google Maps Javascript/Geolocation/Geocoding/CloudVision/CloudTranslation)
 #### インフラ
 vagrant/VirtualBox
 AWS(EC2/RDS/Route53/Certificate Manager/ALB/WorkMail)
-gem(devise/refile/gon/dotenv)
+gem(devise/refile/gon/dotenv/rspec-rails/factory_bot_rails)
 MySQL 5.7.22
 
 ## 設計書
