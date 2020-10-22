@@ -10,11 +10,13 @@ class User < ApplicationRecord
 
   attachment :profile_image
 
-  enum user_status: {member: 0, withdrew: 1, forced: 2}
+  enum user_status: { member: 0, withdrew: 1, forced: 2 }
 
   with_options presence: true do
     validates :name_family
     validates :name_first
+    validates :name_family_kana
+    validates :name_first_kana
     validates :phone_number
   end
   with_options length: { maximum: 255 } do
@@ -42,7 +44,7 @@ class User < ApplicationRecord
   NAME_KANA_REGEX = /\A[ぁ-んァ-ヶー－]+\z/ # 全角かな・カナのみ
   with_options format: { with: ADDRESS_REGEX } do
     validates :email
-    validates :email_sub
+    validates :email_sub, on: :update?
   end
   with_options format: { with: NAME_KANA_REGEX } do
     validates :name_family_kana

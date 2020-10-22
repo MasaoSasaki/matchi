@@ -1,7 +1,7 @@
 FactoryBot.define do
 
   factory :tag do
-    name { "タグ名" }
+    sequence(:name) { |n| "タグ名#{n}" }
   end
-  
+
 end
