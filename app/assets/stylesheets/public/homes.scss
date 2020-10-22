@@ -16,6 +16,7 @@
     background-blend-mode: lighten;
 
     &__contents {
+
       h2, p {
         margin-top: 0;
         color: black;
@@ -324,7 +325,7 @@
     padding: 0 70px;
   }
 
-  // /terms
+  // terms
   .homes-container {
     max-width: 900px;
     padding: 70px;
@@ -333,39 +334,12 @@
   // about
   .public-homes-about {
     padding: 40px 70px;
-    background-image: image-url("about_background.jpg");
-    background-size: 130%;
-    background-color: rgba(255, 0, 0, 0.2);
-    background-position: center;
-    background-blend-mode: lighten;
 
-    &__contents {
-      margin: 10px auto;
-      padding: 30px;
-      border-radius: 50px;
-      background-color: rgba(255, 255, 255, 0.9);
-      box-shadow: 0px 0px 50px white;
+    ul {
+      display: flex;
 
-      h2 {
-        margin-top: 20px;
-        margin-bottom: 10px;
-        font-style: italic;
-        text-decoration: underline;
-        text-align: center;
-      }
-      p {
-        margin-bottom: 30px;
-        text-align: center;
-      }
-
-      ul {
-        display: flex;
-
-        li {
-          flex: 1;
-          text-align: center;
-          border-radius: 30px;
-        }
+      li {
+        flex: 1;
       }
     }
   }
