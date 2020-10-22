@@ -196,6 +196,10 @@
   // about
   .public-homes-about {
     padding: 20px 20px;
+
+    &__contents {
+      padding: 5px;
+    }
   }
 }
 
