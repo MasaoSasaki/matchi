@@ -1,10 +1,10 @@
-<div class="master-users-show">
-  <h2>ユーザー詳細</h2>
+<div class="contents master-users-show">
+  <h2>会員詳細</h2>
   <%= form_with model: @user, url: master_user_path(@user), method: :patch, local: true do |f| %>
     <div class="field">
       <%= f.label :user_status %>
       <%= f.select :user_status, User.user_statuses_i18n.invert %>
     </div>
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-primary" %>
   <% end %>
 </div>
