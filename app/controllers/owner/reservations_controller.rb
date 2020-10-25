@@ -1,11 +1,10 @@
 class Owner::ReservationsController < Owner::Base
 
   before_action :current_restaurant?, except: [:index]
+  before_action :set_current_restaurant
 
   def index
-    @reservations = Reservation.all
-    @menus = Menu.all
-    @users = User.all
+    @reservations = Reservation.where(menu_id: Menu.where(restaurant_id: @current_restaurant))
   end
 
   def show
@@ -14,7 +13,12 @@ class Owner::ReservationsController < Owner::Base
 
   def update
     reservation = Reservation.find(params[:id])
-    redirect_to owner_reservation_path(reservation)
+    if reservation.update(reservation_params)
+      redirect_to owner_reservations_path
+    else
+      @reservation = reservation
+      render :show
+    end
   end
 
   private

@@ -1,28 +1,32 @@
-<div class="contents reservation-show">
-  <h1>予約の詳細</h1>
-  <section>
-    <div class="reservation-show-head">
-      <ul class="flex">
-        <li><%= @reservation.id %></li>
-        <li><%= @reservation.created_at %></li>
-        <li><%= "#{@reservation.reservation_year} + #{@reservation.reservation_month} + #{@reservation.reservation_day}" %></li>
-      </ul>
+<div class="contents owner-reservations-show">
+  <h2>予約の詳細</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>予約ID</th>
+        <th>予約確定日</th>
+        <th>来店予定日</th>
+        <th>予約者名</th>
+        <th>人数</th>
+        <th>予約メニュー</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @reservation.id %></td>
+        <td><%= @reservation.created_at.to_s(:datetime_jp) %></td>
+        <td><%= @reservation.reservation_date %></td>
+        <td><%= @reservation.user.name %> 様</td>
+        <td><%= @reservation.people %></td>
+        <td><%= @reservation.menu.title %></td>
+      </tr>
+    </tbody>
+  </table>
+  <%= form_with model: @reservation, url: owner_reservation_path(@reservation), method: :patch, local: true do |f| %>
+    <div class="owner-reservations-show--edit-status">
+      <%= f.label :reservation_status %>
+      <%= f.select :reservation_status, Reservation.reservation_statuses_i18n.invert %>
+      <%= f.submit '更新', class: "btn btn-primary" %>
     </div>
-    <div class="reservation-show-body">
-      <ul>
-        <li><%= @reservation.user.name %></li>
-        <li><%= @reservation.people %></li>
-        <li><%= @reservation.menu %></li>
-      </ul>
-    </div>
-    <div class="reservation-show-foot">
-      <%= form_with model:@reservation, url: owner_resrevation_path, method: :patch do |f| %>
-        <div class="reservation-status">
-          <%= f.label :reservation_status %>
-          <%= f.select_box :reservation_status %>
-        </div>
-        <div class="submit"><%= f.submit '更新' %></div>
-      <% end %>
-    </div>
-  </section>
+  <% end %>
 </div>
