@@ -33,13 +33,11 @@ class User < ApplicationRecord
     validates :instagram
     validates :email_sub
   end
-
   with_options numericality: { only_integer: true } do
     validates :birth_year
     validates :birth_month
     validates :birth_day
   end
-
   validates :phone_number, length: { maximum: 15 }
   NAME_KANA_REGEX = /\A[ぁ-んァ-ヶー－]+\z/ # 全角かな・カナのみ
   with_options format: { with: ADDRESS_REGEX } do
@@ -54,6 +52,15 @@ class User < ApplicationRecord
   # ログイン時、有効会員(member)かどうか？
   def active_for_authentication?
     super && (self.user_status == "member")
+  end
+
+  # 名前を結合
+  def name
+    name_family + name_first
+  end
+
+  def name_kana
+    name_family_kana + name_first_kana
   end
 
 end

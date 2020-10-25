@@ -99,6 +99,14 @@ ja:
         cash: 店舗でお支払い
         credit: クレジットカード支払い
         bank: 銀行振り込み
+      reservation_status:
+        advance: 来店前
+        complete: 来店完了
+        cancel_1: 許容キャンセル1
+        cancel_2: 許容キャンセル2
+        before_cancel: 前日キャンセル
+        on_the_day_cancel: 当日キャンセル
+        serious: 無断キャンセル
 
     user:
       user_status:

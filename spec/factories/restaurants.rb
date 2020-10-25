@@ -1,7 +1,7 @@
 FactoryBot.define do
 
   factory :restaurant do
-    email { "a@a.a" }
+    sequence(:email) { |n| "a#{n}@a.a" }
     password { "000000" }
     name { "店舗名" }
     restaurant_image_id { "" }

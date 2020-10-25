@@ -1,8 +1,8 @@
 <% if @current_restaurant == @restaurant %>
   <%# pc %>
   <div class="contents owner-restaurants-edit-pc">
-
-    <%= render partial: 'layouts/error_messages', locals: {model: @current_restaurant} %>
+    <h2>店舗情報の編集</h2>
+    <%= render partial: 'layouts/error_messages', locals: { model: @current_restaurant } %>
 
     <%= form_with model: @current_restaurant, url: owner_restaurant_path, method: :patch, local: :true do |f| %>
       <table class="owner-restaurants-edit--form">
