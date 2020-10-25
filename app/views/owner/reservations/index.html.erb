@@ -1,4 +1,4 @@
-<div class="contents reservation-index">
+<div class="contents owner-reservations-index">
   <h2>Reservated List</h2>
   <section class="reservation">
     <table>
@@ -15,17 +15,15 @@
       </thead>
         <tbody>
         <% @reservations.each do |reservation| %>
-          <% if @menus.find(reservation.menu_id).restaurant_id == current_owner_restaurant.id %>
-            <tr>
-              <td><%= reservation.id %></td>
-              <td><%= reservation.created_at.to_s(:datetime_jp) %></td>
-              <td><%= "#{reservation.reservation_year}年" + "#{reservation.reservation_month}月" + "#{reservation.reservation_day}日" %></td>
-              <td><%= "#{@users.find(reservation.user_id).name_family}" + "#{@users.find(reservation.user_id).name_first}" %> 様</td>
-              <td><%= reservation.people %> 名</td>
-              <td><%= reservation.reservation_status %></td>
-              <td><%= @menus.find(reservation.menu_id).title %></td>
-            </tr>
-          <% end %>
+          <tr>
+            <td><%= reservation.id %></td>
+            <td><%= reservation.created_at.to_s(:datetime_jp) %></td>
+            <td><%= reservation.reservation_date %></td>
+            <td><%= reservation.user.name %> 様</td>
+            <td><%= reservation.people %> 名</td>
+            <td><%= reservation.reservation_status_i18n %></td>
+            <td><%= reservation.menu.title %></td>
+          </tr>
         <% end %>
       </tbody>
     </table>
