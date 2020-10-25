@@ -6,7 +6,7 @@ RSpec.describe 'Restaurants' do
     sign_in admin
   end
   describe 'indexページのテスト' do
-    it '店舗一覧一覧画面が表示される' do
+    it '店舗一覧画面が表示される' do
       visit master_restaurants_path
       expect(page).to have_content '店舗一覧'
     end
