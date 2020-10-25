@@ -60,10 +60,6 @@ RSpec.describe Reservation, type: :model do
         reservation = build(:reservation, reservation_status: nil)
         expect(reservation).to be_invalid
       end
-      it ':reservation_statusが文字列型の場合は保存できない' do
-        reservation = build(:reservation, reservation_status: '０')
-        expect(reservation).to be_invalid
-      end
     end
   end
 
