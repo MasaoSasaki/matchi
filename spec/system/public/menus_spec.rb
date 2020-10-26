@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Menus' do
+RSpec.describe 'Menus', type: :system do
   before do
     @menu = create(:menu)
   end

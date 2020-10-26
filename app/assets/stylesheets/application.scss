@@ -107,17 +107,18 @@ ul {
   }
 }
 
-.logo-image {
-  background-image: image-url("logo.png");
-  background-size: cover;
-  background-position: center;
-  width: $logo-image-width;
-  height: $logo-image-height;
-}
-
 .contents {
   min-height: 300px;
   padding: 20px;
+}
+
+body {
+
+  img[alt="header-logo"], img[alt="footer-logo"] {
+    object-fit: cover;
+    width: $logo-image-width;
+    height: $logo-image-height;
+  }
 }
 
 // お知らせメッセージ
@@ -137,17 +138,6 @@ ul {
       100% { color: #ff0000 }
    }
 
-  }
-}
-
-// /public/users/reservation/index
-.public-users-reservations-index {
-
-  table {
-    margin: 0 auto;
-  }
-  h2 {
-    text-align: center;
   }
 }
 
