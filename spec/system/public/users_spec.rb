@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Users' do
+RSpec.describe 'Users', type: :system do
   before do
     @user = create(:user)
     sign_in @user

@@ -158,7 +158,17 @@
 
 }
 
-
 .session {
   text-align: center;
+}
+
+// /public/users/reservation/index
+.public-users-reservations-index {
+
+  table {
+    margin: 0 auto;
+  }
+  h2 {
+    text-align: center;
+  }
 }

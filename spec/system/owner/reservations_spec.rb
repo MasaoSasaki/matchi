@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Reservations' do
+RSpec.describe 'Reservations', type: :system do
   before do
     @restaurant = create(:restaurant)
     sign_in @restaurant

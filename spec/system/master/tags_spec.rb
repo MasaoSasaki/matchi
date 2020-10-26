@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Tags' do
+RSpec.describe 'Tags', type: :system do
   before do
     admin = create(:admin)
     sign_in admin

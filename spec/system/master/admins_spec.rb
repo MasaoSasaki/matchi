@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Admins' do
+RSpec.describe 'Admins', type: :system do
   before do
     admin = create(:admin)
     sign_in admin

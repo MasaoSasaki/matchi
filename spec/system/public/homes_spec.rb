@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Homes' do
+RSpec.describe 'Homes', type: :system do
   describe 'aboutページのテスト' do
     it 'サービス紹介が表示される' do
       visit about_path
