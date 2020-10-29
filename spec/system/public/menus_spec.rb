@@ -8,8 +8,10 @@ RSpec.describe 'Menus', type: :system do
     before do
       visit menus_path
     end
-    it 'メニューにアクセスできる' do
+    it 'ページが表示される' do
       expect(current_path).to eq menus_path
+    end
+    it 'メニュー詳細にアクセスできる' do
       find('.menu0--title').click
       expect(current_path).to eq menu_path(@menu)
       visit menus_path

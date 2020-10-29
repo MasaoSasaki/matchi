@@ -52,6 +52,9 @@ RSpec.describe 'Homes', type: :system do
     end
   end
   describe 'topページのテスト' do
+    before do
+      visit root_path
+    end
     describe 'ログイン状態共通' do
       describe 'メインコンテンツのテスト' do
         before do
@@ -117,9 +120,6 @@ RSpec.describe 'Homes', type: :system do
     end
     describe '未ログインの場合' do
       describe 'メインコンテンツのテスト' do
-        before do
-          visit root_path
-        end
         it 'ヘッダー画像上に3つのボタンが表示' do
           within('.public-homes-top__header-image__contents') do
             click_link '新規登録'
@@ -134,9 +134,6 @@ RSpec.describe 'Homes', type: :system do
         end
       end
       describe 'サイドバーのテスト' do
-        before do
-          visit root_path
-        end
         it '新規登録・ログインが表示' do
           within('.public-homes-top__body__side') do
             click_link '新規登録'
@@ -160,7 +157,6 @@ RSpec.describe 'Homes', type: :system do
         fill_in 'user[email]', with: @user.email
         fill_in 'user[password]', with: @user.password
         click_button 'ログイン'
-        visit root_path
       end
       describe 'メインコンテンツのテスト' do
         it 'ヘッダー画像上の3つのボタンが非表示' do
@@ -172,9 +168,6 @@ RSpec.describe 'Homes', type: :system do
         end
       end
       describe 'サイドバーのテスト' do
-        before do
-          visit root_path
-        end
         it 'マイページが表示' do
           within('.public-homes-top__body__side') do
             expect(page).to have_content 'マイページ'

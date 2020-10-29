@@ -52,6 +52,10 @@ class Restaurant < ApplicationRecord
     self.prefecture_id = JpPrefecture::Prefecture.find(name: prefecture).code
   end
 
+  def address
+    prefecture + city + street + building
+  end
+
 
   private
   def presense_nil?
