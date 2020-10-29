@@ -1,3 +1,4 @@
+<%# JSにレストラン情報を渡す %>
 <%= hidden_field_tag :restaurants_json, value: "#{@restaurants_json}" %>
 
 <div class="public-homes-top">
@@ -5,8 +6,7 @@
     <div class="public-homes-top__header-image__contents">
       <h2>Connect With Trust</h2>
       <p>あなたの街の飲食店を、あなたの信頼でお得に予約する。</p>
-      <% if user_signed_in? %>
-      <% else %>
+      <% unless user_signed_in? %>
         <div>
           <%= link_to '新規登録', new_user_registration_path, class: "btn btn-success" %>
           <%= link_to 'ログイン', new_user_session_path, class: "btn btn-primary" %>
@@ -41,7 +41,7 @@
           <% if restaurant_count < 3 %>
             <div class="flex top-restaurant">
               <div class="restaurant-image">
-                <%= link_to restaurant_path(restaurant) do %>
+                <%= link_to restaurant_path(restaurant), class: "restaurant-image#{ restaurant_count }" do %>
                   <%= attachment_image_tag restaurant, :restaurant_image, fallback: "no_image.png" %>
                 <% end %>
               </div>
@@ -65,7 +65,7 @@
           <% if menu_count < 3 %>
             <div class="flex top-menu">
               <div class="menu-image">
-                <%= link_to menu_path(menu) do %>
+                <%= link_to menu_path(menu), class: "menu-image#{ menu_count }" do %>
                   <%= attachment_image_tag menu, :menu_image, fallback: "no_image.png" %>
                 <% end %>
               </div>
