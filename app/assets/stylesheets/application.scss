@@ -37,6 +37,10 @@ ul {
   padding: 0;
 }
 
+label {
+  font-weight: unset;
+}
+
 .flex {
   display: flex;
 }
@@ -205,6 +209,11 @@ footer {
   margin: 0.8em 0;
 }
 
+input[readonly], textarea[readonly] {
+  background-color: $thema-color1;
+  border: none;
+  outline: none;
+}
 
 // PC端末用
 @media (min-width: $media-pc-min) {

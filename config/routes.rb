@@ -60,7 +60,7 @@ Rails.application.routes.draw do
     end
 
     resources :users, only: %i[update] do
-      get 'reservations/confirm', to: 'reservations#confirm'
+      post 'reservations/confirm', to: 'reservations#confirm'
       get 'reservations/completion', to: 'reservations#completion'
       resources :reservations, only: %i[index show new create]
       resources :bookmarks, only: %i[:index show]
