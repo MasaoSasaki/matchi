@@ -1,4 +1,4 @@
-<div class="contents users-info">
+<div class="contents public-users-info">
   <h2>登録情報</h2>
   <div class="flex user-info">
     <div>
@@ -9,10 +9,10 @@
           <%= link_to "https://twitter.com/#{current_user.twitter}", target: :_blank do %>
             <li class="sns-btn"><i class="fab fa-twitter"></i></li>
           <% end %>
-          <%= link_to "https://facebook.com/profile.php?id=#{current_user.facebook}", target: :blank do %>
+          <%= link_to "https://facebook.com/profile.php?id=#{current_user.facebook}", target: :_blank do %>
             <li class="sns-btn"><i class="fab fa-facebook-f"></i></li>
           <% end %>
-          <%= link_to "https://instagram.com/#{current_user.instagram}", target: :blank do %>
+          <%= link_to "https://instagram.com/#{current_user.instagram}", target: :_blank do %>
             <li class="sns-btn"><i class="fab fa-instagram"></i></li>
           <% end %>
         </ul>
@@ -25,14 +25,11 @@
           <li>メールアドレス２：<%= current_user.email_sub %></li>
         </ul>
       </div>
-      <div class="berth-day"><h3>生年月日</h3><p><%= "#{current_user.birth_year}" + "年" + "#{current_user.birth_month}" + "月" + "#{current_user.birth_day}" + "日" %></p></div>
+      <div class="berth-day"><h3>生年月日</h3><p><%= "#{ current_user.birth_year }年 #{ current_user.birth_month }月 #{ current_user.birth_day }日" %></p></div>
       <div class="age"><h3>年齢</h3><p></p></div>
     </div>
-    <div class="profile-image">
-      <%#= attachment_image_tag :profile_image, current_user %>
-    </div>
   </div>
-  <div class="user-info-edit"><%= link_to '登録情報編集', user_edit_path(current_user) %></div>
+  <div class="user-info-edit"><%= link_to '登録情報編集', user_edit_path %></div>
 
   <%= render 'user_links' %>
 

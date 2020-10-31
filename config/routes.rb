@@ -19,7 +19,6 @@ Rails.application.routes.draw do
     post '/', to: 'contacts#create', as: 'contact'
     get 'form', to: 'contacts#new', as: 'new_contact'
     post 'confirm', to: 'contacts#confirm', as: "confirm_contact"
-    post 'back', to: 'contacts#back', as: "back_contact"
     post 'completion', to: 'contacts#completion', as: "completion_contact"
   end
 
@@ -67,8 +66,8 @@ Rails.application.routes.draw do
     end
 
     patch 'users/:id/withdrawal', to: 'users#withdrawal', as: 'users/withdrawal'
-    get 'users/:id/withdrew', to: 'users#withdrew', as: 'users/withdrew'
     get 'users/:id/withdraw', to: 'users#withdraw', as: 'users/withdraw'
+    post 'users/:id/withdrew', to: 'users#withdrew', as: 'users/withdrew'
 
     resources :restaurants, only: %i[index show]
     resources :menus, only: %i[index show]
