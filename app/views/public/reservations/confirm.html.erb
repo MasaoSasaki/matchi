@@ -4,18 +4,11 @@
     <h3>メニュー名</h3>
     <%= @menu.title %>
     <h3>ご予約日時</h3>
-    <%= "#{params[:reservation_year]}年 #{params[:reservation_month]}月 #{params[:reservation_day]}日 #{params[:reservation_time]}:00" %>
+    <%= "#{ @reservation.reservation_year }年 #{ @reservation.reservation_month }月 #{ @reservation.reservation_day }日 #{ @reservation.reservation_time }:00" %>
     <h3>人数</h3>
-    <p><%= params[:people] %> 名</p>
+    <p><%= f.text_field :people, value: @reservation.people, size: '2', readonly: true %> 名</p>
     <h3>お支払い方法</h3>
-    <% case params[:payment_method] %>
-    <% when "cash" %>
-      <p>店舗でお支払い</p>
-    <% when "credit" %>
-      <p>クレジットカード支払い</p>
-    <% when "bank" %>
-      <p>銀行振り込み</p>
-    <% end %>
+    <p><%= @reservation.payment_method_i18n %></p>
     <h3>内容</h3>
     <%= @menu.content %>
     <h3>キャンセル規定</h3>
@@ -23,13 +16,13 @@
     <div class="reservation-form">
 
     <%= f.hidden_field :menu_id, value: @menu.id %>
-    <%= f.hidden_field :people, value: params[:people] %>
-    <%= f.hidden_field :payment_method, value: params[:payment_method] %>
-    <%= f.hidden_field :reservation_year, value: params[:reservation_year] %>
-    <%= f.hidden_field :reservation_month, value: params[:reservation_month] %>
-    <%= f.hidden_field :reservation_day, value: params[:reservation_day] %>
-    <%= f.hidden_field :reservation_time, value: params[:reservation_time] %>
+    <%= f.hidden_field :payment_method, value: @reservation.payment_method %>
+    <%= f.hidden_field :reservation_year, value: @reservation.reservation_year %>
+    <%= f.hidden_field :reservation_month, value: @reservation.reservation_month %>
+    <%= f.hidden_field :reservation_day, value: @reservation.reservation_day %>
+    <%= f.hidden_field :reservation_time, value: @reservation.reservation_time %>
 
+    <%= f.submit '修正する', class: "btn btn-default", name: :back %>
     <%= f.submit '予約を確定する', class: "btn btn-primary" %>
   <% end %>
 

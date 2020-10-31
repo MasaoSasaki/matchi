@@ -1,9 +1,9 @@
-<div class="contents public-users-reservations-index">
+<div class="contents public-reservations-index">
   <h2>予約履歴</h2>
   <table>
     <thead>
       <tr>
-        <th>予約ID</th>
+        <th>予約番号</th>
         <th>来店（予定）日</th>
         <th>店舗名</th>
         <th>人数</th>
@@ -11,14 +11,16 @@
       </tr>
     </thead>
     <tbody>
+      <% reservation_count = 0 %>
       <% @reservations.each do |reservation| %>
-      <tr>
-        <td><%= reservation.id %></td>
-        <td><%= "#{reservation.reservation_year}年 #{reservation.reservation_month}月 #{reservation.reservation_day}日" %></td>
-        <td><%= link_to "#{@restaurants.find(@menus.find(reservation.menu_id).restaurant_id).name}", restaurant_path(@menus.find(reservation.menu_id).restaurant_id) %></td>
-        <td><%= reservation.people %> 名</td>
-        <td><%= link_to "#{@menus.find(reservation.menu_id).title}", user_reservation_path(current_user, reservation) %></td>
-      </tr>
+        <tr>
+          <td><%= link_to reservation.id, user_reservation_path(current_user, reservation), class: "reservation#{ reservation_count }--show_path" %></td>
+          <td><%= "#{reservation.reservation_year}年 #{reservation.reservation_month}月 #{reservation.reservation_day}日" %></td>
+          <td><%= link_to reservation.menu.restaurant.name, restaurant_path(reservation.menu.restaurant), class: "reservation#{ reservation_count }--restaurant-name" %></td>
+          <td><%= reservation.people %> 名</td>
+          <td><%= link_to reservation.menu.title, menu_path(reservation.menu), class: "reservation#{ reservation_count }--menu-title" %></td>
+        </tr>
+        <% reservation_count += 1 %>
       <% end %>
     </tbody>
   </table>

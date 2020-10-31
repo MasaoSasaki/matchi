@@ -1,5 +1,8 @@
 class Public::UsersController < Public::Base
 
+  before_action :authenticate_user!, expect: %i[withdrew]
+  before_action :withdrawal, only: %i[withdrew]
+
   def show
     @reservation_count = Reservation.where(user_id: current_user.id).count
   end
@@ -9,7 +12,7 @@ class Public::UsersController < Public::Base
 
   def update
     if current_user.update(user_params)
-      redirect_to user_info_path(current_user)
+      redirect_to user_info_path
     else
       render :edit
     end
@@ -22,12 +25,13 @@ class Public::UsersController < Public::Base
   end
 
   def withdraw
+    @user = User.find(params[:id])
   end
 
   def withdrawal
-    # 1 = 退会済み。（0 = 有効会員、2 = 強制退会済み）
-    current_user.update(user_status: 1)
-    redirect_to action: 'withdrew'
+    @user = User.find(params[:id])
+    # 1 = 退会済み。（0 = 有効会員、2 = 強制退会）
+    @user.update(user_status: 1)
   end
 
   def withdrew
