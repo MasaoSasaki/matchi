@@ -1,4 +1,4 @@
-<% if master_admin_signed_in? %>
+<% if current_user.id == 1 %>
   <div class="contents devise-form">
     <h2>管理者新規登録</h2>
 
