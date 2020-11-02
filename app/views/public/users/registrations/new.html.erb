@@ -1,10 +1,10 @@
 <%# sp %>
 <div class="contents public-users-registrations-new sp">
   <h2>新規会員登録</h2>
-  <%= render partial: 'layouts/error_messages', locals: {model: @user} %>
+  <%= render partial: 'layouts/error_messages', locals: { model: @user } %>
 
   <%= form_with model: @user, url: users_sign_up_confirm_path(@user), local: true do |f| %>
-    <table>
+    <table class="registration-form-sp">
       <tbody>
         <tr>
           <td colspan="2"><h3>お名前</h3><p>予約時の情報として使用されます。</p></td>
@@ -59,10 +59,10 @@
 <%# pc %>
 <div class="contents public-users-registrations-new pc">
   <h2>新規会員登録</h2>
-  <%= render partial: 'layouts/error_messages', locals: {model: @user} %>
+  <%= render partial: 'layouts/error_messages', locals: { model: @user } %>
 
   <%= form_with model: @user, url: users_sign_up_confirm_path(@user), local: true do |f| %>
-    <table>
+    <table class="registration-form-pc">
       <tbody>
         <tr>
           <td colspan="3"></td>
