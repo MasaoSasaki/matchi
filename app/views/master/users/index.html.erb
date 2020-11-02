@@ -1,4 +1,4 @@
-<div class="contents">
+<div class="contents master-users-index">
   <h2>会員一覧</h2>
   <table>
     <thead>
@@ -9,9 +9,9 @@
       </tr>
     </thead>
     <tbody>
-      <% @users.each do |user| %>
+      <% User.all.each do |user| %>
         <tr>
-          <td><%= link_to "#{user.name_family}" + "#{user.name_first}", master_user_path(user) %></td>
+          <td><%= link_to user.name, master_user_path(user) %></td>
           <td></td>
           <td><%= user.user_status_i18n %></td>
         </tr>
