@@ -26,7 +26,7 @@ class Master::Admins::SessionsController < Devise::SessionsController
   # end
 
   def after_sign_in_path_for(resource)
-    master_path(resource)
+    master_path
   end
 
   def after_sign_out_path_for(resource)
