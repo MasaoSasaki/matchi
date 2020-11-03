@@ -1,8 +1,7 @@
 <div class="contents public-restaurants-show">
   <section class="restaurant-info">
     <div class="restaurant-head">
-      <h2 class="restaurant-show-h2">店舗名：<%= @restaurant.name %> 様</h2>
-      <% if false %><p class="">来店前予約件数<%= @reservation_count %>件</p><% end %>
+      <h2 class="restaurant-show-h2">店舗名：<%= @restaurant.name %></h2>
     </div>
     <div class="restaurant-image">
       <%= attachment_image_tag @restaurant, :restaurant_image, style: "height: 250px; width: 100%;" %>

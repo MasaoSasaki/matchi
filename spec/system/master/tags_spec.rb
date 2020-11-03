@@ -6,9 +6,11 @@ RSpec.describe 'Tags', type: :system do
     sign_in admin
   end
   describe 'indexページのテスト' do
-    it 'タグ一覧画面が表示される' do
+    before do
       visit master_tags_path
-      expect(page).to have_content 'タグ一覧'
+    end
+    it 'ページが表示される' do
+      expect(current_path).to eq master_tags_path
     end
   end
 end
