@@ -1,2 +1,2 @@
-$(".master-tags-index--messages").html("<p><%= j(render partial: 'layouts/flash_messages', locals: {model: @tag}) %></p>")
+$(".master-tags-index--messages").html("<p><%= j(render partial: 'layouts/flash_messages', locals: { model: @tag }) %></p>")
 $("#master-tags-index--tag-list").html("<%= j(render @tags) %>")

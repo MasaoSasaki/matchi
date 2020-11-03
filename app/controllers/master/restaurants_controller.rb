@@ -10,10 +10,14 @@ class Master::RestaurantsController < Master::Base
     @restaurants = Restaurant.all
     @menus = Menu.all
     @restaurant = Restaurant.new(restaurant_params)
-    @restaurant.password = "000000"
+    @restaurant.password = SecureRandom.alphanumeric(6)
+    p @restaurant.password
     if @restaurant.save
-      redirect_to master_path(current_master_admin)
+      flash.now[:success] = "店舗を登録しました。初期パスワードは#{ @restaurant.password }です。"
+      render :index
     else
+      @restaurants = Restaurant.all
+      @menus = Menu.all
       render :index
     end
   end

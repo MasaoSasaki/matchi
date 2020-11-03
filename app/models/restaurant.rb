@@ -41,7 +41,7 @@ class Restaurant < ApplicationRecord
   with_options format: { with: ADDRESS_REGEX } do
     validates :email
     # コーポレートサイトは空白、もしくは正規表現でのみ保存可能
-    validates :corporate, unless: :presense_nil?
+    validates :corporate, unless: :presense_empty?
   end
 
   def prefecture_name
@@ -58,8 +58,8 @@ class Restaurant < ApplicationRecord
 
 
   private
-  def presense_nil?
-    corporate == nil
+  def presense_empty?
+    corporate == ""
   end
 
 end
