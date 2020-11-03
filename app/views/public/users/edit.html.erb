@@ -1,22 +1,20 @@
 <div class="contents users-edit">
   <h2>登録情報編集</h2>
 
-  <%= render partial: 'layouts/error_messages', locals: {model: current_user} %>
+  <%= render partial: 'layouts/error_messages', locals: { model: current_user } %>
 
-  <div class="">
-  </div>
   <%= form_with model: current_user, url: user_path(current_user), local: true, method: :patch do |f| %>
-    <h2><u><%= "#{current_user.name_family}" + "#{current_user.name_first}" %></u> 様</h2>
+    <h2><u><%= current_user.name %></u> 様</h2>
     <small>お名前の変更は<%= link_to 'こちら', new_contact_path %>より、直接お問い合わせください。</small>
     <table class="edit-head">
       <body>
         <tr>
-         <td><h3><%= f.label :profile_image, 'プロフィール画像：' %></h3></td>
+         <td><h3><%= f.label :profile_image %></h3></td>
          <td></td>
          <td><%= f.attachment_field :profile_image, class: "attachment_image" %></td>
         </tr>
         <tr>
-         <td><h3><%= f.label :handle_name, 'ハンドルネーム：' %></h3></td>
+         <td><h3><%= f.label :handle_name %></h3></td>
          <td></td>
          <td><%= f.text_field :handle_name %></td>
         </tr>
@@ -37,40 +35,39 @@
         </tr>
         <tr>
           <td><h3>連絡先</h3></td>
-          <td><%= f.label :phone_number, '電話番号' %></td>
+          <td><%= f.label :phone_number %></td>
           <td><%= f.number_field :phone_number, placeholder: '必須', required: true %></td>
         </tr>
         <tr>
           <td></td>
-          <td><%= f.label :email, 'メールアドレス1' %></td>
+          <td><%= f.label :email %></td>
           <td><%= f.email_field :email, placeholder: '必須', required: true %></td>
         </tr>
         <tr>
           <td></td>
-          <td><%= f.label :email_sub, 'メールアドレス2' %></td>
+          <td><%= f.label :email_sub %></td>
           <td><%= f.email_field :email_sub %></td>
         </tr>
         <tr>
           <td><h3>生年月日</h3></td>
-          <td><%= f.label :birth_year, '西暦（4桁）' %></td>
+          <td><%= f.label :birth_year %>（4桁）</td>
           <td><%= f.number_field :birth_year, min: 1900, max: Time.new.year %>年</td>
         </tr>
         <tr>
           <td></td>
-          <td><%= f.label :birth_month, '月（2桁）' %></td>
+          <td><%= f.label :birth_month %>（2桁）</td>
           <td><%= f.number_field :birth_month, min: 1, max: 12 %>月</td>
         </tr>
         <tr>
           <td></td>
-          <td><%= f.label :birth_day, '日（2桁）' %></td>
+          <td><%= f.label :birth_day %>（2桁）</td>
           <td><%= f.number_field :birth_day, min: 1, max: 31 %>日</td>
         </tr>
         <tr>
-          <td><h3><%= f.label :profile, 'プロフィール' %></h3></td>
+          <td><h3><%= f.label :profile %></h3></td>
           <td></td>
           <td><%= f.text_area :profile, size: '30x10' %></td>
         </tr>
-
       </body>
     </table>
     <div class="flex users-edit-btn">

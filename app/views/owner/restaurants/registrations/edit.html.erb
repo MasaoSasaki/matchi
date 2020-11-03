@@ -1,42 +1,43 @@
-<div class="devise-form">
-  <h2>パスワードの変更</h2>
+<div class="contents owner-restaurants-registrations-edit">
+  <div class="devise-form">
+    <h2>パスワードの変更</h2>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= render "owner/restaurants/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "owner/restaurants/shared/error_messages", resource: resource %>
 
-    <div class="field">
-      <h3><%= f.label :email, 'メールアドレス' %></h3>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: '必須' %>
-    </div>
+      <div class="field">
+        <h3><%= f.label :email %></h3>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: '必須' %>
+      </div>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="field">
+        <h3><%= f.label :password, '新しいパスワード' %></h3><small>(<%= @minimum_password_length %>文字以上)</small>
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: '必須' %>
+        <% if @minimum_password_length %>
+          <br />
+        <% end %>
+      </div>
+
+      <div class="field">
+        <h3><%= f.label :password_confirmation, '新しいパスワード（再入力）' %></h3>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '必須' %>
+      </div>
+
+      <div class="field">
+        <h3><%= f.label :current_password, '現在のパスワード' %></h3>
+        <%= f.password_field :current_password, autocomplete: "current-password", placeholder: '必須' %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "更新", class: 'btn btn-primary' %>
+      </div>
     <% end %>
 
-    <div class="field">
-      <h3><%= f.label :password, '新しいパスワード' %></h3>
-      <small>(<%= @minimum_password_length %>文字以上)</small>
-      <%= f.password_field :password, autocomplete: "new-password", placeholder: '必須' %>
-      <% if @minimum_password_length %>
-        <br />
-      <% end %>
-    </div>
+    <%= link_to "前の画面へ", :back %>
 
-    <div class="field">
-      <h3><%= f.label :password_confirmation, '新しいパスワード（再入力）' %></h3>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '必須' %>
-    </div>
-
-    <div class="field">
-      <h3><%= f.label :current_password, '現在のパスワード' %></h3>
-      <%= f.password_field :current_password, autocomplete: "current-password", placeholder: '必須' %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit "更新", class: 'btn' %>
-    </div>
-  <% end %>
-
-  <%= link_to "前の画面へ", :back %>
-
+  </div>
 </div>

@@ -1,8 +1,8 @@
 <div class="contents public-reservation-completion">
   <% url = request.fullpath %>
-  <% if url.include?("new_reservation_id") %>
+  <% if params[:new_reservation_id] %>
     <h2>ご予約が確定しました！</h2>
-    <p><%= link_to '店舗からのメッセージをご確認ください。', user_reservation_path(current_user, @new_reservation_id) %></p>
+    <p><%= link_to '店舗からのメッセージをご確認ください。', user_reservation_path(current_user, params[:new_reservation_id]) %></p>
   <% else %>
     <h2>ご予約は確定済みです！</h2>
     <p><%= link_to '予約一覧', user_reservations_path %></p>

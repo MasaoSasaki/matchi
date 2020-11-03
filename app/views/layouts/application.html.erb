@@ -28,76 +28,25 @@
     <%# PC画面ヘッダー %>
     <div class="flex pc-header">
       <%= link_to root_path do %>
-        <div class="logo-image"></div>
+        <div><%= image_tag 'logo.png', alt: "header-logo" %></div>
       <% end %>
       <div class="header-nav">
         <nav>
           <ul class="flex header-ul">
-            <% url = request.fullpath %>
-            <%# urlに'owner'があれば店舗用ヘッダー %>
-            <% if url.include?('owner') %>
-              <% if master_admin_signed_in? %>
-                <li><%= link_to '店舗新規登録', new_owner_restaurant_registration_path, class: "btn btn-danger" %></li>
-                <li><%= link_to '管理者TOP', master_path, class: 'btn btn-danger' %></li>
-                <li><%= link_to '管理者ログアウト', destroy_master_admin_session_path, class: "btn btn-danger", method: :delete %></li>
-              <% end %>
-              <% if owner_restaurant_signed_in? %>
-                <li><%= link_to '店舗TOP', owner_restaurant_path(current_owner_restaurant), class: "btn btn-warning" %></li>
-                <li><%= link_to '店舗ログアウト', destroy_owner_restaurant_session_path, class: "btn btn-warning", method: :delete %></li>
-              <% end %>
-              <% if user_signed_in? %>
-                <li><%= link_to '一般会員TOP', user_mypage_path(current_user), class: "btn btn-default" %></li>
-                <li><%= link_to '一般会員ログアウト', destroy_user_session_path, class: "btn btn-danger", method: :delete %></li>
-              <% else %>
-                <li><%= link_to '一般会員ログイン', new_user_session_path, class: "btn btn-primary" %></li>
-              <% end %>
-
-            <%# urlに'master'があれば管理者用ヘッダー %>
-            <% elsif url.include?('master') %>
-              <% if master_admin_signed_in? %>
-                <li><%= link_to '店舗新規登録', new_owner_restaurant_registration_path, class: "btn btn-danger" %></li>
-                <li><%= link_to '管理者TOP', master_path, class: 'btn btn-danger' %></li>
-                <li><%= link_to '管理者ログアウト', destroy_master_admin_session_path, class: "btn btn-danger", method: :delete %></li>
-              <% end %>
-              <% if user_signed_in? %>
-                <li><%= link_to '一般会員TOP', user_mypage_path(current_user), class: "btn btn-default" %></li>
-                <li><%= link_to '一般会員ログアウト', destroy_user_session_path, class: "btn btn-danger", method: :delete %></li>
-              <% else %>
-                <li><%= link_to '一般会員ログイン', new_user_session_path, class: "btn btn-primary" %></li>
-              <% end %>
-              <% if owner_restaurant_signed_in? %>
-                <li><%= link_to '店舗TOP', owner_restaurant_path(current_owner_restaurant), class: "btn btn-warning" %></li>
-                <li><%= link_to '店舗ログアウト', destroy_owner_restaurant_session_path, class: "btn btn-warning", method: :delete %></li>
-              <% else %>
-                <li><%= link_to '店舗ログイン', new_owner_restaurant_session_path, class: "btn btn-warning" %></li>
-              <% end %>
-
-            <%# 上記以外なら一般ユーザー用ヘッダー %>
+            <% if master_admin_signed_in? %>
+              <li><%= link_to '管理者TOP', master_path, class: 'btn btn-danger' %></li>
+              <li><%= link_to '管理者ログアウト', destroy_master_admin_session_path, class: "btn btn-danger", method: :delete %></li>
+            <% end %>
+            <% if owner_restaurant_signed_in? %>
+              <li><%= link_to '店舗TOP', owner_restaurant_path(current_owner_restaurant), class: "btn btn-warning" %></li>
+              <li><%= link_to '店舗ログアウト', destroy_owner_restaurant_session_path, class: "btn btn-warning", method: :delete %></li>
+            <% end %>
+            <% if user_signed_in? %>
+              <li><%= link_to 'MyPage', user_mypage_path, class: "btn btn-default user-mypage" %></li>
+              <li><%= link_to 'ログアウト', destroy_user_session_path, class: "btn btn-danger user-sign_out", method: :delete %></li>
             <% else %>
-              <% if master_admin_signed_in? && owner_restaurant_signed_in? %>
-                <li><%= link_to '店舗新規登録', new_owner_restaurant_registration_path, class: "btn btn-danger" %></li>
-                <li><%= link_to '管理者TOP', master_path, class: 'btn btn-danger' %></li>
-                <li><%= link_to '管理者ログアウト', destroy_master_admin_session_path, class: "btn btn-danger", method: :delete %></li>
-                <li><%= link_to '店舗TOP', owner_restaurant_path(current_owner_restaurant), class: "btn btn-warning" %></li>
-                <li><%= link_to '店舗ログアウト', destroy_owner_restaurant_session_path, class: "btn btn-warning", method: :delete %></li>
-              <% elsif owner_restaurant_signed_in? %>
-                <li><%= link_to '店舗TOP', owner_restaurant_path(current_owner_restaurant), class: "btn btn-warning" %></li>
-                <li><%= link_to '店舗ログアウト', destroy_owner_restaurant_session_path, class: "btn btn-warning", method: :delete %></li>
-              <% elsif master_admin_signed_in? %>
-                <li><%= link_to '管理者TOP', new_master_admin_session_path, class: 'btn btn-danger' %></li>
-                <li><%= link_to '管理者ログアウト', destroy_master_admin_session_path, class: "btn btn-danger", method: :delete %></li>
-                <li><%= link_to '店舗ログイン', new_owner_restaurant_session_path, class: "btn btn-warning" %></li>
-              <% end %>
-              <% if user_signed_in? %>
-                <li><%= link_to 'MyPage', user_mypage_path(current_user), class: "btn btn-default" %></li>
-                  <%# if alert.count >= 1 %>
-                    <li><%#= link_to 'お知らせがあります。' %></li>
-                  <%# end %>
-                <li><%= link_to 'ログアウト', destroy_user_session_path, class: "btn btn-danger", method: :delete %></li>
-              <% else %>
-                <li><%= link_to '新規登録', new_user_registration_path, class: "btn btn-success" %></li>
-                <li><%= link_to 'ログイン', new_user_session_path, class: "btn btn-primary" %></li>
-              <% end %>
+              <li><%= link_to '新規登録', new_user_registration_path, class: "btn btn-success user-sign_up" %></li>
+              <li><%= link_to 'ログイン', new_user_session_path, class: "btn btn-primary user-sign_in" %></li>
             <% end %>
           </ul>
         </nav>
@@ -112,7 +61,7 @@
         <span class="bar bar-bottom"></span>
       </div>
     <%= link_to root_path do %>
-      <div class="logo-image"></div>
+      <div><%= image_tag 'logo.png', alt: "header-logo" %></div>
     <% end %>
       <%# 未読のお知らせの通知 %>
       <div class="alert">
@@ -122,16 +71,16 @@
       <div class="hamburger-menu">
         <ul>
           <% if user_signed_in? %>
-            <li><%= link_to 'MyPage', user_mypage_path(current_user) %></li>
+            <li><%= link_to 'MyPage', user_mypage_path, class: "user-mypage" %></li>
           <% else %>
-            <li><%= link_to '新規登録', new_user_registration_path %></li>
+            <li><%= link_to '新規登録', new_user_registration_path, class: "user-sign_up" %></li>
             <li><%= link_to 'ログイン', new_user_session_path %></li>
           <% end %>
-          <li><%= link_to 'サービス紹介', about_path %></li>
-          <li><%= link_to 'レストラン一覧', restaurants_path %></li>
-          <li><%= link_to 'メニュー一覧', menus_path %></li>
+          <li><%= link_to 'サービス紹介', about_path, class: "about-service" %></li>
+          <li><%= link_to 'レストラン一覧', restaurants_path, class: "restaurants-index" %></li>
+          <li><%= link_to 'メニュー一覧', menus_path, class: "menus-index" %></li>
           <% if user_signed_in? %>
-            <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "user-sign_out" %></li>
           <% end %>
         </ul>
       </div>
@@ -146,7 +95,7 @@
 <footer>
   <div class="flex footer-container">
   <%= link_to root_path do %>
-    <div class="logo-image"></div>
+    <div><%= image_tag 'logo.png', alt: "footer-logo" %></div>
   <% end %>
     <div class="footer-menu">
       <ul class="footer-links">
@@ -160,6 +109,6 @@
   <div class="copyright">
     <small>©︎ 2020 MasaoSasaki</small>
   </div>
-</body>
 </footer>
+</body>
 </html>

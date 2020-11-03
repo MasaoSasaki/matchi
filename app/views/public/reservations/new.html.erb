@@ -1,6 +1,6 @@
-<div class="contents public-reservation-new">
+<div class="contents public-reservations-new">
   <h2>予約情報の入力</h2>
-    <%= form_with url: user_reservations_confirm_path(current_user), method: :get, local: true do |f| %>
+    <%= form_with model: @reservation, url: user_reservations_confirm_path(current_user, @reservation), local: true do |f| %>
     <table>
       <tbody>
         <tr>
@@ -19,36 +19,36 @@
           <td><%= @menu.cancel %></td>
         </tr>
         <tr>
-          <td><h3>人数</h3></td>
+          <td><h3><%= f.label :people, '人数' %></h3></td>
           <td></td>
-          <td><%= f.number_field :people, value: '1', min: 1, size: "100" %></td>
+          <td><%= f.number_field :people, placeholder: '1', min: 1 %></td>
         </tr>
         <tr>
-          <td><h3>お支払い方法</h3></td>
+          <td><h3><%= f.label :payment_method, 'お支払い方法' %></h3></td>
           <td></td>
           <%# クレジットカード、銀行振り込み未対応のため、現金支払い固定 %>
+
           <% if true %><td><%= f.select :payment_method, Reservation.payment_methods_i18n.invert %></td><% end %>
-          <% if false %><td><%= f.select :payment_method, 1 %></td><% end %>
         </tr>
         <tr>
           <td><h3>ご来店日時</h3></td>
           <td><h4>年月日</h4></td>
           <td>
-            <%= f.number_field :reservation_year, min: Time.new.year, max: Time.new.year+1, value: Time.new.year %>年
-            <%= f.number_field :reservation_month, min: 1, max: 12, value: Time.new.month %>月
-            <%= f.number_field :reservation_day, min: 1, max: 31, value: Time.new.day %>日
+            <%= f.number_field :reservation_year, min: Time.new.year, max: Time.new.year + 1, placeholder: Time.new.year %>年
+            <%= f.number_field :reservation_month, min: 1, max: 12, placeholder: Time.new.month %>月
+            <%= f.number_field :reservation_day, min: 1, max: 31, placeholder: Time.new.day %>日
           </td>
         </tr>
         <tr>
           <td></td>
-          <td><h4>時間</h4></td>
-          <td><%= f.number_field :reservation_time, min: 0, max: 23, value: Time.new.hour+10 %>時（0時〜23時）</td>
+          <td><h4><%= f.label :reservation_time, '日時' %></h4></td>
+          <td><%= f.number_field :reservation_time, min: 0, max: 23, placeholder: Time.new.hour+10 %>時（0時〜23時）</td>
         </tr>
       </tbody>
     </table>
     <%= f.hidden_field :menu_id, value: @menu.id %>
     <%= f.submit '確認する', class: "btn btn-success" %>
   <% end %>
-  <%= link_to '前のページへ', :back %>
-  <%= link_to 'メニュー一覧へ', root_path %>
+  <%= link_to 'メニュー詳細へ戻る', menu_path(@menu) %>
+  <%= link_to 'メニュー一覧へ', menus_path %>
 </div>

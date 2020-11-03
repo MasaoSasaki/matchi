@@ -1,6 +1,6 @@
 <% if controller_name != 'sessions' %>
-  <%= link_to "ログイン画面へ", new_user_session_path %><br />
-  <%= link_to "TOP画面へ", root_path %><br />
+  <%= link_to "ログイン画面へ", new_user_session_path, class: "login-path" %><br />
+  <%= link_to "TOP画面へ", root_path, class: "root-path"%><br />
 <% end %>
 
 <% if false %>

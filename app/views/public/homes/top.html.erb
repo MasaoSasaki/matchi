@@ -1,3 +1,4 @@
+<%# JSにレストラン情報を渡す %>
 <%= hidden_field_tag :restaurants_json, value: "#{@restaurants_json}" %>
 
 <div class="public-homes-top">
@@ -5,8 +6,7 @@
     <div class="public-homes-top__header-image__contents">
       <h2>Connect With Trust</h2>
       <p>あなたの街の飲食店を、あなたの信頼でお得に予約する。</p>
-      <% if user_signed_in? %>
-      <% else %>
+      <% unless user_signed_in? %>
         <div>
           <%= link_to '新規登録', new_user_registration_path, class: "btn btn-success" %>
           <%= link_to 'ログイン', new_user_session_path, class: "btn btn-primary" %>
@@ -17,8 +17,8 @@
   </section>
 
   <%# メインコンテンツ %>
-  <section class="top-container public-homes-top__main">
-    <div class="top-contents">
+  <section class="top-container public-homes-top__body">
+    <div class="public-homes-top__body__main">
       <ul class="top-nav">
         <%= link_to about_path do %>
           <li>サービス紹介</li>
@@ -33,7 +33,7 @@
           <li>レストラン一覧</li>
         <% end %>
       </ul>
-      <div class="public-homes-top__restaurants-all">
+      <div class="public-homes-top__body__main__restaurants-all">
         <h2>おすすめレストラン</h2>
         <% restaurant_count = 0 %>
         <% @restaurants.each do |restaurant| %>
@@ -41,7 +41,7 @@
           <% if restaurant_count < 3 %>
             <div class="flex top-restaurant">
               <div class="restaurant-image">
-                <%= link_to restaurant_path(restaurant) do %>
+                <%= link_to restaurant_path(restaurant), class: "restaurant-image#{ restaurant_count }" do %>
                   <%= attachment_image_tag restaurant, :restaurant_image, fallback: "no_image.png" %>
                 <% end %>
               </div>
@@ -57,7 +57,7 @@
         <% end %>
         <p><%= link_to 'レストラン一覧', restaurants_path %></p>
       </div>
-      <div class="public-homes-top__menus-all">
+      <div class="public-homes-top__body__main__menus-all">
         <h2>おすすめメニュー</h2>
         <% menu_count = 0 %>
         <% @menus.each do |menu| %>
@@ -65,12 +65,12 @@
           <% if menu_count < 3 %>
             <div class="flex top-menu">
               <div class="menu-image">
-                <%= link_to menu_path(menu) do %>
+                <%= link_to menu_path(menu), class: "menu-image#{ menu_count }" do %>
                   <%= attachment_image_tag menu, :menu_image, fallback: "no_image.png" %>
                 <% end %>
               </div>
               <div class="menu-info">
-                <h3><%= link_to "#{menu.title}", menu_path(menu) %></h3>
+                <h3><%= link_to menu.title, menu_path(menu) %></h3>
                 <p>店名：<%= menu.restaurant.name %></p>
                 <h4>正規価格：<%= menu.regular_price.to_s(:delimited) %> 円</h4>
                 <h4>提供価格：<%= menu.discount_price.to_s(:delimited) %> 円</h4>
@@ -86,7 +86,7 @@
     </div>
 
     <%# サイドバー %>
-    <div class="top-side">
+    <div class="public-homes-top__body__side">
       <% if user_signed_in? %>
         <div class="simple-mypage">マイページ</div>
       <% else %>
@@ -96,7 +96,7 @@
         </div>
       <% end %>
       <div class="new-menus">
-        <h4>最近更新されたメニュー</h4>
+        <h2>最近更新されたメニュー</h2>
         <div>
           <ul class="new-menus-list">
             <% menu_count = 0 %>
@@ -104,9 +104,9 @@
               <%# 最新のメニュー3個まで表示 %>
               <% if menu_count < 3 %>
                 <li class="top-menu">
-                  <p><%= link_to "#{menu.title}", menu_path(menu), id: 'menu-show-link' %></p>
-                  <%= link_to menu_path(menu) do %>
-                    <%= attachment_image_tag menu, :menu_image, width: 200, height: 100, fallback: "no_image.png", class: "side-bar-menu-image" %>
+                  <p><%= link_to menu.title, menu_path(menu), class: "side-bar--menu#{ menu_count }-title", id: 'menu-show-link' %></p>
+                  <%= link_to menu_path(menu), class: "side-bar--menu#{ menu_count }-image" do %>
+                    <%= attachment_image_tag menu, :menu_image, width: 200, height: 100, fallback: "no_image.png" %>
                   <% end %>
                 </li>
                 <% menu_count += 1 %>

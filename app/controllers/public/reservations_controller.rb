@@ -4,14 +4,13 @@ class Public::ReservationsController < Public::Base
 
   def index
     @reservations = Reservation.where(user_id: current_user.id)
-    @menus = Menu.all
-    @restaurants = Restaurant.all
   end
 
   def show
     @reservation = Reservation.find(params[:id])
-    @menu = Menu.find(@reservation.menu_id)
-    @restaurant = Restaurant.find(@menu.restaurant_id)
+    @menu = @reservation.menu
+    @restaurant = @reservation.menu.restaurant
+    @user = @reservation.user
   end
 
   def new
@@ -20,21 +19,21 @@ class Public::ReservationsController < Public::Base
   end
 
   def create
-    reservation = Reservation.new(reservation_params)
-    reservation.user_id = current_user.id
-    reservation.save
+    @reservation = Reservation.new(reservation_params)
+    @reservation.user_id = current_user.id
+    @menu = @reservation.menu
+    render :new and return if params[:back] || !@reservation.save
     # 最新の予約情報を取得
     new_reservation_id = Reservation.order(created_at: :desc).limit(1).ids
     redirect_to user_reservations_completion_path(new_reservation_id: new_reservation_id)
   end
 
   def confirm
-    @menu = Menu.find(params[:menu_id])
-    @reservation = Reservation.new
+    @reservation = Reservation.new(reservation_params)
+    @menu = @reservation.menu
   end
 
   def completion
-    @new_reservation_id = params[:new_reservation_id]
   end
 
   private

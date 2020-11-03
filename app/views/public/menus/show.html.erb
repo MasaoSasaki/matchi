@@ -31,7 +31,7 @@
       <% case @menu.reservation_method %>
       <% when "not" %>
         <%= submit_tag '予約情報を入力する', class: "btn btn-success inactive" %>
-        <p>予約不可のメニューです、直接店舗にご来店ください。</p>
+        <p>予約不可のメニューです。直接店舗にご来店いただくか、店舗にお問い合わせください。</p>
       <% when "done" %>
         <%= form_with url: new_user_reservation_path(current_user), method: :get, local: true do |f| %>
           <%= f.hidden_field :menu_id, value: params[:id] %>
@@ -45,7 +45,7 @@
       <% end %>
     <% else %>
       <%= submit_tag '予約情報を入力する', class: "btn btn-success inactive" %>
-      <p><%= link_to '新規ご登録', new_user_registration_path %>、または<%= link_to 'ログイン', user_session_path %>後に予約が可能になります。</p>
+      <p><%= link_to '新規ご登録', new_user_registration_path %>、または<%= link_to 'ログイン', new_user_session_path %>後に予約が可能になります。</p>
     <% end %>
   </div>
   <%= link_to 'メニュー一覧', menus_path %>

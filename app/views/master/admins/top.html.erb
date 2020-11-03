@@ -1,9 +1,10 @@
 <div class="contents master-admins-top">
+  <h2>管理者画面</h2>
   <nav>
     <ul>
-      <li><%= link_to '会員一覧・編集', master_users_path %></li>
-      <li><%= link_to '店舗一覧・編集・新規登録', master_restaurants_path %></li>
-      <li><%= link_to 'タグ一覧・編集・新規登録', master_tags_path %></li>
+      <li><%= link_to '会員一覧・編集', master_users_path %>(<%= User.all.count %>)</li>
+      <li><%= link_to '店舗一覧・編集・新規登録', master_restaurants_path %>(<%= Restaurant.all.count %>)</li>
+      <li><%= link_to 'タグ一覧・編集・新規登録', master_tags_path %>(<%= Menu.all.count %>)</li>
     </ul>
   </nav>
 </div>
