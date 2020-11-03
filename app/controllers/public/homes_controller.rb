@@ -1,16 +1,12 @@
 class Public::HomesController < Public::Base
 
   def top
-    @menus = Menu.all
-    @restaurants = Restaurant.all
+    @menus = Menu.all.order(id: 'DESC')
+    @restaurants = Restaurant.all.order(id: 'DESC')
     gon.restaurants = Restaurant.all
   end
 
   def about
-
-  end
-
-  def contact
 
   end
 
@@ -25,9 +21,4 @@ class Public::HomesController < Public::Base
   def admin
 
   end
-
-  def redirect
-    @id = "#{params[:user_id]}" + "#{params[:restaurant_id]}"
-  end
-
 end
