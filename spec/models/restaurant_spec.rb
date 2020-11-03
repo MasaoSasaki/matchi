@@ -9,7 +9,7 @@ RSpec.describe Restaurant, type: :model do
         expect(restaurant).to be_valid
       end
       it ':corporateが空白の場合も保存できる' do
-        restaurant = build(:restaurant, corporate: nil)
+        restaurant = build(:restaurant, corporate: "")
         expect(restaurant).to be_valid
       end
     end
