@@ -30,11 +30,13 @@
     <h2>店舗新規登録</h2>
 
     <%= form_with model: @restaurant, url: master_restaurants_path(@restaurant), local: true do |f| %>
-      <%= render partial: "layouts/error_messages", locals: {model: @restaurant} %>
-
+      <%= render partial: "layouts/error_messages", locals: { model: @restaurant } %>
+      <% if flash[:success] %>
+        <p><%= flash[:success] %></p>
+      <% end %>
       <div class="form-group">
         <%= f.label :email %><br>
-        <%= f.email_field :email, autocomplete: "email", required: true  %>
+        <%= f.email_field :email, required: true  %>
       </div>
 
       <div class="actions">
@@ -42,7 +44,7 @@
       </div>
     <% end %>
     <p>登録後は速やかに、パスワードの変更を店舗にお願いしてください。<br>初期パスワードについてはサイト管理者にお問い合わせください。</p>
-    <%= link_to 'パスワードの変更はこちら', edit_owner_restaurant_registration_path(current_owner_restaurant) %>
+    <%= link_to 'パスワードの変更はこちら', edit_owner_restaurant_registration_path %>
 
   </div>
 </div>
