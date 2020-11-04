@@ -28,9 +28,9 @@ class Owner::MenusController < Owner::Base
   end
 
   def create
-    menu_new = Menu.new(menu_params)
-    menu_new.restaurant_id = @current_restaurant.id
-    if menu_new.save
+    @menu = Menu.new(menu_params)
+    @menu.restaurant_id = @current_restaurant.id
+    if @menu.save
 
       # 推奨タグが選択されているかどうか？
       unless params[:tag_id].nil?
@@ -38,7 +38,7 @@ class Owner::MenusController < Owner::Base
         params[:tag_id].each do |tag, box|
           if box == "1"
             menu_tag = MenuTag.new
-            menu_tag.menu_id = menu_new.id
+            menu_tag.menu_id = @menu.id
             menu_tag.tag_id = tag.to_i
             menu_tag.save
           end
@@ -49,9 +49,9 @@ class Owner::MenusController < Owner::Base
       unless params[:tag].nil?
         # Tagの新規追加
         params[:tag].each do |tag|
-          unless Tag.find_by(name: "#{tag}")
+          unless Tag.find_by(name: tag)
             new_tag = Tag.new
-            new_tag.name = "#{tag}"
+            new_tag.name = tag
             new_tag.save
           end
         end
@@ -59,13 +59,16 @@ class Owner::MenusController < Owner::Base
         #MenuTagの新規追加
         params[:tag].each do |tag|
           new_menu_tag = MenuTag.new
-          new_menu_tag.menu_id = menu_new.id
-          new_menu_tag.tag_id = Tag.find_by(name: "#{tag}").id
+          new_menu_tag.menu_id = @menu.id
+          new_menu_tag.tag_id = Tag.find_by(name: tag).id
           new_menu_tag.save
         end
       end
-      redirect_to owner_restaurant_menu_path(@current_restaurant, menu_new)
+      redirect_to owner_restaurant_menu_path(@current_restaurant, @menu)
     else
+      @menu_tags = MenuTag.where(menu_id: params[:id])
+      @tags = Tag.all
+      @restaurant = Restaurant.find(params[:restaurant_id])
       render :new
     end
   end
@@ -110,19 +113,19 @@ class Owner::MenusController < Owner::Base
       unless params[:tag].nil?
         # Tagの新規追加
         params[:tag].each do |tag|
-          unless Tag.find_by(name: "#{tag}")
+          unless Tag.find_by(name: tag)
             new_tag = Tag.new
-            new_tag.name = "#{tag}"
+            new_tag.name = tag
             new_tag.save
           end
         end
 
         #MenuTagの新規追加
         params[:tag].each do |tag|
-          unless MenuTag.find_by(menu_id: menu.id, tag_id: Tag.find_by(name: "#{tag}").id)
+          unless MenuTag.find_by(menu_id: menu.id, tag_id: Tag.find_by(name: tag).id)
             new_menu_tag = MenuTag.new
             new_menu_tag.menu_id = menu.id
-            new_menu_tag.tag_id = Tag.find_by(name: "#{tag}").id
+            new_menu_tag.tag_id = Tag.find_by(name: tag).id
             new_menu_tag.save
           end
         end

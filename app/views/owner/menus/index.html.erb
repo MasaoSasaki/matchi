@@ -15,11 +15,11 @@
         <tr>
           <td rowspan="2"><%= menu.id %></td>
           <td>
-            <%= link_to owner_restaurant_menu_path(@restaurant, menu) do %>
+            <%= link_to owner_restaurant_menu_path(@restaurant, menu), class: "menu-image-path" do %>
               <%= attachment_image_tag menu, :menu_image, fallbak: "no_image.png" %>
             <% end %>
           </td>
-          <td><%= link_to "#{menu.title}", owner_restaurant_menu_path(@restaurant, menu) %></td>
+          <td><%= link_to menu.title, owner_restaurant_menu_path(@restaurant, menu), class: "menu-title-path" %></td>
           <td><%= menu.reservation_method_i18n %></td>
           <td>
             <% if menu.is_sale_frag == true %>
