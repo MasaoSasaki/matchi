@@ -11,7 +11,7 @@
           <%= text_field_tag :tag_name %>
           <%= button_tag '追加', type: 'button', class: "add-tag-btn" %>
           <div id="tag-list"></div>
-          <% if truth %>
+          <% if action_name == 'edit' %>
             <h4>現在のタグ一覧</h4>
             <% menu.menu_tags.each do |menu_tag| %>
               <p class="inline-block" id="existing-tags">
@@ -90,12 +90,11 @@
       </div>
     </section>
 
-    <div class="submit"><%= f.button "#{submit}", onclick: 'submit();', type: 'button', class: "btn btn-primary" %></div>
+    <div class="submit"><%= f.button submit, onclick: 'submit();', type: 'button', class: "btn btn-primary" %></div>
 
   <% end %>
   <%= link_to '一覧に戻る', owner_restaurant_menus_path(current_restaurant) %>
-  <%# 編集画面でのみ表示 %>
-  <% if truth %>
+  <% if action_name == 'edit' %>
     <%= link_to '詳細に戻る', owner_restaurant_menu_path(current_restaurant, menu) %>
   <% end %>
 </div>

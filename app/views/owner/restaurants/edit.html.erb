@@ -1,4 +1,4 @@
-<% if @current_restaurant == @restaurant %>
+<% if @current_restaurant.id == @restaurant.id %>
   <%# pc %>
   <div class="contents owner-restaurants-edit-pc">
     <h2>店舗情報の編集</h2>
@@ -9,7 +9,7 @@
         <tbody>
           <tr>
             <td colspan="2" class="name"><h3><%= f.label :name %></h3></td>
-            <td><%= f.text_field :name, required: true %></td>
+            <td><%= f.text_field :name %></td>
           </tr>
           <tr class="head">
             <td rowspan="2"><h3><%= f.label :restaurant_image %></h3></td>
@@ -42,7 +42,7 @@
           <tr class="head">
             <td rowspan="6"><h3>連絡先</h3></td>
             <td><p><%= f.label :phone_number, '電話番号(半角数字、ハイフンなし)' %></p></td>
-            <td><%= f.text_field :phone_number, placeholder: '123456789012', required: true %></td>
+            <td><%= f.text_field :phone_number, placeholder: '123456789012' %></td>
           </tr>
           <tr>
             <td><p><%= f.label :email %></p></td>
@@ -76,14 +76,13 @@
         </tbody>
       </table>
       <div class="submit"><%= f.submit '更新', id: 'restaurant-update', class: 'btn btn-primary' %></div>
-      <div><%= link_to '店舗情報に戻る', owner_restaurant_path(@current_restaurant) %><br><%= link_to 'パスワードの変更はこちら', edit_owner_restaurant_registration_path(current_owner_restaurant) %></div>
     <% end %>
   </div>
 
   <%# tb & sp %>
   <div class="contents owner-restaurants-edit-sp">
 
-    <%= render partial: 'layouts/error_messages', locals: {model: @current_restaurant} %>
+    <%= render partial: 'layouts/error_messages', locals: { model: @current_restaurant } %>
 
     <%= form_with model: @current_restaurant, url: owner_restaurant_path, method: :patch, local: :true do |f| %>
       <table class="owner-restaurants-edit--form">
@@ -93,8 +92,10 @@
             <td class="center"><%= f.text_field :name, required: true %></td>
           </tr>
           <tr class="head">
-            <td><h3><%= f.label :restaurant_image %></h3></td>
-            <td><%= f.attachment_field :restaurant_image, class: "attachment_image" %></td>
+            <td colspan="2"><h3><%= f.label :restaurant_image %></h3></td>
+          </tr>
+          <tr>
+            <td colspan="2"><%= f.attachment_field :restaurant_image, class: "attachment_image" %></td>
           </tr>
           <tr>
             <td colspan="2" class="image-preview"></td>
@@ -171,9 +172,9 @@
         </tbody>
       </table>
       <div class="center"><%= f.submit '更新', id: 'restaurant-update', class: 'btn btn-primary center' %></div>
-      <div><%= link_to '店舗情報に戻る', owner_restaurant_path(@current_restaurant) %><br><%= link_to 'パスワードの変更はこちら', edit_owner_restaurant_registration_path(current_owner_restaurant) %></div>
     <% end %>
   </div>
+  <div class="owner-restaurants-edit--links"><%= link_to '店舗情報に戻る', owner_restaurant_path(@current_restaurant) %><br><%= link_to 'パスワードの変更はこちら', edit_owner_restaurant_registration_path(current_owner_restaurant) %></div>
 <% else %>
   <p>編集権限がありません。</p>
 <% end %>
