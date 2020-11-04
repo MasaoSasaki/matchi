@@ -172,10 +172,6 @@ RSpec.describe 'Users', type: :system do
                 all('.btn-default')[0].click
                 expect(page).to have_content '新規会員登録'
               end
-              it 'newページに遷移する' do
-                all('.btn-default')[0].click
-                expect(page).to have_content '新規会員登録'
-              end
             end
             context '"登録する"ボタンの場合' do
               it 'completeページに遷移する' do
@@ -201,10 +197,6 @@ RSpec.describe 'Users', type: :system do
           end
           describe 'ボタンのテスト' do
             context '"修正する"ボタンの場合' do
-              it 'newページに遷移する' do
-                all('.btn-default')[1].click
-                expect(page).to have_content '新規会員登録'
-              end
               it 'newページに遷移する' do
                 all('.btn-default')[1].click
                 expect(page).to have_content '新規会員登録'
