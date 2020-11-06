@@ -6,6 +6,7 @@ class Restaurant < ApplicationRecord
 
   has_many :menus, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  has_many :user_reviews, dependent: :destroy
 
   attachment :restaurant_image
 
