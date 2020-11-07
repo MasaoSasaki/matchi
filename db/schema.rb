@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_132023) do
   create_table "menu_reviews", force: :cascade do |t|
     t.integer "menu_id", null: false
     t.integer "user_id", null: false
-    t.text "comment", null: false
+    t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["menu_id"], name: "index_menu_reviews_on_menu_id"
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_132023) do
   create_table "restaurant_reviews", force: :cascade do |t|
     t.integer "restaurant_id", null: false
     t.integer "user_id", null: false
-    t.text "comment", null: false
+    t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["restaurant_id"], name: "index_restaurant_reviews_on_restaurant_id"
@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_132023) do
   create_table "user_reviews", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "restaurant_id", null: false
-    t.text "comment", null: false
+    t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["restaurant_id"], name: "index_user_reviews_on_restaurant_id"
