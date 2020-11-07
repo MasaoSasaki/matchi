@@ -7,6 +7,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :reservations
+  has_many :restaurant_reviews, dependent: :destroy
+  has_many :menu_reviews, dependent: :destroy
 
   attachment :profile_image
 

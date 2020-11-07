@@ -169,7 +169,7 @@ RSpec.describe 'Users', type: :system do
           describe 'ボタンのテスト' do
             context '"修正する"ボタンの場合' do
               it 'newページに遷移する' do
-                all('.btn-default')[0].click
+                all('.btn-outline-dark')[0].click
                 expect(page).to have_content '新規会員登録'
               end
             end
@@ -198,7 +198,7 @@ RSpec.describe 'Users', type: :system do
           describe 'ボタンのテスト' do
             context '"修正する"ボタンの場合' do
               it 'newページに遷移する' do
-                all('.btn-default')[1].click
+                all('.btn-outline-dark')[1].click
                 expect(page).to have_content '新規会員登録'
               end
             end
