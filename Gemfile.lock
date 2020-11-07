@@ -57,15 +57,16 @@ GEM
       sshkit (>= 1.6.1, != 1.7.0)
     arel (9.0.0)
     ast (2.4.1)
-    autoprefixer-rails (9.8.6.1)
+    autoprefixer-rails (10.0.1.3)
       execjs
     bcrypt (3.1.15)
     bindex (0.8.1)
     bootsnap (1.4.7)
       msgpack (~> 1.0)
-    bootstrap-sass (3.3.7)
-      autoprefixer-rails (>= 5.2.1)
-      sass (>= 3.3.4)
+    bootstrap (4.5.2)
+      autoprefixer-rails (>= 9.1.0)
+      popper_js (>= 1.14.3, < 2)
+      sassc-rails (>= 2.0.0)
     builder (3.2.4)
     byebug (11.1.3)
     capistrano (3.14.1)
@@ -196,6 +197,7 @@ GEM
     parallel (1.19.2)
     parser (2.7.1.4)
       ast (~> 2.4.1)
+    popper_js (1.16.0)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -302,6 +304,14 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    sassc (2.4.0)
+      ffi (~> 1.9)
+    sassc-rails (2.1.2)
+      railties (>= 4.0.0)
+      sassc (>= 2.0)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
@@ -319,7 +329,7 @@ GEM
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.2.1)
+    sprockets-rails (3.2.2)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
@@ -363,7 +373,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.1.0)
-  bootstrap-sass (~> 3.3.6)
+  bootstrap
   byebug
   capistrano
   capistrano-rails
