@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_29_022249) do
+ActiveRecord::Schema.define(version: 2020_11_06_105630) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -38,6 +38,16 @@ ActiveRecord::Schema.define(version: 2020_09_29_022249) do
     t.text "message", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "menu_reviews", force: :cascade do |t|
+    t.integer "menu_id", null: false
+    t.integer "user_id", null: false
+    t.text "comment", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["menu_id"], name: "index_menu_reviews_on_menu_id"
+    t.index ["user_id"], name: "index_menu_reviews_on_user_id"
   end
 
   create_table "menu_tags", force: :cascade do |t|
@@ -78,6 +88,16 @@ ActiveRecord::Schema.define(version: 2020_09_29_022249) do
     t.index ["user_id", "menu_id"], name: "index_reservations_on_user_id_and_menu_id"
   end
 
+  create_table "restaurant_reviews", force: :cascade do |t|
+    t.integer "restaurant_id", null: false
+    t.integer "user_id", null: false
+    t.text "comment", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_restaurant_reviews_on_restaurant_id"
+    t.index ["user_id"], name: "index_restaurant_reviews_on_user_id"
+  end
+
   create_table "restaurants", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -109,6 +129,16 @@ ActiveRecord::Schema.define(version: 2020_09_29_022249) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
+  create_table "user_reviews", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "restaurant_id", null: false
+    t.text "comment", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_user_reviews_on_restaurant_id"
+    t.index ["user_id"], name: "index_user_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

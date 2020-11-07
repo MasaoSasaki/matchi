@@ -55,17 +55,32 @@
 
     <%# スマホ画面ヘッダー %>
     <div class="flex sp-header">
-      <div class="hamburger">
-        <span class="bar bar-top"></span>
-        <span class="bar bar-center"></span>
-        <span class="bar bar-bottom"></span>
+      <div class="sp-header__left">
+        <div class="hamburger">
+          <span class="bar bar-top"></span>
+          <span class="bar bar-center"></span>
+          <span class="bar bar-bottom"></span>
+        </div>
       </div>
-    <%= link_to root_path do %>
-      <div><%= image_tag 'logo.png', alt: "header-logo" %></div>
-    <% end %>
+      <div class="sp-heaader__center">
+        <%= link_to root_path do %>
+          <div><%= image_tag 'logo.png', alt: "header-logo" %></div>
+        <% end %>
+      </div>
       <%# 未読のお知らせの通知 %>
-      <div class="alert">
-        <i id="alert-bell" class="fa-2x far fa-bell"><div class="hidden icon"></div></i>
+      <div class="sp-header__right">
+        <% if user_signed_in? %>
+          <div class="alert">
+            <i id="alert-bell" class="fa-2x far fa-bell"><div class="hidden icon"></div></i>
+          </div>
+        <% else %>
+          <%= link_to new_user_session_path do %>
+            <div class="login">
+              <i class="fa-2x fas fa-lock"></i><br>
+              <small>Login</small>
+            </div>
+          <% end %>
+        <% end %>
       </div>
       <%# ハンバーガーメーニュー %>
       <div class="hamburger-menu">
