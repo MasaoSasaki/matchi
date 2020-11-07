@@ -13,7 +13,7 @@ Ruby 2.5.7
 #### フレームワーク
 Rails 5.2.4
 #### ライブラリ
-jQuery 1.12.4
+jQuery 1.12.4<br>
 bootstrap
 #### 外部API
 Google(Google Maps Javascript/Geolocation/Geocoding/CloudVision/CloudTranslation)
