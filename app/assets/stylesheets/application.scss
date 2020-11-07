@@ -10,8 +10,8 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
+ *= require_tree .
  */
 
 @import "variables";
@@ -30,6 +30,10 @@ header {
 
 body {
   background-color: $thema-color1;
+}
+
+p {
+  margin: 0;
 }
 
 ul {
@@ -382,7 +386,9 @@ input[readonly], textarea[readonly] {
   }
 
   .alert {
+    padding: 0;
     padding-top: 4px;
+    margin-bottom: 0;
     position: relative;
     line-height: 70px;
   }

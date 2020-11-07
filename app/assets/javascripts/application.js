@@ -65,7 +65,7 @@ if (document.getElementById("restaurants_json") != null) {
                     i = i - 1;
                     infoWindow[i] = new google.maps.InfoWindow(
                       {
-                        content: restaurants[i].name + '<br><a href='+link+'>詳細</a>',
+                        content: `<a href='${ link }'>${ restaurants[i].name }</a>`
                       }
                       );
                       marker[i].addListener("click", function(){
@@ -105,7 +105,7 @@ if (document.getElementById("restaurants_json") != null) {
                 i = i - 1;
                 infoWindow[i] = new google.maps.InfoWindow(
                   {
-                    content: restaurants[i].name + '<br><a href='+link+'>詳細</a>',
+                    content: `<a href='${ link }'>${ restaurants[i].name }</a>`
                   }
                 );
                 marker[i].addListener("click", function(){
@@ -174,9 +174,9 @@ function imagePreview(fileForm, previewArea) {
     if (fileForm.id != "menu_menu_image") { return }
     tagList[0].insertAdjacentHTML(
       "afterend",
-      `<button name="ja" type="button" class="vision-api-event btn btn-default">タグを取得(日本語)</button>
-      <button name="pure" type="button" class="vision-api-event btn btn-default">タグを取得(英語)</button>
-      <button name="all" type="button" class="vision-api-event btn btn-default">タグを取得(日本語・英語)</button>`
+      `<button name="ja" type="button" class="vision-api-event btn btn-outline-dark">タグを取得(日本語)</button>
+      <button name="pure" type="button" class="vision-api-event btn btn-outline-dark">タグを取得(英語)</button>
+      <button name="all" type="button" class="vision-api-event btn btn-outline-dark">タグを取得(日本語・英語)</button>`
       );
     const getTagsBtn = document.getElementsByClassName("vision-api-event");
     for (let i = 0; i < getTagsBtn.length; i++) {
