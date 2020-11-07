@@ -8,7 +8,7 @@
     <h3>お問い合わせ内容</h3>
     <p><%= f.text_area :message, value: @contact.message, readonly: true %></p>
 
-    <%= f.submit '修正する', class: "btn btn-default", name: :back %>
+    <%= f.submit '修正する', class: "btn btn-outline-dark", name: :back %>
     <%= f.submit '送信', class: "btn btn-primary" %>
   <% end %>
 </div>
