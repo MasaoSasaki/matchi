@@ -42,7 +42,7 @@
               <li><%= link_to '店舗ログアウト', destroy_owner_restaurant_session_path, class: "btn btn-warning", method: :delete %></li>
             <% end %>
             <% if user_signed_in? %>
-              <li><%= link_to 'MyPage', user_mypage_path, class: "btn btn-default user-mypage" %></li>
+              <li><%= link_to 'MyPage', user_mypage_path, class: "btn btn-outline-dark user-mypage" %></li>
               <li><%= link_to 'ログアウト', destroy_user_session_path, class: "btn btn-danger user-sign_out", method: :delete %></li>
             <% else %>
               <li><%= link_to '新規登録', new_user_registration_path, class: "btn btn-success user-sign_up" %></li>

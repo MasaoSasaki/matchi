@@ -7,6 +7,6 @@ class ContactMailer < ApplicationMailer
   #
   def contact_mail(contact)
     @contact = contact
-    mail to: "skydai852@gmail.com", subject: "メールのタイトル"
+    mail to: "mail@matchi-gourmet.com", subject: "メールのタイトル"
   end
 end
