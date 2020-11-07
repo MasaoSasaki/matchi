@@ -48,6 +48,7 @@ if (document.getElementById("restaurants_json") != null) {
           $(function(){
             for (let i = 0; i < restaurants.length; i++) {
               let address = restaurants[i].prefecture + restaurants[i].city + restaurants[i].street;
+              if (address == 0) { continue }
               const geocoder = new google.maps.Geocoder();
               geocoder.geocode(
                 {"address": address},
@@ -66,8 +67,8 @@ if (document.getElementById("restaurants_json") != null) {
                       {
                         content: restaurants[i].name + '<br><a href='+link+'>詳細</a>',
                       }
-                    );
-                    marker[i].addListener("click", function(){
+                      );
+                      marker[i].addListener("click", function(){
                       infoWindow[i].open(map, marker[i]);
                     });
                   } else {
@@ -87,6 +88,7 @@ if (document.getElementById("restaurants_json") != null) {
       $(function(){
         for (let i = 0; i < restaurants.length; i++) {
           let address = restaurants[i].prefecture + restaurants[i].city + restaurants[i].street;
+          if (address == 0) { continue }
           const geocoder = new google.maps.Geocoder();
           geocoder.geocode(
             {"address": address},
