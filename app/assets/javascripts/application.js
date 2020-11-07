@@ -65,7 +65,7 @@ if (document.getElementById("restaurants_json") != null) {
                     i = i - 1;
                     infoWindow[i] = new google.maps.InfoWindow(
                       {
-                        content: restaurants[i].name + '<br><a href='+link+'>詳細</a>',
+                        content: `<a href='${ link }'>${ restaurants[i].name }</a>`
                       }
                       );
                       marker[i].addListener("click", function(){
@@ -105,7 +105,7 @@ if (document.getElementById("restaurants_json") != null) {
                 i = i - 1;
                 infoWindow[i] = new google.maps.InfoWindow(
                   {
-                    content: restaurants[i].name + '<br><a href='+link+'>詳細</a>',
+                    content: `<a href='${ link }'>${ restaurants[i].name }</a>`
                   }
                 );
                 marker[i].addListener("click", function(){
