@@ -3,7 +3,7 @@ class CreateUserReviews < ActiveRecord::Migration[5.2]
     create_table :user_reviews do |t|
       t.references :user, foreign_key: true, null: false
       t.references :restaurant, foreign_key: true, null: false
-      t.text :comment, default: ""
+      t.text :comment
 
       t.timestamps
     end
