@@ -1,32 +1,40 @@
 <div class="contents contacts-new">
 
-  <%= render partial: 'layouts/error_messages', locals: {model: @contact} %>
-
+  <%= render partial: 'layouts/flash_messages' %>
   <h2>お問い合わせ</h2>
-
   <p>ご意見・ご要望・新規出店のご相談はこちらよりお問い合わせください。</p>
-  <%= form_with model: @contact, url: confirm_contact_path(@contact), local: true do |f| %>
-
-    <% if user_signed_in? %>
+  <div class="contacts-new__form">
+    <%= form_with model: @contact, url: confirm_contact_path(@contact), local: true do |f| %>
+      <% if user_signed_in? %>
+        <div class="form-group">
+          <h3>返信希望のメールアドレス</h3>
+          <p>登録済みのメールアドレスにご返信いたします。</p>
+          <%= f.hidden_field :email, value: current_user.email %>
+        </div>
+      <% else %>
+        <div class="form-group">
+          <h3><%= f.label :email, 'ご連絡先メールアドレス' %></h3>
+          <p>
+            お問い合わせ完了後、受付メールが送信されます。<br>
+            メールが届かない場合は再度ご入力ください。
+          </p>
+          <% if @contact.errors.include?(:email) %>
+            <%= f.email_field :email, id: "contacts-new__email-form", placeholder: "example@example.com", class: "error-form" %><%= render partial: 'layouts/each_error_messages', locals: { model: @contact, key: :email } %>
+          <% else %>
+            <%= f.email_field :email, id: "contacts-new__email-form", placeholder: "example@example.com" %>
+          <% end %>
+        </div>
+      <% end %>
       <div class="form-group">
-        <h3>返信希望のメールアドレス</h3>
-        <p>登録済みのメールアドレスにご返信いたします。</p>
-        <%= f.hidden_field :email, value: current_user.email %>
+        <h3><%= f.label :message, 'お問い合わせ内容' %></h3>
+          <% if @contact.errors.include?(:message) %>
+            <%= f.text_area :message, id: "contacts-new__message-form", class: "error-form" %><%= render partial: 'layouts/each_error_messages', locals: { model: @contact, key: :message } %>
+          <% else %>
+            <%= f.text_area :message, id: "contacts-new__message-form" %>
+          <% end %>
       </div>
-    <% else %>
-      <div class="form-group">
-        <h3><%= f.label :email, 'ご連絡先メールアドレス' %></h3>
-        <%= f.email_field :email, id: "contacts-new__email-form", placeholder: "example@example.com" %><br><span id="contacts-new__email-form--notice"></span>
-      </div>
+      <div><%= f.submit '確認する', id: "new-contacts-submit", class: "btn btn-outline-dark" %></div>
     <% end %>
-
-  <div class="form-group">
-    <h3><%= f.label :message, 'お問い合わせ内容' %></h3>
-    <%= f.text_area :message, id: "contacts-new__message-form" %><br><span id="contacts-new__message-form--notice"></span>
   </div>
-
-  <div><%= f.submit '確認する', id: "new-contacts-submit", class: "btn btn-outline-dark" %></div>
-
-  <% end %>
 
 </div>

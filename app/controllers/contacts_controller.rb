@@ -9,19 +9,20 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(contact_params)
     render :new and return if params[:back] || !@contact.save
-    ContactMailer.contact_mail(@contact).deliver
-    flash[:success] = 'お問い合わせを受け付けました。'
+    ContactMailer.master_contact_mail(@contact).deliver
     render :completion
+    ContactMailer.general_contact_mail(@contact).deliver
   end
 
   def confirm
     @contact = Contact.new(contact_params)
-    render :new if @contact.invalid?
+    if @contact.invalid?
+      flash.now[:danger] = '入力内容にエラーがあります。'
+      render :new
+    end
   end
 
   def completion
-    contact = Contact.new(contact_params)
-    render :new if contact.invalid?
   end
 
   private
