@@ -1,12 +1,15 @@
 class ContactMailer < ApplicationMailer
 
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.contact_mailer.contact_mail.subject
-  #
-  def contact_mail(contact)
+  # 管理者側
+  def master_contact_mail(contact)
     @contact = contact
-    mail to: "mail@matchi-gourmet.com", subject: "メールのタイトル"
+    mail to: "mail@matchi-gourmet.com", subject: "お問い合わせ"
   end
+
+  # 問い合わせ主側
+  def general_contact_mail(contact)
+    @contact = contact
+    mail to: contact.email, subject: "お問い合わせ完了"
+  end
+
 end
