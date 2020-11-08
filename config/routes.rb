@@ -46,7 +46,7 @@ Rails.application.routes.draw do
     resources :menu_tags, only: %i[create destroy]
   end
 
-   scope module: :public do
+  scope module: :public do
     devise_for :users, controllers: {
       sessions: 'public/users/sessions',
       registrations: 'public/users/registrations',
