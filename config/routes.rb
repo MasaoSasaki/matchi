@@ -11,7 +11,6 @@ Rails.application.routes.draw do
     get '/', to: 'public/users#show', as: 'user_mypage'
     get 'edit', to: 'public/users#edit', as: 'user_edit'
     get 'withdraw', to: 'public/users#withdraw', as: 'user_withdraw'
-    get 'profile', to: 'public/users#profile', as: 'user_profile'
     get 'info', to: 'public/users#info', as: 'user_info'
   end
 
@@ -65,6 +64,7 @@ Rails.application.routes.draw do
       resources :bookmarks, only: %i[:index show]
     end
 
+    get 'users/:id/profile', to: 'users#profile', as: 'users/profile'
     patch 'users/:id/withdrawal', to: 'users#withdrawal', as: 'users/withdrawal'
     get 'users/:id/withdraw', to: 'users#withdraw', as: 'users/withdraw'
     post 'users/:id/withdrew', to: 'users#withdrew', as: 'users/withdrew'

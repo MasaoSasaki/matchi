@@ -134,14 +134,16 @@
   }
 
   // /public/users/edit
-  .users-edit h2 {
-    margin: 20px 0;
-  }
+  .public-users-edit {
 
-  .users-edit > h2 {
-    text-align: center;
-  }
+    h2 {
+      margin: 20px 0;
+    }
 
+    > h2 {
+      text-align: center;
+    }
+  }
 
   .users-edit-btn {
     justify-content: space-between;

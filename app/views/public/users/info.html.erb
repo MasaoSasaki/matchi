@@ -6,13 +6,13 @@
       <div class="sns">
         <h3>SNS</h3>
         <ul class="flex">
-          <%= link_to "https://twitter.com/#{current_user.twitter}", target: :_blank do %>
+          <%= link_to "https://twitter.com/#{ current_user.twitter }", target: :_blank do %>
             <li class="sns-btn"><i class="fab fa-twitter"></i></li>
           <% end %>
-          <%= link_to "https://facebook.com/profile.php?id=#{current_user.facebook}", target: :_blank do %>
+          <%= link_to "https://facebook.com/profile.php?id=#{ current_user.facebook }", target: :_blank do %>
             <li class="sns-btn"><i class="fab fa-facebook-f"></i></li>
           <% end %>
-          <%= link_to "https://instagram.com/#{current_user.instagram}", target: :_blank do %>
+          <%= link_to "https://instagram.com/#{ current_user.instagram }", target: :_blank do %>
             <li class="sns-btn"><i class="fab fa-instagram"></i></li>
           <% end %>
         </ul>

@@ -12,8 +12,8 @@ RSpec.describe 'Users', type: :system do
         visit user_mypage_path
       end
       it 'ページが表示される' do
-        expect(current_path).to eq user_mypage_path
         expect(page).to have_content @user.name
+        expect(page).to have_css '.public-users-show'
       end
     end
     describe 'infoページのテスト' do
@@ -21,9 +21,9 @@ RSpec.describe 'Users', type: :system do
         visit user_info_path
       end
       it 'ページが表示される' do
-        expect(current_path).to eq user_info_path
         expect(page).to have_content @user.phone_number
         expect(page).to have_content @user.email
+        expect(page).to have_css '.public-users-info'
       end
       it '1つのリンクにアクセスできる' do
         click_link '登録情報編集'
@@ -35,7 +35,7 @@ RSpec.describe 'Users', type: :system do
         visit user_edit_path
       end
       it 'ページが表示される' do
-        expect(current_path).to eq user_edit_path
+        expect(page).to have_css '.public-users-edit'
       end
       it '2つのリンクにアクセスできる' do
         click_link 'こちら'
@@ -53,18 +53,18 @@ RSpec.describe 'Users', type: :system do
     end
     describe 'profileページのテスト' do
       before do
-      visit user_profile_path
-    end
-    it 'ページが表示される' do
-      expect(current_path).to eq user_profile_path
-    end
+        visit users_profile_path(@user)
+      end
+      it 'ページが表示される' do
+        expect(page).to have_css '.public-users-profile'
+      end
     end
     describe 'withdrawページのテスト' do
       before do
         visit users_withdraw_path(@user)
       end
       it 'ページが表示される' do
-        expect(current_path).to eq users_withdraw_path(@user)
+        expect(page).to have_css '.public-users-withdraw'
       end
       it '1つのリンクにアクセスできる' do
         click_link 'こちら'
@@ -75,6 +75,7 @@ RSpec.describe 'Users', type: :system do
           click_button '退会する'
           expect(current_path).to eq users_withdrew_path(@user)
           expect(User.find(1).user_status).to eq 'withdrew'
+          expect(page).to have_css '.public-users-withdrew'
         end
       end
     end
@@ -84,7 +85,7 @@ RSpec.describe 'Users', type: :system do
         click_button '退会する'
       end
       it 'ページが表示される' do
-        expect(current_path).to eq users_withdrew_path(@user)
+        expect(page).to have_css '.public-users-withdrew'
       end
     end
     describe '_linksのテスト' do
@@ -92,7 +93,7 @@ RSpec.describe 'Users', type: :system do
         it '5つのリンクが表示される' do
           visit user_mypage_path
           click_link 'プロフィールを確認'
-          expect(current_path).to eq user_profile_path
+          expect(current_path).to eq users_profile_path(@user)
           visit user_mypage_path
           click_link '登録情報確認'
           expect(current_path).to eq user_info_path
@@ -117,13 +118,13 @@ RSpec.describe 'Users', type: :system do
     end
   end
   describe 'devise配下ページのテスト' do
-    describe 'registrationsテスト' do
+    describe 'registrationsのテスト' do
       describe 'newページのテスト' do
         before do
           visit new_user_registration_path
         end
         it 'ページが表示される' do
-          expect(current_path).to eq new_user_registration_path
+          expect(page).to have_css '.public-users-registrations-new'
         end
         it '確認画面へ遷移できる' do
           within('.registration-form-sp') do
@@ -170,13 +171,13 @@ RSpec.describe 'Users', type: :system do
             context '"修正する"ボタンの場合' do
               it 'newページに遷移する' do
                 all('.btn-outline-dark')[0].click
-                expect(page).to have_content '新規会員登録'
+                expect(page).to have_css '.public-users-registrations-new'
               end
             end
             context '"登録する"ボタンの場合' do
               it 'completeページに遷移する' do
                 all('.btn-primary')[1].click
-                expect(current_path).to eq users_sign_up_complete_path
+                expect(page).to have_css '.public-users-registrations-complete'
               end
             end
           end
@@ -199,13 +200,14 @@ RSpec.describe 'Users', type: :system do
             context '"修正する"ボタンの場合' do
               it 'newページに遷移する' do
                 all('.btn-outline-dark')[1].click
-                expect(page).to have_content '新規会員登録'
+                expect(page).to have_css '.public-users-registrations-new'
               end
             end
             context '"登録する"ボタンの場合' do
               it 'completeページに遷移する' do
                 all('.btn-primary')[2].click
                 expect(current_path).to eq users_sign_up_complete_path
+                expect(page).to have_css '.public-users-registrations-complete'
               end
             end
           end
@@ -219,7 +221,7 @@ RSpec.describe 'Users', type: :system do
       end
       describe 'newページのテスト' do
         it 'ページが表示される' do
-          expect(current_path).to eq new_user_session_path
+          expect(page).to have_css '.public-users-sessions-new'
         end
         it 'ログインに成功する' do
           fill_in 'user[email]', with: @user.email

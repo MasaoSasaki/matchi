@@ -8,15 +8,15 @@ RSpec.describe 'Reservations', type: :system do
     @reservation = create(:reservation)
   end
   describe 'indexページのテスト' do
-    it '予約一覧画面が表示される' do
+    it 'ページが表示される' do
       visit owner_reservations_path
-      expect(page).to have_content 'Reservated List'
+      expect(page).to have_css '.owner-reservations-index'
     end
   end
   describe 'showページのテスト' do
-    it '予約詳細画面が表示される' do
+    it 'ページが表示される' do
       visit owner_reservation_path(@reservation)
-      expect(page).to have_content '予約の詳細'
+      expect(page).to have_css '.owner-reservations-show'
     end
   end
 end

@@ -22,6 +22,7 @@ class Public::UsersController < Public::Base
   end
 
   def profile
+    @user = User.find(params[:id])
   end
 
   def withdraw

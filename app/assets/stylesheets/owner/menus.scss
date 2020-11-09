@@ -134,11 +134,14 @@
   }
 
   // edit
-  .owner-menus-_form-content, .owner-menus-_form-cancel {
-    text-align: center;
+  .owner-menus-edit {
+
+    h2 {
+      text-align: center;
+    }
   }
 
-  .menus-edit-h2 {
+  .owner-menus-_form-content, .owner-menus-_form-cancel {
     text-align: center;
   }
 }
@@ -214,7 +217,7 @@
       }
     }
   }
-  
+
   // edit,new
   .image-preview img {
     width: 100%;

@@ -11,7 +11,7 @@ RSpec.describe 'Restaurants', type: :system do
       visit master_restaurants_path
     end
     it 'ページが表示される' do
-      expect(current_path).to eq master_restaurants_path
+      expect(page).to have_css '.master-restaurants-index'
     end
     it '2つのリンクにアクセスできる' do
       click_link @restaurant.id
