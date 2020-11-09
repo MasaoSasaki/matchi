@@ -9,9 +9,9 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(contact_params)
     render :new and return if params[:back] || !@contact.save
-    ContactMailer.master_contact_mail(@contact).deliver
     render :completion
-    ContactMailer.general_contact_mail(@contact).deliver
+    Mailer::ContactMailer.general_contact_mail(@contact).deliver
+    Mailer::ContactMailer.master_contact_mail(@contact).deliver
   end
 
   def confirm

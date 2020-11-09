@@ -53,9 +53,13 @@ class Restaurant < ApplicationRecord
   end
 
   def address
-    prefecture + city + street + building
+    if !prefecture.nil? && !city.nil? && !street.nil?
+      prefecture + city + street
+      if !building.nil?
+        prefecture + city + street + building
+      end
+    end
   end
-
 
   private
   def presense_empty?
