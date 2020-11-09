@@ -15,12 +15,14 @@
           <table>
             <tbody>
               <tr>
-                <td><h4>正規価格</h4><p><%= menu.regular_price.to_s(:delimited) %> 円</p></td>
-                <td><h4>提供価格</h4><p><%= menu.discount_price.to_s(:delimited) %> 円</p></td>
+                <td><p>正規価格<br><%= menu.regular_price.to_s(:delimited) %> 円</p></td>
+                <td><p>提供価格<br><%= menu.discount_price.to_s(:delimited) %> 円</p></td>
               </tr>
               <tr>
-                <td><h4>店舗名</h4><%= link_to "#{@restaurants.find(menu.restaurant_id).name}", restaurant_path(menu.restaurant_id) %></td>
-                <td><h4>住所</h4><%= "#{@restaurants.find(menu.restaurant_id).prefecture}" + "#{@restaurants.find(menu.restaurant_id).city}" + "#{@restaurants.find(menu.restaurant_id).street}" + "#{@restaurants.find(menu.restaurant_id).building}" %></td>
+                <td colspan="2"><p>店舗名: <%= link_to menu.restaurant.name, restaurant_path(menu.restaurant) %></p></td>
+              </tr>
+              <tr>
+                <td colspan="2"><p>住所: <%= menu.restaurant.address %></p></td>
               </tr>
             </tbody>
           </table>

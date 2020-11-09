@@ -26,6 +26,8 @@ class Public::ReservationsController < Public::Base
     # 最新の予約情報を取得
     new_reservation_id = Reservation.order(created_at: :desc).limit(1).ids
     redirect_to user_reservations_completion_path(new_reservation_id: new_reservation_id)
+    Mailer::ReservationMailer.general_reservation_mail(@reservation).deliver
+    Mailer::ReservationMailer.restaurant_reservation_mail(@reservation).deliver
   end
 
   def confirm
