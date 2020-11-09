@@ -7,7 +7,7 @@ RSpec.describe 'Restaurants', type: :system do
   end
   describe 'indexページのテスト' do
     it 'ページが表示される' do
-      expect(current_path).to eq restaurants_path
+      expect(page).to have_css '.public-restaurants-index'
     end
     it '店舗詳細にアクセスできる' do
       find('.restaurant0--name').click
@@ -22,8 +22,7 @@ RSpec.describe 'Restaurants', type: :system do
       visit restaurant_path(@restaurant)
     end
     it 'ページが表示される' do
-      visit restaurant_path(@restaurant)
-      expect(page).to have_content '店舗紹介'
+      expect(page).to have_css '.public-restaurants-show'
     end
     it '1つのリンクが表示される' do
       within('.public-restaurants-show') do

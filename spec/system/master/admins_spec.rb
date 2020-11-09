@@ -9,7 +9,7 @@ RSpec.describe 'Admins', type: :system do
     end
     describe 'topページのテスト' do
       it 'ページが表示される' do
-        expect(current_path).to eq master_path
+        expect(page).to have_css '.master-admins-top'
       end
       it '3つのリンクにアクセスできる' do
         click_link '会員一覧・編集'
@@ -29,14 +29,16 @@ RSpec.describe 'Admins', type: :system do
       visit new_master_admin_session_path
     end
     describe 'sessionsのテスト' do
-      it 'ページが表示される' do
-        expect(current_path).to eq new_master_admin_session_path
-      end
-      it 'ログインに成功する' do
-        fill_in 'master_admin[email]', with: @admin.email
-        fill_in 'master_admin[password]', with: @admin.password
-        click_button 'ログイン'
-        expect(current_path).to eq master_path
+      describe 'newページのテスト' do
+        it 'ページが表示される' do
+          expect(page).to have_css '.master-admins-sessions-new'
+        end
+        it 'ログインに成功する' do
+          fill_in 'master_admin[email]', with: @admin.email
+          fill_in 'master_admin[password]', with: @admin.password
+          click_button 'ログイン'
+          expect(current_path).to eq master_path
+        end
       end
     end
   end

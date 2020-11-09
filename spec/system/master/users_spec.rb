@@ -11,7 +11,7 @@ RSpec.describe 'Users', type: :system do
       visit master_users_path
     end
     it 'ページが表示される' do
-      expect(current_path).to eq master_users_path
+      expect(page).to have_css '.master-users-index'
     end
     it 'showページに遷移できる' do
       click_link @user.name
@@ -27,8 +27,7 @@ RSpec.describe 'Users', type: :system do
       click_link @user.name
     end
     it 'ページが表示される' do
-      visit master_user_path(@user)
-      expect(current_path).to eq master_user_path(@user)
+      expect(page).to have_css '.master-users-show'
     end
     describe '会員ステータス更新のテスト' do
       it '更新が反映される' do

@@ -6,7 +6,7 @@ RSpec.describe 'Homes', type: :system do
       visit about_path
     end
     it 'ページが表示される' do
-      expect(current_path).to eq about_path
+      expect(page).to have_css '.public-homes-about'
     end
     it '1つリンクにアクセスできる' do
       click_link 'TOPへ'
@@ -18,19 +18,11 @@ RSpec.describe 'Homes', type: :system do
       visit admin_path
     end
     it 'ページが表示される' do
-      expect(current_path).to eq admin_path
+      expect(page).to have_css '.public-homes-admin'
     end
     it '1つにリンクにアクセスできる' do
       click_link 'https://matchi-gourmet.com/'
       expect(current_path).to eq root_path
-    end
-  end
-  describe 'contactページのテスト' do
-    before do
-      visit new_contact_path
-    end
-    it 'ページが表示される' do
-      expect(current_path).to eq new_contact_path
     end
   end
   describe 'privacyページのテスト' do
@@ -38,7 +30,7 @@ RSpec.describe 'Homes', type: :system do
       visit privacy_path
     end
     it 'ページが表示される' do
-      expect(current_path).to eq privacy_path
+      expect(page).to have_css '.public-homes-privacy'
     end
     it '1つのリンクにアクセスできる' do
       find('.public-homes-privacy--new_contact_path').click
@@ -48,7 +40,7 @@ RSpec.describe 'Homes', type: :system do
   describe 'termsページのテスト' do
     it 'ページが表示される' do
       visit terms_path
-      expect(current_path).to eq terms_path
+      expect(page).to have_css '.public-homes-terms'
     end
   end
   describe 'topページのテスト' do
@@ -63,7 +55,7 @@ RSpec.describe 'Homes', type: :system do
           visit root_path
         end
         it 'ページが表示される' do
-          expect(current_path).to eq root_path
+          expect(page).to have_css '.public-homes-top'
         end
         it 'ヘッダー画像下3つのリンクにアクセスできる' do
           within('.top-nav') do

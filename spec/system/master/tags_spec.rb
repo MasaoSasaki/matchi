@@ -10,7 +10,7 @@ RSpec.describe 'Tags', type: :system do
       visit master_tags_path
     end
     it 'ページが表示される' do
-      expect(current_path).to eq master_tags_path
+      expect(page).to have_css '.master-tags-index'
     end
   end
 end

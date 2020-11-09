@@ -170,6 +170,16 @@
   }
 }
 
+.public-homes {
+
+  &-privacy, &-terms, &-admin {
+
+    h3 {
+      margin-top: 30px;
+    }
+  }
+}
+
 // スマホ画面
 @media (max-width: $media-sp-max) {
 
@@ -425,9 +435,4 @@
 #map {
   height: 400px;
   margin-top: 10px;
-}
-
-//public/privacy
-.privacy h2, .terms h2, .contact h2, .administrator h2 {
-  margin: 1.5em 0 0.4em;
 }
