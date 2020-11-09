@@ -46,8 +46,8 @@
                 <% end %>
               </div>
               <div class="restaurant-info">
-                <h3><%= link_to "#{restaurant.name}", restaurant_path(restaurant) %></h3>
-                <p><%= "#{restaurant.prefecture}" + "#{restaurant.city}" %></p>
+                <h3><%= link_to restaurant.name, restaurant_path(restaurant) %></h3>
+                <p><%= restaurant.address %></p>
               </div>
             </div>
           <% restaurant_count += 1 %>

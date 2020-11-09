@@ -211,11 +211,12 @@
       width: 100px;
       height: 70px;
     }
+
+    .top-nav, .simple-mypage, .new-registration, .new-menus {
+      display: none;
+    }
   }
 
-  .top-nav, .simple-mypage, .new-registration, .new-menus {
-    display: none;
-  }
 
   .box {
     width: 100%;
