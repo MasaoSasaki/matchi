@@ -33,6 +33,27 @@
 // registrations/confirm
 .public-users-registrations-confirm {
 
+  table {
+
+    tbody {
+
+      tr {
+        padding: 20px;
+
+        td {
+
+          label {
+            margin: 0;
+          }
+
+          h3 {
+            padding-top: 20px;
+          }
+        }
+      }
+    }
+  }
+
   input[readonly] {
     background-color: $thema-color1;
     border: none;
@@ -134,14 +155,16 @@
   }
 
   // /public/users/edit
-  .users-edit h2 {
-    margin: 20px 0;
-  }
+  .public-users-edit {
 
-  .users-edit > h2 {
-    text-align: center;
-  }
+    h2 {
+      margin: 20px 0;
+    }
 
+    > h2 {
+      text-align: center;
+    }
+  }
 
   .users-edit-btn {
     justify-content: space-between;

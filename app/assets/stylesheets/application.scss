@@ -272,17 +272,35 @@ input[readonly], textarea[readonly] {
   .layouts-app-header {
     width: auto;
     padding: 0 20px;
-    min-height: 70px;
     margin: 0 auto;
+
+    .sp-header {
+      height: 70px;
+      justify-content: space-between;
+
+      &__right {
+
+        .login {
+          padding-top: 10px;
+          text-align: center;
+
+          i {
+            display: block;
+          }
+          small {
+            padding-bottom: 5px;
+          }
+        }
+
+        .alert {
+          line-height: 70px;
+        }
+      }
+    }
   }
 
   .pc-header {
     display: none;
-  }
-
-  .sp-header {
-    height: 70px;
-    justify-content: space-between;
   }
 
   .sp-header .logo-image {

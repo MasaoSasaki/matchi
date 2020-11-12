@@ -67,37 +67,38 @@
           <div><%= image_tag 'logo.png', alt: "header-logo" %></div>
         <% end %>
       </div>
-      <%# 未読のお知らせの通知 %>
       <div class="sp-header__right">
         <% if user_signed_in? %>
+          <%# 未読のお知らせの通知 %>
           <div class="alert">
             <i id="alert-bell" class="fa-2x far fa-bell"><div class="hidden icon"></div></i>
           </div>
         <% else %>
+          <%# ログインボタン %>
           <%= link_to new_user_session_path do %>
             <div class="login">
-              <i class="fa-2x fas fa-lock"></i><br>
+              <i class="fa-2x fas fa-lock"></i>
               <small>Login</small>
             </div>
           <% end %>
         <% end %>
-      </div>
-      <%# ハンバーガーメーニュー %>
-      <div class="hamburger-menu">
-        <ul>
-          <% if user_signed_in? %>
-            <li><%= link_to 'MyPage', user_mypage_path, class: "user-mypage" %></li>
-          <% else %>
-            <li><%= link_to '新規登録', new_user_registration_path, class: "user-sign_up" %></li>
-            <li><%= link_to 'ログイン', new_user_session_path %></li>
-          <% end %>
-          <li><%= link_to 'サービス紹介', about_path, class: "about-service" %></li>
-          <li><%= link_to 'レストラン一覧', restaurants_path, class: "restaurants-index" %></li>
-          <li><%= link_to 'メニュー一覧', menus_path, class: "menus-index" %></li>
-          <% if user_signed_in? %>
-            <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "user-sign_out" %></li>
-          <% end %>
-        </ul>
+        <%# ハンバーガーメーニュー %>
+        <div class="hamburger-menu">
+          <ul>
+            <% if user_signed_in? %>
+              <li><%= link_to 'MyPage', user_mypage_path, class: "user-mypage" %></li>
+            <% else %>
+              <li><%= link_to '新規登録', new_user_registration_path, class: "user-sign_up" %></li>
+              <li><%= link_to 'ログイン', new_user_session_path %></li>
+            <% end %>
+            <li><%= link_to 'サービス紹介', about_path, class: "about-service" %></li>
+            <li><%= link_to 'レストラン一覧', restaurants_path, class: "restaurants-index" %></li>
+            <li><%= link_to 'メニュー一覧', menus_path, class: "menus-index" %></li>
+            <% if user_signed_in? %>
+              <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "user-sign_out" %></li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

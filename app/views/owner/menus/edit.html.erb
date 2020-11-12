@@ -1,5 +1,5 @@
 <% if @current_restaurant == @restaurant %>
-  <div class="contents menus-edit">
+  <div class="contents owner-menus-edit">
     <h2 class="menus-edit-h2">メニュー編集</h2>
     <%= render partial: 'layouts/error_messages', locals: { model: @menu } %>
     <%= render partial: 'form', locals: {

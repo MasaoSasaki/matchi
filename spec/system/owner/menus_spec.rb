@@ -11,7 +11,7 @@ RSpec.describe 'Menus', type: :system do
       visit owner_restaurant_menus_path(@restaurant)
     end
     it 'ページが表示される' do
-      expect(current_path).to eq owner_restaurant_menus_path(@restaurant)
+      expect(page).to have_css '.owner-menus-index'
     end
     it '3つのリンクにアクセスできる' do
       all('.menu-image-path')[0].click
@@ -33,7 +33,7 @@ RSpec.describe 'Menus', type: :system do
       visit owner_restaurant_menu_path(@restaurant, @menu)
     end
     it 'ページが表示される' do
-      expect(current_path).to eq owner_restaurant_menu_path(@restaurant, @menu)
+      expect(page).to have_css '.owner-menus-show'
     end
     it '2つのリンクにアクセスできる' do
       click_link '編集'
@@ -55,7 +55,7 @@ RSpec.describe 'Menus', type: :system do
       visit new_owner_restaurant_menu_path(@restaurant)
     end
     it 'ページが表示される' do
-      expect(current_path).to eq new_owner_restaurant_menu_path(@restaurant)
+      expect(page).to have_css '.owner-menus-new'
     end
   end
   describe 'editページのテスト' do
@@ -63,7 +63,7 @@ RSpec.describe 'Menus', type: :system do
       visit edit_owner_restaurant_menu_path(@restaurant, @menu)
     end
     it 'ページが表示される' do
-      expect(current_path).to eq edit_owner_restaurant_menu_path(@restaurant, @menu)
+      expect(page).to have_css '.owner-menus-edit'
     end
   end
 end

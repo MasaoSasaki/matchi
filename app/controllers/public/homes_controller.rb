@@ -7,18 +7,18 @@ class Public::HomesController < Public::Base
   end
 
   def about
-
   end
 
   def privacy
-
   end
 
   def terms
-
   end
 
   def admin
-
   end
+
+  def redirect
+  end
+
 end

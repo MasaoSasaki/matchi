@@ -9,7 +9,7 @@ RSpec.describe 'Menus', type: :system do
       visit menus_path
     end
     it 'ページが表示される' do
-      expect(current_path).to eq menus_path
+      expect(page).to have_css '.public-menus-index'
     end
     it 'メニュー詳細にアクセスできる' do
       find('.menu0--title').click
@@ -22,6 +22,9 @@ RSpec.describe 'Menus', type: :system do
   describe 'showページのテスト' do
     before do
       visit menu_path(@menu)
+    end
+    it 'ページが表示される' do
+      expect(page).to have_css '.public-menus-show'
     end
     describe 'リンクのテスト' do
       it '2つのリンクにアクセスできる' do

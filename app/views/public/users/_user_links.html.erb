@@ -1,6 +1,6 @@
 <div class="public-users-_user_links">
   <ul>
-    <li><%= link_to 'プロフィールを確認', user_profile_path %></li>
+    <li><%= link_to 'プロフィールを確認', users_profile_path(current_user) %></li>
     <li><%= link_to '登録情報確認', user_info_path %></li>
     <li><%= link_to 'パスワードの変更はこちら', edit_user_registration_path %></li>
     <% if controller_path == 'public/users' %>

@@ -13,7 +13,7 @@ RSpec.describe 'Reservations', type: :system do
       visit user_reservations_path(@user)
     end
     it 'ページが表示される' do
-      expect(current_path).to eq user_reservations_path(@user)
+      expect(page).to have_css '.public-reservations-index'
     end
     it '3つのリンクにアクセスできる' do
       find('.reservation0--show_path').click
@@ -31,7 +31,7 @@ RSpec.describe 'Reservations', type: :system do
       visit user_reservation_path(@user, @reservation)
     end
     it 'ページが表示される' do
-      expect(current_path).to eq user_reservation_path(@user, @reservation)
+      expect(page).to have_css '.public-reservations-show'
     end
     it '3つのリンクにアクセスできる' do
       click_link @restaurant.name
@@ -49,7 +49,7 @@ RSpec.describe 'Reservations', type: :system do
       visit new_user_reservation_path(@user, menu_id: @menu)
     end
     it 'ページが表示される' do
-      expect(current_path).to eq new_user_reservation_path(@user)
+      expect(page).to have_css '.public-reservations-new'
     end
     it '2つのリンクにアクセスできる' do
       click_link 'メニュー詳細へ戻る'
@@ -79,9 +79,9 @@ RSpec.describe 'Reservations', type: :system do
       fill_in 'reservation[reservation_day]', with: @reservation.reservation_day
       fill_in 'reservation[reservation_time]', with: @reservation.reservation_time
       click_button '確認する'
-      expect(page).to have_content '予約情報の確認'
     end
     it '"修正する"ボタンで前のページに遷移' do
+      expect(page).to have_css '.public-reservations-confirm'
       click_button '修正する'
       expect(page).to have_content '予約情報の入力'
       expect(page).to have_field '人数', with: @reservation.people
@@ -98,7 +98,7 @@ RSpec.describe 'Reservations', type: :system do
       visit user_reservations_completion_path(@user)
     end
     it 'ページが表示される' do
-      expect(current_path).to eq user_reservations_completion_path(@user)
+      expect(page).to have_css '.public-reservations-completion'
     end
     context 'confirmページからの遷移の場合' do
       it '予約完了メッセージが表示される' do

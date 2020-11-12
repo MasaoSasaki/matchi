@@ -18,6 +18,7 @@ FactoryBot.define do
     birth_month { 1 }
     birth_day { 1 }
     user_status { 0 }
+    confirmed_at { DateTime.now }
   end
 
 end
