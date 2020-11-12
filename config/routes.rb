@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'privacy', to: 'public/homes#privacy'
   get 'terms', to: 'public/homes#terms'
   get 'admin', to: 'public/homes#admin'
-  get 'redirect', to: 'public/homes#redirect'
+  get 'expired', to: 'public/homes#redirect'
 
   scope :mypage do
     get '/', to: 'public/users#show', as: 'user_mypage'
@@ -49,11 +49,13 @@ Rails.application.routes.draw do
     devise_for :users, controllers: {
       sessions: 'public/users/sessions',
       registrations: 'public/users/registrations',
-      passwords: 'public/users/passwords'
+      passwords: 'public/users/passwords',
+      confirmations: 'public/users/confirmations'
     }
 
     devise_scope :user do
       post 'users/sign_up/confirm', to: 'users/registrations#confirm'
+      get 'users/sign_up/email_notice', to: 'users/registrations#email_notice'
       get 'users/sign_up/complete', to: 'users/registrations#complete'
     end
 

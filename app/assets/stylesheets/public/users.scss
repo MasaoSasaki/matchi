@@ -33,6 +33,27 @@
 // registrations/confirm
 .public-users-registrations-confirm {
 
+  table {
+
+    tbody {
+
+      tr {
+        padding: 20px;
+
+        td {
+
+          label {
+            margin: 0;
+          }
+
+          h3 {
+            padding-top: 20px;
+          }
+        }
+      }
+    }
+  }
+
   input[readonly] {
     background-color: $thema-color1;
     border: none;

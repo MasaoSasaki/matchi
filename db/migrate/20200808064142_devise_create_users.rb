@@ -21,11 +21,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       # t.string   :current_sign_in_ip
       # t.string   :last_sign_in_ip
 
-      ## Confirmable
-      # t.string   :confirmation_token
-      # t.datetime :confirmed_at
-      # t.datetime :confirmation_sent_at
-      # t.string   :unconfirmed_email # Only if using reconfirmable
+      # Confirmable
+      t.string   :confirmation_token
+      t.datetime :confirmed_at
+      t.datetime :confirmation_sent_at
+      t.string   :unconfirmed_email # Only if using reconfirmable
 
       ## Lockable
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
@@ -37,17 +37,17 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :name_first, null: false
       t.string :name_family_kana, null: false
       t.string :name_first_kana, null: false
-      t.string :handle_name
-      t.text :profile
-      t.string :profile_image_id
-      t.string :twitter
-      t.string :facebook
-      t.string :instagram
+      t.string :handle_name, default: ""
+      t.text :profile, default: ""
+      t.string :profile_image_id, default: ""
+      t.string :twitter, default: ""
+      t.string :facebook, default: ""
+      t.string :instagram, default: ""
       t.string :phone_number, null: false
-      t.string :email_sub
-      t.integer :birth_year
-      t.integer :birth_month
-      t.integer :birth_day
+      t.string :email_sub, default: ""
+      t.integer :birth_year, default: 1900
+      t.integer :birth_month, default: 1
+      t.integer :birth_day, default: 1
       t.integer :user_status, default: 0
 
       t.timestamps null: false

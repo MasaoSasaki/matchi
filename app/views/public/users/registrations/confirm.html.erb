@@ -9,22 +9,22 @@
           <td colspan="2"><h3>お名前</h3><p>予約時の情報として使用されます。</p></td>
         </tr>
         <tr>
-          <td><%= f.label :name_family, '姓：' %><%= f.text_field :name_family, value: @user.name_family, readonly: true %></td>
-          <td><%= f.label :name_first, '名：' %><%= f.text_field :name_first, value: @user.name_first, readonly: true %></td>
+          <td><%= f.label :name_family %>：<%= f.text_field :name_family, value: @user.name_family, readonly: true %></td>
+          <td><%= f.label :name_first %>：<%= f.text_field :name_first, value: @user.name_first, readonly: true %></td>
         </tr>
         <tr>
-          <td><%= f.label :name_family_kana, 'セイ：' %><%= f.text_field :name_family_kana, value: @user.name_family_kana, readonly: true %></td>
-          <td><%= f.label :name_first_kana, 'メイ：' %><%= f.text_field :name_first_kana, value: @user.name_first_kana, readonly: true %></td>
+          <td><%= f.label :name_family_kana %>：<%= f.text_field :name_family_kana, value: @user.name_family_kana, readonly: true %></td>
+          <td><%= f.label :name_first_kana %>：<%= f.text_field :name_first_kana, value: @user.name_first_kana, readonly: true %></td>
         </tr>
         <tr>
-          <td colspan="2"><h3><%= f.label :phone_number, '電話番号' %></h3></td>
+          <td colspan="2"><h3><%= f.label :phone_number %></h3></td>
         </tr>
         <tr>
           <td><%= f.text_field :phone_number, value: @user.phone_number, readonly: true %></td>
           <td></td>
         </tr>
         <tr>
-          <td colspan="2"><h3><%= f.label :email, 'メールアドレス' %></h3><p>ログイン時のIDとして使用されます。また、予約の確認や、メールマガジンの配信も行われます。</p></td>
+          <td colspan="2"><h3><%= f.label :email %></h3><p>ログイン時のIDとして使用されます。また、予約の確認や、メールマガジンの配信も行われます。</p></td>
         </tr>
         <tr>
           <td><%= f.email_field :email, value: @user.email, readonly: true %></td>
@@ -32,7 +32,7 @@
         </tr>
         <tr>
           <td colspan="2">
-            <h3><%= f.label :password, 'パスワード' %></h3>
+            <h3><%= f.label :password %></h3>
           </td>
         </tr>
         <tr>
@@ -45,7 +45,7 @@
 
     <div class="actions">
       <%= f.submit "修正する", class: 'btn btn-outline-dark', name: :back %>
-      <%= f.submit "登録する", class: 'btn btn-primary' %>
+      <%= f.submit "確認メールを送信", class: 'btn btn-success' %>
     </div>
   <% end %>
 
@@ -65,33 +65,32 @@
         </tr>
         <tr>
           <td><h3>お名前</h3><p>予約時の情報として使用されます。</p></td>
-          <td><%= f.label :name_family, '姓：' %><%= f.text_field :name_family, value: @user.name_family, readonly: true %></td>
-          <td><%= f.label :name_first, '名：' %><%= f.text_field :name_first, value: @user.name_first, readonly: true %></td>
+          <td><%= f.label :name_family %>：<%= f.text_field :name_family, value: @user.name_family, readonly: true %></td>
+          <td><%= f.label :name_first %>：<%= f.text_field :name_first, value: @user.name_first, readonly: true %></td>
         </tr>
         <tr>
           <td></td>
-          <td><%= f.label :name_family_kana, 'セイ：' %><%= f.text_field :name_family_kana, value: @user.name_family_kana, readonly: true %></td>
-          <td><%= f.label :name_first_kana, 'メイ：' %><%= f.text_field :name_first_kana, value: @user.name_first_kana, readonly: true %></td>
+          <td><%= f.label :name_family_kana %>：<%= f.text_field :name_family_kana, value: @user.name_family_kana, readonly: true %></td>
+          <td><%= f.label :name_first_kana %>：<%= f.text_field :name_first_kana, value: @user.name_first_kana, readonly: true %></td>
         </tr>
         <tr>
-          <td><h3><%= f.label :phone_number, '電話番号' %></h3></td>
+          <td><h3><%= f.label :phone_number %></h3></td>
           <td><%= f.text_field :phone_number, value: @user.phone_number, readonly: true %></td>
           <td></td>
         </tr>
         <tr>
-          <td><h3><%= f.label :email, 'メールアドレス' %></h3><p>ログイン時のIDとして使用されます。また、予約の確認や、メールマガジンの配信も行われます。</p></td>
-          <td><%= f.email_field :email, autocomplete: "email", value: @user.email, readonly: true %></td>
-          <td></td>
+          <td><h3><%= f.label :email %></h3><p>ログイン時のIDとして使用されます。また、予約の確認や、メールマガジンの配信も行われます。</p></td>
+          <td colspan="2"><%= f.email_field :email, value: @user.email, readonly: true %></td>
         </tr>
         <tr>
           <td>
-            <h3><%= f.label :password, 'パスワード' %></h3>
+            <h3><%= f.label :password %></h3>
             <% if @minimum_password_length %>
               <em>(<%= @minimum_password_length %>文字以上)</em>
             <% end %>
           </td>
           <td><%= blind(@user.password) %></td>
-          <td><%= f.hidden_field :password, autocomplete: "new-password", value: @user.password %></td>
+          <td><%= f.hidden_field :password, value: @user.password %></td>
           <td></td>
         </tr>
       </tbody>
@@ -99,7 +98,7 @@
 
     <div class="actions">
       <%= f.submit "修正する", class: 'btn btn-outline-dark', name: :back %>
-      <%= f.submit "登録する", class: 'btn btn-primary' %>
+      <%= f.submit "確認メールを送信", class: 'btn btn-success' %>
     </div>
   <% end %>
 

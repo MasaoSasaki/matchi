@@ -45,20 +45,14 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
     render :new and return if @user.invalid?
   end
 
+  def email_notice
+    redirect_to expired_path unless params[:email]
+  end
+
   def complete
   end
 
-  # アカウント登録後
-  def after_sign_up_path_for(resource)
-    users_sign_up_complete_path
-  end
-
-  #アカウント編集後
-  def after_update_path_for(resource)
-    user_info_path
-  end
-
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -75,8 +69,13 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
+  # アカウント編集後
+  def after_update_path_for(resource)
+    user_info_path
+  end
+
   # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_inactive_sign_up_path_for(resource)
+    users_sign_up_email_notice_path(email: resource.email)
+  end
 end

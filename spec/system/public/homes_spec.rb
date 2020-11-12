@@ -174,4 +174,10 @@ RSpec.describe 'Homes', type: :system do
       end
     end
   end
+  describe 'redirectページのテスト' do
+    it 'ページが表示される' do
+      visit expired_path
+      expect(page).to have_css '.public-homes-redirect'
+    end
+  end
 end

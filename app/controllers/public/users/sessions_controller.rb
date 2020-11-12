@@ -39,8 +39,6 @@ class Public::Users::SessionsController < Devise::SessionsController
         flash.now[:error] = "IDまたはパスワードが違います。"
         render :new
       end
-    else
-      flash.now[:error] = "必須項目を入力してください。"
     end
   end
 
