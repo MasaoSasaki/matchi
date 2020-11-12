@@ -62,7 +62,10 @@ Deviseユーザー認証（管理者、店舗、一般会員）<br>
 画像アップロード（Refile）、プレビュー表示<br>
 CloudVisionAPIからタグ自動取得、Cloud Translationでタグの自動翻訳<br>
 レコードのJSON形式への変換（gon）<br>
-ActionMailer<br>
+ActionMailer
+・お問い合わせ（問合せ主、管理者双方）<br>
+・新規登録（認証メール）<br>
+・店舗予約（予約者、店舗双方）<br>
 Google Maps APIに現在地、及び登録店舗の住所をピンドロップ表示<br>
 レスポンシブ対応<br>
 .scssファイル（ネスト構造、変数（_variables.scss）を活用）<br>
@@ -72,7 +75,7 @@ application.jsの一部をCoffeeScriptに変更<br>
  *owner/menus.coffee<br>
 BEM記法<br>
 管理者画面からタグの新規追加・削除をajaxで実装<br>
-RSpec、FactoryBot、capybaraを使ったテスト<br>
+RSpec、FactoryBot、capybaraを使ったsystemテスト<br>
 
 詳しくは添付のER図（仮）でも色分けをしていますのでご参照いただけると幸いです。<br>
 ※今後、グループサービスとして、飲食以外にも予約が発生するようなサービス（美容、宿泊など）へもスケールすることを想定しています。（独自ポイントを各サービス共通化）<br>
