@@ -174,12 +174,6 @@ RSpec.describe 'Users', type: :system do
                 expect(page).to have_css '.public-users-registrations-new'
               end
             end
-            context '"登録する"ボタンの場合' do
-              it 'completeページに遷移する' do
-                all('.btn-primary')[1].click
-                expect(page).to have_css '.public-users-registrations-complete'
-              end
-            end
           end
         end
         describe 'confirmページ(pc)のテスト' do
@@ -203,14 +197,18 @@ RSpec.describe 'Users', type: :system do
                 expect(page).to have_css '.public-users-registrations-new'
               end
             end
-            context '"登録する"ボタンの場合' do
-              it 'completeページに遷移する' do
-                all('.btn-primary')[2].click
-                expect(current_path).to eq users_sign_up_complete_path
-                expect(page).to have_css '.public-users-registrations-complete'
-              end
-            end
           end
+        end
+      end
+      describe 'email_noticeページのテスト' do
+        it 'confirmページからの遷移でページが表示される' do
+          visit users_sign_up_email_notice_path(email: 'test@test.com')
+          expect(page).to have_css '.public-users-registrations-email_notice'
+        end
+        it 'ダイレクトアクセスでpublic/homes/redirectにリダイレクト' do
+          visit users_sign_up_email_notice_path
+          expect(current_path).to eq expired_path
+          expect(page).to have_css '.public-homes-redirect'
         end
       end
     end
