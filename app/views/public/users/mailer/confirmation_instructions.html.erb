@@ -1,5 +1,7 @@
-<p>Welcome <%= @email %>!</p>
+<p><%= @resource.name %> 様</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>以下のリンクにアクセスすると本登録が完了します。</p>
 
 <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p>24時間を過ぎますとリンクが無効になりますので、改めて新規ご登録をお願い致します。</p>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_06_105630) do
+ActiveRecord::Schema.define(version: 2020_11_12_062501) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -152,7 +152,7 @@ ActiveRecord::Schema.define(version: 2020_11_06_105630) do
     t.string "name_family_kana", null: false
     t.string "name_first_kana", null: false
     t.string "handle_name", default: ""
-    t.text "profile", default: ""
+    t.text "profile"
     t.string "profile_image_id", default: ""
     t.string "twitter", default: ""
     t.string "facebook", default: ""
@@ -165,6 +165,11 @@ ActiveRecord::Schema.define(version: 2020_11_06_105630) do
     t.integer "user_status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

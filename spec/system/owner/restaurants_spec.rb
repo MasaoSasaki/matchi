@@ -10,7 +10,7 @@ RSpec.describe 'Restaurant', type: :system do
       visit owner_restaurant_path(@restaurant)
     end
     it 'ページが表示される' do
-      expect(current_path).to eq owner_restaurant_path(@restaurant)
+      expect(page).to have_css '.owner-restaurants-show'
     end
     it '3つのリンクにアクセスできる' do
       click_link 'メニュー一覧・編集'
@@ -28,7 +28,7 @@ RSpec.describe 'Restaurant', type: :system do
       visit edit_owner_restaurant_path(@restaurant)
     end
     it 'ページが表示される' do
-      expect(current_path).to eq edit_owner_restaurant_path(@restaurant)
+      expect(page).to have_css '.owner-restaurants-edit--form'
     end
     it '2つのリンクにアクセスできる' do
       click_link '店舗情報に戻る'
