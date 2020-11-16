@@ -27,6 +27,9 @@
     </div>
   <% end %>
 
+  <%= form_with url: user_registration_path, local: true do |f|%>
+    <%= f.submit 'ゲストログイン', name: :guest, class: "btn btn-success" %>
+  <% end %>
   <%= render "public/users/shared/links" %>
 
 </div>

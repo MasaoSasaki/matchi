@@ -62,8 +62,8 @@ ActiveRecord::Schema.define(version: 2020_11_12_062501) do
     t.integer "restaurant_id", null: false
     t.string "title", null: false
     t.string "menu_image_id", default: ""
-    t.text "content", default: ""
-    t.text "cancel", default: ""
+    t.text "content"
+    t.text "cancel"
     t.integer "regular_price", null: false
     t.integer "discount_price", null: false
     t.integer "reservation_method", default: 0, null: false
@@ -106,14 +106,14 @@ ActiveRecord::Schema.define(version: 2020_11_12_062501) do
     t.datetime "remember_created_at"
     t.string "name", default: "", null: false
     t.string "restaurant_image_id", default: ""
-    t.text "introduction", default: ""
+    t.text "introduction"
     t.string "postal_code", default: "", null: false
     t.string "phone_number", default: "", null: false
     t.string "corporate", default: ""
     t.string "twitter", default: ""
     t.string "facebook", default: ""
     t.string "instagram", default: ""
-    t.text "completion_message", default: ""
+    t.text "completion_message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "prefecture"

@@ -12,9 +12,9 @@ class User < ApplicationRecord
 
   attachment :profile_image
 
-  enum user_status: { member: 0, withdrew: 1, forced: 2 }
+  enum user_status: { member: 0, withdrew: 1, forced: 2, guest: 3 }
 
-  with_options presence: true do
+  with_options presence: true, unless: :guest_user? do
     validates :name_family
     validates :name_first
     validates :name_family_kana
@@ -46,14 +46,14 @@ class User < ApplicationRecord
     validates :email
     validates :email_sub, on: :update?
   end
-  with_options format: { with: NAME_KANA_REGEX } do
+  with_options format: { with: NAME_KANA_REGEX }, unless: :guest_user? do
     validates :name_family_kana
     validates :name_first_kana
   end
 
   # ログイン時、有効会員(member)かどうか？
   def active_for_authentication?
-    super && (self.user_status == "member")
+    super && (self.user_status == "member" || self.user_status == "guest")
   end
 
   # 名前を結合
@@ -63,6 +63,11 @@ class User < ApplicationRecord
 
   def name_kana
     name_family_kana + name_first_kana
+  end
+
+  # ゲスト会員
+  def guest_user?
+    user_status == "guest"
   end
 
 end

@@ -11,6 +11,15 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
+    if params[:guest]
+      @user = User.create!(name_family: "", name_first: "", name_family_kana: "", name_first_kana: "", phone_number: "",
+      user_status: "guest",
+      email: "guest#{ SecureRandom.random_number(9999) }@guest.com",
+      password: SecureRandom.alphanumeric(6), confirmed_at: DateTime.now)
+      sign_in @user
+      redirect_to root_path
+      return
+    end
     @user = User.new(sign_up_params)
     render :new and return if params[:back]
     super
