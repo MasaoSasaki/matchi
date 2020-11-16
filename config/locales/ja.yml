@@ -113,6 +113,7 @@ ja:
         member: 有効会員
         withdrew: 退会済み
         forced: 強制退会
+        guest: ゲスト会員
 
     menu:
       reservation_method:
