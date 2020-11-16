@@ -221,11 +221,16 @@ RSpec.describe 'Users', type: :system do
         it 'ページが表示される' do
           expect(page).to have_css '.public-users-sessions-new'
         end
-        it 'ログインに成功する' do
+        it '通常ログインに成功する' do
           fill_in 'user[email]', with: @user.email
           fill_in 'user[password]', with: @user.password
           click_button 'ログイン'
           expect(current_path).to eq root_path
+        end
+        it 'ゲストログインに成功する' do
+          click_button 'ゲストログイン'
+          expect(page).to have_css '.public-homes-top'
+          expect(User.find(2).user_status).to eq 'guest'
         end
       end
     end
