@@ -14,6 +14,7 @@
 //= require activestorage
 //= require jquery
 //= require jquery.jpostal
+//= stub notice_window
 //= require_tree .
 
 // 地図情報取得

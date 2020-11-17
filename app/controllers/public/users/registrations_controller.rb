@@ -3,6 +3,7 @@
 class Public::Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  before_action :delete_devise_flash_messages, only: %i[email_notice]
 
   # GET /resource/sign_up
   # def new
@@ -17,6 +18,7 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
       email: "guest#{ SecureRandom.random_number(9999) }@guest.com",
       password: SecureRandom.alphanumeric(6), confirmed_at: DateTime.now)
       sign_in @user
+      flash[:notice] = 'ゲスト会員でログインしました。'
       redirect_to root_path
       return
     end

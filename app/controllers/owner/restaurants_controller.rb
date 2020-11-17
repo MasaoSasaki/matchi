@@ -15,6 +15,7 @@ class Owner::RestaurantsController < Owner::Base
 
   def update
     if @current_restaurant.update(restaurant_params)
+      flash[:notice] = '店舗情報を更新しました。'
       redirect_to owner_restaurant_path(@current_restaurant)
     else
       @restaurant = Restaurant.find(params[:id])

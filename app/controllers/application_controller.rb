@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   before_action :configure_user_permitted_parameters, if: :devise_controller?
-  after_action :delete_devise_flash_messages, if: :devise_controller?
 
   protected
   # ユーザー新規登録用許可キー

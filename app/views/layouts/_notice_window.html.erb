@@ -1,0 +1,8 @@
+<div class="notice-window hidden">
+  <% if flash[:alert] %>
+    <p><%= alert %><span class="notice-window--delete">X</span></p>
+  <% end %>
+  <% if flash[:notice] %>
+    <p><%= notice %><span class="notice-window--delete">X</span></p>
+  <% end %>
+</div>
