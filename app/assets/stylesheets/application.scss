@@ -150,7 +150,7 @@ main {
   .main {
 
     .notice-window  {
-      width: unquote("min(500px, 90%)");
+      width: #{"min(500px, 90%)"};
       height: 50px;
       padding: 10px;
       color: white;
@@ -169,7 +169,7 @@ main {
 
       p {
         color: white;
-        font-size: unquote("min(16px, 4vw)");
+        font-size: #{"min(16px, 4vw)"};
 
         span {
           margin-left: 1vw;
