@@ -142,9 +142,59 @@ body {
     @keyframes blinkAnime{
       0% { color: $thema-color1 }
       100% { color: #ff0000 }
-   }
-
+    }
   }
+}
+main {
+
+  .main {
+
+    .notice-window  {
+      width: unquote("min(500px, 90%)");
+      height: 50px;
+      padding: 10px;
+      color: white;
+      background: black;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      transition: 0.5s 0s ease;
+
+      bottom: 40px;
+      left: 0;
+      right: 0;
+      margin: auto;
+
+      p {
+        color: white;
+        font-size: unquote("min(16px, 4vw)");
+
+        span {
+          margin-left: 1vw;
+          color: white;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+
+      &.hidden {
+        background: $thema-color1;
+        color: $thema-color1;
+        bottom: -50px;
+      }
+    }
+  }
+}
+
+.notice-window {
+  height: 30px;
+  background: black;
+  color: white;
+
 }
 
 //devise

@@ -34,15 +34,15 @@
           <td><h3>ご来店日時</h3></td>
           <td><h4>年月日</h4></td>
           <td>
-            <%= f.number_field :reservation_year, min: Time.new.year, max: Time.new.year + 1, placeholder: Time.new.year %>年
-            <%= f.number_field :reservation_month, min: 1, max: 12, placeholder: Time.new.month %>月
-            <%= f.number_field :reservation_day, min: 1, max: 31, placeholder: Time.new.day %>日
+            <%= f.number_field :reservation_year, min: Time.new.year, max: Time.new.year + 1, value: Time.new.year, placeholder: Time.new.year %>年
+            <%= f.number_field :reservation_month, min: 1, max: 12, value: Time.new.month, placeholder: Time.new.month %>月
+            <%= f.number_field :reservation_day, min: 1, max: 31, value: Time.new.day, placeholder: Time.new.day %>日
           </td>
         </tr>
         <tr>
           <td></td>
           <td><h4><%= f.label :reservation_time, '日時' %></h4></td>
-          <td><%= f.number_field :reservation_time, min: 0, max: 23, placeholder: Time.new.hour+10 %>時（0時〜23時）</td>
+          <td><%= f.number_field :reservation_time, min: 0, max: 23, value: Time.new.hour + 10 placeholder: Time.new.hour + 10 %>時（0時〜23時）</td>
         </tr>
       </tbody>
     </table>

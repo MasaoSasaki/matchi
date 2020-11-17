@@ -64,6 +64,7 @@ class Owner::MenusController < Owner::Base
           new_menu_tag.save
         end
       end
+      flash[:notice] = 'メニューを追加しました。'
       redirect_to owner_restaurant_menu_path(@current_restaurant, @menu)
     else
       @menu_tags = MenuTag.where(menu_id: params[:id])
@@ -130,6 +131,7 @@ class Owner::MenusController < Owner::Base
           end
         end
       end
+      flash[:notice] = 'メニュー情報を更新しました。'
       redirect_to owner_restaurant_menu_path(@current_restaurant, menu)
     else
       @menu = menu
