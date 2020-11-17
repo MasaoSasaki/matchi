@@ -15,9 +15,11 @@ class Public::Users::SessionsController < Devise::SessionsController
   # end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    # ゲスト会員ならログアウトと同時に会員情報を削除
+    User.find(current_user.id).destroy if current_user.user_status == "guest"
+    super
+  end
 
   def after_sign_in_path_for(resource)
     root_path
