@@ -150,7 +150,6 @@ main {
   .main {
 
     .notice-window  {
-      width: min(500px, 90%);
       height: 50px;
       padding: 10px;
       color: white;
@@ -169,7 +168,6 @@ main {
 
       p {
         color: white;
-        font-size: min(16px, 4vw);
 
         span {
           margin-left: 1vw;
@@ -273,6 +271,16 @@ input[readonly], textarea[readonly] {
 
 // PC・タブレット共通
 @media (min-width: $media-tb-min) {
+
+  main {
+
+    .main {
+
+      .notice-window  {
+        width: 500px;
+      }
+    }
+  }
 
   .contents {
     margin: 0 auto;
@@ -474,5 +482,19 @@ input[readonly], textarea[readonly] {
   // public/users/profile
   .profile_image {
     padding-right: 0;
+  }
+
+  main {
+
+    .main {
+
+      .notice-window  {
+        width: 90%;
+
+        p {
+          font-size: 4vw;
+        }
+      }
+    }
   }
 }
