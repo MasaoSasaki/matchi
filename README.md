@@ -7,14 +7,15 @@ https://matchi-gourmet.com
 ## 使用言語・技術
 ### 言語
 HTML/CSS/JavaScript
-Ruby 2.5.7
+Ruby 2.6.3
 
 ### 技術
 #### フレームワーク
-Rails 5.2.4
+Rails 5.2.4.4
 #### ライブラリ
 jQuery 1.12.4<br>
 bootstrap
+FontAwesome6
 #### 外部API
 Google(Google Maps Javascript/Geolocation/Geocoding/CloudVision/CloudTranslation)
 #### インフラ
@@ -56,15 +57,13 @@ https://docs.google.com/spreadsheets/d/1o7G1d2ULM0jHLUxnnvFoi6kzStA8jKAYprJYQZK_
 
 各テーブルのCRUD処理
 Deviseユーザー認証（管理者、店舗、一般会員）<br>
-一般会員登録時に確認画面と完了画面の表示<br>
-新規登録フォームにJavaScriptでバリデーション設定<br>
+一般会員登録時に確認画面と完了画面の表示、メールアドレス認証<br>
 住所自動入力（jquery.jpostal.js,jp_prefecture,CoffeeScript）<br>
 画像アップロード（Refile）、プレビュー表示<br>
 CloudVisionAPIからタグ自動取得、Cloud Translationでタグの自動翻訳<br>
 レコードのJSON形式への変換（gon）<br>
 ActionMailer
 ・お問い合わせ（問合せ主、管理者双方）<br>
-・新規登録（認証メール）<br>
 ・店舗予約（予約者、店舗双方）<br>
 Google Maps APIに現在地、及び登録店舗の住所をピンドロップ表示<br>
 レスポンシブ対応<br>
@@ -76,8 +75,8 @@ application.jsの一部をCoffeeScriptに変更<br>
 BEM記法<br>
 管理者画面からタグの新規追加・削除をajaxで実装<br>
 RSpec、FactoryBot、capybaraを使ったsystemテスト<br>
+ゲストログイン(ログアウト時に情報削除)<br>
 
-詳しくは添付のER図（仮）でも色分けをしていますのでご参照いただけると幸いです。<br>
 ※今後、グループサービスとして、飲食以外にも予約が発生するようなサービス（美容、宿泊など）へもスケールすることを想定しています。（独自ポイントを各サービス共通化）<br>
 
 ### テーマを選んだ理由
