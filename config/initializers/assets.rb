@@ -13,4 +13,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 Rails.application.config.assets.precompile += %w( contacts.css )
-Rails.application.config.assets.precompile += %w( notice_window.js )
+Rails.application.config.assets.precompile += %w( flash_window.js )

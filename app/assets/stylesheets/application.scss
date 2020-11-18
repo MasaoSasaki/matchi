@@ -149,7 +149,7 @@ main {
 
   .main {
 
-    .notice-window  {
+    .flash-window  {
       height: 50px;
       padding: 10px;
       color: white;
@@ -180,15 +180,14 @@ main {
       }
 
       &.hidden {
-        background: $thema-color1;
-        color: $thema-color1;
+        opacity: 0;
         bottom: -50px;
       }
     }
   }
 }
 
-.notice-window {
+.flash-window {
   height: 30px;
   background: black;
   color: white;
@@ -276,7 +275,7 @@ input[readonly], textarea[readonly] {
 
     .main {
 
-      .notice-window  {
+      .flash-window  {
         width: 500px;
       }
     }
@@ -488,7 +487,7 @@ input[readonly], textarea[readonly] {
 
     .main {
 
-      .notice-window  {
+      .flash-window  {
         width: 90%;
 
         p {
