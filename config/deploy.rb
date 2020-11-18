@@ -5,7 +5,7 @@ set :application, "matchi"
 set :repo_url, "git@github.com:MasaoSasaki/matchi.git"
 
 set :deploy_to, "/home/ec2-user/matchi"
-set :rbenv_ruby, '2.5.7'
+set :rbenv_ruby, '2.6.3'
 set :linked_files, %w{config/master.key .env}
 append :linked_dirs, "log", "public/system", "tmp"
 
