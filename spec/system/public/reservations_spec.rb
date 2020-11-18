@@ -83,10 +83,8 @@ RSpec.describe 'Reservations', type: :system do
     it '"修正する"ボタンで前のページに遷移' do
       expect(page).to have_css '.public-reservations-confirm'
       click_button '修正する'
-      expect(page).to have_content '予約情報の入力'
+      expect(page).to have_css '.public-reservations-new'
       expect(page).to have_field '人数', with: @reservation.people
-      expect(page).to have_select('お支払い方法', selected: @reservation.payment_method_i18n)
-      expect(page).to have_field '日時', with: @reservation.reservation_time
     end
     it '"予約を確定する"ボタンでcompletionに遷移' do
       click_button '予約を確定する'
