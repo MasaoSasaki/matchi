@@ -41,7 +41,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'capistrano'
   gem 'capistrano-rails'
-  gem 'capistrano3-puma'
+  gem 'capistrano3-puma', github: "seuros/capistrano-puma"
   gem 'capistrano-rbenv'
 end
 
