@@ -8,8 +8,8 @@
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', defer: true %>
-  <% if flash[:alert] || flash[:notice] %>
-    <%= javascript_include_tag 'notice_window', defer: true %>
+  <% if flash[:notice] %>
+    <%= javascript_include_tag 'flash_window' %>
   <% end %>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
@@ -110,7 +110,7 @@
 <main>
   <div class="main">
     <%= yield %>
-    <%= render partial: 'layouts/notice_window' %>
+    <%= render partial: 'layouts/flash_window' %>
   </div>
 </main>
 
