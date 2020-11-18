@@ -13,7 +13,7 @@
   </section>
   <section class="restaurant-status">
     <div class="restaurant-info">
-      <div><%= link_to 'メニュー一覧', menus_path %></div>
+      <div><%= link_to 'メニュー一覧', menus_path(restaurant_id: @restaurant.id) %></div>
     </div>
   </section>
 </div>
