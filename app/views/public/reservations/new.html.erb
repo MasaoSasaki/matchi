@@ -42,7 +42,7 @@
         <tr>
           <td></td>
           <td><h4><%= f.label :reservation_time, '日時' %></h4></td>
-          <td><%= f.number_field :reservation_time, min: 0, max: 23, value: Time.new.hour + 10 placeholder: Time.new.hour + 10 %>時（0時〜23時）</td>
+          <td><%= f.number_field :reservation_time, min: 0, max: 23, value: Time.new.hour + 10, placeholder: Time.new.hour + 10 %>時（0時〜23時）</td>
         </tr>
       </tbody>
     </table>
