@@ -12,13 +12,7 @@
             <td><p><u>登録済みのメールアドレスにご返信いたします。</u></p></td>
             <%= f.hidden_field :email, value: current_user.email %>
           <% else %>
-            <td>
-              <h3><%= f.label :email %></h3>
-              <p>
-                お問い合わせ完了後、受付メールが送信されます。<br>
-                メールが届かない場合は再度ご入力ください。
-              </p>
-            </td>
+            <td><h3><%= f.label :email %></h3></td>
             <td>
               <%= f.email_field :email, id: "contacts-new__email-form", placeholder: "example@example.com", class: ("error-form" if @contact.errors.include?(:email)) %>
               <%= render partial: 'layouts/each_error_messages', locals: { model: @contact, key: :email } %>

@@ -22,7 +22,6 @@
         border: solid 1px black;
 
         &:nth-child(1) {
-          width: 410px;
           background-color: rgba($color: gray, $alpha: 0.2);
         }
 
@@ -74,7 +73,6 @@
         border: solid 1px black;
 
         &:nth-child(1) {
-          width: 410px;
           background-color: rgba($color: gray, $alpha: 0.2);
         }
 
@@ -109,6 +107,13 @@
 
 // スマホ・タブレット共通
 @media (max-width: $media-tb-max) {
+  .contacts-new, .contacts-confirm {
+    text-align: center;
+
+    td {
+      display: block;
+    }
+  }
 }
 
 // タブレット
@@ -121,5 +126,10 @@
 
 // PC
 @media (min-width: $media-pc-min) {
+  .contacts-new, .contacts-confirm {
+    td:nth-child(1) {
+      min-width: 410px;
+    }
+  }
 }
 

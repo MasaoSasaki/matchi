@@ -32,6 +32,10 @@ body {
   background-color: $thema-color1;
 }
 
+h2 {
+  font-size: 1.5em;
+}
+
 h3 {
   font-size: 1.17em;
 }
@@ -67,10 +71,6 @@ label {
 
 .hidden {
   display: none;
-}
-
-.shut {
-
 }
 
 .under-line {
@@ -265,11 +265,6 @@ footer {
   cursor: pointer;
 }
 
-.homes-container li {
-  list-style-type: decimal;
-  margin: 0.8em 0;
-}
-
 input[readonly], textarea[readonly] {
   background-color: $thema-color1;
   border: none;
@@ -415,7 +410,7 @@ input[readonly], textarea[readonly] {
   .hamburger-button {
     width: 40px;
     height: 40px;
-    background: rgba($color: white, $alpha: 0.8);
+    background: rgba($color: white, $alpha: 0.7);
     border: solid 1px #aaa;
     border-radius: 5px;
     text-align: center;

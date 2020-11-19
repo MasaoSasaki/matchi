@@ -175,7 +175,7 @@
   &-privacy, &-terms, &-admin {
 
     h3 {
-      margin-top: 30px;
+      margin-top: 20px;
     }
   }
 }
@@ -381,8 +381,11 @@
 }
 
 // これより下、未refactoring
-
 // /public/homes/top
+.homes-container li {
+  list-style-type: decimal;
+}
+
 .restaurant-info, .menu-info {
   padding-left: 10px;
 }
