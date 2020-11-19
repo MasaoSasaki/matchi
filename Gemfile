@@ -8,7 +8,7 @@ gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
-gem 'puma'
+gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sassc-rails'
 # Use Uglifier as compressor for JavaScript assets
@@ -42,7 +42,7 @@ group :development, :test do
   gem 'capistrano'
   gem 'capistrano-rails'
   # 1.2.1でデプロイ時にNameError: uninitialized constant Capistrano::Pumaエラー発生
-  gem 'capistrano3-puma', github: "seuros/capistrano-puma"
+  gem 'capistrano3-puma'
   gem 'capistrano-rbenv'
 end
 
