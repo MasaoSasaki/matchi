@@ -13,10 +13,12 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     if params[:guest]
-      @user = User.create!(name_family: "", name_first: "", name_family_kana: "", name_first_kana: "", phone_number: "",
+      @user = User.new(name_family: "", name_first: "", name_family_kana: "", name_first_kana: "", phone_number: "",
+      handle_name: "guest#{ SecureRandom.random_number(9999) }",
       user_status: "guest",
-      email: "guest#{ SecureRandom.random_number(9999) }@guest.com",
       password: SecureRandom.alphanumeric(6), confirmed_at: DateTime.now)
+      @user.email =  "guest#{ @user.handle_name }@guest.com"
+      @user.save
       sign_in @user
       flash[:notice] = 'ゲスト会員でログインしました。'
       redirect_to root_path

@@ -58,7 +58,11 @@ class User < ApplicationRecord
 
   # 名前を結合
   def name
-    name_family + name_first
+    if user_status == "guest"
+      handle_name
+    else
+      name_family + name_first
+    end
   end
 
   def name_kana

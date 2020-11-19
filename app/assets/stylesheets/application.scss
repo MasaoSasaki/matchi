@@ -349,7 +349,7 @@ input[readonly], textarea[readonly] {
       &__right {
         flex: 1;
 
-        .login {
+        .login, .alert {
           padding-top: 10px;
           text-align: center;
           float: right;
