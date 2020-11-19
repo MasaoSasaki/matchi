@@ -132,23 +132,16 @@ if (document.getElementById("restaurants_json") != null) {
 }
 
 // ハンバーガーメニュー
-$(function() {
-  $(".hamburger").on("click", function() {
-    $(this).toggleClass("circle");
-    $(".hamburger-menu").toggleClass("menu-hide");
-    $(".hamburger-menu").on("click", function() {
-      close();
-    });
-    $("body").on("click", "main", function() {
-      close();
-    });
-    function close() {
-      if ($(".hamburger-menu").hasClass("menu-hide")) {
-        $(".hamburger-menu").toggleClass("menu-hide");
-        $(".hamburger").toggleClass("circle");
-      }
-    }
-  });
+const hamburgerButton = document.getElementsByClassName("hamburger")[0];
+const hamburgerMenu = document.getElementsByClassName("hamburger-menu")[0];
+hamburgerButton.addEventListener('click', ()=>{
+  hamburgerButton.classList.toggle("circle");
+  hamburgerMenu.classList.toggle("hidden");
+});
+addEventListener('click', (e)=>{
+  if (e.path[0].classList.contains("hamburger") || e.path[0].classList.contains("bar")) { return }
+  hamburgerButton.classList.remove("circle");
+  hamburgerMenu.classList.add("hidden");
 });
 
 // メニュー写真、店舗写真のプレビュー表示

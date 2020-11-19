@@ -52,10 +52,6 @@ label {
   display: grid;
 }
 
-.hidden {
-  display: none;
-}
-
 #hide {
   display: inherit;
 }
@@ -191,7 +187,6 @@ main {
   height: 30px;
   background: black;
   color: white;
-
 }
 
 //devise
@@ -360,10 +355,43 @@ input[readonly], textarea[readonly] {
     display: none;
   }
 
+  header {
+    position: relative;
+  }
+
   .sp-header .logo-image {
     width: $logo-image-width;
     margin-right: 50%;
     left: 40%;
+  }
+
+  .sp-header__left {
+
+    .hamburger-menu {
+      width: 60%;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.9);
+      position: fixed;
+      transition: $hamburger-transition 0s ease;
+      top: 0;
+      left: 0;
+
+      ul {
+        margin-top: 120px;
+
+        li {
+          margin: 20px 0 20px 30px;
+        }
+      }
+
+      a {
+        color: white;
+      }
+
+      &.hidden {
+        left: -100%;
+      }
+    }
   }
 
   .hamburger {
@@ -376,6 +404,11 @@ input[readonly], textarea[readonly] {
     position: relative;
     text-align: center;
     z-index: 2;
+  }
+
+  .circle {
+    transition: $hamburger-transition;
+    border-radius: 50%;
   }
 
   .bar {
@@ -413,50 +446,6 @@ input[readonly], textarea[readonly] {
     transition: $hamburger-transition;
     transform: rotate(-45deg);
     top: 47%;
-  }
-
-  header {
-    position: relative;
-  }
-
-  .hamburger-menu {
-    width: 60%;
-    height: 100vh;
-    background-color:rgba(0, 0, 0, 0.9);
-    position: fixed;
-    top: 0;
-    left: -100%;
-    z-index: 1;
-    transition: $hamburger-transition cubic-bezier(1, 0, 0, 0);
-
-    ul {
-      margin-top: 120px;
-
-      li {
-        margin: 20px 0 20px 30px;
-      }
-    }
-
-    a {
-      color: white;
-    }
-  }
-
-
-  .menu-hide {
-    width: 60%;
-    height: 100vh;
-    background-color:rgba(0, 0, 0, 0.9);
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    transition: $hamburger-transition cubic-bezier(0, 0, 0, 1);
-  }
-
-  .circle {
-    transition: $hamburger-transition;
-    border-radius: 50%;
   }
 
   .alert {
