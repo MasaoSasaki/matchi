@@ -87,7 +87,7 @@ ja:
         payment_method: 支払い方法
 
       contact:
-        email: ご連絡先
+        email: ご連絡先のメールアドレス
         message: お問い合わせ内容
 
       tag:

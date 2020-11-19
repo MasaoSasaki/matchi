@@ -32,12 +32,25 @@ body {
   background-color: $thema-color1;
 }
 
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.17em;
+}
+
+h4 {
+  font-size: unset;
+}
+
 p {
   margin: 0;
 }
 
 ul {
   padding: 0;
+  margin-bottom: 0;
 }
 
 label {
@@ -52,12 +65,12 @@ label {
   display: grid;
 }
 
-.hidden {
-  display: none;
-}
-
 #hide {
   display: inherit;
+}
+
+.hidden {
+  display: none;
 }
 
 .under-line {
@@ -97,7 +110,7 @@ label {
 }
 
 .inactive {
-  opacity: 0.6;
+  opacity: 0.5;
   pointer-events: none;
 }
 
@@ -179,7 +192,7 @@ main {
         }
       }
 
-      &.hidden {
+      &.shut {
         opacity: 0;
         bottom: -50px;
       }
@@ -191,7 +204,6 @@ main {
   height: 30px;
   background: black;
   color: white;
-
 }
 
 //devise
@@ -251,11 +263,6 @@ footer {
 
 #move-head--icon:hover {
   cursor: pointer;
-}
-
-.homes-container li {
-  list-style-type: decimal;
-  margin: 0.8em 0;
 }
 
 input[readonly], textarea[readonly] {
@@ -335,16 +342,23 @@ input[readonly], textarea[readonly] {
       height: 70px;
       justify-content: space-between;
 
+      &__left, &__center {
+        flex: 1;
+      }
+
       &__right {
+        flex: 1;
 
         .login {
           padding-top: 10px;
           text-align: center;
+          float: right;
 
           i {
             display: block;
           }
           small {
+            display: block;
             padding-bottom: 5px;
           }
         }
@@ -360,22 +374,63 @@ input[readonly], textarea[readonly] {
     display: none;
   }
 
+  header {
+    position: relative;
+  }
+
   .sp-header .logo-image {
     width: $logo-image-width;
     margin-right: 50%;
     left: 40%;
   }
 
-  .hamburger {
-    transition: 0.1s;
-    margin-top: 15px;
+  .sp-header__left {
+
+    .hamburger-menu {
+      width: 50%;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.9);
+      position: fixed;
+      transition: $hamburger-transition 0s linear;
+      top: 0;
+      left: 0;
+      z-index: 1;
+
+      ul {
+        margin-top: 120px;
+
+        li {
+          margin: 20px 0 20px 30px;
+        }
+      }
+
+      a {
+        color: white;
+      }
+
+      &.shut {
+        left: -50%;
+      }
+    }
+  }
+
+  .hamburger-button {
     width: 40px;
     height: 40px;
+    background: rgba($color: white, $alpha: 0.7);
     border: solid 1px #aaa;
     border-radius: 5px;
-    position: relative;
     text-align: center;
+    position: relative;
+    position: fixed;
+    top: 40px;
+    transition: $hamburger-transition 0s linear;
     z-index: 2;
+
+    &.circle {
+      background: rgba($color: black, $alpha: 0);
+      border-radius: 50%;
+    }
   }
 
   .bar {
@@ -385,78 +440,29 @@ input[readonly], textarea[readonly] {
     position: absolute;
     border-radius: 3px;
     left: 10%;
+    transition: $hamburger-transition 0s linear;
   }
 
   .bar-top {
-    transition: $hamburger-transition;
     top: 22%;
   }
   .bar-center {
-    transition: $hamburger-transition;
     top: 44%;
   }
   .bar-bottom {
-    transition: $hamburger-transition;
     top: 70%;
   }
   .circle .bar-top {
-    transition: $hamburger-transition;
     top: 47%;
     transform: rotate(45deg);
   }
   .circle .bar-center {
-    transition: $hamburger-transition;
     top: 44%;
     opacity: 0;
   }
   .circle .bar-bottom {
-    transition: $hamburger-transition;
     transform: rotate(-45deg);
     top: 47%;
-  }
-
-  header {
-    position: relative;
-  }
-
-  .hamburger-menu {
-    width: 60%;
-    height: 100vh;
-    background-color:rgba(0, 0, 0, 0.9);
-    position: fixed;
-    top: 0;
-    left: -100%;
-    z-index: 1;
-    transition: $hamburger-transition cubic-bezier(1, 0, 0, 0);
-
-    ul {
-      margin-top: 120px;
-
-      li {
-        margin: 20px 0 20px 30px;
-      }
-    }
-
-    a {
-      color: white;
-    }
-  }
-
-
-  .menu-hide {
-    width: 60%;
-    height: 100vh;
-    background-color:rgba(0, 0, 0, 0.9);
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    transition: $hamburger-transition cubic-bezier(0, 0, 0, 1);
-  }
-
-  .circle {
-    transition: $hamburger-transition;
-    border-radius: 50%;
   }
 
   .alert {

@@ -11,8 +11,39 @@
     text-align: center;
   }
 
-  h3 {
-    margin-top: 30px;
+  table {
+    width: 100%;
+    margin: 0 auto;
+
+    tr {
+
+      td {
+        padding: 20px;
+        border: solid 1px black;
+
+        &:nth-child(1) {
+          background-color: rgba($color: gray, $alpha: 0.2);
+        }
+
+        h3 {
+          margin: 0;
+
+          label {
+            margin: 0;
+          }
+        }
+
+        p {
+          margin-top: 10px;
+          text-align: unset;
+        }
+      }
+    }
+  }
+
+  .submit {
+    margin-top: 20px;;
+    text-align: center;
   }
 
   #contacts-new__email-form {
@@ -24,26 +55,49 @@
     max-width: 400px;
     height: 100px;
   }
+}
 
-  &__form {
-    max-width: 400px;
+.contacts-confirm {
+  h2, p {
+    text-align: center;
+  }
+
+  table {
+    width: 100%;
     margin: 0 auto;
 
-    p {
-      text-align: unset;
-    }
+    tr {
 
-    li {
-      text-align: unset;
-    }
+      td {
+        padding: 20px;
+        border: solid 1px black;
 
-    .form-group {
+        &:nth-child(1) {
+          background-color: rgba($color: gray, $alpha: 0.2);
+        }
 
-      input {
-        margin-top: 20px;
-        margin-bottom: 10px;
+        h3 {
+          margin: 0;
+
+          label {
+            margin: 0;
+          }
+        }
+
+        p {
+          text-align: unset;
+
+          textarea {
+            resize: none;
+          }
+        }
       }
     }
+  }
+
+  .submit {
+    margin-top: 20px;;
+    text-align: center;
   }
 }
 
@@ -53,6 +107,13 @@
 
 // スマホ・タブレット共通
 @media (max-width: $media-tb-max) {
+  .contacts-new, .contacts-confirm {
+    text-align: center;
+
+    td {
+      display: block;
+    }
+  }
 }
 
 // タブレット
@@ -65,5 +126,10 @@
 
 // PC
 @media (min-width: $media-pc-min) {
+  .contacts-new, .contacts-confirm {
+    td:nth-child(1) {
+      min-width: 410px;
+    }
+  }
 }
 

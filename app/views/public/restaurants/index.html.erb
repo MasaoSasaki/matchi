@@ -14,7 +14,7 @@
           <div class="restaurant-contents">
             <p>住所：<%= restaurant.address %></p>
             <p>連絡先：<%= restaurant.phone_number %></p>
-            <p><%= link_to 'メニュー一覧', menus_path(restaurant) %></p>
+            <p><%= link_to 'メニュー一覧', menus_path(restaurant_id: restaurant.id) %></p>
           </div>
         </div>
       </div>

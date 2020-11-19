@@ -59,34 +59,13 @@
     <%# スマホ画面ヘッダー %>
     <div class="flex sp-header">
       <div class="sp-header__left">
-        <div class="hamburger">
+        <div class="hamburger-button">
           <span class="bar bar-top"></span>
           <span class="bar bar-center"></span>
           <span class="bar bar-bottom"></span>
         </div>
-      </div>
-      <div class="sp-heaader__center">
-        <%= link_to root_path do %>
-          <div><%= image_tag 'logo.png', alt: "header-logo" %></div>
-        <% end %>
-      </div>
-      <div class="sp-header__right">
-        <% if user_signed_in? %>
-          <%# 未読のお知らせの通知 %>
-          <div class="alert">
-            <i id="alert-bell" class="fa-2x far fa-bell"><div class="hidden icon"></div></i>
-          </div>
-        <% else %>
-          <%# ログインボタン %>
-          <%= link_to new_user_session_path do %>
-            <div class="login">
-              <i class="fa-2x fas fa-lock"></i>
-              <small>Login</small>
-            </div>
-          <% end %>
-        <% end %>
         <%# ハンバーガーメーニュー %>
-        <div class="hamburger-menu">
+        <div class="hamburger-menu shut">
           <ul>
             <% if user_signed_in? %>
               <li><%= link_to 'MyPage', user_mypage_path, class: "user-mypage" %></li>
@@ -102,6 +81,27 @@
             <% end %>
           </ul>
         </div>
+      </div>
+      <div class="sp-header__center">
+        <%= link_to root_path do %>
+          <div><%= image_tag 'logo.png', alt: "header-logo" %></div>
+        <% end %>
+      </div>
+      <div class="sp-header__right">
+        <% if user_signed_in? %>
+          <%# 未読のお知らせの通知 %>
+          <div class="alert">
+            <i id="alert-bell" class="fa-2x far fa-bell"><div></div></i>
+          </div>
+        <% else %>
+          <%# ログインボタン %>
+          <%= link_to new_user_session_path do %>
+            <span class="login">
+              <i class="fa-2x fas fa-lock"></i>
+              <small>Login</small>
+            </span>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
