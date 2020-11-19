@@ -4,11 +4,12 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   before_action :delete_devise_flash_messages, only: %i[email_notice]
+  before_action :guest_sign_out, only: %i[new]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    super
+  end
 
   # POST /resource
   def create
@@ -91,4 +92,5 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
   def after_inactive_sign_up_path_for(resource)
     users_sign_up_email_notice_path(email: resource.email)
   end
+
 end
