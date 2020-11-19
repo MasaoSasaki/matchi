@@ -1,15 +1,23 @@
 <div class="public-users-_user_links">
-  <ul>
-    <li><%= link_to 'プロフィールを確認', users_profile_path(current_user) %></li>
-    <li><%= link_to '登録情報確認', user_info_path %></li>
-    <li><%= link_to 'パスワードの変更はこちら', edit_user_registration_path %></li>
-    <% if controller_path == 'public/users' %>
-      <li><%= link_to '現在の予約状況', user_reservations_path(current_user) %></li>
-      <li><%= link_to '予約履歴', user_reservations_path(current_user) %></li>
-    <% end %>
-    <% if false %>
-      <li><%= link_to 'ブックマーク', user_bookmarks_path(current_user) %></li>
-      <li><%= link_to 'レビュー一覧' %></li>
-    <% end %>
-  </ul>
+  <% if current_user.user_status == 'member' %>
+    <ul>
+      <li><%= link_to 'プロフィールを確認', users_profile_path(current_user) %></li>
+      <li><%= link_to '登録情報確認', user_info_path %></li>
+      <li><%= link_to 'パスワードの変更はこちら', edit_user_registration_path %></li>
+      <% if controller_path == 'public/users' %>
+        <li><%= link_to '現在の予約状況', user_reservations_path(current_user) %></li>
+        <li><%= link_to '予約履歴', user_reservations_path(current_user) %></li>
+      <% end %>
+    </ul>
+    <% else %>
+    <ul class="inactive">
+      <li><%= link_to 'プロフィールを確認', users_profile_path(current_user) %></li>
+      <li><%= link_to '登録情報確認', user_info_path %></li>
+      <li><%= link_to 'パスワードの変更はこちら', edit_user_registration_path %></li>
+      <% if controller_path == 'public/users' %>
+        <li><%= link_to '現在の予約状況', user_reservations_path(current_user) %></li>
+        <li><%= link_to '予約履歴', user_reservations_path(current_user) %></li>
+      <% end %>
+    </ul>
+  <% end %>
 </div>

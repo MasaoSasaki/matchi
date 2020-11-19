@@ -46,7 +46,11 @@
             <% end %>
             <% if user_signed_in? %>
               <li><%= link_to 'MyPage', user_mypage_path, class: "btn btn-outline-dark user-mypage" %></li>
-              <li><%= link_to 'ログアウト', destroy_user_session_path, class: "btn btn-danger user-sign_out", method: :delete %></li>
+              <% if current_user.user_status == 'guest' %>
+                <li><%= link_to 'ログアウト', destroy_user_session_path, class: "btn btn-danger user-sign_out", method: :delete, data: { confirm: "ゲスト会員はログアウトをすると会員情報が残りません。\n本登録はマイページから行えます。\nログアウトしますか？" } %></li>
+              <% else %>
+                <li><%= link_to 'ログアウト', destroy_user_session_path, class: "btn btn-danger user-sign_out", method: :delete %></li>
+              <% end %>
             <% else %>
               <li><%= link_to '新規登録', new_user_registration_path, class: "btn btn-success user-sign_up" %></li>
               <li><%= link_to 'ログイン', new_user_session_path, class: "btn btn-primary user-sign_in" %></li>
@@ -76,8 +80,10 @@
             <li><%= link_to 'サービス紹介', about_path, class: "about-service" %></li>
             <li><%= link_to 'レストラン一覧', restaurants_path, class: "restaurants-index" %></li>
             <li><%= link_to 'メニュー一覧', menus_path, class: "menus-index" %></li>
-            <% if user_signed_in? %>
-              <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "user-sign_out" %></li>
+            <% if user_signed_in? && current_user.user_status == 'guest' %>
+              <li><%= link_to 'ログアウト', destroy_user_session_path, class: "user-sign_out", method: :delete, data: { confirm: "ゲスト会員はログアウトをすると会員情報が残りません。\n本登録はマイページから行えます。\nログアウトしますか？" } %></li>
+            <% elsif user_signed_in? %>
+              <li><%= link_to 'ログアウト', destroy_user_session_path, class: "user-sign_out", method: :delete %></li>
             <% end %>
           </ul>
         </div>
