@@ -20,10 +20,10 @@
 // 地図情報取得
 if (document.getElementById("restaurants_json") != null) {
   // homes/top.html.erb(:1 JSONタグ)が読み込まれたら現在地を取得開始
-  $("#restaurants_json").ready(function() {
+  $("#restaurants_json").ready(()=> {
     $("#loading").append("(読み込み中)");
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
+      navigator.geolocation.getCurrentPosition((position)=> {
         const CurrentLat = position.coords.latitude;
         const CurrentLng = position.coords.longitude;
 
@@ -40,7 +40,7 @@ if (document.getElementById("restaurants_json") != null) {
           infoWindow = new google.maps.InfoWindow({
             content: "現在地付近"
           });
-          marker.addListener("click", function(){
+          marker.addListener("click", ()=>{
             infoWindow.open(map, marker);
           });
 
@@ -69,7 +69,7 @@ if (document.getElementById("restaurants_json") != null) {
                         content: `<a href='${ link }'>${ restaurants[i].name }</a>`
                       }
                       );
-                      marker[i].addListener("click", function(){
+                      marker[i].addListener("click", ()=>{
                       infoWindow[i].open(map, marker[i]);
                     });
                   } else {
@@ -109,7 +109,7 @@ if (document.getElementById("restaurants_json") != null) {
                     content: `<a href='${ link }'>${ restaurants[i].name }</a>`
                   }
                 );
-                marker[i].addListener("click", function(){
+                marker[i].addListener("click", ()=>{
                   infoWindow[i].open(map, marker[i]);
                 });
               } else {
@@ -124,7 +124,7 @@ if (document.getElementById("restaurants_json") != null) {
   });
 
   // geolocationが使える場合、クリックで地図を表示
-  $("#get-position").on("click", function() {
+  $("#get-position").on("click", ()=> {
     if (navigator.geolocation) {
       $(".location-result" + ".true").removeClass("hidden");
     }
@@ -138,7 +138,7 @@ const spHeaderCenter = document.getElementsByClassName("sp-header__center")[0];
 const spHeaderRight = document.getElementsByClassName("sp-header__right")[0];
 hamburgerButton.addEventListener('click', ()=>{
   hamburgerButton.classList.toggle("circle");
-  hamburgerMenu.classList.toggle("hidden");
+  hamburgerMenu.classList.toggle("shut");
   document.getElementsByTagName("main")[0].classList.toggle("inactive");
   document.getElementsByTagName("footer")[0].classList.toggle("inactive");
   spHeaderCenter.classList.toggle("inactive");
@@ -147,7 +147,7 @@ hamburgerButton.addEventListener('click', ()=>{
 addEventListener('click', (e)=>{
   if (e.path[0].classList.contains("hamburger-button") || e.path[0].classList.contains("bar")) { return }
   hamburgerButton.classList.remove("circle");
-  hamburgerMenu.classList.add("hidden");
+  hamburgerMenu.classList.add("shut");
   document.getElementsByTagName("main")[0].classList.remove("inactive");
   document.getElementsByTagName("footer")[0].classList.remove("inactive");
   spHeaderCenter.classList.remove("inactive");

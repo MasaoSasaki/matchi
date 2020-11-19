@@ -4,6 +4,6 @@ addEventListener('load', ()=> {
   setTimeout(flashWindowToggle, 3000)
   document.getElementsByClassName("flash-window--delete")[0].addEventListener('click', flashWindowToggle);
   function flashWindowToggle() {
-    flashWindow.classList.toggle("hidden");
+    flashWindow.classList.toggle("shut");
   }
 });
