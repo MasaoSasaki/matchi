@@ -132,16 +132,26 @@ if (document.getElementById("restaurants_json") != null) {
 }
 
 // ハンバーガーメニュー
-const hamburgerButton = document.getElementsByClassName("hamburger")[0];
+const hamburgerButton = document.getElementsByClassName("hamburger-button")[0];
 const hamburgerMenu = document.getElementsByClassName("hamburger-menu")[0];
+const spHeaderCenter = document.getElementsByClassName("sp-header__center")[0];
+const spHeaderRight = document.getElementsByClassName("sp-header__right")[0];
 hamburgerButton.addEventListener('click', ()=>{
   hamburgerButton.classList.toggle("circle");
   hamburgerMenu.classList.toggle("hidden");
+  document.getElementsByTagName("main")[0].classList.toggle("inactive");
+  document.getElementsByTagName("footer")[0].classList.toggle("inactive");
+  spHeaderCenter.classList.toggle("inactive");
+  spHeaderRight.classList.toggle("inactive");
 });
 addEventListener('click', (e)=>{
-  if (e.path[0].classList.contains("hamburger") || e.path[0].classList.contains("bar")) { return }
+  if (e.path[0].classList.contains("hamburger-button") || e.path[0].classList.contains("bar")) { return }
   hamburgerButton.classList.remove("circle");
   hamburgerMenu.classList.add("hidden");
+  document.getElementsByTagName("main")[0].classList.remove("inactive");
+  document.getElementsByTagName("footer")[0].classList.remove("inactive");
+  spHeaderCenter.classList.remove("inactive");
+  spHeaderRight.classList.remove("inactive");
 });
 
 // メニュー写真、店舗写真のプレビュー表示

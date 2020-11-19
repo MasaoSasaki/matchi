@@ -93,7 +93,7 @@ label {
 }
 
 .inactive {
-  opacity: 0.6;
+  opacity: 0.5;
   pointer-events: none;
 }
 
@@ -368,13 +368,14 @@ input[readonly], textarea[readonly] {
   .sp-header__left {
 
     .hamburger-menu {
-      width: 60%;
+      width: 50%;
       height: 100vh;
       background: rgba(0, 0, 0, 0.9);
       position: fixed;
-      transition: $hamburger-transition 0s ease;
+      transition: $hamburger-transition 0s linear;
       top: 0;
       left: 0;
+      z-index: 1;
 
       ul {
         margin-top: 120px;
@@ -394,15 +395,16 @@ input[readonly], textarea[readonly] {
     }
   }
 
-  .hamburger {
-    transition: 0.1s;
-    margin-top: 15px;
+  .hamburger-button {
     width: 40px;
     height: 40px;
     border: solid 1px #aaa;
     border-radius: 5px;
-    position: relative;
     text-align: center;
+    position: relative;
+    position: fixed;
+    top: 40px;
+    transition: 0.1s;
     z-index: 2;
   }
 
