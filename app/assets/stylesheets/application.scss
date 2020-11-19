@@ -342,16 +342,23 @@ input[readonly], textarea[readonly] {
       height: 70px;
       justify-content: space-between;
 
+      &__left, &__center {
+        flex: 1;
+      }
+
       &__right {
+        flex: 1;
 
         .login {
           padding-top: 10px;
           text-align: center;
+          float: right;
 
           i {
             display: block;
           }
           small {
+            display: block;
             padding-bottom: 5px;
           }
         }
