@@ -17,7 +17,8 @@ jQuery 1.12.4<br>
 bootstrap
 FontAwesome6
 #### 外部API
-Google(Google Maps Javascript/Geolocation/Geocoding/CloudVision/CloudTranslation)
+Google(Google Maps Javascript/Geocoding/CloudVision/CloudTranslation)<br>
+Geolocation API
 #### インフラ
 vagrant/VirtualBox
 AWS(EC2/RDS/Route53/Certificate Manager/ALB/WorkMail)
