@@ -36,7 +36,7 @@ class User < ApplicationRecord
     validates :instagram
     validates :email_sub
   end
-  with_options numericality: { only_integer: true } do
+  with_options numericality: { only_integer: true, allow_blank: true } do
     validates :birth_year
     validates :birth_month
     validates :birth_day
