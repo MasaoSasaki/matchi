@@ -28,6 +28,9 @@ module Matchi
       routing_specs: false
     end
 
+    # Loogerの読み込み
+    config.logger = Logger.new(STDOUT)
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
