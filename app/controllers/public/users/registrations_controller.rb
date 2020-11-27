@@ -17,7 +17,7 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
       handle_name: "guest#{ SecureRandom.random_number(9999) }",
       user_status: "guest",
       password: SecureRandom.alphanumeric(6), confirmed_at: DateTime.now)
-      @user.email =  "guest#{ @user.handle_name }@guest.com"
+      @user.email =  "#{ @user.handle_name }@guest.com"
       @user.save
       sign_in @user
       flash[:notice] = 'ゲスト会員でログインしました。'

@@ -267,6 +267,7 @@ footer {
 
 input[readonly], textarea[readonly] {
   background-color: $thema-color1;
+  font-weight: bold;
   border: none;
   outline: none;
 }

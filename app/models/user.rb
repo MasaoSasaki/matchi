@@ -41,12 +41,11 @@ class User < ApplicationRecord
     validates :birth_month
     validates :birth_day
   end
-  validates :phone_number, length: { minimum: 10, maximum: 15, message: '10桁以上15桁未満でご入力ください' }
+  validates :phone_number, length: { minimum: 10, maximum: 15, message: '10桁以上15桁未満でご入力ください' }, on: :update?
   NAME_KANA_REGEX = /\A[ぁ-んァ-ヶー－]+\z/ # 全角かな・カナのみ
   with_options format: { with: ADDRESS_REGEX } do
     validates :email
     validates :email_sub, on: :update?
-    validates :password
   end
   with_options format: { with: NAME_KANA_REGEX, message: '全角カナ（かな）でご入力ください' }, unless: :guest_user? do
     validates :name_family_kana
