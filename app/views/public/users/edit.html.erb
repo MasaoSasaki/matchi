@@ -1,22 +1,20 @@
 <div class="contents public-users-edit">
   <h2>登録情報編集</h2>
-
   <%= render partial: 'shared/messages/error_messages', locals: { model: current_user } %>
-
   <%= form_with model: current_user, url: user_path(current_user), local: true, method: :patch do |f| %>
     <h2><u><%= current_user.name %></u> 様</h2>
     <small>お名前の変更は<%= link_to 'こちら', new_contact_path %>より、直接お問い合わせください。</small>
     <table class="edit-head">
       <body>
         <tr>
-         <td><h3><%= f.label :profile_image %></h3></td>
-         <td></td>
-         <td><%= f.attachment_field :profile_image, class: "attachment_image" %></td>
+        <td><h3><%= f.label :profile_image %></h3></td>
+        <td></td>
+        <td><%= f.attachment_field :profile_image, class: "attachment_image" %></td>
         </tr>
         <tr>
-         <td><h3><%= f.label :handle_name %></h3></td>
-         <td></td>
-         <td><%= f.text_field :handle_name %></td>
+        <td><h3><%= f.label :handle_name %></h3></td>
+        <td></td>
+        <td><%= f.text_field :handle_name %></td>
         </tr>
         <tr>
           <td><h3>SNS</h3></td>
@@ -75,7 +73,4 @@
       <div class="destroy"><%= link_to '退会する', users_withdraw_path(current_user), class: "btn btn-danger" %></div>
     </div>
   <% end %>
-
-  <div class="btn-area">
-  </div>
 </div>
