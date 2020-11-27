@@ -22,7 +22,7 @@ class User < ApplicationRecord
     validates :name_first_kana
     validates :phone_number
   end
-  with_options length: { maximum: 255 } do
+  with_options length: { maximum: 255, message: '225文字以内でご入力ください' } do
     validates :email
     validates :password
     validates :name_family
@@ -41,13 +41,14 @@ class User < ApplicationRecord
     validates :birth_month
     validates :birth_day
   end
-  validates :phone_number, length: { maximum: 15 }
+  validates :phone_number, length: { minimum: 10, maximum: 15, message: '10桁以上15桁未満でご入力ください' }
   NAME_KANA_REGEX = /\A[ぁ-んァ-ヶー－]+\z/ # 全角かな・カナのみ
   with_options format: { with: ADDRESS_REGEX } do
     validates :email
     validates :email_sub, on: :update?
+    validates :password
   end
-  with_options format: { with: NAME_KANA_REGEX }, unless: :guest_user? do
+  with_options format: { with: NAME_KANA_REGEX, message: '全角カナ（かな）でご入力ください' }, unless: :guest_user? do
     validates :name_family_kana
     validates :name_first_kana
   end

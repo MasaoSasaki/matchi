@@ -4,12 +4,11 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   before_action :delete_devise_flash_messages, only: %i[email_notice]
-  before_action :guest_sign_out, only: %i[new]
 
   # GET /resource/sign_up
-  def new
-    super
-  end
+  # def new
+  #   super
+  # end
 
   # POST /resource
   def create
@@ -56,7 +55,11 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
 
   def confirm
     @user = User.new(sign_up_params)
-    render :new and return if @user.invalid?
+    if @user.invalid?
+      flash.now[:danger] = '入力内容にエラーがあります。'
+      render :new
+      return
+    end
   end
 
   def email_notice

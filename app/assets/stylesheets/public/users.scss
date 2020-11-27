@@ -30,6 +30,37 @@
   }
 }
 
+// registrations/new
+.public-users-registrations-new {
+
+  .registration-form {
+
+    h2 {
+      text-align: center;
+    }
+
+    h3 {
+      margin-top: 1rem;
+      margin-bottom: 0;
+    }
+
+    .form-group {
+      padding: 0 15px;
+    }
+
+    .flex {
+
+      .form-group {
+        flex: 1;
+      }
+    }
+
+    &__submit {
+      text-align: center;
+    }
+  }
+}
+
 // registrations/confirm
 .public-users-registrations-confirm {
 
@@ -78,23 +109,27 @@
       padding-top: 20px;
     }
   }
-
-  // registrations/new
-  .public-users-registrations-new {
-
-    .registration-form-sp {
-
-      input {
-        width: 100%;
-      }
-    }
-  }
 }
 
 // PC・タブレット共通
 @media (min-width: $media-tb-min) {
-// registrations/confirm
-  .public-users-registrations-confirm, .public-users-registrations-new {
+  //registrations/new
+  .public-users-registrations-new {
+
+    .registration-form {
+
+      &__number-email, &__password {
+        display: flex;
+
+        .form-group {
+          flex: 1;
+        }
+      }
+    }
+  }
+
+  // registrations/confirm
+  .public-users-registrations-confirm {
 
     &.sp {
       display: none;

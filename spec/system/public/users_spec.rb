@@ -127,7 +127,7 @@ RSpec.describe 'Users', type: :system do
           expect(page).to have_css '.public-users-registrations-new'
         end
         it '確認画面へ遷移できる' do
-          within('.registration-form-sp') do
+          within('.registration-form') do
             fill_in 'user[name_family]', with: '田中'
             fill_in 'user[name_first]', with: '太郎'
             fill_in 'user[name_family_kana]', with: 'たなか'
@@ -155,7 +155,7 @@ RSpec.describe 'Users', type: :system do
         end
         describe 'confirmページ(sp)のテスト' do
           before do
-            within('.registration-form-sp') do
+            within('.registration-form') do
               fill_in 'user[name_family]', with: '田中'
               fill_in 'user[name_first]', with: '太郎'
               fill_in 'user[name_family_kana]', with: 'たなか'

@@ -1,115 +1,67 @@
-<%# sp %>
-<div class="contents public-users-registrations-new sp">
+<div class="contents public-users-registrations-new">
   <h2>新規会員登録</h2>
-  <%= render partial: 'layouts/error_messages', locals: { model: @user } %>
-
+  <%= render partial: 'shared/messages/flash_messages' %>
   <%= form_with model: @user, url: users_sign_up_confirm_path(@user), local: true do |f| %>
-    <table class="registration-form-sp">
-      <tbody>
-        <tr>
-          <td colspan="2"><h3>お名前</h3><p>予約時の情報として使用されます。</p></td>
-        </tr>
-        <tr>
-          <td><%= f.label :name_family, '姓：' %><br><%= f.text_field :name_family, placeholder: '必須', required: true, id: "new-user-name_family" %><br><span id="new-user-name_family--notice"></span></td>
-          <td><%= f.label :name_first, '名：' %><br><%= f.text_field :name_first, placeholder: '必須', required: true, id: "new-user-name_first" %><br><span id="new-user-name_first--notice"></span></td>
-        </tr>
-        <tr>
-          <td><%= f.label :name_family_kana, 'セイ：' %><br><%= f.text_field :name_family_kana, placeholder: '必須', required: true, id: "new-user-name_family_kana" %><br><span id="new-user-name_family_kana--notice"></span></td>
-          <td><%= f.label :name_first_kana, 'メイ：' %><br><%= f.text_field :name_first_kana, placeholder: '必須', required: true, id: "new-user-name_first_kana" %><br><span id="new-user-name_first_kana--notice"></span></td>
-        </tr>
-        <tr>
-          <td colspan="2"><h3><%= f.label :phone_number, '電話番号' %></h3><p>予約後に店舗よりご連絡する場合がございます。</p></td>
-        </tr>
-        <tr>
-          <td><%= f.text_field :phone_number, placeholder: '必須', required: true, id: "new-user-phone_number" %><br><span id="new-user-phone_number--notice"></span></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td colspan="2"><h3><%= f.label :email, 'メールアドレス' %></h3><p>ログイン時のID、予約の確認、メールマガジンの配信先に使用します。</p></td>
-        </tr>
-        <tr>
-          <td><%= f.email_field :email, autocomplete: "email", placeholder: '必須', required: true, id: "new-user-email" %><br><span id="new-user-email--notice"></span></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td colspan="2"><h3><%= f.label :password, 'パスワード' %></h3><p>ログイン時に使用します。</p></td>
-        </tr>
-        <tr>
-          <td colspan="2"><%= f.password_field :password, autocomplete: "new-password", placeholder: '必須', required: true, id: "new-user-password" %><br><span id="new-user-password--notice"></span>
-            <% if @minimum_password_length %>
-              <p>(<%= @minimum_password_length %>文字以上)</p>
-            <% end %>
-          </td>
-        </tr>
-        <tr class="password-confirmation">
-          <td colspan="2"><%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '必須', required: true, id: "new-user-password_confirmation" %><p class="password-confirmation--confirm">（再入力）</p><br><span id="new-user-password_confirmation--notice"></span></td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="actions">
-      <%= f.submit "確認する", class: 'btn btn-success' %>
-    </div>
+    <div class="registration-form">
+      <h3>お名前</h3>
+      <p>予約時の情報として使用されます。</p>
+      <div class="registration-form__name flex">
+        <div class="form-group">
+          <%= f.label :name_family %>
+          <%= f.text_field :name_family, required: true, id: "new-user-name_family", class: "form-control #{("error-form" if @user.errors.include?(:name_family))}" %>
+          <%= render partial: 'shared/messages/each_error_messages', locals: { model: @user, key: :name_family } %>
+        </div>
+        <div class="form-group">
+          <%= f.label :name_first %>
+          <%= f.text_field :name_first, required: true, id: "new-user-name_first", class: "form-control #{("error-form" if @user.errors.include?(:name_first))}" %>
+          <%= render partial: 'shared/messages/each_error_messages', locals: { model: @user, key: :name_first } %>
+        </div>
+      </div>
+      <div class="registration-form__name-kana flex">
+        <div class="form-group">
+          <%= f.label :name_family_kana %>
+          <%= f.text_field :name_family_kana, required: true, id: "new-user-name_family_kana", class: "form-control #{("error-form" if @user.errors.include?(:name_family_kana))}" %>
+          <%= render partial: 'shared/messages/each_error_messages', locals: { model: @user, key: :name_family_kana } %>
+        </div>
+        <div class="form-group">
+          <%= f.label :name_first_kana %>
+          <%= f.text_field :name_first_kana, required: true, id: "new-user-name_first_kana", class: "form-control #{("error-form" if @user.errors.include?(:name_first_kana))}" %>
+          <%= render partial: 'shared/messages/each_error_messages', locals: { model: @user, key: :name_first_kana } %>
+        </div>
+      </div>
+      <div class="registration-form__number-email">
+        <div class="form-group">
+          <h3><%= f.label :phone_number %>(ハイフンなし)</h3>
+          <p>予約後に店舗よりご連絡する場合がございます。</p>
+          <%= f.number_field :phone_number, min: 0, required: true, id: "new-user-phone_number", class: "form-control #{("error-form" if @user.errors.include?(:phone_number))}" %>
+          <%= render partial: 'shared/messages/each_error_messages', locals: { model: @user, key: :phone_number } %>
+        </div>
+        <div class="form-group">
+          <h3><%= f.label :email %></h3>
+          <p>ログイン時のID、ご予約の確認、メールマガジンの配信に使用します。(後から変更できます。)</p>
+          <%= f.email_field :email, autocomplete: "email", required: true, place_holder: 'example@example.com', id: "new-user-email", class: "form-control #{("error-form" if @user.errors.include?(:email))}" %>
+          <%= render partial: 'shared/messages/each_error_messages', locals: { model: @user, key: :email } %>
+        </div>
+      </div>
+      <h3>パスワード(半角英数字6文字以上)</h3>
+      <div class="registration-form__password">
+        <div class="form-group">
+          <p><%= f.label :password, 'ログイン時に使用します。'%></span>
+          <%= f.password_field :password, autocomplete: "new-password", required: true, id: "new-user-password", class: "form-control #{("error-form" if @user.errors.include?(:password))}" %>
+          <%= render partial: 'shared/messages/each_error_messages', locals: { model: @user, key: :password } %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation, '確認のため、再入力してください。' %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, id: "new-user-password_confirmation", class: "form-control #{("error-form" if @user.errors.include?(:password_confirmation))}" %>
+          <%= render partial: 'shared/messages/each_error_messages', locals: { model: @user, key: :password_confirmation } %>
+        </div>
+      </div>
+      <div class="registration-form__submit">
+        <div class="form-group">
+          <%= f.submit "確認する", class: 'btn btn-success' %>
+        </div>
+      </div>
+    <div>
   <% end %>
-
   <%= render "public/users/shared/links" %>
-
-</div>
-
-<%# pc %>
-<div class="contents public-users-registrations-new pc">
-  <h2>新規会員登録</h2>
-  <%= render partial: 'layouts/error_messages', locals: { model: @user } %>
-
-  <%= form_with model: @user, url: users_sign_up_confirm_path(@user), local: true do |f| %>
-    <table class="registration-form-pc">
-      <tbody>
-        <tr>
-          <td colspan="3"></td>
-        </tr>
-        <tr>
-          <td><h3>お名前</h3><p>予約時の情報として使用されます。</p></td>
-          <td><%= f.label :name_family, '姓：' %><%= f.text_field :name_family, placeholder: '必須', required: true %></td>
-          <td><%= f.label :name_first, '名：' %><%= f.text_field :name_first, placeholder: '必須', required: true %></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><%= f.label :name_family_kana, 'セイ：' %><%= f.text_field :name_family_kana, placeholder: '必須', required: true %></td>
-          <td><%= f.label :name_first_kana, 'メイ：' %><%= f.text_field :name_first_kana, placeholder: '必須', required: true %></td>
-        </tr>
-        <tr>
-          <td><h3><%= f.label :phone_number, '電話番号' %></h3></td>
-          <td><%= f.text_field :phone_number, placeholder: '必須', required: true %></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><h3><%= f.label :email, 'メールアドレス' %></h3><p>ログイン時のIDとして使用されます。また、予約の確認や、メールマガジンの配信も行われます。</p></td>
-          <td><%= f.email_field :email, autocomplete: "email", placeholder: '必須', required: true %></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>
-            <h3><%= f.label :password, 'パスワード' %></h3>
-            <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %>文字以上)</em>
-            <% end %>
-          </td>
-          <td><%= f.password_field :password, autocomplete: "new-password", placeholder: '必須', required: true %></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><h3><%= f.label :password_confirmation, 'パスワード（再入力）' %></h3></td>
-          <td><%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: '必須', required: true %></td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="actions">
-      <%= f.submit "確認する", class: 'btn btn-success' %>
-    </div>
-  <% end %>
-
-  <%= render "public/users/shared/links" %>
-
 </div>

@@ -11,12 +11,4 @@ class ApplicationController < ActionController::Base
   def delete_devise_flash_messages
     flash[:notice] = nil
   end
-
-  # ゲスト会員ログアウト
-  def guest_sign_out
-    binding.pry
-    if user_signed_in?
-      sign_out
-    end
-  end
 end

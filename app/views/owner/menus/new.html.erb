@@ -1,7 +1,7 @@
 <% if @current_restaurant == @restaurant %>
   <div class="contents owner-menus-new">
     <h2>Create Menus</h2>
-    <%= render partial: 'layouts/error_messages', locals: { model: @menu } %>
+    <%= render partial: 'shared/messages/error_messages', locals: { model: @menu } %>
     <%= render partial: 'form', locals: {
       current_restaurant: @current_restaurant,
       menu: @menu,
