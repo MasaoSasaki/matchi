@@ -1,7 +1,7 @@
 <% if @tag.errors.any? %>
-  $(".master-tags-index--messages").html("<p><%= j(render partial: 'layouts/error_messages', locals: { model: @tag }) %></p>")
+  $(".master-tags-index--messages").html("<p><%= j(render partial: 'shared/messages/error_messages', locals: { model: @tag }) %></p>")
 <% else %>
-  $(".master-tags-index--messages").html("<p><%= j(render partial: 'layouts/flash_messages', locals: { model: @tag }) %></p>")
+  $(".master-tags-index--messages").html("<p><%= j(render partial: 'shared/messages/flash_messages', locals: { model: @tag }) %></p>")
   $("#master-tags-index--tag-list").html("<%= j(render @tags) %>")
   $("#tag_name").val('')
 <% end %>

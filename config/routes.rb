@@ -68,7 +68,6 @@ Rails.application.routes.draw do
 
     get 'users/:id/profile', to: 'users#profile', as: 'users/profile'
     patch 'users/:id/withdrawal', to: 'users#withdrawal', as: 'users/withdrawal'
-    get 'users/:id/withdraw', to: 'users#withdraw', as: 'users/withdraw'
     post 'users/:id/withdrew', to: 'users#withdrew', as: 'users/withdrew'
 
     resources :restaurants, only: %i[index show]

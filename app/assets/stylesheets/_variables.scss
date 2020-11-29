@@ -13,7 +13,7 @@
   $thema-color-font: #555;
 
   // メディアクエリ
-  $media-sp-max: 576px;
-  $media-pc-min: 992px;
+  $media-sp-max: 480px;
+  $media-pc-min: 1024px;
   $media-tb-min: $media-sp-max + 1px;
   $media-tb-max: $media-pc-min - 1px;

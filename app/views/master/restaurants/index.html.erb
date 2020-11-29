@@ -30,7 +30,7 @@
     <h2>店舗新規登録</h2>
 
     <%= form_with model: @restaurant, url: master_restaurants_path(@restaurant), local: true do |f| %>
-      <%= render partial: "layouts/error_messages", locals: { model: @restaurant } %>
+      <%= render partial: "shared/messages/error_messages", locals: { model: @restaurant } %>
       <% if flash[:success] %>
         <p><%= flash[:success] %></p>
       <% end %>

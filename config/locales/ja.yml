@@ -40,7 +40,7 @@ ja:
       user:
         email: メールアドレス
         password: パスワード
-        password_confirmation: パスワード(再入力)
+        password_confirmation: パスワード(確認用)
         current_password: 現在のパスワード
         name_family: 姓
         name_first: 名

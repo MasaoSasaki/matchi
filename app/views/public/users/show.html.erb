@@ -1,23 +1,12 @@
 <div class="contents public-users-show">
   <h2>My Page</h2>
   <h2><%= current_user.name %> 様</h2>
-  <% if current_user.user_status == "member" %>
-    <ul>
-      <li>現在までの予約件数：<%= current_user.reservations.count %> 件</li>
-      <li>来店が完了した数：<%= current_user.reservations.where(reservation_status: "complete").count %> 件 ／ メニューに付けたレビュー数：<%= current_user.menu_reviews.count %> 件</li>
-      <li>店舗につけたレビュー数：<%= current_user.restaurant_reviews.count %> 件</li>
-      <li>店舗につけたレビュー数：<%= current_user.restaurant_reviews.count %> 件</li>
-      <li><%= current_user.name %> 様につけられたレビュー数：<%= current_user.user_reviews.count %> 件</li>
-    </ul>
-    <%= render 'user_links' %>
-  <% else %>
-    <ul class="inactive">
-      <li>現在までの予約件数：<%= current_user.reservations.count %> 件</li>
-      <li>来店が完了した数：<%= current_user.reservations.where(reservation_status: "complete").count %> 件 ／ メニューに付けたレビュー数：<%= current_user.menu_reviews.count %> 件</li>
-      <li>店舗につけたレビュー数：<%= current_user.restaurant_reviews.count %> 件</li>
-      <li>店舗につけたレビュー数：<%= current_user.restaurant_reviews.count %> 件</li>
-      <li><%= current_user.name %> 様につけられたレビュー数：<%= current_user.user_reviews.count %> 件</li>
-    </ul>
-    <%= render 'user_links' %>
-  <% end %>
+  <%= link_to '本登録はこちら', user_edit_path if current_user.user_status == 'guest' %>
+  <ul class="<%= 'inactive' if current_user.user_status != 'member' %>">
+    <li>現在までの予約件数：<%= current_user.reservations.count %> 件</li>
+    <li>来店が完了した数：<%= current_user.reservations.where(reservation_status: "complete").count %> 件 ／ メニューに付けたレビュー数：<%= current_user.menu_reviews.count %> 件</li>
+    <li>店舗につけたレビュー数：<%= current_user.restaurant_reviews.count %> 件</li>
+    <li><%= current_user.name %> 様につけられたレビュー数：<%= current_user.user_reviews.count %> 件</li>
+  </ul>
+  <%= render 'user_links' %>
 </div>

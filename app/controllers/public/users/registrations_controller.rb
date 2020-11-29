@@ -4,22 +4,20 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   before_action :delete_devise_flash_messages, only: %i[email_notice]
-  before_action :guest_sign_out, only: %i[new]
 
   # GET /resource/sign_up
-  def new
-    super
-  end
+  # def new
+  #   super
+  # end
 
   # POST /resource
   def create
     if params[:guest]
-      @user = User.new(name_family: "", name_first: "", name_family_kana: "", name_first_kana: "", phone_number: "",
+      @user = User.create(name_family: "", name_first: "", name_family_kana: "", name_first_kana: "", phone_number: "",
       handle_name: "guest#{ SecureRandom.random_number(9999) }",
       user_status: "guest",
       password: SecureRandom.alphanumeric(6), confirmed_at: DateTime.now)
-      @user.email =  "guest#{ @user.handle_name }@guest.com"
-      @user.save
+      @user.update(email: "#{ @user.handle_name }@guest.com")
       sign_in @user
       flash[:notice] = 'ゲスト会員でログインしました。'
       redirect_to root_path
@@ -56,7 +54,11 @@ class Public::Users::RegistrationsController < Devise::RegistrationsController
 
   def confirm
     @user = User.new(sign_up_params)
-    render :new and return if @user.invalid?
+    if @user.invalid?
+      flash.now[:danger] = '入力内容にエラーがあります。'
+      render :new
+      return
+    end
   end
 
   def email_notice

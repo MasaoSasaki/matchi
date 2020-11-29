@@ -1,4 +1,4 @@
-<div class="contents devise-form public-users-sessions-new">
+<div class="contents public-users-sessions-new">
   <h2>会員ログイン</h2>
   <p class="error-message"><%= flash[:error] %></p>
   <p class="error-message"><%= alert %></p>
@@ -14,22 +14,18 @@
         <%= f.password_field :password, autocomplete: "current-password", required: true %>
       </div>
     </div>
-
     <% if devise_mapping.rememberable? %>
       <div class="form-group">
         <%= f.check_box :remember_me %>
         <%= f.label :remember_me, 'パスワードを保存する' %>
       </div>
     <% end %>
-
     <div class="form-group">
       <%= f.submit "ログイン", class: 'btn btn-primary' %>
     </div>
   <% end %>
-
   <%= form_with url: user_registration_path, local: true do |f|%>
     <%= f.submit 'ゲストログイン', name: :guest, class: "btn btn-success" %>
   <% end %>
   <%= render "public/users/shared/links" %>
-
 </div>

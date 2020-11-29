@@ -30,41 +30,76 @@
   }
 }
 
+// registrations/new
+.public-users-registrations-new {
+
+  .registration-form {
+
+    h2 {
+      text-align: center;
+    }
+
+    h3 {
+      margin-top: 1rem;
+      margin-bottom: 0;
+    }
+
+    .form-group {
+      padding: 0 15px;
+    }
+
+    .flex {
+
+      .form-group {
+        flex: 1;
+      }
+    }
+
+    &__submit {
+      text-align: center;
+    }
+  }
+}
+
 // registrations/confirm
 .public-users-registrations-confirm {
 
-  table {
+  .confirm-form {
 
-    tbody {
+    h2 {
+      text-align: center;
+    }
 
-      tr {
-        padding: 20px;
+    h3 {
+      margin-top: 1rem;
+      margin-bottom: 0;
+    }
 
-        td {
+    p {
 
-          label {
-            margin: 0;
-          }
-
-          h3 {
-            padding-top: 20px;
-          }
-        }
+      &:nth-of-type(2) {
+        margin: 20px 0;
       }
     }
-  }
 
-  input[readonly] {
-    background-color: $thema-color1;
-    border: none;
-    outline: none;
+    .flex {
+
+      .form-group {
+        flex: 1;
+      }
+    }
+
+    &__submit {
+      text-align: center;
+    }
   }
 }
 
 // スマホ
 @media (max-width: $media-sp-max) {
 
-  .public-users-new, .public-users-registrations-new {
+  // registrations/new
+  .public-users-registrations-new {
 
     h2 {
       margin: 10px 0;
@@ -79,13 +114,13 @@
     }
   }
 
-  // registrations/new
-  .public-users-registrations-new {
+  // registrations/confirm
+  .public-users-registrations-confirm {
 
-    .registration-form-sp {
+    .confirm-form__submit {
 
-      input {
-        width: 100%;
+      .btn-success {
+        margin-left: 20px;
       }
     }
   }
@@ -93,11 +128,33 @@
 
 // PC・タブレット共通
 @media (min-width: $media-tb-min) {
-// registrations/confirm
-  .public-users-registrations-confirm, .public-users-registrations-new {
+  //registrations/new
+  .public-users-registrations-new {
 
-    &.sp {
-      display: none;
+    .registration-form {
+
+      &__number-email, &__password {
+        display: flex;
+
+        .form-group {
+          flex: 1;
+        }
+      }
+    }
+  }
+
+  // registrations/confirm
+  .public-users-registrations-confirm {
+
+    .confirm-form {
+
+      &__number-email, &__password {
+        display: flex;
+
+        .form-group {
+          flex: 1;
+        }
+      }
     }
   }
 
