@@ -136,11 +136,13 @@ const hamburgerButton = document.getElementsByClassName("hamburger-button")[0];
 const hamburgerMenu = document.getElementsByClassName("hamburger-menu")[0];
 const spHeaderCenter = document.getElementsByClassName("sp-header__center")[0];
 const spHeaderRight = document.getElementsByClassName("sp-header__right")[0];
+const htmlTagMain = document.getElementsByTagName("main")[0]
+const htmlTagFooter = document.getElementsByTagName("footer")[0]
 hamburgerButton.addEventListener('click', ()=>{
   hamburgerButton.classList.toggle("circle");
   hamburgerMenu.classList.toggle("shut");
-  document.getElementsByTagName("main")[0].classList.toggle("inactive");
-  document.getElementsByTagName("footer")[0].classList.toggle("inactive");
+  htmlTagMain.classList.toggle("inactive");
+  htmlTagFooter.classList.toggle("inactive");
   spHeaderCenter.classList.toggle("inactive");
   spHeaderRight.classList.toggle("inactive");
 });
@@ -148,8 +150,8 @@ addEventListener('click', (e)=>{
   if (e.path[0].classList.contains("hamburger-button") || e.path[0].classList.contains("bar")) { return }
   hamburgerButton.classList.remove("circle");
   hamburgerMenu.classList.add("shut");
-  document.getElementsByTagName("main")[0].classList.remove("inactive");
-  document.getElementsByTagName("footer")[0].classList.remove("inactive");
+  htmlTagMain.classList.remove("inactive");
+  htmlTagFooter.classList.remove("inactive");
   spHeaderCenter.classList.remove("inactive");
   spHeaderRight.classList.remove("inactive");
 });

@@ -1,18 +1,14 @@
-<div class="contents">
+<div class="contents public-users-confirmations-new">
   <h2>認証メールの再送信</h2>
-
   <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-    <%= render "public/users/shared/error_messages", resource: resource %>
-
-    <div class="field">
-      <%= f.label :email %><br />
+    <%= render partial: 'shared/messages/flash_messages', locals: { model: resource } %>
+    <div class="form-group">
+      <%= f.label :email %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
     </div>
-
     <div class="actions">
       <%= f.submit "認証メールを再送信", class: "btn btn-success" %>
     </div>
   <% end %>
-
   <%= render "public/users/shared/links" %>
 </div>

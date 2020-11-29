@@ -10,9 +10,10 @@ class Public::Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    redirect_to new_user_session_path and return if flash[:error]
+    super
+  end
 
   # DELETE /resource/sign_out
   def destroy
@@ -35,11 +36,9 @@ class Public::Users::SessionsController < Devise::SessionsController
     @user = User.find_by(email: params[:user][:email])
     if @user
       if @user.valid_password?(params[:user][:password]) && @user.active_for_authentication? == false
-        flash.now[:error] = "退会済みです。"
-        render :new
+        flash[:error] = "退会済みのユーザーです。"
       elsif !@user.valid_password?(params[:user][:password])
-        flash.now[:error] = "IDまたはパスワードが違います。"
-        render :new
+        flash[:error] = "IDまたはパスワードが違います。"
       end
     end
   end

@@ -1,76 +1,152 @@
 <div class="contents public-users-edit">
-  <h2>登録情報編集</h2>
-  <%= render partial: 'shared/messages/error_messages', locals: { model: current_user } %>
-  <%= form_with model: current_user, url: user_path(current_user), local: true, method: :patch do |f| %>
-    <h2><u><%= current_user.name %></u> 様</h2>
-    <small>お名前の変更は<%= link_to 'こちら', new_contact_path %>より、直接お問い合わせください。</small>
-    <table class="edit-head">
-      <body>
-        <tr>
-        <td><h3><%= f.label :profile_image %></h3></td>
-        <td></td>
-        <td><%= f.attachment_field :profile_image, class: "attachment_image" %></td>
-        </tr>
-        <tr>
-        <td><h3><%= f.label :handle_name %></h3></td>
-        <td></td>
-        <td><%= f.text_field :handle_name %></td>
-        </tr>
-        <tr>
-          <td><h3>SNS</h3></td>
-          <td><%= f.label :twitter %></td>
-          <td><%= f.text_field :twitter %></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><%= f.label :facebook %></td>
-          <td><%= f.text_field :facebook %></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><%= f.label :instagram %></td>
-          <td><%= f.text_field :instagram %></td>
-        </tr>
-        <tr>
-          <td><h3>連絡先</h3></td>
-          <td><%= f.label :phone_number %></td>
-          <td><%= f.number_field :phone_number, placeholder: '必須', required: true %></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><%= f.label :email %></td>
-          <td><%= f.email_field :email, placeholder: '必須', required: true %></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><%= f.label :email_sub %></td>
-          <td><%= f.email_field :email_sub %></td>
-        </tr>
-        <tr>
-          <td><h3>生年月日</h3></td>
-          <td><%= f.label :birth_year %>（4桁）</td>
-          <td><%= f.number_field :birth_year, min: 1900, max: Time.new.year %>年</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><%= f.label :birth_month %>（2桁）</td>
-          <td><%= f.number_field :birth_month, min: 1, max: 12 %>月</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><%= f.label :birth_day %>（2桁）</td>
-          <td><%= f.number_field :birth_day, min: 1, max: 31 %>日</td>
-        </tr>
-        <tr>
-          <td><h3><%= f.label :profile %></h3></td>
-          <td></td>
-          <td><%= f.text_area :profile, size: '30x10' %></td>
-        </tr>
-      </body>
-    </table>
-    <div class="flex users-edit-btn">
-      <div class="submit"><%= f.submit '変更を保存', class: 'btn btn-outline-dark' %></div>
-      <div class="destroy"><%= link_to '退会する', users_withdraw_path(current_user), class: "btn btn-danger" %></div>
+  <% case current_user.user_status %>
+  <% when 'member' %>
+    <div class="public-users-edit__member">
+      <h2>登録情報編集</h2>
+      <%= render partial: 'shared/messages/error_messages', locals: { model: current_user } %>
+      <%= form_with model: current_user, url: user_path(current_user), method: :patch, local: true do |f| %>
+        <h2><u><%= current_user.name %></u> 様</h2>
+        <small>お名前の変更は<%= link_to 'こちら', new_contact_path %>より、直接お問い合わせください。</small>
+        <table class="edit-head">
+          <body>
+            <tr>
+            <td><h3><%= f.label :profile_image %></h3></td>
+            <td></td>
+            <td><%= f.attachment_field :profile_image, class: "attachment_image" %></td>
+            </tr>
+            <tr>
+            <td><h3><%= f.label :handle_name %></h3></td>
+            <td></td>
+            <td><%= f.text_field :handle_name %></td>
+            </tr>
+            <tr>
+              <td><h3>SNS</h3></td>
+              <td><%= f.label :twitter %></td>
+              <td><%= f.text_field :twitter %></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><%= f.label :facebook %></td>
+              <td><%= f.text_field :facebook %></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><%= f.label :instagram %></td>
+              <td><%= f.text_field :instagram %></td>
+            </tr>
+            <tr>
+              <td><h3>連絡先</h3></td>
+              <td><%= f.label :phone_number %></td>
+              <td><%= f.number_field :phone_number, placeholder: '必須', required: true %></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><%= f.label :email %></td>
+              <td><%= f.email_field :email, placeholder: '必須', required: true %></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><%= f.label :email_sub %></td>
+              <td><%= f.email_field :email_sub %></td>
+            </tr>
+            <tr>
+              <td><h3>生年月日</h3></td>
+              <td><%= f.label :birth_year %>（4桁）</td>
+              <td><%= f.number_field :birth_year, min: 1900, max: Time.new.year %>年</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><%= f.label :birth_month %>（2桁）</td>
+              <td><%= f.number_field :birth_month, min: 1, max: 12 %>月</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><%= f.label :birth_day %>（2桁）</td>
+              <td><%= f.number_field :birth_day, min: 1, max: 31 %>日</td>
+            </tr>
+            <tr>
+              <td><h3><%= f.label :profile %></h3></td>
+              <td></td>
+              <td><%= f.text_area :profile, size: '30x10' %></td>
+            </tr>
+          </body>
+        </table>
+        <div class="flex users-edit-btn">
+          <div class="submit"><%= f.submit '変更を保存', name: :member, class: 'btn btn-outline-dark' %></div>
+          <div class="destroy"><%= link_to '退会する', user_withdraw_path, class: "btn btn-danger" %></div>
+        </div>
+      <% end %>
+    </div>
+  <% when 'guest' %>
+    <div class="public-users-edit__guest">
+      <h2>会員情報の更新</h2>
+      <%= render partial: 'shared/messages/flash_messages' %>
+      <%= form_with model: current_user, url: user_path(current_user), method: :patch, local: true do |f| %>
+        <div class="registration-form">
+          <h3>お名前</h3>
+          <p>予約時の情報として使用されます。</p>
+          <div class="registration-form__name flex">
+            <div class="form-group">
+              <%= f.label :name_family %>
+              <%= f.text_field :name_family, required: true, id: "new-user-name_family", class: "form-control #{("error-form" if current_user.errors.include?(:name_family))}" %>
+              <%= render partial: 'shared/messages/each_error_messages', locals: { model: current_user, key: :name_family } %>
+            </div>
+            <div class="form-group">
+              <%= f.label :name_first %>
+              <%= f.text_field :name_first, required: true, id: "new-user-name_first", class: "form-control #{("error-form" if current_user.errors.include?(:name_first))}" %>
+              <%= render partial: 'shared/messages/each_error_messages', locals: { model: current_user, key: :name_first } %>
+            </div>
+          </div>
+          <div class="registration-form__name-kana flex">
+            <div class="form-group">
+              <%= f.label :name_family_kana %>
+              <%= f.text_field :name_family_kana, required: true, id: "new-user-name_family_kana", class: "form-control #{("error-form" if current_user.errors.include?(:name_family_kana))}" %>
+              <%= render partial: 'shared/messages/each_error_messages', locals: { model: current_user, key: :name_family_kana } %>
+            </div>
+            <div class="form-group">
+              <%= f.label :name_first_kana %>
+              <%= f.text_field :name_first_kana, required: true, id: "new-user-name_first_kana", class: "form-control #{("error-form" if current_user.errors.include?(:name_first_kana))}" %>
+              <%= render partial: 'shared/messages/each_error_messages', locals: { model: current_user, key: :name_first_kana } %>
+            </div>
+          </div>
+          <div class="registration-form__number-email">
+            <div class="form-group">
+              <h3><%= f.label :phone_number %>(ハイフンなし)</h3>
+              <p>予約後に店舗よりご連絡する場合がございます。</p>
+              <%= f.number_field :phone_number, min: 0, required: true, id: "new-user-phone_number", class: "form-control #{("error-form" if current_user.errors.include?(:phone_number))}" %>
+              <%= render partial: 'shared/messages/each_error_messages', locals: { model: current_user, key: :phone_number } %>
+            </div>
+            <div class="form-group">
+              <h3><%= f.label :email %></h3>
+              <p>ログイン時のID、ご予約の確認、メールマガジンの配信に使用します。(後から変更できます。)</p>
+              <%= f.email_field :email, autocomplete: "email", required: true, place_holder: 'example@example.com', id: "new-user-email", class: "form-control #{("error-form" if current_user.errors.include?(:email))}" %>
+              <%= render partial: 'shared/messages/each_error_messages', locals: { model: current_user, key: :email } %>
+            </div>
+          </div>
+          <h3>パスワード(半角英数字6文字以上)</h3>
+          <div class="registration-form__password">
+            <div class="form-group">
+              <p><%= f.label :password, 'ログイン時に使用します。'%></span>
+              <%= f.password_field :password, autocomplete: "new-password", required: true, id: "new-user-password", class: "form-control #{("error-form" if current_user.errors.include?(:password))}" %>
+              <%= render partial: 'shared/messages/each_error_messages', locals: { model: current_user, key: :password } %>
+            </div>
+            <div class="form-group">
+              <%= f.label :password_confirmation, '確認のため、再入力してください。' %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, id: "new-user-password_confirmation", class: "form-control #{("error-form" if current_user.errors.include?(:password_confirmation))}" %>
+              <%= render partial: 'shared/messages/each_error_messages', locals: { model: current_user, key: :password_confirmation } %>
+            </div>
+          </div>
+          <p>
+            入力内容の確認後、ご入力されたメールアドレス宛に確認メールが送信されます。<br>
+            メール内に記載のリンクをクリックすると本登録が完了となります。
+          </p>
+          <div class="registration-form__submit">
+            <div class="form-group">
+              <%= f.submit "変更を保存", name: :guest, class: 'btn btn-success' %>
+            </div>
+          </div>
+        <div>
+      <% end %>
     </div>
   <% end %>
 </div>

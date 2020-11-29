@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   enum user_status: { member: 0, withdrew: 1, forced: 2, guest: 3 }
 
-  with_options presence: true, unless: :guest_user? do
+  with_options presence: { allow_blank: true } do
     validates :name_family
     validates :name_first
     validates :name_family_kana
@@ -41,13 +41,13 @@ class User < ApplicationRecord
     validates :birth_month
     validates :birth_day
   end
-  validates :phone_number, length: { minimum: 10, maximum: 15, message: '10桁以上15桁未満でご入力ください' }, on: :update?
+  validates :phone_number, length: { minimum: 10, maximum: 15, message: '10桁以上15桁未満でご入力ください', allow_blank: true }
   NAME_KANA_REGEX = /\A[ぁ-んァ-ヶー－]+\z/ # 全角かな・カナのみ
-  with_options format: { with: ADDRESS_REGEX } do
+  with_options format: { with: ADDRESS_REGEX, allow_blank: true } do
     validates :email
     validates :email_sub, on: :update?
   end
-  with_options format: { with: NAME_KANA_REGEX, message: '全角カナ（かな）でご入力ください' }, unless: :guest_user? do
+  with_options format: { with: NAME_KANA_REGEX, message: '全角カナ（かな）でご入力ください', allow_blank: true } do
     validates :name_family_kana
     validates :name_first_kana
   end
@@ -69,10 +69,4 @@ class User < ApplicationRecord
   def name_kana
     name_family_kana + name_first_kana
   end
-
-  # ゲスト会員
-  def guest_user?
-    user_status == "guest"
-  end
-
 end
