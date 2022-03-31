@@ -9,7 +9,7 @@ gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
 gem 'sqlite3'
 # Use Puma as the app server
 # 5.0.0でdaemonエラー
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 5.6'
 # Use SCSS for stylesheets
 gem 'sassc-rails'
 # Use Uglifier as compressor for JavaScript assets
